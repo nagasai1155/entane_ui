@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1a1a2e;
+  background-color: #ffffff;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* CSS Variables for Theme Colors - Exact Figma Colors */
+:root {
+  --primary-color: #00352B;        /* Primary Dark Green */
+  --accent-color: #FF3300;         /* Red-Orange Accent */
+  --light-background: #FFFBE9;     /* Cream Background */
+  --secondary-dark: #323232;       /* Dark Gray */
+  --text-dark: rgba(0, 0, 0, 0.75);
+  --text-light: rgba(0, 0, 0, 0.6);
+  --text-gray: rgba(0, 0, 0, 0.5);
+  --white: #FFFFFF;
+  --border-color: rgba(0, 0, 0, 0.1);
+}

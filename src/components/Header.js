@@ -1,0 +1,42 @@
+import React from 'react';
+import './Header.css';
+
+const Header = () => {
+  return (
+    <header className="header">
+      <div className="header-top">
+        <div className="header-contact">
+          <div className="contact-item">
+            <svg className="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 3h12v10H2V3z" stroke="white" strokeWidth="1.5" fill="none"/>
+              <path d="M2 3l6 5 6-5" stroke="white" strokeWidth="1.5" fill="none"/>
+            </svg>
+            <span>info@esante.com.au</span>
+          </div>
+          <div className="contact-item">
+            <svg className="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 2h3l1 3-2 2c1 2 2 3 4 4l2-2 3 1v3c0 1-1 2-2 2-6 0-11-5-11-11 0-1 1-2 2-2z" stroke="white" strokeWidth="1.5" fill="none"/>
+            </svg>
+            <span>+44 1234 5678 90</span>
+          </div>
+        </div>
+      </div>
+      <nav className="header-nav">
+        <div className="nav-container">
+          <div className="logo">
+            <img src="/logo.png" alt="Esante Logo" />
+          </div>
+          <ul className="nav-menu">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#australia">Why Australia</a></li>
+            <li><a href="#resources">Tools & Resources</a></li>
+          </ul>
+          <button className="cta-button">Book 1:1 Counselling</button>
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default Header;

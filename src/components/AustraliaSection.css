@@ -1,0 +1,298 @@
+/* Australia Section - Figma: cream left, australia.png right + 2x2 collage overlay */
+.australia-section {
+  padding: 0;
+  background-color: #FFFFFF;
+}
+
+.australia-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 160px;
+}
+
+/* Left column - cream background (Figma) */
+.australia-left {
+  background-color: #FFFBE9;
+  padding: 80px 60px 80px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Scroll-triggered entrance */
+.australia-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.2em;
+  color: #00352B;
+  margin: 0 0 24px 0;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.australia-section--in-view .australia-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.australia-title-accent {
+  color: #FF3300;
+}
+
+.australia-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.62em;
+  color: rgba(0, 0, 0, 0.75);
+  margin: 0 0 40px 0;
+  max-width: 575px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s,
+    transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s;
+}
+
+.australia-section--in-view .australia-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* L-shaped stats: row1 = 140,000 + | 1.9m +, row2 = 13,000 + */
+.australia-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 40px;
+}
+
+.stat-item {
+  text-align: left;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.australia-section--in-view .stat-item:nth-child(1) { transition-delay: 0.22s; }
+.australia-section--in-view .stat-item:nth-child(2) { transition-delay: 0.32s; }
+.australia-section--in-view .stat-item:nth-child(3) { transition-delay: 0.42s; }
+
+.australia-section--in-view .stat-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-item:hover .stat-number {
+  color: #00352B;
+}
+
+.stat-item-full {
+  grid-column: 1;
+}
+
+.stat-number {
+  font-size: 48px;
+  font-weight: 700;
+  color: #FF3300;
+  margin: 0 0 8px 0;
+  font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.stat-label {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.75);
+  line-height: 1.5;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Right column - australia.png background + overlay */
+.australia-right {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s,
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s;
+}
+
+.australia-section--in-view .australia-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.australia-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.australia-right:hover .australia-bg {
+  transform: scale(1.04);
+}
+
+.australia-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* overlay-image.png on top of australia.png */
+.australia-overlay-img {
+  max-width: 92%;
+  max-height: 85%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s ease;
+}
+
+.australia-right:hover .australia-overlay-img {
+  transform: scale(1.03);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .australia-wrapper {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .australia-left {
+    padding: 60px 50px;
+  }
+
+  .australia-right {
+    min-height: 90px;
+  }
+
+  .australia-title {
+    font-size: 36px;
+  }
+
+  .australia-description {
+    font-size: 16px;
+  }
+
+  .australia-overlay-img {
+    max-width: 260px;
+    max-height: 260px;
+  }
+
+  .stat-number {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .australia-left {
+    padding: 50px 20px;
+  }
+
+  .australia-title {
+    font-size: 28px;
+  }
+
+  .australia-description {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  .australia-stats {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .stat-item-full {
+    grid-column: 1;
+  }
+
+  .australia-right {
+    min-height: 80px;
+  }
+
+  .australia-overlay {
+    padding: 24px;
+  }
+
+  .australia-overlay-img {
+    max-width: 220px;
+    max-height: 220px;
+  }
+
+  .stat-number {
+    font-size: 36px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .australia-title {
+    font-size: 24px;
+  }
+
+  .australia-description {
+    font-size: 14px;
+  }
+
+  .stat-number {
+    font-size: 32px;
+  }
+
+  .australia-overlay-img {
+    max-width: 180px;
+    max-height: 180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .australia-title,
+  .australia-description,
+  .stat-item,
+  .australia-right,
+  .australia-bg,
+  .australia-overlay-img {
+    transition: none;
+  }
+
+  .australia-section .australia-title,
+  .australia-section .australia-description,
+  .australia-section .stat-item,
+  .australia-section .australia-right {
+    opacity: 1;
+    transform: none;
+  }
+
+  .australia-right:hover .australia-bg,
+  .australia-right:hover .australia-overlay-img {
+    transform: none;
+  }
+}

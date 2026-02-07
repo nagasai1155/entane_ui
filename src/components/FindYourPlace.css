@@ -1,0 +1,65 @@
+/* Find Your Place in Australia - single card with find-place.png */
+.find-your-place-section {
+  padding: 100px 0;
+  background-color: #fff;
+}
+
+.find-place-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #00352B;
+  margin: 0 0 12px 0;
+  text-align: left;
+}
+
+.find-place-title-accent {
+  color: #FF3300;
+}
+
+.find-place-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+  margin: 0 0 48px 0;
+  text-align: left;
+}
+
+.find-place-single-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: #f5f5f5;
+}
+
+.find-place-card-image-full {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .find-your-place-section {
+    padding: 60px 0;
+  }
+
+  .find-place-title {
+    font-size: 28px;
+  }
+
+  .find-place-subtitle {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .find-place-title {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,151 @@
+/* Book Free Call banner - Figma Frame 94: layout_FVYK9M, fill_SROK21, 37px radius */
+.book-free-call-banner {
+  padding: 80px 0;
+  background-color: #fff;
+}
+
+.book-free-call-card {
+  width: 1047px;
+  max-width: 100%;
+  height: 350px;
+  margin: 0 auto;
+  padding: 90px 48px 70px;
+  border-radius: 37px;
+  border: 2px solid #FF3300;
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 40%, #FFB347 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);
+  opacity: 1;
+}
+
+/* Subtle grain texture (Figma card uses image fill) */
+.book-free-call-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Title: style_W4V80S - Poppins 600, 40px, line-height 1.5, center, fill_GH1OFF #FFFFFF */
+.book-free-call-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #FFFFFF;
+  margin: 0 0 20px 0;
+  position: relative;
+  max-width: 950px;
+}
+
+.book-free-call-accent {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Subtitle: style_I5DHY2 - Poppins 400, 23px, fill_XKGT71 rgba(255,255,255,0.9) */
+.book-free-call-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.65%;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 34px 0;
+  max-width: 677px;
+  position: relative;
+}
+
+/* Button: Frame 2 - layout_Z6SMLS, fill_GH1OFF bg, 16px radius, text fill_VDF3NN #00352B */
+.book-free-call-btn {
+  display: inline-block;
+  padding: 5px 63px;
+  height: 36px;
+  line-height: 26px;
+  background: #FFFFFF;
+  color: #00352B;
+  border: none;
+  border-radius: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: -0.79%;
+  text-decoration: none;
+  transition: opacity 0.2s, box-shadow 0.2s;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.book-free-call-btn:hover {
+  opacity: 0.95;
+  box-shadow: 0 4px 16px rgba(0, 53, 43, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .book-free-call-card {
+    max-width: 100%;
+    padding: 70px 36px 60px;
+    min-height: 320px;
+  }
+
+  .book-free-call-title {
+    font-size: 34px;
+  }
+
+  .book-free-call-subtitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-free-call-banner {
+    padding: 60px 0;
+  }
+
+  .book-free-call-card {
+    padding: 60px 24px 50px;
+    border-radius: 28px;
+    min-height: 300px;
+  }
+
+  .book-free-call-title {
+    font-size: 28px;
+  }
+
+  .book-free-call-subtitle {
+    font-size: 18px;
+    margin-bottom: 28px;
+  }
+
+  .book-free-call-btn {
+    padding: 8px 48px;
+    font-size: 17px;
+    height: 44px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-free-call-title {
+    font-size: 24px;
+  }
+
+  .book-free-call-subtitle {
+    font-size: 16px;
+  }
+
+  .book-free-call-btn {
+    padding: 8px 36px;
+    font-size: 16px;
+  }
+}

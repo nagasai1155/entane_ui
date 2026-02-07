@@ -1,0 +1,177 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  z-index: 10;
+}
+
+.header-top {
+  background-color: #FF3300;  /* Red-Orange from Figma - fill_CA80RK */
+  padding: 8px 0;
+}
+
+.header-contact {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;  /* Email left, phone right */
+  font-size: 14px;
+  align-items: center;
+}
+
+.header-contact .contact-item:first-child {
+  width: 162px;  /* Figma spec: email width */
+}
+
+.header-contact .contact-item:last-child {
+  min-width: 118px;  /* Figma spec: allow full number on one line */
+  margin-left: auto;  /* Push to far right */
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;  /* Figma spec: gap between icon and text */
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  line-height: 100%;  /* Figma spec: line-height 100% */
+  letter-spacing: -0.15px;  /* Figma spec */
+  height: 21px;  /* Figma spec */
+  white-space: nowrap;  /* Keep email and number on one line */
+}
+
+.contact-item .icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.header-nav {
+  padding: 20px 0;
+  background-color: transparent;  /* Transparent - overlays on hero image */
+}
+
+.nav-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5em;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-menu li a:hover {
+  color: #FF3300;  /* Red-Orange Accent */
+}
+
+.cta-button {
+  background-color: #00352B;  /* Primary Color from Figma */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cta-button:hover {
+  background-color: #FF3300;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 51, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header-contact,
+  .nav-container {
+    padding: 0 50px;
+  }
+
+  .nav-menu {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-contact {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px 20px;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .nav-menu li a {
+    font-size: 14px;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-top {
+    display: none;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .nav-menu {
+    font-size: 12px;
+    gap: 10px;
+  }
+}
