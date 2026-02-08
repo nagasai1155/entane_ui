@@ -22,7 +22,7 @@ const GALLERY_IMAGES = [
   '/images/placeholder-5.png',
 ];
 
-const DreamSection = () => {
+const DreamSection = ({ morphProgress = 0, morphTargetRef }) => {
   const sectionRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -74,11 +74,26 @@ const DreamSection = () => {
           </div>
         </div>
         <div className="dream-row">
-          {GALLERY_IMAGES.slice(9, 14).map((src, i) => (
-            <div key={`r4-${i}`} className="dream-image-wrap">
-              <img src={src} alt="" className="dream-image" />
-            </div>
-          ))}
+          {GALLERY_IMAGES.slice(9, 14).map((src, i) => {
+            const isMorphTarget = i === 2;
+            const cardOpacity = isMorphTarget
+              ? Math.max(0, Math.min(1, (morphProgress - 0.88) / 0.12))
+              : 1;
+
+            return (
+              <div
+                key={`r4-${i}`}
+                ref={isMorphTarget ? morphTargetRef : undefined}
+                className="dream-image-wrap"
+                style={isMorphTarget ? {
+                  opacity: cardOpacity,
+                  transition: 'opacity 0.25s ease',
+                } : undefined}
+              >
+                <img src={src} alt="" className="dream-image" />
+              </div>
+            );
+          })}
         </div>
         <div className="dream-row">
           {GALLERY_IMAGES.slice(14, 18).map((src, i) => (

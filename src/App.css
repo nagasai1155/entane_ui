@@ -18,7 +18,43 @@ body {
   overflow-x: hidden;
 }
 
-/* Above-the-fold: topbar, navbar + hero; all slide up together on scroll down */
+/* Hero morphing image: transitions from full hero to Dream section card (bg image set in JS) */
+.hero-morph-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  z-index: 99;
+  transform-origin: center center;
+  will-change: transform, opacity, border-radius;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-morph-image {
+    display: none;
+  }
+}
+
+.hero-morph-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%);
+  opacity: var(--overlay-opacity, 1);
+  pointer-events: none;
+}
+
+/* Above-the-fold: navbar + hero; fade out on scroll down so morph image is the only motion */
 .above-fold {
   position: fixed;
   top: 0;
@@ -27,14 +63,15 @@ body {
   height: 100vh;
   max-height: 100dvh;
   z-index: 100;
-  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.35s ease;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  pointer-events: auto;
 }
 
 .above-fold--hidden {
-  transform: translateY(-100%);
+  opacity: 0;
   pointer-events: none;
 }
 
