@@ -22,7 +22,7 @@ const GALLERY_IMAGES = [
   '/images/placeholder-5.png',
 ];
 
-const DreamSection = ({ morphProgress = 0, morphTargetRef }) => {
+const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null }) => {
   const sectionRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -31,9 +31,9 @@ const DreamSection = ({ morphProgress = 0, morphTargetRef }) => {
     if (!el) return;
     const getRootMargin = () => {
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      // On mobile: only trigger when first row is in view (require ~200px of section above viewport top)
       if (isMobile) return '-200px 0px -40px 0px';
-      return '0px 0px -40px 0px';
+      // Desktop: trigger earlier (200px below viewport) so top 2 rows animate in as morph reveals them
+      return '200px 0px -40px 0px';
     };
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -90,7 +90,19 @@ const DreamSection = ({ morphProgress = 0, morphTargetRef }) => {
                   transition: 'opacity 0.25s ease',
                 } : undefined}
               >
-                <img src={src} alt="" className="dream-image" />
+                {isMorphTarget && heroVideoUrl ? (
+                  <video
+                    src={heroVideoUrl}
+                    className="dream-image dream-card-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <img src={src} alt="" className="dream-image" />
+                )}
               </div>
             );
           })}

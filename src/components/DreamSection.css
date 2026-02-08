@@ -1,7 +1,7 @@
 .dream-section {
   background: #FFFFFF;
-  padding: 160px 0 80px;
-  scroll-margin-top: 48px;
+  padding: 240px 0 80px;
+  scroll-margin-top: 80px;
 }
 
 .dream-container {
@@ -22,13 +22,23 @@
   align-items: center;
   gap: 48px;
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(20px);
   transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .dream-section--in-view .dream-row {
   opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rows 1 & 2 (above text): no initial offset so they appear fully when section is in view */
+.dream-row:nth-child(1),
+.dream-row:nth-child(2) {
+  transform: translateY(0);
+}
+.dream-section--in-view .dream-row:nth-child(1),
+.dream-section--in-view .dream-row:nth-child(2) {
   transform: translateY(0);
 }
 
@@ -67,6 +77,10 @@
   object-fit: cover;
   display: block;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dream-card-video {
+  object-position: center 35%;
 }
 
 .dream-image-wrap:hover .dream-image {
@@ -164,8 +178,8 @@
 
 @media (max-width: 768px) {
   .dream-section {
-    padding: 160px 0 60px;
-    scroll-margin-top: 24px;
+    padding: 200px 0 60px;
+    scroll-margin-top: 48px;
   }
 
   .dream-container {
@@ -210,8 +224,8 @@
 
 @media (max-width: 480px) {
   .dream-section {
-    padding: 140px 0 48px;
-    scroll-margin-top: 24px;
+    padding: 180px 0 48px;
+    scroll-margin-top: 48px;
   }
 
   .dream-image-wrap {

@@ -17,7 +17,10 @@ import Footer from './components/Footer';
 const HIDE_THRESHOLD = 120;
 const SHOW_THRESHOLD = 180;
 const MORPH_START = 0;
-const MORPH_END = 900;
+const MORPH_END = 1500;
+
+// Hero media: set to a video URL to use video, or null to use hero image
+const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
 
 function App() {
   const [hideAboveFold, setHideAboveFold] = useState(false);
@@ -88,9 +91,12 @@ function App() {
     }
 
     // End: exact position of target card (row 4 center, under text)
+    // Use "reveal" curve for top so the morph image uncovers the top of the viewport early,
+    // making the Dream section's top 2 rows visible before the hero fully settles
     if (targetRect && targetRect.width > 0) {
+      const revealCurve = Math.pow(eased, 0.55); // top moves down faster, so top rows appear sooner
+      const top = 0 + (targetRect.top - 0) * revealCurve;
       const left = 0 + (targetRect.left - 0) * eased;
-      const top = 0 + (targetRect.top - 0) * eased;
       const width = vw + (targetRect.width - vw) * eased;
       const height = vh + (targetRect.height - vh) * eased;
 
@@ -126,23 +132,34 @@ function App() {
 
   return (
     <div className="App">
-      {/* Morphing hero image that transitions to Dream section */}
+      {/* Morphing hero media (video or image) that transitions to Dream section */}
       <div 
         className="hero-morph-image" 
         style={{
           ...getMorphStyle(),
           '--overlay-opacity': overlayOpacity,
-          backgroundImage: `url(${process.env.PUBLIC_URL || ''}/images/hero.jpg)`,
+          backgroundImage: HERO_VIDEO_URL ? 'none' : `url(${process.env.PUBLIC_URL || ''}/images/hero.jpg)`,
         }}
         aria-hidden="true"
-      />
+      >
+        {HERO_VIDEO_URL && (
+          <video
+            className="hero-morph-video"
+            src={HERO_VIDEO_URL}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        )}
+      </div>
 
       <div className={`above-fold ${hideAboveFold ? 'above-fold--hidden' : ''}`}>
         <Header />
-        <Hero morphProgress={morphProgress} />
+        <Hero morphProgress={morphProgress} heroVideoUrl={HERO_VIDEO_URL} />
       </div>
       <main className="main-content">
-        <DreamSection morphProgress={morphProgress} morphTargetRef={morphTargetRef} />
+        <DreamSection morphProgress={morphProgress} morphTargetRef={morphTargetRef} heroVideoUrl={HERO_VIDEO_URL} />
         <AustraliaSection />
         <ServiceCards />
         <WhatEsanteDoes />
