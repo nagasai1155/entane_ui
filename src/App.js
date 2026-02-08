@@ -14,67 +14,58 @@ import LatestNews from './components/LatestNews';
 import BookFreeCallBanner from './components/BookFreeCallBanner';
 import Footer from './components/Footer';
 
-const HIDE_THRESHOLD = 120;
-const SHOW_THRESHOLD = 180;
+const HIDE_THRESHOLD = 100;
+const SHOW_THRESHOLD = 160;
 const MORPH_START = 0;
-const MORPH_END = 1500;
+// Short range on scroll down so hero immediately fixes into Dream section position
+const MORPH_END = 380;
 
 // Hero media: set to a video URL to use video, or null to use hero image
 const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
 
+// Premium easing (Square-style: smooth deceleration, no bounce)
+const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
+const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+
 function App() {
   const [hideAboveFold, setHideAboveFold] = useState(false);
   const [morphProgress, setMorphProgress] = useState(0);
-  const [targetRect, setTargetRect] = useState(null);
   const lastScrollY = useRef(0);
-  const ticking = useRef(false);
   const morphTargetRef = useRef(null);
+  const rafId = useRef(null);
+  const targetRectRef = useRef(null);
 
+  // Single rAF: read scroll + card rect every frame so hero lands exactly in Dream section
   useEffect(() => {
-    const updateTargetRect = () => {
-      if (morphTargetRef.current) {
-        setTargetRect(morphTargetRef.current.getBoundingClientRect());
-      }
-    };
-    updateTargetRect();
-    window.addEventListener('scroll', updateTargetRect, { passive: true });
-    window.addEventListener('resize', updateTargetRect);
-    return () => {
-      window.removeEventListener('scroll', updateTargetRect);
-      window.removeEventListener('resize', updateTargetRect);
-    };
-  }, [morphProgress]); // Re-measure when section might have animated
+    let lastY = window.scrollY || 0;
 
-  useEffect(() => {
-    const handleScroll = () => {
+    const tick = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
-      if (ticking.current) return;
-      ticking.current = true;
-      requestAnimationFrame(() => {
-        const scrollingDown = y > lastScrollY.current;
+      const scrollingDown = y > lastY;
 
-        const progress = Math.max(0, Math.min(1, (y - MORPH_START) / (MORPH_END - MORPH_START)));
-        setMorphProgress(progress);
+      targetRectRef.current = morphTargetRef.current
+        ? morphTargetRef.current.getBoundingClientRect()
+        : null;
 
-        // Show navbar when scroll is near top (so hero morph + navbar appear together on scroll up)
-        if (y <= SHOW_THRESHOLD) {
-          setHideAboveFold(false);
-        } else if (scrollingDown && y > HIDE_THRESHOLD) {
-          setHideAboveFold(true);
-        }
+      const raw = Math.max(0, Math.min(1, (y - MORPH_START) / (MORPH_END - MORPH_START)));
+      setMorphProgress(raw);
 
-        lastScrollY.current = y;
-        ticking.current = false;
-      });
+      if (y <= SHOW_THRESHOLD) setHideAboveFold(false);
+      else if (scrollingDown && y > HIDE_THRESHOLD) setHideAboveFold(true);
+
+      lastY = y;
+      rafId.current = requestAnimationFrame(tick);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    rafId.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   const getMorphStyle = () => {
-    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-    const eased = easeOutCubic(morphProgress);
-
+    const rect = targetRectRef.current;
+    const eased = easeOutQuart(morphProgress);
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
@@ -87,22 +78,40 @@ function App() {
         transform: 'none',
         borderRadius: 0,
         opacity: 1,
+        visibility: 'visible',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
       };
     }
 
-    // End: exact position of target card (row 4 center, under text)
-    // Use "reveal" curve for top so the morph image uncovers the top of the viewport early,
-    // making the Dream section's top 2 rows visible before the hero fully settles
-    if (targetRect && targetRect.width > 0) {
-      const revealCurve = Math.pow(eased, 0.55); // top moves down faster, so top rows appear sooner
-      const top = 0 + (targetRect.top - 0) * revealCurve;
-      const left = 0 + (targetRect.left - 0) * eased;
-      const width = vw + (targetRect.width - vw) * eased;
-      const height = vh + (targetRect.height - vh) * eased;
+    if (morphProgress >= 0.998) {
+      return {
+        left: 0,
+        top: 0,
+        width: '100vw',
+        height: '100vh',
+        transform: 'none',
+        borderRadius: 0,
+        opacity: 0,
+        visibility: 'hidden',
+        pointerEvents: 'none',
+        boxShadow: 'none',
+      };
+    }
 
+    if (rect && rect.width > 0) {
+      const reveal = Math.pow(eased, 0.58);
+      const top = rect.top * reveal;
+      const left = rect.left * eased;
+      const width = vw + (rect.width - vw) * eased;
+      const height = vh + (rect.height - vh) * eased;
       const borderRadius = 12 * eased;
-      const opacity = morphProgress > 0.88 ? Math.max(0, 1 - ((morphProgress - 0.88) / 0.12)) : 1;
 
+      const handoffStart = 0.82;
+      const morphOpacity = morphProgress >= handoffStart
+        ? Math.max(0, 1 - (morphProgress - handoffStart) / (1 - handoffStart))
+        : 1;
+
+      const shadow = 4 + 12 * (1 - eased);
       return {
         left: `${left}px`,
         top: `${top}px`,
@@ -110,25 +119,27 @@ function App() {
         height: `${height}px`,
         transform: 'none',
         borderRadius: `${borderRadius}px`,
-        opacity,
+        opacity: morphOpacity,
+        visibility: 'visible',
+        boxShadow: `0 ${shadow}px ${shadow * 2}px rgba(0,0,0,0.12)`,
       };
     }
 
-    // Fallback before we have target rect
-    const translateY = vh * 0.5 * eased;
-    const scale = 1 - 0.9 * eased;
+    const fallbackY = vh * 0.45 * eased;
+    const fallbackScale = 1 - 0.88 * eased;
     return {
       left: 0,
       top: 0,
       width: '100vw',
       height: '100vh',
-      transform: `translateY(${translateY}px) scale(${scale})`,
+      transform: `translateY(${fallbackY}px) scale(${fallbackScale})`,
       borderRadius: `${12 * eased}px`,
       opacity: 1,
+      boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
     };
   };
 
-  const overlayOpacity = Math.max(0, 1 - morphProgress * 1.8);
+  const overlayOpacity = Math.max(0, 1 - easeOutExpo(morphProgress) * 1.6);
 
   return (
     <div className="App">

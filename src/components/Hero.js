@@ -2,8 +2,8 @@ import React from 'react';
 import './Hero.css';
 
 const Hero = ({ morphProgress = 0, heroVideoUrl = null }) => {
-  const bgOpacity = Math.max(0, 1 - morphProgress * 3);
-  const contentOpacity = Math.max(0, 1 - morphProgress * 2.5);
+  const bgOpacity = Math.max(0, 1 - morphProgress * 2.2);
+  const contentOpacity = Math.max(0, 1 - morphProgress * 2);
 
   return (
     <section className="hero">

@@ -77,7 +77,7 @@ const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null }
           {GALLERY_IMAGES.slice(9, 14).map((src, i) => {
             const isMorphTarget = i === 2;
             const cardOpacity = isMorphTarget
-              ? Math.max(0, Math.min(1, (morphProgress - 0.88) / 0.12))
+              ? (morphProgress >= 0.99 ? 1 : Math.max(0, (morphProgress - 0.82) / 0.18))
               : 1;
 
             return (
@@ -87,7 +87,7 @@ const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null }
                 className="dream-image-wrap"
                 style={isMorphTarget ? {
                   opacity: cardOpacity,
-                  transition: 'opacity 0.25s ease',
+                  transition: 'opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 } : undefined}
               >
                 {isMorphTarget && heroVideoUrl ? (
