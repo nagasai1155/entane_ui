@@ -29,11 +29,17 @@ const DreamSection = () => {
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+    const getRootMargin = () => {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      // On mobile: only trigger when first row is in view (require ~200px of section above viewport top)
+      if (isMobile) return '-200px 0px -40px 0px';
+      return '0px 0px -40px 0px';
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setIsInView(true);
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.12, rootMargin: getRootMargin() }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -68,16 +74,8 @@ const DreamSection = () => {
           </div>
         </div>
         <div className="dream-row">
-          {GALLERY_IMAGES.slice(9, 11).map((src, i) => (
+          {GALLERY_IMAGES.slice(9, 14).map((src, i) => (
             <div key={`r4-${i}`} className="dream-image-wrap">
-              <img src={src} alt="" className="dream-image" />
-            </div>
-          ))}
-          <div className="dream-image-wrap dream-image-wrap--hero">
-            <img src="/images/hero.jpg" alt="" className="dream-image" />
-          </div>
-          {GALLERY_IMAGES.slice(11, 13).map((src, i) => (
-            <div key={`r4-${i + 2}`} className="dream-image-wrap">
               <img src={src} alt="" className="dream-image" />
             </div>
           ))}

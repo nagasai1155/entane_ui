@@ -164,11 +164,20 @@
 
 @media (max-width: 768px) {
   .dream-section {
-    padding: 40px 0 60px;
+    padding: 160px 0 60px;
+    scroll-margin-top: 24px;
   }
 
   .dream-container {
     padding: 0 20px;
+  }
+
+  /* First row: no initial offset on mobile so top 4 images aren't cut off when scrolling into view */
+  .dream-row:nth-child(1) {
+    transform: translateY(0);
+  }
+  .dream-section--in-view .dream-row:nth-child(1) {
+    transform: translateY(0);
   }
 
   .dream-row {
@@ -200,6 +209,11 @@
 }
 
 @media (max-width: 480px) {
+  .dream-section {
+    padding: 140px 0 48px;
+    scroll-margin-top: 24px;
+  }
+
   .dream-image-wrap {
     width: 88px;
     height: 111px;

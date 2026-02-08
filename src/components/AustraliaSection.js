@@ -7,7 +7,7 @@ const STATS = [
   { end: 13000, suffix: ' +', format: 'int' },
 ];
 
-const DURATION_MS = 1800;
+const DURATION_MS = 5200;
 const easeOutQuart = (t) => 1 - (1 - t) ** 4;
 
 function useCountUp(isInView, config) {
