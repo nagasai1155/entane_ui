@@ -35,7 +35,7 @@ const LatestNews = () => {
               <div className="latest-news-card-content">
                 <time className="latest-news-date">{article.date}</time>
                 <h3 className="latest-news-card-title">{article.title}</h3>
-                <a href="#" className="latest-news-read-more">Read More</a>
+                <a href="/" className="latest-news-read-more">Read More</a>
               </div>
             </article>
           ))}

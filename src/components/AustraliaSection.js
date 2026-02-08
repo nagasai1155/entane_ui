@@ -36,7 +36,7 @@ function useCountUp(isInView, config) {
     };
 
     requestAnimationFrame(tick);
-  }, [isInView, config.end, config.format]);
+  }, [isInView, config]);
 
   return display;
 }

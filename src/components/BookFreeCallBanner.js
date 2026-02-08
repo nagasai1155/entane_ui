@@ -12,7 +12,7 @@ const BookFreeCallBanner = () => {
           <p className="book-free-call-subtitle">
             Let our experts in Mumbai and Brisbane guide you every step of the way.
           </p>
-          <a href="#" className="book-free-call-btn">Book Free Call</a>
+          <a href="/#book-free-call" className="book-free-call-btn">Book Free Call</a>
         </div>
       </div>
     </section>
