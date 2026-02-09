@@ -30,7 +30,6 @@ const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 function App() {
   const [hideAboveFold, setHideAboveFold] = useState(false);
   const [morphProgress, setMorphProgress] = useState(0);
-  const lastScrollY = useRef(0);
   const morphTargetRef = useRef(null);
   const rafId = useRef(null);
   const targetRectRef = useRef(null);
