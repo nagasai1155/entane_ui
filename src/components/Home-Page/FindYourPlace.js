@@ -16,7 +16,7 @@ const FindYourPlace = () => {
 
         <div className="find-place-single-card">
           <img
-            src="/images/find-place.png"
+            src="/images/home-page/find-place.png"
             alt="Find your place in Australia - university hubs and education"
             className="find-place-card-image-full"
           />

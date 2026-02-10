@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import './SkillsShortage.css';
 
-const SKILL_IMAGES = ['/images/skill-1.png', '/images/skill-2.png', '/images/skill-3.png'];
+const SKILL_IMAGES = ['/images/home-page/skill-1.png', '/images/home-page/skill-2.png', '/images/home-page/skill-3.png'];
 
 const SkillsShortage = () => {
   const scrollRef = useRef(null);

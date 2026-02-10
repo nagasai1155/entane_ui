@@ -19,7 +19,7 @@ const Hero = ({ morphProgress = 0, heroVideoUrl = null }) => {
             aria-hidden="true"
           />
         ) : (
-          <img src="/images/hero.jpg" alt="Background" className="hero-bg-img" />
+          <img src="/images/home-page/hero.jpg" alt="Background" className="hero-bg-img" />
         )}
         <div className="hero-overlay"></div>
       </div>

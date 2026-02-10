@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FastTrackDegree.css';
 
-const FAST_TRACK_IMAGES = ['/images/fast-track-1.png', '/images/fast-track-2.png'];
+const FAST_TRACK_IMAGES = ['/images/home-page/fast-track-1.png', '/images/home-page/fast-track-2.png'];
 
 const FastTrackDegree = () => {
   const [activeTab, setActiveTab] = useState('management');

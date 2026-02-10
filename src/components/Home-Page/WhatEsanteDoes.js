@@ -31,14 +31,14 @@ const WhatEsanteDoes = () => {
             <button className="what-esante-btn">Learn More</button>
           </div>
           <div className="what-esante-card-image">
-            <img src="/images/Frame 106.png" alt="Migration" />
+            <img src="/images/home-page/Frame 106.png" alt="Migration" />
           </div>
         </div>
 
         {/* Card 2: image left, content right — bg #FF3300, gap 41px (Figma layout_53MYCK) */}
         <div className="what-esante-card what-esante-card-2">
           <div className="what-esante-card-image">
-            <img src="/images/Frame 106 (1).png" alt="Education" />
+            <img src="/images/home-page/Frame 106 (1).png" alt="Education" />
           </div>
           <div className="what-esante-card-content">
             <h3 className="what-esante-card-title">Education & Training</h3>

@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import DreamSection from './components/DreamSection';
-import AustraliaSection from './components/AustraliaSection';
-import ServiceCards from './components/ServiceCards';
-import WhatEsanteDoes from './components/WhatEsanteDoes';
-import FastTrackDegree from './components/FastTrackDegree';
-import SkillsShortage from './components/SkillsShortage';
-import FindYourPlace from './components/FindYourPlace';
-import RealStories from './components/RealStories';
-import LatestNews from './components/LatestNews';
-import BookFreeCallBanner from './components/BookFreeCallBanner';
-import Footer from './components/Footer';
+import Header from './components/Home-Page/Header';
+import Hero from './components/Home-Page/Hero';
+import DreamSection from './components/Home-Page/DreamSection';
+import AustraliaSection from './components/Home-Page/AustraliaSection';
+import ServiceCards from './components/Home-Page/ServiceCards';
+import WhatEsanteDoes from './components/Home-Page/WhatEsanteDoes';
+import FastTrackDegree from './components/Home-Page/FastTrackDegree';
+import SkillsShortage from './components/Home-Page/SkillsShortage';
+import FindYourPlace from './components/Home-Page/FindYourPlace';
+import RealStories from './components/Home-Page/RealStories';
+import LatestNews from './components/Home-Page/LatestNews';
+import BookFreeCallBanner from './components/Home-Page/BookFreeCallBanner';
+import Footer from './components/Home-Page/Footer';
 
 const HIDE_THRESHOLD = 100;
 const SHOW_THRESHOLD = 160;
@@ -148,7 +148,7 @@ function App() {
         style={{
           ...getMorphStyle(),
           '--overlay-opacity': overlayOpacity,
-          backgroundImage: HERO_VIDEO_URL ? 'none' : `url(${process.env.PUBLIC_URL || ''}/images/hero.jpg)`,
+          backgroundImage: HERO_VIDEO_URL ? 'none' : `url(${process.env.PUBLIC_URL || ''}/images/home-page/hero.jpg)`,
         }}
         aria-hidden="true"
       >

@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import './RealStories.css';
 
 const STORY_IMAGES = [
-  '/images/testimonial.png',
-  '/images/testimonial-1.png',
-  '/images/testimonial-2.png',
-  '/images/testimonial-3.png',
-  '/images/testimonial-1.png',
-  '/images/testimonial-2.png'
+  '/images/home-page/testimonial.png',
+  '/images/home-page/testimonial-1.png',
+  '/images/home-page/testimonial-2.png',
+  '/images/home-page/testimonial-3.png',
+  '/images/home-page/testimonial-1.png',
+  '/images/home-page/testimonial-2.png'
 ];
 
 const RealStories = () => {

@@ -98,9 +98,9 @@ const AustraliaSection = () => {
 
         {/* Right: australia.png as background + overlay-image.png on top */}
         <div className="australia-right">
-          <div className="australia-bg" style={{ backgroundImage: 'url(/images/australia.png)' }} />
+          <div className="australia-bg" style={{ backgroundImage: 'url(/images/home-page/australia.png)' }} />
           <div className="australia-overlay">
-            <img src="/images/overlay-image.png" alt="" className="australia-overlay-img" />
+            <img src="/images/home-page/overlay-image.png" alt="" className="australia-overlay-img" />
           </div>
         </div>
       </div>

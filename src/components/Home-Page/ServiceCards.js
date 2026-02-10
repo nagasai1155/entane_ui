@@ -3,19 +3,19 @@ import './ServiceCards.css';
 
 const CARDS = [
   {
-    image: '/images/image 52.png',
+    image: '/images/home-page/image 52.png',
     badge: 'For Students',
     subtitle: 'World-Class Education',
     cta: 'Book 1:1 Counselling',
   },
   {
-    image: '/images/image 53.png',
+    image: '/images/home-page/image 53.png',
     badge: 'For Professionals',
     subtitle: 'Advance Your Career',
     cta: 'Book 1:1 Counselling',
   },
   {
-    image: '/images/image 54.png',
+    image: '/images/home-page/image 54.png',
     badge: 'For Migration',
     subtitle: 'Advance Your Career',
     cta: 'Book 1:1 Counselling',

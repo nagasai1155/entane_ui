@@ -2,10 +2,10 @@ import React from 'react';
 import './LatestNews.css';
 
 const NEWS_IMAGES = [
-  '/images/news-1.png',
-  '/images/news-2.png',
-  '/images/news-3.png',
-  '/images/news-4.png'
+  '/images/home-page/news-1.png',
+  '/images/home-page/news-2.png',
+  '/images/home-page/news-3.png',
+  '/images/home-page/news-4.png'
 ];
 
 const LatestNews = () => {
