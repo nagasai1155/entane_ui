@@ -1,0 +1,563 @@
+/* About Us Page - Pixel Perfect from Figma */
+
+.about-us {
+  font-family: 'Poppins', sans-serif;
+  background: #FFFFFF;
+}
+
+.about-page .nav-container {
+  max-width: 1000px;
+  padding: 0 40px;
+}
+
+.about-page .header-nav {
+  padding: 6px 0; /* further reduced navbar height only on About Us page */
+}
+
+.about-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 100px;
+}
+
+/* Hero Section */
+.about-hero {
+  background-color: #FFFBE9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 760px; /* taller hero image */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, 0) 100%);
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #00352B;
+  max-width: 900px;
+  padding: 110px 20px 60px;
+}
+
+.about-hero-breadcrumb {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: #00352B;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin-bottom: 24px;
+}
+
+.about-hero-subtitle {
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.45%;
+  margin-bottom: 24px;
+}
+
+.about-hero-subtitle-main {
+  color: #00352B;
+}
+
+.about-hero-subtitle-highlight {
+  color: #FF3300;
+}
+
+.about-hero-description {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.4%;
+  color: #4D4D4D;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Mission Section */
+.about-mission {
+  background: #00352B;
+  padding: 89px 0;
+}
+
+.about-mission-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-tagline {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.44%;
+  color: #FFFFFF;
+  text-align: center;
+  max-width: 900px;
+  margin: 0;
+}
+
+.about-tagline-highlight {
+  color: #FF3300; /* Orange color matching Figma */
+}
+
+/* Description Section */
+.about-description {
+  padding: 100px 0;
+  background: #FFFFFF;
+}
+
+.about-description-grid {
+  display: grid;
+  grid-template-columns: 461px 1fr;
+  gap: 74px;
+  align-items: start;
+}
+
+.about-description-image img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.about-description-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.79;
+  letter-spacing: -0.75%;
+  color: #000000;
+}
+
+.about-description-text p {
+  margin: 0 0 24px 0;
+}
+
+.about-description-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Partners Section */
+.about-partners {
+  padding: 80px 0;
+  background: #FFFFFF;
+}
+
+.about-partners-title {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: #000000;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.about-partners-title-highlight {
+  color: #FF3300;
+  font-style: italic;
+}
+
+.about-partners-grid {
+  display: flex;
+  gap: 20px;
+  max-width: 100%;
+}
+
+.about-partner-card {
+  min-height: 100px;
+  border-radius: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 28px;
+  flex: 1;
+}
+
+.about-partner-card-1 {
+  background: linear-gradient(90deg, #FFE8D5 0%, #CDEAFF 100%);
+}
+
+.about-partner-card-2 {
+  background: linear-gradient(90deg, #FFE0C9 0%, #E8DAFF 100%);
+}
+
+.about-partner-card-3 {
+  background: linear-gradient(90deg, #FFD6BE 0%, #CDEAFF 100%);
+}
+
+.about-partner-arrow {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.about-partner-text {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  color: #000000;
+  margin: 0;
+  flex: 1;
+  text-align: left;
+}
+
+/* Philosophy Section */
+.about-philosophy {
+  padding: 100px 0;
+  background: #FFFFFF;
+}
+
+.about-philosophy-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+  background: linear-gradient(135deg, #FFFBF0 0%, #FFF9E6 100%);
+  border: 2px solid #FFE8C5;
+  border-radius: 24px;
+  padding: 50px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-philosophy-content {
+  flex: 1;
+}
+
+.about-philosophy-title {
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: #000000;
+  margin-bottom: 32px;
+}
+
+.about-philosophy-title-highlight {
+  color: #FF3300;
+}
+
+.about-philosophy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-philosophy-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-philosophy-item-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #FF3300;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-philosophy-item-title::before {
+  content: "•";
+  font-size: 24px;
+  line-height: 1;
+}
+
+.about-philosophy-list li p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.2px;
+  color: #000000;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.about-philosophy-image {
+  flex-shrink: 0;
+  width: 380px;
+}
+
+.about-philosophy-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Founder Section */
+.about-founder {
+  background: #FFFFFF;
+  padding: 100px 0;
+}
+
+.about-founder-card {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.about-founder-image-wrapper {
+  flex-shrink: 0;
+  width: 320px;
+}
+
+.about-founder-image {
+  width: 100%;
+  background: #FF3300;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+.about-founder-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.about-founder-content {
+  flex: 1;
+  padding-top: 10px;
+}
+
+.about-founder-subtitle {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.about-founder-subtitle-highlight {
+  color: #FF3300;
+}
+
+.about-founder-name {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: #000000;
+  margin: 0 0 12px 0;
+}
+
+.about-founder-role {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: #FF3300;
+  margin: 0 0 24px 0;
+}
+
+.about-founder-bio p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.2px;
+  color: #000000;
+  margin: 0 0 16px 0;
+}
+
+.about-founder-quote {
+  font-style: normal;
+  margin-top: 20px !important;
+}
+
+.about-founder-quote em {
+  font-style: italic;
+}
+
+/* Team Section */
+.about-team {
+  padding: 100px 0;
+  background: #FFFFFF;
+}
+
+.about-team .about-section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about-team-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.4%;
+  color: #000000;
+  text-align: center;
+  margin: 0 0 60px 0;
+}
+
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-team-card {
+  background: #FFFFFF;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.about-team-card:hover {
+  transform: translateY(-8px);
+}
+
+.about-team-image {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255, 51, 0, 0.68);
+}
+
+.about-team-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-team-info {
+  padding: 30px;
+  text-align: center;
+  background: #FFFFFF;
+}
+
+.about-team-name {
+  font-size: 43px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: -0.35%;
+  color: #000000;
+  margin: 0 0 10px 0;
+}
+
+.about-team-role {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 2.85;
+  letter-spacing: -0.75%;
+  color: #000000;
+  margin: 0;
+}
+
+/* CTA Banner */
+.about-cta {
+  background: linear-gradient(135deg, #00352B 0%, #004D3D 100%);
+  min-height: 411px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 100px;
+  position: relative;
+}
+
+.about-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.about-cta-content {
+  max-width: 840px;
+  position: relative;
+  z-index: 1;
+}
+
+.about-cta-text {
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5%;
+  color: #FFFFFF;
+  text-align: right;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .about-container {
+    padding: 0 50px;
+  }
+  
+  .about-description-grid,
+  .about-philosophy-grid,
+  .about-founder-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .about-partners-grid,
+  .about-team-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .about-founder-image img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 0 20px;
+  }
+  
+  .about-hero-subtitle {
+    font-size: 32px;
+  }
+  
+  .about-section-title {
+    font-size: 36px;
+  }
+  
+  .about-founder-name {
+    font-size: 40px;
+  }
+  
+  .about-team-name {
+    font-size: 28px;
+  }
+  
+  .about-cta-text {
+    font-size: 32px;
+    text-align: center;
+  }
+  
+  .about-cta {
+    justify-content: center;
+    padding: 60px 20px;
+  }
+}

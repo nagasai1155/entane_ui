@@ -1,9 +1,13 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   return (
-    <header className="header">
+    <header className={`header ${isHome ? 'header--transparent' : 'header--solid'}`}>
       <div className="header-top">
         <div className="header-contact">
           <div className="contact-item">
@@ -24,10 +28,12 @@ const Header = () => {
       <nav className="header-nav">
         <div className="nav-container">
           <div className="logo">
-            <img src="/logo.png" alt="Esante Logo" />
+            <Link to="/">
+              <img src="/logo.png" alt="Esante Logo" />
+            </Link>
           </div>
           <ul className="nav-menu">
-            <li><a href="#about">About Us</a></li>
+            <li><Link to="/about-us">About Us</Link></li>
             <li><a href="#services">Our Services</a></li>
             <li><a href="#australia">Why Australia</a></li>
             <li><a href="#resources">Tools & Resources</a></li>

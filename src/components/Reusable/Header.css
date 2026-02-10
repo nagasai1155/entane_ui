@@ -52,7 +52,11 @@
 
 .header-nav {
   padding: 20px 0;
-  background-color: transparent;  /* Transparent - overlays on hero image */
+  background-color: transparent;  /* Default: transparent, especially for homepage hero */
+}
+
+.header.header--solid .header-nav {
+  background-color: #00352B;  /* Solid green on non-home pages like About Us */
 }
 
 .nav-container {
