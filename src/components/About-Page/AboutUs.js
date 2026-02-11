@@ -158,26 +158,35 @@ const AboutUs = () => {
       {/* Team Section */}
       <section className="about-team">
         <div className="about-container">
-          <h3 className="about-section-title">Meet Our Team</h3>
-          <p className="about-team-subtitle">
-            The team that supports you beyond admissions — all the way to life in Australia.
-          </p>
+          <div className="about-team-header">
+            <h3 className="about-team-title">
+              <span className="about-team-title-main">Meet Our</span>{' '}
+              <span className="about-team-title-highlight">Team</span>
+            </h3>
+            <p className="about-team-subtitle">
+              The team that supports you beyond admissions — all the way to life in Australia.
+            </p>
+          </div>
           <div className="about-team-grid">
             <div className="about-team-card">
-              <div className="about-team-image">
-                <img src="/images/about-us/soni-image.png" alt="Aashul Soni" />
-              </div>
-              <div className="about-team-info">
-                <h5 className="about-team-name">Aashul Soni</h5>
+              <img
+                className="about-team-photo"
+                src="/images/about-us/soni-image.png"
+                alt="Aashul Soni"
+              />
+              <div className="about-team-badge">
+                <p className="about-team-name">Aashul Soni</p>
                 <p className="about-team-role">Regional Director Of MP, India</p>
               </div>
             </div>
             <div className="about-team-card">
-              <div className="about-team-image">
-                <img src="/images/about-us/joush-image.png" alt="Joshua Michael" />
-              </div>
-              <div className="about-team-info">
-                <h5 className="about-team-name">Joshua Michael</h5>
+              <img
+                className="about-team-photo"
+                src="/images/about-us/joush-image.png"
+                alt="Joshua Michael"
+              />
+              <div className="about-team-badge">
+                <p className="about-team-name">Joshua Michael</p>
                 <p className="about-team-role">Australian Communication & IELTS Coach</p>
               </div>
             </div>
@@ -185,14 +194,31 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="about-cta">
-        <div className="about-cta-content">
-          <h3 className="about-cta-text">
-            Think of<br />
-            Esante as your Australia-study partner<br />
-            not just an agent.
-          </h3>
+      {/* Vision Image Banner */}
+      <section className="about-vision">
+        <img
+          src="/images/about-us/dream-action-bg.png"
+          alt="Esante vision banner"
+          className="about-vision-image"
+        />
+      </section>
+
+      {/* CTA Box */}
+      <section className="about-cta-box">
+        <div className="about-container">
+          <div className="about-cta-box-content">
+            <h2 className="about-cta-box-title">
+              Think of<br />
+              <span className="about-cta-box-title-brand">Esante</span> as your Australia-study partner<br />
+              not just an agent.
+            </h2>
+            <p className="about-cta-box-subtitle">
+              Let Our Experts in Brisbane Guide You Every Step Of The Way.
+            </p>
+            <button className="about-cta-box-button">
+              Book Free Call
+            </button>
+          </div>
         </div>
       </section>
     </div>

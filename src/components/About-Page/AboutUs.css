@@ -394,170 +394,781 @@
 
 /* Team Section */
 .about-team {
-  padding: 100px 0;
+  padding: 140px 0 120px;
   background: #FFFFFF;
 }
 
-.about-team .about-section-title {
-  text-align: center;
-  margin-bottom: 20px;
+.about-team-header {
+  max-width: 720px;
+  margin-bottom: 70px;
+  text-align: left;
+}
+
+.about-team-title {
+  font-size: clamp(38px, 4vw, 54px);
+  font-weight: 600;
+  color: #00352B;
+  margin: 0 0 16px;
+  letter-spacing: -0.5px;
+}
+
+.about-team-title-highlight {
+  color: #FF3D00;
+  font-style: italic;
 }
 
 .about-team-subtitle {
   font-size: 20px;
   font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: -0.4%;
-  color: #000000;
-  text-align: center;
-  margin: 0 0 60px 0;
+  line-height: 1.6;
+  color: #4A4A4A;
+  margin: 0;
 }
 
 .about-team-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .about-team-card {
-  background: #FFFFFF;
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
-}
-
-.about-team-card:hover {
-  transform: translateY(-8px);
-}
-
-.about-team-image {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
   position: relative;
-  background: rgba(255, 51, 0, 0.68);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.12);
+  background: #F4F4F4;
 }
 
-.about-team-image img {
+.about-team-photo {
   width: 100%;
-  height: 100%;
+  height: 520px;
   object-fit: cover;
+  display: block;
 }
 
-.about-team-info {
-  padding: 30px;
-  text-align: center;
-  background: #FFFFFF;
+.about-team-badge {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 32px;
+  background: linear-gradient(90deg, #FF6B1A 0%, #FF3A00 100%);
+  border-radius: 20px;
+  padding: 18px 28px;
+  color: #FFFFFF;
+  box-shadow: 0 20px 40px rgba(255, 58, 0, 0.35);
 }
 
 .about-team-name {
-  font-size: 43px;
-  font-weight: 500;
-  line-height: 1.33;
-  letter-spacing: -0.35%;
-  color: #000000;
-  margin: 0 0 10px 0;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  letter-spacing: 0.3px;
 }
 
 .about-team-role {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 2.85;
-  letter-spacing: -0.75%;
-  color: #000000;
   margin: 0;
+  line-height: 1.4;
+  opacity: 0.9;
 }
 
-/* CTA Banner */
-.about-cta {
-  background: linear-gradient(135deg, #00352B 0%, #004D3D 100%);
-  min-height: 411px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 100px;
+/* Vision Banner Image */
+.about-vision {
+  padding: 0;
+}
+
+.about-vision-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 32px;
+  margin: 0 auto 140px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* CTA Box */
+.about-cta-box {
+  padding: 0 0 140px;
+  background: #FFFFFF;
+}
+
+.about-cta-box-content {
+  background: linear-gradient(135deg, #FF6B1A 0%, #FF3A00 100%);
+  border-radius: 40px;
+  padding: 60px 80px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(255, 58, 0, 0.3);
   position: relative;
+  overflow: hidden;
 }
 
-.about-cta::before {
+.about-cta-box-content::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
 }
 
-.about-cta-content {
-  max-width: 840px;
+.about-cta-box-content::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.about-cta-box-title {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin: 0 0 20px;
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-cta-box-title-brand {
+  font-style: italic;
+}
+
+.about-cta-box-subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 32px;
   position: relative;
   z-index: 1;
 }
 
-.about-cta-text {
-  font-size: 50px;
+.about-cta-box-button {
+  background: #FFFFFF;
+  color: #FF3300;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.5%;
-  color: #FFFFFF;
-  text-align: right;
-  margin: 0;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+  font-family: 'Poppins', sans-serif;
+}
+
+.about-cta-box-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  background: #FFFAF0;
+}
+
+.about-cta-box-button:active {
+  transform: translateY(0);
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+
+/* Large Desktop (1441px and up) - Default styles apply */
+
+/* Desktop/Laptop (1025px - 1440px) */
+@media (max-width: 1440px) {
+  .about-container {
+    padding: 0 80px;
+  }
+  
+  .about-hero {
+    min-height: 680px;
+  }
+  
+  .about-description-grid {
+    grid-template-columns: 400px 1fr;
+    gap: 60px;
+  }
+  
+  .about-philosophy-card {
+    padding: 45px 50px;
+  }
+  
+  .about-philosophy-image {
+    width: 340px;
+  }
+}
+
+/* Laptop/Tablet Landscape (769px - 1024px) */
+@media (max-width: 1024px) {
   .about-container {
     padding: 0 50px;
   }
   
-  .about-description-grid,
-  .about-philosophy-grid,
-  .about-founder-grid {
+  .about-hero {
+    min-height: 600px;
+  }
+  
+  .about-hero-content {
+    padding: 90px 20px 50px;
+  }
+  
+  .about-hero-subtitle {
+    font-size: 38px;
+  }
+  
+  .about-hero-description {
+    font-size: 18px;
+  }
+  
+  .about-mission {
+    padding: 70px 0;
+  }
+  
+  .about-tagline {
+    font-size: 20px;
+  }
+  
+  .about-description {
+    padding: 80px 0;
+  }
+  
+  .about-description-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
   
-  .about-partners-grid,
+  .about-description-image img {
+    max-width: 500px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .about-description-text {
+    font-size: 18px;
+  }
+  
+  .about-partners {
+    padding: 60px 0;
+  }
+  
+  .about-partners-title {
+    font-size: 40px;
+  }
+  
+  .about-partners-grid {
+    flex-direction: column;
+  }
+  
+  .about-philosophy {
+    padding: 80px 0;
+  }
+  
+  .about-philosophy-card {
+    flex-direction: column;
+    padding: 40px;
+    gap: 40px;
+  }
+  
+  .about-philosophy-title {
+    font-size: 36px;
+  }
+  
+  .about-philosophy-image {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .about-founder {
+    padding: 80px 0;
+  }
+  
+  .about-founder-card {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .about-founder-image-wrapper {
+    width: 280px;
+  }
+  
+  .about-founder-content {
+    text-align: center;
+  }
+  
+  .about-founder-name {
+    font-size: 48px;
+  }
+  
+  .about-team {
+    padding: 100px 0 80px;
+  }
+  
   .about-team-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
   }
   
-  .about-founder-image img {
-    max-width: 100%;
-    height: auto;
+  .about-team-photo {
+    height: 450px;
+  }
+  
+  .about-vision-image {
+    margin-bottom: 100px;
+    border-radius: 24px;
+  }
+  
+  .about-cta-box {
+    padding: 0 0 100px;
+  }
+  
+  .about-cta-box-content {
+    padding: 50px 60px;
+    border-radius: 32px;
+  }
+  
+  .about-cta-box-title {
+    font-size: 40px;
+  }
+  
+  .about-cta-box-subtitle {
+    font-size: 17px;
   }
 }
 
+/* Tablet Portrait (481px - 768px) */
 @media (max-width: 768px) {
   .about-container {
-    padding: 0 20px;
+    padding: 0 30px;
+  }
+  
+  .about-hero {
+    min-height: 500px;
+  }
+  
+  .about-hero-content {
+    padding: 70px 20px 40px;
+  }
+  
+  .about-hero-breadcrumb {
+    font-size: 14px;
   }
   
   .about-hero-subtitle {
     font-size: 32px;
+    margin-bottom: 20px;
   }
   
-  .about-section-title {
-    font-size: 36px;
+  .about-hero-description {
+    font-size: 16px;
+  }
+  
+  .about-mission {
+    padding: 50px 0;
+  }
+  
+  .about-tagline {
+    font-size: 18px;
+  }
+  
+  .about-description {
+    padding: 60px 0;
+  }
+  
+  .about-description-image img {
+    max-width: 100%;
+    height: 280px;
+  }
+  
+  .about-description-text {
+    font-size: 16px;
+  }
+  
+  .about-partners {
+    padding: 50px 0;
+  }
+  
+  .about-partners-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  
+  .about-partner-card {
+    padding: 20px 24px;
+  }
+  
+  .about-partner-text {
+    font-size: 16px;
+  }
+  
+  .about-philosophy {
+    padding: 60px 0;
+  }
+  
+  .about-philosophy-card {
+    padding: 30px 24px;
+  }
+  
+  .about-philosophy-title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  
+  .about-philosophy-item-title {
+    font-size: 16px;
+  }
+  
+  .about-philosophy-list li p {
+    font-size: 14px;
+    padding-left: 16px;
+  }
+  
+  .about-founder {
+    padding: 60px 0;
+  }
+  
+  .about-founder-image-wrapper {
+    width: 320px;
+  }
+  
+  .about-founder-subtitle {
+    font-size: 24px;
   }
   
   .about-founder-name {
     font-size: 40px;
   }
   
+  .about-founder-role {
+    font-size: 18px;
+  }
+  
+  .about-founder-bio p {
+    font-size: 15px;
+  }
+  
+  .about-team {
+    padding: 80px 0 60px;
+  }
+  
+  .about-team-header {
+    margin-bottom: 40px;
+  }
+  
+  .about-team-subtitle {
+    font-size: 18px;
+  }
+  
+  .about-team-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .about-team-photo {
+    height: 400px;
+  }
+  
+  .about-team-badge {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    padding: 16px 24px;
+  }
+  
   .about-team-name {
+    font-size: 24px;
+  }
+  
+  .about-team-role {
+    font-size: 15px;
+  }
+  
+  .about-vision-image {
+    margin-bottom: 80px;
+    border-radius: 20px;
+  }
+  
+  .about-cta-box {
+    padding: 0 0 80px;
+  }
+  
+  .about-cta-box-content {
+    padding: 40px 40px;
+    border-radius: 28px;
+  }
+  
+  .about-cta-box-title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  
+  .about-cta-box-subtitle {
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+  
+  .about-cta-box-button {
+    padding: 14px 36px;
+    font-size: 15px;
+  }
+}
+
+/* Mobile Large (481px - 640px) */
+@media (max-width: 640px) {
+  .about-container {
+    padding: 0 24px;
+  }
+  
+  .about-hero {
+    min-height: 450px;
+  }
+  
+  .about-hero-content {
+    padding: 60px 16px 40px;
+  }
+  
+  .about-hero-subtitle {
     font-size: 28px;
   }
   
-  .about-cta-text {
-    font-size: 32px;
-    text-align: center;
+  .about-description-text p {
+    margin-bottom: 16px;
   }
   
-  .about-cta {
-    justify-content: center;
-    padding: 60px 20px;
+  .about-partners-title {
+    font-size: 28px;
+  }
+  
+  .about-philosophy-title {
+    font-size: 26px;
+  }
+  
+  .about-founder-image-wrapper {
+    width: 280px;
+  }
+  
+  .about-founder-name {
+    font-size: 36px;
+  }
+  
+  .about-team-photo {
+    height: 380px;
+  }
+  
+  .about-cta-box-title {
+    font-size: 28px;
+  }
+}
+
+/* Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .about-container {
+    padding: 0 16px;
+  }
+  
+  .about-hero {
+    min-height: 400px;
+  }
+  
+  .about-hero-content {
+    padding: 50px 12px 30px;
+    max-width: 100%;
+  }
+  
+  .about-hero-breadcrumb {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  
+  .about-hero-subtitle {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .about-hero-description {
+    font-size: 15px;
+  }
+  
+  .about-mission {
+    padding: 40px 0;
+  }
+  
+  .about-tagline {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .about-description {
+    padding: 50px 0;
+  }
+  
+  .about-description-image img {
+    height: 240px;
+  }
+  
+  .about-description-text {
+    font-size: 15px;
+  }
+  
+  .about-partners {
+    padding: 40px 0;
+  }
+  
+  .about-partners-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  
+  .about-partner-card {
+    padding: 16px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .about-partner-arrow {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .about-partner-text {
+    font-size: 15px;
+  }
+  
+  .about-philosophy {
+    padding: 50px 0;
+  }
+  
+  .about-philosophy-card {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+  
+  .about-philosophy-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .about-philosophy-item-title {
+    font-size: 15px;
+  }
+  
+  .about-philosophy-item-title::before {
+    font-size: 20px;
+  }
+  
+  .about-philosophy-list {
+    gap: 16px;
+  }
+  
+  .about-philosophy-list li p {
+    font-size: 13px;
+    padding-left: 12px;
+  }
+  
+  .about-founder {
+    padding: 50px 0;
+  }
+  
+  .about-founder-card {
+    gap: 30px;
+  }
+  
+  .about-founder-image-wrapper {
+    width: 260px;
+  }
+  
+  .about-founder-subtitle {
+    font-size: 20px;
+  }
+  
+  .about-founder-name {
+    font-size: 32px;
+  }
+  
+  .about-founder-role {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .about-founder-bio p {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .about-team {
+    padding: 60px 0 50px;
+  }
+  
+  .about-team-header {
+    margin-bottom: 32px;
+  }
+  
+  .about-team-subtitle {
+    font-size: 16px;
+  }
+  
+  .about-team-grid {
+    gap: 24px;
+  }
+  
+  .about-team-photo {
+    height: 340px;
+  }
+  
+  .about-team-badge {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    padding: 14px 20px;
+    border-radius: 16px;
+  }
+  
+  .about-team-name {
+    font-size: 20px;
+  }
+  
+  .about-team-role {
+    font-size: 14px;
+  }
+  
+  .about-vision-image {
+    margin-bottom: 60px;
+    border-radius: 16px;
+  }
+  
+  .about-cta-box {
+    padding: 0 0 60px;
+  }
+  
+  .about-cta-box-content {
+    padding: 32px 24px;
+    border-radius: 24px;
+  }
+  
+  .about-cta-box-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  
+  .about-cta-box-subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  
+  .about-cta-box-button {
+    padding: 12px 32px;
+    font-size: 14px;
   }
 }
