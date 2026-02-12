@@ -35,7 +35,7 @@ const Header = () => {
           <ul className="nav-menu">
             <li><Link to="/about-us">About Us</Link></li>
             <li><a href="#services">Our Services</a></li>
-            <li><a href="#australia">Why Australia</a></li>
+            <li><Link to="/why-australia">Why Australia</Link></li>
             <li><a href="#resources">Tools & Resources</a></li>
           </ul>
           <button className="cta-button">Book 1:1 Counselling</button>

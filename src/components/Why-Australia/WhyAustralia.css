@@ -1,0 +1,9 @@
+/* Page-level overrides when Why Australia page is active (Header/Footer layout) */
+.why-australia-page .nav-container {
+  max-width: 1000px;
+  padding: 0 40px;
+}
+
+.why-australia-page .header-nav {
+  padding: 6px 0;
+}
