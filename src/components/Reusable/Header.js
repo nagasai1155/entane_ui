@@ -5,9 +5,16 @@ import './Header.css';
 const Header = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const isNewsBlogs = location.pathname === '/news-blogs';
+  const isCaseStudies = location.pathname === '/case-studies';
+  const isEligibility = location.pathname === '/eligibility-calculator';
 
   return (
-    <header className={`header ${isHome ? 'header--transparent' : 'header--solid'}`}>
+    <header
+      className={`header ${isHome ? 'header--transparent' : 'header--solid'} ${
+        isNewsBlogs || isCaseStudies || isEligibility ? 'header--compact' : ''
+      }`}
+    >
       <div className="header-top">
         <div className="header-contact">
           <div className="contact-item">
@@ -36,7 +43,15 @@ const Header = () => {
             <li><Link to="/about-us">About Us</Link></li>
             <li><a href="#services">Our Services</a></li>
             <li><Link to="/why-australia">Why Australia</Link></li>
-            <li><a href="#resources">Tools & Resources</a></li>
+            <li className="nav-item-dropdown">
+              <span className="dropdown-toggle">Tools &amp; Resources</span>
+              <ul className="dropdown-menu">
+                <li><Link to="/news-blogs">News &amp; Blogs</Link></li>
+                <li><Link to="/case-studies">Case Studies</Link></li>
+                <li><Link to="/eligibility-calculator">Eligibility Calculator</Link></li>
+                <li><Link to="/cost-of-living-calculator">Cost of Living Calculator</Link></li>
+              </ul>
+            </li>
           </ul>
           <button className="cta-button">Book 1:1 Counselling</button>
         </div>

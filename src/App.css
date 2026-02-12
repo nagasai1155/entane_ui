@@ -99,6 +99,12 @@ body {
   padding-top: 96px;
 }
 
+/* Adjust spacing for Book Free Call on blogs page */
+.news-blogs-page .book-free-call-banner {
+  padding-top: 24px;
+  padding-bottom: 60px;
+}
+
 @media (max-width: 768px) {
   .main-content {
     padding-top: 72px;

@@ -18,14 +18,14 @@ const HERO_CONFIG = {
   ],
 };
 
-const HERO_GRID_IMAGES = [
-  "/images/about-us/hero-bg.png",
-  "/images/about-us/team-image.png",
-  "/images/about-us/philosophy-image.png",
-  "/images/about-us/founder-image.png",
-  "/images/about-us/employers.png",
-  "/images/about-us/migration-partners.png",
-];
+// const HERO_GRID_IMAGES = [
+//   "/images/about-us/hero-bg.png",
+//   "/images/about-us/team-image.png",
+//   "/images/about-us/philosophy-image.png",
+//   "/images/about-us/founder-image.png",
+//   "/images/about-us/employers.png",
+//   "/images/about-us/migration-partners.png",
+// ];
 
 const STEP_CARDS = [
   {
@@ -75,7 +75,17 @@ const TESTIMONIALS = [
   {
     name: "John Deo",
     university: "ABCD University",
-        image: "/images/home-page/australia.png",
+    image: "/images/home-page/australia.png",
+  },
+  {
+    name: "John Deo",
+    university: "ABCD University",
+    image: "/images/home-page/australia.png",
+  },
+  {
+    name: "John Deo",
+    university: "ABCD University",
+    image: "/images/home-page/australia.png",
   },
 ];
 
@@ -184,17 +194,34 @@ const CAREER_SERVICES_BY_CATEGORY = {
 
 const FAQ_ITEMS = [
   {
-    question: "Is there a free trial or free consultation available?",
+    question: "Is there a free trial available?",
     answer:
-      "Yes. You can try us for free for 30 days. If you want, we'll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
+      "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
   },
   {
-    question: "Can I change my course or visa plan later?",
-    answer: null,
+    question: "Can I change my plan later?",
+    answer:
+      "Yes. You can upgrade, downgrade, or switch plans at any time from your account settings. Changes are applied at the start of your next billing cycle so you’re never double-charged.",
   },
   {
     question: "What is your cancellation policy?",
-    answer: null,
+    answer:
+      "You can cancel your subscription at any time. Your account will remain active until the end of the current billing period, and you won’t be billed again unless you choose to reactivate.",
+  },
+  {
+    question: "Can other info be added to an invoice?",
+    answer:
+      "Yes. You can add your company name, GST/VAT details, billing address, or purchase order numbers to your invoice from the billing section before the next payment is processed.",
+  },
+  {
+    question: "How does billing work?",
+    answer:
+      "We bill you automatically at the beginning of each billing cycle using the payment method saved on your account. You can download detailed invoices and payment history at any time from your dashboard.",
+  },
+  {
+    question: "How do I change my account email?",
+    answer:
+      "Go to your profile settings, update the email field, and confirm the change via the verification link we send to your new email address. Once verified, all notifications and login will use the new email.",
   },
 ];
 
@@ -217,72 +244,95 @@ export default function WhyAustralia() {
   return (
     <div className="flex flex-col bg-white">
       <div className="flex flex-col self-stretch bg-white">
-        {/* Hero: left text, right 2x3 grid */}
+        {/* Hero – updated to AI landing layout */}
         <section className="self-stretch bg-white">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-12 md:py-16 flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-8">
-            <div className="lg:w-[48%] flex flex-col text-left">
-              <h1 className="text-[#1a1a1a] text-3xl md:text-5xl lg:text-[56px] font-bold leading-[1.05] tracking-tight mb-6">
-                {HERO_CONFIG.titleLines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </h1>
-              <p className="text-[#6b6b6b] text-base md:text-lg leading-relaxed mb-8">
-                {HERO_CONFIG.description}
-              </p>
-              <div className="flex flex-wrap gap-4 mb-8">
-                <a
-                  href={HERO_CONFIG.primaryCtaLink}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-[10px] bg-[#1a1a1a] text-white font-medium text-sm hover:bg-[#00352B] transition-colors"
-                >
-                  {HERO_CONFIG.primaryCta}
-                </a>
-                <a
-                  href={HERO_CONFIG.secondaryCtaLink}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-[10px] bg-white text-[#1a1a1a] font-medium text-sm border border-[#1a1a1a] hover:border-[#00352B] hover:text-[#00352B] transition-colors"
-                >
-                  {HERO_CONFIG.secondaryCta}
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  {HERO_CONFIG.avatarImages.map((avatar, i) => (
-                    <div
-                      key={i}
-                      className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200 flex-shrink-0"
-                    >
-                      <img
-                        src={avatar}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <p className="text-[#6b6b6b] text-sm">
-                  Join with{" "}
-                  <span className="font-semibold text-[#1a1a1a]">
-                    2100+ Users
-                  </span>{" "}
-                  and start generating images now
+          <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="space-y-8">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+                  Turn Your Ideas into Stunning Visuals with AI
+                </h1>
+
+                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                  Describe anything you imagine, and let our AI bring it to life in breathtaking,
+                  high-quality images.
                 </p>
-              </div>
-            </div>
-            <div className="lg:w-[52%] rounded-t-2xl overflow-hidden bg-white">
-              <div className="grid grid-cols-2 grid-rows-3 gap-3 md:gap-4">
-                {HERO_GRID_IMAGES.map((src, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl overflow-hidden bg-gray-100 aspect-[4/3]"
+
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href={HERO_CONFIG.primaryCtaLink}
+                    className="bg-black text-white px-8 py-3.5 rounded-full font-medium hover:bg-gray-800 transition-colors"
                   >
-                    <img
-                      src={src}
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
+                    Start Creating
+                  </a>
+                  <a
+                    href={HERO_CONFIG.secondaryCtaLink}
+                    className="bg-white text-gray-900 px-8 py-3.5 rounded-full font-medium border border-gray-300 hover:border-gray-400 transition-colors"
+                  >
+                    Explore Gallery
+                  </a>
+                </div>
+
+                <div className="flex items-center gap-3 pt-4">
+                  <div className="flex -space-x-2">
+                    <div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white" />
+                    <div className="w-10 h-10 rounded-full bg-gray-400 border-2 border-white" />
+                    <div className="w-10 h-10 rounded-full bg-gray-500 border-2 border-white" />
                   </div>
-                ))}
+                  <p className="text-sm text-gray-600">
+                    Join with <span className="font-semibold">2100+ Users</span> and start
+                    generating image now
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Image Grid */}
+              <div className="grid grid-cols-2 gap-4 md:ml-4 lg:ml-10 xl:ml-20">
+                {/* Top Left */}
+                <div className="rounded-2xl overflow-hidden">
+                  <img
+                    src="/images/about-us/team-image.png"
+                    alt="Students"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Top Right */}
+                <div className="rounded-2xl overflow-hidden">
+                  <img
+                    src="/images/about-us/soni-image.png"
+                    alt="Portrait"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Middle Left – tall */}
+                <div className="rounded-2xl overflow-hidden row-span-2">
+                  <img
+                    src="/images/about-us/philosophy-image.png"
+                    alt="Blue chair style visual"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Middle Right */}
+                <div className="rounded-2xl overflow-hidden">
+                  <img
+                    src="/images/about-us/employers.png"
+                    alt="Work setup"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Bottom Right */}
+                <div className="rounded-2xl overflow-hidden">
+                  <img
+                    src="/images/about-us/dream-action-bg.png"
+                    alt="Minimalist aesthetic"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -442,137 +492,152 @@ export default function WhyAustralia() {
           </div>
         </section>
 
-        {/* Testimonials – 3-column structured grid */}
-        <section className="self-stretch bg-white py-16 md:py-20">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-            <p className="text-center text-sm md:text-base text-[#6B7280] mb-8">
-              Hear from students who have successfully started their
-              international education journey
+        {/* Testimonials – What Our Students Say (fixed editorial grid: 220x200, 220x420, 320x420) */}
+        <section className="max-w-7xl mx-auto px-6 py-16">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1 text-sm bg-green-100 text-green-700 rounded-full mb-4">
+              ★ Testimonials
+            </span>
+            <h2 className="text-3xl font-bold">What Our Students Say</h2>
+            <p className="text-gray-500 mt-2">
+              Hear from students who have successfully started their international education journey
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:auto-rows-[260px] justify-items-center">
-              {TESTIMONIALS.map((item, index) => {
-                let extraClasses = "";
-                if (index === 0) extraClasses = "lg:col-start-1 lg:row-start-1";
-                if (index === 1) extraClasses = "lg:col-start-1 lg:row-start-2";
-                if (index === 2)
-                  extraClasses =
-                    "lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:h-[540px]";
-                if (index === 3) extraClasses = "lg:col-start-3 lg:row-start-1";
-                if (index === 4) extraClasses = "lg:col-start-3 lg:row-start-2";
+          </div>
 
-                const baseHeight =
-                  index === 2 ? "h-[360px] sm:h-[420px] lg:h-[540px]" : "h-[260px]";
-
-                return (
-                  <article
-                    key={`${item.name}-${index}`}
-                    className={`relative rounded-[32px] overflow-hidden bg-gray-100 flex items-end shadow-md w-full max-w-[220px] ${baseHeight} ${extraClasses}`}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <button
-                      type="button"
-                      className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-md hover:bg-white transition-colors"
-                      aria-label={`Play testimonial from ${item.name}`}
-                    >
-                      <span className="ml-0.5 inline-block w-0 h-0 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent border-l-[11px] border-l-[#111827]" />
-                    </button>
-                    <div className="relative z-10 w-full px-4 pb-4">
-                      <div className="inline-flex items-center px-3 py-1 rounded-full bg-black/80 text-white text-xs">
-                        <span className="font-semibold mr-1">
-                          {item.name}
-                        </span>
-                        <span className="opacity-80">
-                          | {item.university}
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+          {/* Fixed CSS grid with named areas and exact pixel sizes (no responsive auto sizing / masonry) */}
+          <div
+            className="grid gap-6"
+            style={{
+              // 5 fixed columns: 220, 220, 320, 220, 220
+              gridTemplateColumns: "220px 220px 320px 220px 220px",
+              // 2 fixed rows: 200 + 220 = 420 for tall cards
+              gridTemplateRows: "200px 220px",
+              gridTemplateAreas: `"a b c d e" "a f c g e"`,
+            }}
+          >
+            {/* We map the first 7 testimonials into the fixed positions a–g */}
+            <TestimonialCard
+              area="a"
+              img={TESTIMONIALS[0]?.image}
+              name={TESTIMONIALS[0]?.name}
+              university={TESTIMONIALS[0]?.university}
+            />
+            <TestimonialCard
+              area="b"
+              img={TESTIMONIALS[1]?.image}
+              name={TESTIMONIALS[1]?.name}
+              university={TESTIMONIALS[1]?.university}
+            />
+            <TestimonialCard
+              area="c"
+              img={TESTIMONIALS[2]?.image}
+              name={TESTIMONIALS[2]?.name}
+              university={TESTIMONIALS[2]?.university}
+            />
+            <TestimonialCard
+              area="d"
+              img={TESTIMONIALS[3]?.image}
+              name={TESTIMONIALS[3]?.name}
+              university={TESTIMONIALS[3]?.university}
+            />
+            <TestimonialCard
+              area="e"
+              img={TESTIMONIALS[4]?.image}
+              name={TESTIMONIALS[4]?.name}
+              university={TESTIMONIALS[4]?.university}
+            />
+            <TestimonialCard
+              area="f"
+              img={TESTIMONIALS[5]?.image}
+              name={TESTIMONIALS[5]?.name}
+              university={TESTIMONIALS[5]?.university}
+            />
+            <TestimonialCard
+              area="g"
+              img={TESTIMONIALS[6]?.image}
+              name={TESTIMONIALS[6]?.name}
+              university={TESTIMONIALS[6]?.university}
+            />
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="flex flex-col items-center self-stretch py-20 gap-5">
-          <h2 className="text-[#00352B] text-[74px] font-bold text-center max-md:text-4xl">
-            Frequently Asked Questions
-          </h2>
-          <div className="flex flex-col self-stretch max-w-[1064px] mx-auto gap-0 w-full px-4">
-            {FAQ_ITEMS.map((item, index) => {
-              const isOpen = openFaqIndex === index;
-              return (
-                <div key={index} className="flex flex-col self-stretch">
-                  {index > 0 && (
-                    <div className="self-stretch bg-[#00352B1A] h-[1px]" />
-                  )}
-                  <div
-                    className="flex flex-col self-stretch gap-6 cursor-pointer py-4"
-                    onClick={() => toggleFaq(index)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        toggleFaq(index);
-                      }
-                    }}
-                    role="button"
-                    tabIndex={0}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${index}`}
-                    id={`faq-question-${index}`}
-                  >
-                    <div className="flex items-start self-stretch gap-6">
-                      <div className="flex flex-1 flex-col items-start pr-[22px] gap-2 min-w-0">
-                        <span
-                          className={`text-[#00352B] ${
-                            index >= 4 ? "text-xl" : "text-lg"
-                          } font-medium`}
-                        >
+        {/* FAQ – matches Figma layout */}
+        <section className="self-stretch bg-white py-20">
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="text-[#024C3A] text-4xl md:text-5xl font-bold mb-10">
+              Frequently Asked Questions
+            </h2>
+            <div className="divide-y divide-[#E5E7EB]">
+              {FAQ_ITEMS.map((item, index) => {
+                const isOpen = openFaqIndex === index;
+                return (
+                  <div key={index}>
+                    <button
+                      type="button"
+                      onClick={() => toggleFaq(index)}
+                      className="w-full flex items-start justify-between gap-4 py-5 md:py-6 text-left focus:outline-none"
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-answer-${index}`}
+                    >
+                      <div className="flex-1">
+                        <p className="text-base md:text-lg font-medium text-[#024C3A]">
                           {item.question}
-                        </span>
-                        {item.answer && (
-                          <div
+                        </p>
+                        {isOpen && item.answer && (
+                          <p
                             id={`faq-answer-${index}`}
-                            className={`overflow-hidden transition-all duration-200 ${
-                              isOpen
-                                ? "max-h-[500px] opacity-100"
-                                : "max-h-0 opacity-0"
-                            }`}
-                            aria-hidden={!isOpen}
+                            className="mt-2 text-sm md:text-base text-[#4B5563]"
                           >
-                            <span className="text-[#00352B] text-base block pt-1">
-                              {item.answer}
-                            </span>
-                          </div>
+                            {item.answer}
+                          </p>
                         )}
                       </div>
-                      <svg
-                        className={`w-6 h-[26px] shrink-0 transition-transform duration-200 ${
-                          isOpen ? "rotate-180" : ""
-                        }`}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden
-                      >
-                        <path d="M6 9l6 6 6-6" />
-                      </svg>
-                    </div>
+                      <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full border border-[#FF3300] text-[#FF3300] text-xs shrink-0">
+                        {isOpen ? "−" : "+"}
+                      </div>
+                    </button>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </section>
       </div>
     </div>
   );
 }
+
+function TestimonialCard({ area, img, name, university }) {
+  return (
+    <div
+      style={{ gridArea: area }}
+      className="relative overflow-hidden rounded-3xl bg-gray-200 w-full h-full"
+    >
+      {/* Image */}
+      <img
+        src={img}
+        alt={name || "testimonial"}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Play Button */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+          ▶
+        </div>
+      </div>
+
+      {/* Name Badge */}
+      <div
+        className="absolute bottom-3 left-3 right-3 
+                    bg-black/55 backdrop-blur
+                    text-white text-xs px-4 py-2 rounded-full"
+      >
+        {name || "John Doe"} | {university || "ABCD University"}
+      </div>
+    </div>
+  );
+}
+
 
