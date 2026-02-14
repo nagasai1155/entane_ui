@@ -20,6 +20,10 @@ import JobSeekersPage from './pages/JobSeekersPage';
 import EmployersPage from './pages/EmployersPage';
 import BookConsultationPage from './pages/BookConsultationPage';
 import AncillaryServicesPage from './pages/AncillaryServicesPage';
+import PartTimeJobSupportPage from './pages/PartTimeJobSupportPage';
+import IeltsPteCoachingPage from './pages/IeltsPteCoachingPage';
+import AirportServicesPage from './pages/AirportServicesPage';
+import PostArrivalSupportPage from './pages/PostArrivalSupportPage';
 
 function App() {
   const [consultationOpen, setConsultationOpen] = useState(false);
@@ -50,6 +54,10 @@ function App() {
         <Route path="/sop-documents" element={<SopDocumentsPage />} />
         <Route path="/accommodation" element={<AccommodationPage />} />
         <Route path="/post-study-work-visa" element={<PostStudyWorkVisaPage />} />
+        <Route path="/part-time-job-support" element={<PartTimeJobSupportPage />} />
+        <Route path="/ielts-pte-coaching" element={<IeltsPteCoachingPage />} />
+        <Route path="/airport-services" element={<AirportServicesPage />} />
+        <Route path="/post-arrival-support" element={<PostArrivalSupportPage />} />
         <Route path="/job-seekers" element={<JobSeekersPage />} />
         <Route path="/employers" element={<EmployersPage />} />
         <Route path="/book-consultation" element={<BookConsultationPage />} />

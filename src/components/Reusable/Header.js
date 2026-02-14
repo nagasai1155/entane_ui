@@ -73,6 +73,10 @@ const Header = () => {
                         <li><Link to="/sop-documents">SOP &amp; Other Documents</Link></li>
                         <li><Link to="/accommodation">Accommodation</Link></li>
                         <li><Link to="/post-study-work-visa">Post Study Work Visa</Link></li>
+                        <li><Link to="/part-time-job-support">Part time job support</Link></li>
+                        <li><Link to="/ielts-pte-coaching">IELTS/PTE Coaching</Link></li>
+                        <li><Link to="/airport-services">Airport Services</Link></li>
+                        <li><Link to="/post-arrival-support">Post-Arrival Support</Link></li>
                       </ul>
                     </li>
                     <li><Link to="/book-consultation">Book 1:1 Consultation</Link></li>
