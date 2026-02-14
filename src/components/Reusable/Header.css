@@ -9,7 +9,7 @@
 
 .header-top {
   background-color: #FF3300;  /* Red-Orange from Figma - fill_CA80RK */
-  padding: 8px 0;
+  padding: 4px 0;
 }
 
 .header-contact {
@@ -51,12 +51,12 @@
 }
 
 .header-nav {
-  padding: 20px 0;
+  padding: 10px 0;
   background-color: transparent;  /* Default: transparent, especially for homepage hero */
 }
 
 .header.header--compact .header-nav {
-  padding: 10px 0;
+  padding: 6px 0;
 }
 
 .header.header--solid .header-nav {
@@ -78,7 +78,7 @@
 }
 
 .logo img {
-  height: 40px;
+  height: 32px;
   width: auto;
 }
 
@@ -132,6 +132,108 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+.nav-item-dropdown:hover .dropdown-mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Our Services Mega Menu */
+.dropdown-mega {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  min-width: 560px;
+  background-color: #00352B;
+  border-radius: 8px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.nav-item-dropdown--mega:hover .dropdown-mega {
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-mega-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dropdown-mega-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FF3300;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.dropdown-mega-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-mega-column ul li a {
+  display: block;
+  padding: 6px 0;
+  font-size: 14px;
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.dropdown-mega-column ul li a:hover {
+  color: #FF3300;
+}
+
+.dropdown-mega-link {
+  background: none;
+  border: none;
+  padding: 6px 0;
+  font-size: 14px;
+  color: white;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+  transition: color 0.2s ease;
+}
+
+.dropdown-mega-link:hover {
+  color: #FF3300;
+}
+
+.dropdown-mega-sub {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dropdown-mega-subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.dropdown-mega-sub ul li a {
+  font-size: 13px;
+  padding: 4px 0;
 }
 
 .dropdown-menu li {
@@ -197,6 +299,16 @@
 
   .nav-menu {
     gap: 20px;
+  }
+
+  .dropdown-mega {
+    min-width: 480px;
+    left: 0;
+    transform: translateX(0) translateY(6px);
+  }
+
+  .nav-item-dropdown:hover .dropdown-mega {
+    transform: translateX(0) translateY(0);
   }
 }
 

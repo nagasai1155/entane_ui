@@ -1,0 +1,113 @@
+.consultation-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: consultationFadeIn 0.2s ease;
+}
+
+@keyframes consultationFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.consultation-popup {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+  animation: consultationSlideIn 0.25s ease;
+}
+
+@keyframes consultationSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.consultation-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.consultation-popup-close:hover {
+  color: #FF3300;
+}
+
+.consultation-popup-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #00352B;
+  margin: 0 0 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.consultation-popup-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 24px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.consultation-popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.consultation-popup-form input,
+.consultation-popup-form textarea {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.consultation-popup-form input:focus,
+.consultation-popup-form textarea:focus {
+  outline: none;
+  border-color: #FF3300;
+}
+
+.consultation-popup-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.consultation-popup-submit {
+  background: #FF3300;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s ease;
+}
+
+.consultation-popup-submit:hover {
+  background: #e62e00;
+}

@@ -18,7 +18,7 @@ const HIDE_THRESHOLD = 100;
 const SHOW_THRESHOLD = 160;
 const MORPH_START = 0;
 const MORPH_END = 380;
-const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
+const HERO_VIDEO_URL = 'https://cdn.jsdelivr.net/npm/video-media-samples@1.0.0/big-buck-bunny-480p-30sec.mp4';
 
 const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
 const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
@@ -29,6 +29,7 @@ function HomePage() {
   const morphTargetRef = useRef(null);
   const rafId = useRef(null);
   const targetRectRef = useRef(null);
+  const morphVideoRef = useRef(null);
 
   useEffect(() => {
     let lastY = window.scrollY || 0;
@@ -54,6 +55,23 @@ function HomePage() {
     rafId.current = requestAnimationFrame(tick);
     return () => {
       if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = morphVideoRef.current;
+    if (!video || !HERO_VIDEO_URL) return;
+    video.muted = true;
+    const play = () => {
+      video.muted = true;
+      video.play().catch(() => {});
+    };
+    play();
+    video.addEventListener('loadeddata', play);
+    video.addEventListener('canplay', play);
+    return () => {
+      video.removeEventListener('loadeddata', play);
+      video.removeEventListener('canplay', play);
     };
   }, []);
 
@@ -148,12 +166,14 @@ function HomePage() {
       >
         {HERO_VIDEO_URL && (
           <video
+            ref={morphVideoRef}
             className="hero-morph-video"
             src={HERO_VIDEO_URL}
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
           />
         )}
       </div>

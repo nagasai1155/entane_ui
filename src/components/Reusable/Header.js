@@ -41,7 +41,53 @@ const Header = () => {
           </div>
           <ul className="nav-menu">
             <li><Link to="/about-us">About Us</Link></li>
-            <li><a href="#services">Our Services</a></li>
+            <li className="nav-item-dropdown nav-item-dropdown--mega">
+              <span className="dropdown-toggle">Our Services</span>
+              <div className="dropdown-mega">
+                <div className="dropdown-mega-column">
+                  <span className="dropdown-mega-title">Migration</span>
+                  <ul>
+                    <li><Link to="/visa-pathways">Visa Pathways</Link></li>
+                    <li>
+                      <button
+                        type="button"
+                        className="dropdown-mega-link"
+                        onClick={() => window.dispatchEvent(new CustomEvent('openConsultationPopup'))}
+                      >
+                        Book 1:1 Consultation
+                      </button>
+                    </li>
+                    <li><Link to="/visa-pathways#migration-advisors">Migration Advisors</Link></li>
+                  </ul>
+                </div>
+                <div className="dropdown-mega-column">
+                  <span className="dropdown-mega-title">Edu &amp; Training</span>
+                  <ul>
+                    <li><Link to="/search-courses">Search by Courses</Link></li>
+                    <li><Link to="/search-universities">Search by University</Link></li>
+                    <li><Link to="/expense-planning-scholarships">Expense Planning &amp; Scholarships</Link></li>
+                    <li className="dropdown-mega-sub">
+                      <span className="dropdown-mega-subtitle">Ancillary Services</span>
+                      <ul>
+                        <li><Link to="/ancillary-services">Ancillary Services Overview</Link></li>
+                        <li><Link to="/sop-documents">SOP &amp; Other Documents</Link></li>
+                        <li><Link to="/accommodation">Accommodation</Link></li>
+                        <li><Link to="/post-study-work-visa">Post Study Work Visa</Link></li>
+                      </ul>
+                    </li>
+                    <li><Link to="/book-consultation">Book 1:1 Consultation</Link></li>
+                  </ul>
+                </div>
+                <div className="dropdown-mega-column">
+                  <span className="dropdown-mega-title">Recruitment</span>
+                  <ul>
+                    <li><Link to="/job-seekers">For Job Seekers</Link></li>
+                    <li><Link to="/job-seekers#top-in-demand">Top In-Demand Jobs</Link></li>
+                    <li><Link to="/employers">For Employers</Link></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
             <li><Link to="/why-australia">Why Australia</Link></li>
             <li className="nav-item-dropdown">
               <span className="dropdown-toggle">Tools &amp; Resources</span>
@@ -53,7 +99,13 @@ const Header = () => {
               </ul>
             </li>
           </ul>
-          <button className="cta-button">Book 1:1 Counselling</button>
+          <button
+            type="button"
+            className="cta-button"
+            onClick={() => window.dispatchEvent(new CustomEvent('openConsultationPopup'))}
+          >
+            Book 1:1 Counselling
+          </button>
         </div>
       </nav>
     </header>
