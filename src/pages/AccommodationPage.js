@@ -10,8 +10,86 @@ const WHY_IMG =
 const STORY_IMG =
   'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/7m4gxaj3_expires_30_days.png';
 
+const STUDENT_STORIES = [
+  {
+    title: 'Khushi in Brisbane 🇦🇺',
+    text: "Through Esante's partner network, Khushi Ajmani secured a single private room with an attached washroom in Brisbane for just AUD 190 per week — a deal that's hard to find independently.\n\nBecause her accommodation was sorted early and at the right price, she was able to focus on her studies and part-time work without financial stress.",
+    img: STORY_IMG,
+  },
+  {
+    title: 'Priya in Melbourne 🇦🇺',
+    text: "Priya found her perfect student accommodation through Esante's verified partners. A private room in a shared apartment, just 15 minutes from her university, for AUD 220 per week.\n\nWith everything sorted before she arrived, she could hit the ground running and focus on making the most of her Australian experience.",
+    img: STORY_IMG,
+  },
+];
+
+const ACCOMMODATION_SLIDES = [
+  {
+    intro: 'Dreaming for',
+    city: 'Melbourne',
+    price: 'AU$220/week',
+    features: [
+      'Fully-equipped gym',
+      'Social lounges & study zones',
+      '24/7 secure access',
+      'Minutes from campus & transport',
+    ],
+  },
+  {
+    intro: 'Looking for',
+    city: 'Sydney',
+    price: 'AU$250/week',
+    features: [
+      'Ocean views & central location',
+      'Modern shared kitchens',
+      'Bike storage & laundry',
+      'Close to major universities',
+    ],
+  },
+  {
+    intro: 'Hoping for',
+    city: 'Brisbane',
+    price: 'AU$190/week',
+    features: [
+      'Pool & outdoor BBQ area',
+      'Quiet study rooms',
+      'All bills included',
+      'Walking distance to CBD',
+    ],
+  },
+  {
+    intro: 'Ready for',
+    city: 'Perth',
+    price: 'AU$200/week',
+    features: [
+      'Beach nearby',
+      'Air-conditioned rooms',
+      'Secure parking',
+      'Vibrant student community',
+    ],
+  },
+];
+
 export default function AccommodationPage() {
   const [consultationOpen, setConsultationOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentStorySlide, setCurrentStorySlide] = useState(0);
+
+  const goToPrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? ACCOMMODATION_SLIDES.length - 1 : prev - 1));
+  };
+
+  const goToNextSlide = () => {
+    setCurrentSlide((prev) => (prev === ACCOMMODATION_SLIDES.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToPrevStory = () => {
+    setCurrentStorySlide((prev) => (prev === 0 ? STUDENT_STORIES.length - 1 : prev - 1));
+  };
+
+  const goToNextStory = () => {
+    setCurrentStorySlide((prev) => (prev === STUDENT_STORIES.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-white">
@@ -19,24 +97,24 @@ export default function AccommodationPage() {
 
       <main className="flex flex-col w-full max-w-[1440px] mx-auto bg-[#FFFDF6]">
         <div className="flex flex-col items-center w-full pt-[130px] pb-16 px-[100px]">
-          {/* Hero: text block — clear hierarchy, Figma-aligned spacing */}
+          {/* Hero: text block — matches reference design */}
           <section className="flex flex-col items-center w-full max-w-[1192px] mb-[64px] gap-0">
-            {/* Page label — small, subtle */}
-            <span className="font-poppins font-medium text-[22px] leading-[1.4] tracking-[-0.02em] text-[#00352B] mb-[16px]">
+            {/* Page label — underlined, dark green */}
+            <span className="font-poppins font-medium text-[22px] leading-[1.4] tracking-[-0.02em] text-[#00352B] mb-[16px] underline decoration-[#00352B] underline-offset-2">
               Accommodation
             </span>
-            {/* Main heading — dominant */}
-            <h1 className="font-poppins font-semibold text-[48px] leading-[1.25] tracking-[-0.02em] text-center text-[#00352B] max-w-[800px] mb-[12px]">
+            {/* Main heading line 1 — bold, italic, orange/red */}
+            <h1 className="font-poppins font-bold italic text-[48px] leading-[1.25] tracking-[-0.02em] text-center text-[#FF3300] mb-[4px] whitespace-nowrap">
               Student Accommodation in Australia
             </h1>
-            {/* Supporting line — secondary */}
-            <p className="font-poppins font-semibold text-[48px] leading-[1.25] tracking-[-0.02em] text-center text-[#00352B] max-w-[800px] mb-[32px]">
+            {/* Main heading line 2 — regular weight, dark green */}
+            <p className="font-poppins font-normal text-[48px] leading-[1.25] tracking-[-0.02em] text-center text-[#00352B] max-w-[800px] mb-[32px]">
               Sorted With Esante.
             </p>
-            {/* CTA — clearly separated */}
+            {/* CTA — rounded, orange background, white text */}
             <button
               type="button"
-              className="flex items-center justify-center min-h-[44px] px-[24px] bg-[#FF3300] rounded-[16px] border-0 cursor-pointer font-poppins font-medium text-[14px] leading-[1.43] tracking-[-0.01em] text-[#FFFBE9] transition-opacity hover:opacity-90"
+              className="flex items-center justify-center min-h-[44px] px-8 py-3 bg-[#FF3300] rounded-[16px] border-0 cursor-pointer font-poppins font-medium text-[14px] leading-[1.43] tracking-[-0.01em] text-white transition-opacity hover:opacity-90"
               onClick={() => setConsultationOpen(true)}
             >
               Get Free Guidance from Esante
@@ -44,18 +122,19 @@ export default function AccommodationPage() {
           </section>
 
           {/* Section: Hero - reference image match: layered absolute, fixed card sizes */}
-          <section className="relative w-[1383px] max-w-[100%] h-[520px] mx-auto mb-[105px] rounded-[49px] overflow-hidden">
+          <section className="relative w-[1383px] max-w-[100%] h-[640px] mx-auto mb-[105px] rounded-[49px] overflow-hidden">
             {/* Background - sharp contrast, no blur */}
             <div
               className="absolute inset-0 rounded-[49px] bg-[#d3d3d3] bg-no-repeat bg-[url('https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/n2i4a7pn_expires_30_days.png')] [background-size:100%_248.977%] [background-position:0_-740.061px] contrast-125"
               aria-hidden
             />
-            {/* Green top layer */}
-            <div className="absolute inset-0 rounded-[49px] bg-[#00352B]/30 pointer-events-none" aria-hidden />
+            {/* Dark green overlay above bg image */}
+            <div className="absolute inset-0 rounded-[49px] bg-[#00352B]/55 pointer-events-none" aria-hidden />
 
             {/* Left arrow - on background */}
             <button
               type="button"
+              onClick={goToPrevSlide}
               className="absolute left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 border border-white/50 cursor-pointer transition-colors"
               aria-label="Previous slide"
             >
@@ -66,6 +145,7 @@ export default function AccommodationPage() {
             {/* Right arrow - on background */}
             <button
               type="button"
+              onClick={goToNextSlide}
               className="absolute right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 border border-white/50 cursor-pointer transition-colors"
               aria-label="Next slide"
             >
@@ -74,60 +154,84 @@ export default function AccommodationPage() {
               </svg>
             </button>
 
-            {/* Centered group: orange box + room image */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[812px] h-[420px]">
-              {/* Orange card */}
-              <div className="absolute left-0 top-0 w-[812px] h-[420px] flex flex-col bg-[#FF3300] rounded-[41px] pt-[44px] pl-[37px] pr-[280px] pb-[44px] box-border overflow-hidden">
-                <p className="font-poppins font-normal text-[40px] leading-[1.5] tracking-[-0.00375em] text-white mb-2">
-                  Dreaming for
-                </p>
-                <h2 className="font-poppins font-bold text-[64px] leading-[1.5] tracking-[-0.00234em] text-white mb-[20px]">
-                  Melbourne
-                </h2>
-                <p className="font-poppins font-normal text-[28px] leading-[1.5] tracking-[-0.00536em] text-white mb-2">
-                  Starting at Just
-                </p>
-                <div className="w-[207px] h-[53px] flex items-center justify-center bg-[#00352B] rounded-[15px] mb-[18px] shrink-0">
-                  <span className="font-poppins font-normal text-[29px] leading-[1.5] tracking-[-0.00517em] text-white">
-                    AU$220/week
-                  </span>
-                </div>
-                <p className="font-poppins font-normal text-[15px] leading-[0.87] tracking-[-0.01em] text-white max-w-[326px] mb-4 whitespace-pre-line">
-                  Fully-equipped gym{'\n\n'}Social lounges & study zones{'\n\n'}24/7 secure
-                  access{'\n\n'}Minutes from campus & transport
-                </p>
-                <button
-                  type="button"
-                  className="flex items-center justify-center h-9 px-3 w-fit min-w-0 bg-white rounded-[16px] border-0 cursor-pointer font-poppins font-medium text-[14px] text-[#00352B] transition-opacity hover:opacity-95 shrink-0"
-                  onClick={() => setConsultationOpen(true)}
-                >
-                  Get Free Guidance from Esante
-                </button>
-              </div>
+            {/* Centered group: orange box + room image - sliding carousel */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[812px] h-[520px] overflow-hidden">
+              <div
+                className="flex h-full transition-transform duration-400 ease-out"
+                style={{ transform: `translateX(-${currentSlide * 812}px)` }}
+              >
+                {ACCOMMODATION_SLIDES.map((slide, index) => (
+                  <div
+                    key={index}
+                    className="relative flex-shrink-0 w-[812px] h-[520px]"
+                  >
+                    {/* Orange card */}
+                    <div className="absolute left-0 top-0 w-[812px] h-[520px] flex flex-col bg-[#FF3300] rounded-[41px] pt-[44px] pl-[37px] pr-[280px] pb-[44px] box-border overflow-hidden">
+                      {/* Text content with clear fade-in when slide is active */}
+                      <div
+                        className={`transition-opacity duration-300 ease-out ${
+                          index === currentSlide ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        <p className="font-poppins font-normal text-[40px] leading-[1.5] tracking-[-0.00375em] text-white mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                          {slide.intro}
+                        </p>
+                        <h2 className="font-poppins font-bold text-[64px] leading-[1.5] tracking-[-0.00234em] text-white mb-[20px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                          {slide.city}
+                        </h2>
+                        <p className="font-poppins font-normal text-[28px] leading-[1.5] tracking-[-0.00536em] text-white mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                          Starting at Just
+                        </p>
+                        <div className="w-[207px] h-[53px] flex items-center justify-center bg-[#00352B] rounded-[15px] mb-[18px] shrink-0">
+                          <span className="font-poppins font-normal text-[29px] leading-[1.5] tracking-[-0.00517em] text-white">
+                            {slide.price}
+                          </span>
+                        </div>
+                        <ul className="list-disc list-inside font-poppins font-normal text-[15px] leading-[1.4] tracking-[-0.01em] text-white max-w-[326px] mb-4 space-y-1 drop-shadow-[0_1px_1px_rgba(0,0,0,0.15)] [&_li]:marker:text-white">
+                          {slide.features.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                        <button
+                          type="button"
+                          className="flex items-center justify-center h-9 px-4 w-fit min-w-0 bg-white rounded-[16px] border-0 cursor-pointer font-poppins font-semibold text-[14px] text-[#FF3300] transition-opacity hover:opacity-95 shrink-0 shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
+                          onClick={() => setConsultationOpen(true)}
+                        >
+                          Get Free Guidance from Esante
+                        </button>
+                      </div>
+                    </div>
 
-              {/* Room image card - overlaps orange */}
-              <img
-                src={MELBOURNE_IMG}
-                alt="Melbourne accommodation"
-                className="absolute left-[432px] top-1/2 -translate-y-1/2 w-[380px] h-[395px] object-cover object-center rounded-[41px] shadow-[10px_10px_6px_rgba(0,0,0,0.3)] z-[1]"
-              />
+                    {/* Room image card - same image for all slides */}
+                    <img
+                      src={MELBOURNE_IMG}
+                      alt={`${slide.city} accommodation`}
+                      className="absolute left-[432px] top-1/2 -translate-y-1/2 w-[380px] h-[395px] object-cover object-center rounded-[41px] shadow-[10px_10px_6px_rgba(0,0,0,0.3)] z-[1]"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
             <span className="absolute top-6 right-6 z-10 font-poppins font-normal text-[32px] leading-[1.5] tracking-[-0.00469em] text-white">
-              01/04
+              {String(currentSlide + 1).padStart(2, '0')}/{String(ACCOMMODATION_SLIDES.length).padStart(2, '0')}
             </span>
           </section>
 
           {/* Section: Long copy */}
           <section className="flex flex-col items-center w-full max-w-[1117px] mx-auto mb-[100px]">
-            <p className="font-poppins font-normal text-[23px] leading-[1.5] tracking-[-0.00652em] text-black text-center whitespace-pre-line">
+            <p className="font-poppins font-normal italic text-[23px] leading-[1.5] tracking-[-0.00652em] text-[#FF3300] text-center mb-8">
               Finding cheap student accommodation in Australia is one of the biggest challenges for
               international students — inflated prices, unreliable listings, and hidden fees make it
-              harder than it should be.{'\n\n'}At Esante, we do it differently. We don't list
-              properties.{'\n\n'}We partner, negotiate, verify, and support — like a local Australian
-              team.{'\n\n'}We have direct B2B partnerships with multiple trusted accommodation
-              providers across Australia, which allows us to access exclusive student rates that are
-              lower than standard market prices. These benefits are passed directly to our students,
-              with no extra charges.
+              harder than it should be.
+            </p>
+            <p className="font-poppins font-normal text-[23px] leading-[1.5] tracking-[-0.00652em] text-black text-center mb-4">
+              At Esante, we do it differently. We don't list properties.
+            </p>
+            <p className="font-poppins font-normal text-[23px] leading-[1.5] tracking-[-0.00652em] text-[#FF3300] text-center mb-4">
+              We partner, negotiate, verify, and support — like a local Australian team.
+            </p>
+            <p className="font-poppins font-normal text-[23px] leading-[1.5] tracking-[-0.00652em] text-black text-center">
+              We have direct B2B partnerships with multiple trusted accommodation providers across Australia, which allows us to access exclusive student rates that are lower than standard market prices. These benefits are passed directly to our students, with no extra charges.
             </p>
           </section>
 
@@ -143,20 +247,20 @@ export default function AccommodationPage() {
                 <h2 className="font-poppins font-normal text-[45px] leading-[1.2] tracking-[-0.00333em] text-[#00352B] mb-8 max-w-[603px]">
                   Why Esante Accommodation Support Is Different
                 </h2>
-                <ul className="flex flex-col gap-[18px] list-none p-0 m-0">
-                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.00682em] text-black">
+                <ul className="flex flex-col gap-[12px] list-none p-0 m-0">
+                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00682em] text-black">
                     ✅ B2B partner rates with verified accommodation providers
                   </li>
-                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.00682em] text-black">
+                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00682em] text-black">
                     ✅ Lower weekly rents compared to public listings
                   </li>
-                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.00682em] text-black">
+                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00682em] text-black">
                     ✅ Private rooms, shared apartments & student residences
                   </li>
-                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.00682em] text-black">
+                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00682em] text-black">
                     ✅ Support before arrival and after moving in
                   </li>
-                  <li className="font-poppins font-normal text-[21px] leading-[1.2] tracking-[-0.007em] text-black">
+                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.007em] text-black">
                     ✅ Lease & rental guidance by an Australia-based team
                   </li>
                 </ul>
@@ -165,62 +269,87 @@ export default function AccommodationPage() {
           </section>
 
           {/* Section: Real Student Story */}
-          <section className="flex flex-col w-full max-w-[1230px] mx-auto mb-[65px]">
-            <div className="flex flex-row items-center w-full min-h-[500px] py-[51px] px-[57px] bg-[#00352B] rounded-[51px] border-2 border-[#FF3300] gap-[40px] box-border">
+          <section className="relative w-full max-w-[1130px] mx-auto mb-[65px] overflow-hidden">
+            <div className="relative w-full h-[500px] py-8 px-12 bg-[#00352B] rounded-[24px] border border-[#FF3300]/50">
+              {/* Left arrow */}
               <button
                 type="button"
-                className="w-[30px] h-[46px] shrink-0 flex flex-col items-center justify-center cursor-pointer border-0 bg-transparent"
-                aria-label="Previous"
+                onClick={goToPrevStory}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 border border-white/50 cursor-pointer transition-colors"
+                aria-label="Previous story"
               >
-                <span className="w-[30px] h-[23px] border-[3px] border-white rounded block" />
-                <span className="w-[30px] h-[23px] border-[3px] border-white rounded block mt-0.5" />
+                <svg className="w-5 h-5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
               </button>
-              <div className="flex flex-col items-start flex-1 min-w-0 max-w-[465px]">
-                <h3 className="font-poppins font-normal text-[45px] leading-[1.2] tracking-[-0.00333em] text-[#FF3300] mb-6">
-                  Real Student Story: Khushi in Brisbane 🇦🇺
-                </h3>
-                <p className="font-poppins font-normal text-[23px] leading-[1.39] tracking-[-0.0065em] text-white whitespace-pre-line">
-                  Through Esante's partner network, Khushi Ajmani secured a single private room with
-                  an attached washroom in Brisbane for just AUD 190 per week — a deal that's hard to
-                  find independently.{'\n\n'}Because her accommodation was sorted early and at the
-                  right price, she was able to focus on her studies and part-time work without
-                  financial stress.
-                </p>
+              {/* Right arrow */}
+              <button
+                type="button"
+                onClick={goToNextStory}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 border border-white/50 cursor-pointer transition-colors"
+                aria-label="Next story"
+              >
+                <svg className="w-5 h-5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Sliding carousel */}
+              <div className="overflow-hidden h-full">
+                <div
+                  className="flex h-full transition-transform duration-400 ease-out"
+                  style={{ transform: `translateX(-${currentStorySlide * 100}%)` }}
+                >
+                  {STUDENT_STORIES.map((story, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-row items-center justify-center w-full min-w-full h-full gap-10 px-14 shrink-0"
+                    >
+                      <div className="flex flex-col items-center text-center max-w-[420px]">
+                        <h3 className="font-poppins font-semibold text-[28px] leading-[1.2] tracking-[-0.00333em] text-[#FF3300] mb-4">
+                          Real Student Story: {story.title}
+                        </h3>
+                        <p className="font-poppins font-normal text-[18px] leading-[1.45] tracking-[-0.0065em] text-white whitespace-pre-line">
+                          {story.text}
+                        </p>
+                      </div>
+                      <img
+                        src={story.img}
+                        alt={story.title}
+                        className="w-[280px] h-[300px] shrink-0 object-cover rounded-[20px]"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-              <img
-                src={STORY_IMG}
-                alt="Khushi student story"
-                className="w-[418px] h-[502px] shrink-0 object-cover rounded-[41px]"
-              />
-              <button
-                type="button"
-                className="w-[30px] h-[46px] shrink-0 flex flex-col items-center justify-center cursor-pointer border-0 bg-transparent"
-                aria-label="Next"
-              >
-                <span className="w-[30px] h-[23px] border-[3px] border-white rounded block" />
-                <span className="w-[30px] h-[23px] border-[3px] border-white rounded block mt-0.5" />
-              </button>
+
+              {/* Slide indicator */}
+              <span className="absolute bottom-4 right-6 z-10 font-poppins font-normal text-[14px] leading-[1.5] text-white/80">
+                {currentStorySlide + 1}/{STUDENT_STORIES.length}
+              </span>
             </div>
           </section>
 
-          {/* Section: Think of Esante banner */}
-          <section className="flex flex-col w-full max-w-[1259px] mx-auto mb-0">
-            <div className="flex flex-col items-center justify-center w-full min-h-[367px] py-[59px] px-[106px] rounded-[37px] bg-cover bg-center bg-no-repeat bg-[url('https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/d2p06gj0_expires_30_days.png')]">
-              <h2 className="font-poppins font-semibold text-[48px] leading-[1.08] tracking-[-0.02em] text-center text-[#00352B] mb-12 whitespace-pre-line max-w-[800px]">
-                Think of{'\n'}Esante as your Australia-study partner{'\n'}not just an agent.
+          {/* Section: Book Free Call - orange gradient CTA */}
+          <section className="flex flex-col w-full max-w-[1059px] mx-auto mb-0">
+            <div className="relative flex flex-col items-center justify-center w-full min-h-[340px] py-16 px-16 rounded-[48px] overflow-hidden bg-gradient-to-b from-[#FF6B35] via-[#FF3300] to-[#E62E00]">
+              <h2 className="relative z-10 font-poppins text-center text-white max-w-[800px] mb-6">
+                <span className="block font-normal text-[28px] leading-[1.3] tracking-[-0.02em] mb-1">Think of</span>
+                <span className="block text-[42px] leading-[1.2] tracking-[-0.02em]">
+                  <span className="font-bold italic">Esante</span> as your <span className="font-bold italic">Australia-study partner</span>
+                </span>
+                <span className="block font-normal text-[28px] leading-[1.3] tracking-[-0.02em] mt-1">not just an agent.</span>
               </h2>
-              <div className="flex flex-col items-center bg-white/95 backdrop-blur-sm py-6 px-16 rounded-[37px]">
-                <p className="font-poppins font-normal text-[23px] leading-[1.5] tracking-[-0.0065em] text-[#00352B] text-center max-w-[708px] mb-4">
-                  Let our experts in Brisbane guide you every step of the way.
-                </p>
-                <button
-                  type="button"
-                  className="flex items-center justify-center h-10 px-[63px] bg-white rounded-[16px] border-0 cursor-pointer font-poppins font-normal text-[19px] leading-[1.21] text-[#00352B] transition-opacity hover:opacity-90"
-                  onClick={() => setConsultationOpen(true)}
-                >
-                  Book Free Call
-                </button>
-              </div>
+              <p className="relative z-10 font-poppins font-normal text-[20px] leading-[1.5] text-white text-center max-w-[600px] mb-8">
+                Let Our Experts In Brisbane Guide You Every Step Of The Way.
+              </p>
+              <button
+                type="button"
+                className="relative z-10 flex items-center justify-center h-12 px-12 bg-white rounded-[16px] border-0 cursor-pointer font-poppins font-semibold text-[18px] text-black transition-opacity hover:opacity-95"
+                onClick={() => setConsultationOpen(true)}
+              >
+                Book Free Call
+              </button>
             </div>
           </section>
         </div>

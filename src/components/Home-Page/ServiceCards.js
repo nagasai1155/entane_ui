@@ -51,11 +51,12 @@ const ServiceCards = () => {
                 <div className="service-card-content">
                   <div className="service-card-badge">
                     {card.badge}
-                    <span className="service-card-arrow">→</span>
+                    <span className="service-card-arrow" aria-hidden="true">→</span>
                   </div>
                   <div className="service-card-bottom-row">
                     <h3 className="service-card-subtitle">{card.subtitle}</h3>
-                    <p className="service-card-cta">{card.cta}</p>
+                    <span className="service-card-divider" aria-hidden="true" />
+                    <span className="service-card-cta">{card.cta}</span>
                   </div>
                 </div>
               </div>

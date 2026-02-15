@@ -40,18 +40,48 @@
   margin: 0;
 }
 
-/* Three cards - minimal gap, continuous strip (Figma) */
+/* Three cards - premium strip with subtle shadow */
 .service-cards-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 53, 43, 0.08);
 }
 
 .service-card {
   position: relative;
   overflow: hidden;
+  z-index: 0;
+  transition: transform 350ms ease-out;
+}
+
+@media (min-width: 769px) {
+  .service-card:first-child .service-card-image {
+    border-radius: 12px 0 0 12px;
+  }
+
+  .service-card:last-child .service-card-image {
+    border-radius: 0 12px 12px 0;
+  }
+}
+
+@media (hover: hover) {
+  .service-card:hover {
+    transform: scaleX(1.12);
+    z-index: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card {
+    transition: none;
+  }
+
+  .service-card:hover {
+    transform: none;
+  }
 }
 
 .service-card-image {
@@ -68,23 +98,23 @@
   display: block;
 }
 
-/* Gradient overlay at bottom for text */
+/* Gradient overlay - premium darkening for text legibility */
 .service-card-gradient {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 65%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  height: 70%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
   pointer-events: none;
 }
 
-/* Play button - white circle with triangle */
+/* Play button - white circle with triangle, centered */
 .service-card-play {
   position: absolute;
+  top: 50%;
   left: 50%;
-  bottom: 38%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -105,60 +135,82 @@
   margin-left: 4px;
 }
 
-/* Content overlaid on image (Figma) */
+/* Content overlaid on image - premium layout */
 .service-card-content {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 24px 28px 28px;
+  padding: 24px 24px 24px;
   color: white;
+  min-width: 0;
 }
 
+/* Orange label: compact, premium */
 .service-card-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: #FF3300;
   color: white;
-  padding: 10px 18px;
+  padding: 8px 14px;
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
 }
 
 .service-card-arrow {
-  font-size: 18px;
+  font-size: 12px;
+  opacity: 0.95;
 }
 
-/* Figma: subtitle left, "Book 1:1 Counselling" right on same row, same baseline */
+/* Bottom row: subtitle, line, CTA */
 .service-card-bottom-row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
 }
 
+/* Horizontal line between subtitle and CTA */
+.service-card-divider {
+  flex: 1;
+  min-width: 8px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Main title: reduced font size */
 .service-card-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: 22px;
-  font-weight: 600;
-  color: white;
-  margin: 0;
-  line-height: 1.3;
-  flex-shrink: 0;
-}
-
-.service-card-cta {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: white;
   margin: 0;
+  line-height: 1.25;
+  flex-shrink: 1;
+  min-width: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* CTA: reduced font size, red underline */
+.service-card-cta {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: white;
   flex-shrink: 0;
   opacity: 0.95;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid #FF3300;
+  padding-bottom: 2px;
 }
 
 /* Responsive */
@@ -187,7 +239,6 @@
   .service-card-play {
     width: 48px;
     height: 48px;
-    bottom: 36%;
   }
 
   .service-card-play-icon {
@@ -197,7 +248,11 @@
   }
 
   .service-card-subtitle {
-    font-size: 20px;
+    font-size: 15px;
+  }
+
+  .service-card-cta {
+    font-size: 10px;
   }
 }
 
@@ -236,16 +291,20 @@
   }
 
   .service-card-content {
-    padding: 20px 24px 24px;
+    padding: 20px 20px 20px;
   }
 
   .service-card-badge {
-    font-size: 16px;
-    padding: 8px 14px;
+    font-size: 14px;
+    padding: 7px 12px;
   }
 
   .service-card-subtitle {
-    font-size: 18px;
+    font-size: 14px;
+  }
+
+  .service-card-cta {
+    font-size: 10px;
   }
 }
 
