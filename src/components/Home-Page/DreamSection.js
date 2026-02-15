@@ -45,10 +45,11 @@ const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null }
     return () => observer.disconnect();
   }, []);
 
+  const showContent = isInView || morphProgress > 0.01;
   return (
     <section
       ref={sectionRef}
-      className={`dream-section ${isInView ? 'dream-section--in-view' : ''}`}
+      className={`dream-section ${showContent ? 'dream-section--in-view' : ''}`}
     >
       <div className="dream-container">
         <div className="dream-row">

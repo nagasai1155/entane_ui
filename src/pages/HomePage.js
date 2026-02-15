@@ -112,10 +112,12 @@ function HomePage() {
 
     if (rect && rect.width > 0) {
       const reveal = Math.pow(eased, 0.58);
-      const top = rect.top * reveal;
-      const left = rect.left * eased;
+      let top = rect.top * reveal;
+      let left = rect.left * eased;
       const width = vw + (rect.width - vw) * eased;
       const height = vh + (rect.height - vh) * eased;
+      left = Math.max(0, Math.min(vw - width, left));
+      top = Math.max(0, Math.min(vh - height, top));
       const borderRadius = 12 * eased;
 
       const handoffStart = 0.82;

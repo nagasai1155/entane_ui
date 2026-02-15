@@ -6,6 +6,10 @@ const Hero = ({ morphProgress = 0, heroVideoUrl = null }) => {
   const bgOpacity = Math.max(0, 1 - morphProgress * 2.2);
   const contentOpacity = Math.max(0, 1 - morphProgress * 2);
 
+  const showHeroMedia = morphProgress <= 0.01;
+  const showHeroVideo = heroVideoUrl && showHeroMedia;
+  const showHeroImage = !heroVideoUrl && showHeroMedia;
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !heroVideoUrl) return;
@@ -26,7 +30,7 @@ const Hero = ({ morphProgress = 0, heroVideoUrl = null }) => {
   return (
     <section className="hero">
       <div className="hero-background" style={{ opacity: bgOpacity }}>
-        {heroVideoUrl ? (
+        {showHeroVideo && (
           <video
             ref={videoRef}
             className="hero-bg-video"
@@ -38,7 +42,8 @@ const Hero = ({ morphProgress = 0, heroVideoUrl = null }) => {
             preload="auto"
             aria-hidden="true"
           />
-        ) : (
+        )}
+        {showHeroImage && (
           <img src="/images/home-page/hero.jpg" alt="Background" className="hero-bg-img" />
         )}
         <div className="hero-overlay"></div>
