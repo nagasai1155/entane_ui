@@ -14,18 +14,21 @@ function PostArrivalSupportPage() {
       <main className="flex flex-col w-full max-w-[1440px] mx-auto bg-white">
         {/* Hero section */}
         <div className="flex flex-col items-center w-full pt-[130px] md:pt-[174px] pb-[67px] px-6 md:px-[100px]">
-          <span className="font-poppins font-medium text-[28px] text-[#00352B] mb-[38px]">
+          <span className="font-poppins font-normal text-lg md:text-xl text-[#2F4F4F] mb-6 pb-1 border-b-2 border-[#2F4F4F]">
             Post-Arrival Support
           </span>
-          <span className="font-poppins text-[#00352B] text-center mb-[22px] max-w-[800px] whitespace-pre-line">
-            Because getting admitted is just the beginning{'\n'}living well is what matters.
-          </span>
+          <p className="font-poppins text-[#2F4F4F] text-center mb-2 max-w-[800px] text-2xl md:text-3xl lg:text-4xl leading-tight">
+            Because getting admitted is just the beginning
+          </p>
+          <p className="font-poppins font-semibold italic text-[#FF4500] text-center mb-8 max-w-[800px] text-2xl md:text-3xl lg:text-4xl leading-tight">
+            living well is what matters.
+          </p>
           <button
             type="button"
             onClick={openConsultation}
-            className="flex items-center justify-center bg-[#FF3300] py-2 px-6 rounded-2xl border-0 cursor-pointer"
+            className="flex items-center justify-center bg-[#FF4500] py-1 px-4 rounded-full border border-[#FF6B35] cursor-pointer shadow-[0_2px_12px_rgba(255,69,0,0.25)] hover:shadow-[0_4px_16px_rgba(255,69,0,0.3)] transition-shadow"
           >
-            <span className="font-poppins font-medium text-[22px] text-[#FFFBE9]">
+            <span className="font-poppins font-medium text-base md:text-lg text-white">
               Get Post Arrival Support
             </span>
           </button>
@@ -33,29 +36,29 @@ function PostArrivalSupportPage() {
 
         {/* Intro section: images as base layer, grey text box overlaps on top */}
         <section className="relative w-full max-w-[1289px] mx-auto pt-[80px] md:pt-[100px] pb-[80px] md:pb-[120px] mb-[80px] md:mb-[145px] px-6 md:px-[51px] md:pl-[80px] md:pr-[80px] min-h-[600px] md:min-h-[720px] flex flex-col items-center justify-center">
-          {/* Base layer: top row + bottom row with vertical gap */}
-          <div className="absolute inset-0 flex flex-col justify-between pt-[80px] md:pt-[100px] pb-[80px] md:pb-[120px] px-6 md:px-[51px]">
+          {/* Base layer: images behind the text so they never cover it */}
+          <div className="absolute inset-0 flex flex-col justify-between pt-[80px] md:pt-[100px] pb-[80px] md:pb-[120px] px-6 md:px-[51px] z-0">
             {/* Top row */}
             <div className="relative h-[180px] md:h-[200px] flex-shrink-0">
               <img
                 src={`${IMG_BASE}/u5xwleon_expires_30_days.png`}
                 alt=""
-                className="w-[140px] md:w-[159px] h-[120px] md:h-[143px] absolute top-0 left-2 md:left-8 object-contain pointer-events-none z-10"
+                className="w-[140px] md:w-[159px] h-[120px] md:h-[143px] absolute top-0 left-2 md:left-8 object-contain pointer-events-none"
               />
               <img
                 src={`${IMG_BASE}/q8la459u_expires_30_days.png`}
                 alt=""
-                className="w-[160px] md:w-[202px] h-[140px] md:h-[181px] absolute top-0 left-[20%] md:left-[22%] object-contain pointer-events-none z-10"
+                className="w-[160px] md:w-[202px] h-[140px] md:h-[181px] absolute top-0 left-[20%] md:left-[22%] object-contain pointer-events-none"
               />
               <img
                 src={`${IMG_BASE}/6hwers10_expires_30_days.png`}
                 alt=""
-                className="w-[140px] md:w-[189px] h-[130px] md:h-[172px] absolute top-2 right-[22%] md:right-[28%] object-contain pointer-events-none z-10 hidden sm:block"
+                className="w-[140px] md:w-[189px] h-[130px] md:h-[172px] absolute top-2 right-[22%] md:right-[28%] object-contain pointer-events-none hidden sm:block"
               />
               <img
                 src={`${IMG_BASE}/l8px1rkc_expires_30_days.png`}
                 alt=""
-                className="w-[140px] md:w-[182px] h-[130px] md:h-[164px] absolute top-0 right-2 md:right-8 object-contain pointer-events-none z-10"
+                className="w-[140px] md:w-[182px] h-[130px] md:h-[164px] absolute top-0 right-2 md:right-8 object-contain pointer-events-none"
               />
             </div>
             {/* Vertical gap between rows */}
@@ -65,28 +68,28 @@ function PostArrivalSupportPage() {
               <img
                 src={`${IMG_BASE}/7cvg4p9p_expires_30_days.png`}
                 alt=""
-                className="w-[140px] md:w-[181px] h-[120px] md:h-[162px] absolute bottom-0 left-[8%] md:left-[12%] object-contain pointer-events-none z-10 hidden sm:block"
+                className="w-[140px] md:w-[181px] h-[120px] md:h-[162px] absolute bottom-0 left-[8%] md:left-[12%] object-contain pointer-events-none hidden sm:block"
               />
               <img
                 src={`${IMG_BASE}/k0we8t2z_expires_30_days.png`}
                 alt=""
-                className="w-[150px] md:w-[193px] h-[130px] md:h-[173px] absolute bottom-0 left-2 md:left-4 object-contain pointer-events-none z-10"
+                className="w-[150px] md:w-[193px] h-[130px] md:h-[173px] absolute bottom-0 left-2 md:left-4 object-contain pointer-events-none"
               />
               <img
                 src={`${IMG_BASE}/herthk9n_expires_30_days.png`}
                 alt=""
-                className="w-[140px] md:w-[189px] h-[130px] md:h-[172px] absolute bottom-0 right-[22%] md:right-[28%] object-contain pointer-events-none z-10 hidden md:block"
+                className="w-[140px] md:w-[189px] h-[130px] md:h-[172px] absolute bottom-0 right-[22%] md:right-[28%] object-contain pointer-events-none hidden md:block"
               />
               <img
                 src={`${IMG_BASE}/9ifzua0v_expires_30_days.png`}
                 alt=""
-                className="w-[140px] md:w-[181px] h-[120px] md:h-[162px] absolute bottom-0 right-2 md:right-4 object-contain pointer-events-none z-10"
+                className="w-[140px] md:w-[181px] h-[120px] md:h-[162px] absolute bottom-0 right-2 md:right-4 object-contain pointer-events-none"
               />
             </div>
           </div>
 
-          {/* Grey text box: lower z-index so images peek over it */}
-          <div className="relative z-0 flex items-center justify-center px-4 md:px-12">
+          {/* Grey text box: on top so text is never covered by images */}
+          <div className="relative z-10 flex items-center justify-center px-4 md:px-12">
             <div className="flex flex-col items-center justify-center w-full max-w-[900px] bg-[#F5F3F3] py-12 md:py-20 px-8 md:px-16 rounded-[40px] md:rounded-[67px] shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
               <span className="font-poppins text-[#FF3300] text-center text-lg md:text-[22px] leading-[1.5] whitespace-pre-line">
                 Arriving in Australia is exciting, but it can also be confusing. New systems, new

@@ -121,15 +121,16 @@ export default function AccommodationPage() {
             </button>
           </section>
 
-          {/* Section: Hero - reference image match: layered absolute, fixed card sizes */}
-          <section className="relative w-[1383px] max-w-[100%] h-[640px] mx-auto mb-[105px] rounded-[49px] overflow-hidden">
+          {/* Section: Hero - reference image match: layered absolute, fixed card sizes (width/height like Part-time Job Support page) */}
+          <div className="w-full -mx-[72px] min-w-0">
+            <section className="relative w-[1383px] max-w-[100%] min-h-[600px] mx-auto mb-[105px] rounded-[40px] overflow-hidden">
             {/* Background - sharp contrast, no blur */}
             <div
-              className="absolute inset-0 rounded-[49px] bg-[#d3d3d3] bg-no-repeat bg-[url('https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/n2i4a7pn_expires_30_days.png')] [background-size:100%_248.977%] [background-position:0_-740.061px] contrast-125"
+              className="absolute inset-0 rounded-[40px] bg-[#d3d3d3] bg-no-repeat bg-[url('https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/n2i4a7pn_expires_30_days.png')] [background-size:100%_248.977%] [background-position:0_-740.061px] contrast-125"
               aria-hidden
             />
             {/* Dark green overlay above bg image */}
-            <div className="absolute inset-0 rounded-[49px] bg-[#00352B]/55 pointer-events-none" aria-hidden />
+            <div className="absolute inset-0 rounded-[40px] bg-[#00352B]/55 pointer-events-none" aria-hidden />
 
             {/* Left arrow - on background */}
             <button
@@ -155,46 +156,46 @@ export default function AccommodationPage() {
             </button>
 
             {/* Centered group: orange box + room image - sliding carousel */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[812px] h-[520px] overflow-hidden">
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[400px] overflow-hidden">
               <div
                 className="flex h-full transition-transform duration-400 ease-out"
-                style={{ transform: `translateX(-${currentSlide * 812}px)` }}
+                style={{ transform: `translateX(-${currentSlide * 640}px)` }}
               >
                 {ACCOMMODATION_SLIDES.map((slide, index) => (
                   <div
                     key={index}
-                    className="relative flex-shrink-0 w-[812px] h-[520px]"
+                    className="relative flex-shrink-0 w-[640px] h-[400px]"
                   >
                     {/* Orange card */}
-                    <div className="absolute left-0 top-0 w-[812px] h-[520px] flex flex-col bg-[#FF3300] rounded-[41px] pt-[44px] pl-[37px] pr-[280px] pb-[44px] box-border overflow-hidden">
+                    <div className="absolute left-0 top-0 w-[640px] h-[400px] flex flex-col bg-[#FF3300] rounded-[32px] pt-[28px] pl-[28px] pr-[220px] pb-[28px] box-border overflow-hidden">
                       {/* Text content with clear fade-in when slide is active */}
                       <div
                         className={`transition-opacity duration-300 ease-out ${
                           index === currentSlide ? 'opacity-100' : 'opacity-0'
                         }`}
                       >
-                        <p className="font-poppins font-normal text-[40px] leading-[1.5] tracking-[-0.00375em] text-white mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                        <p className="font-poppins font-normal text-[28px] leading-[1.35] tracking-[-0.00375em] text-white mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
                           {slide.intro}
                         </p>
-                        <h2 className="font-poppins font-bold text-[64px] leading-[1.5] tracking-[-0.00234em] text-white mb-[20px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                        <h2 className="font-poppins font-bold text-[44px] leading-[1.35] tracking-[-0.00234em] text-white mb-[12px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
                           {slide.city}
                         </h2>
-                        <p className="font-poppins font-normal text-[28px] leading-[1.5] tracking-[-0.00536em] text-white mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                        <p className="font-poppins font-normal text-[20px] leading-[1.35] tracking-[-0.00536em] text-white mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
                           Starting at Just
                         </p>
-                        <div className="w-[207px] h-[53px] flex items-center justify-center bg-[#00352B] rounded-[15px] mb-[18px] shrink-0">
-                          <span className="font-poppins font-normal text-[29px] leading-[1.5] tracking-[-0.00517em] text-white">
+                        <div className="w-[165px] h-[42px] flex items-center justify-center bg-[#00352B] rounded-[12px] mb-[12px] shrink-0">
+                          <span className="font-poppins font-normal text-[22px] leading-[1.35] tracking-[-0.00517em] text-white">
                             {slide.price}
                           </span>
                         </div>
-                        <ul className="list-disc list-inside font-poppins font-normal text-[15px] leading-[1.4] tracking-[-0.01em] text-white max-w-[326px] mb-4 space-y-1 drop-shadow-[0_1px_1px_rgba(0,0,0,0.15)] [&_li]:marker:text-white">
+                        <ul className="list-disc list-inside font-poppins font-normal text-[13px] leading-[1.35] tracking-[-0.01em] text-white max-w-[260px] mb-3 space-y-0.5 drop-shadow-[0_1px_1px_rgba(0,0,0,0.15)] [&_li]:marker:text-white">
                           {slide.features.map((item, i) => (
                             <li key={i}>{item}</li>
                           ))}
                         </ul>
                         <button
                           type="button"
-                          className="flex items-center justify-center h-9 px-4 w-fit min-w-0 bg-white rounded-[16px] border-0 cursor-pointer font-poppins font-semibold text-[14px] text-[#FF3300] transition-opacity hover:opacity-95 shrink-0 shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
+                          className="flex items-center justify-center h-8 px-3 w-fit min-w-0 bg-white rounded-[12px] border-0 cursor-pointer font-poppins font-semibold text-[13px] text-[#FF3300] transition-opacity hover:opacity-95 shrink-0 shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
                           onClick={() => setConsultationOpen(true)}
                         >
                           Get Free Guidance from Esante
@@ -206,7 +207,7 @@ export default function AccommodationPage() {
                     <img
                       src={MELBOURNE_IMG}
                       alt={`${slide.city} accommodation`}
-                      className="absolute left-[432px] top-1/2 -translate-y-1/2 w-[380px] h-[395px] object-cover object-center rounded-[41px] shadow-[10px_10px_6px_rgba(0,0,0,0.3)] z-[1]"
+                      className="absolute left-[340px] top-1/2 -translate-y-1/2 w-[300px] h-[312px] object-cover object-center rounded-[32px] shadow-[8px_8px_6px_rgba(0,0,0,0.3)] z-[1]"
                     />
                   </div>
                 ))}
@@ -216,6 +217,7 @@ export default function AccommodationPage() {
               {String(currentSlide + 1).padStart(2, '0')}/{String(ACCOMMODATION_SLIDES.length).padStart(2, '0')}
             </span>
           </section>
+          </div>
 
           {/* Section: Long copy */}
           <section className="flex flex-col items-center w-full max-w-[1117px] mx-auto mb-[100px]">
