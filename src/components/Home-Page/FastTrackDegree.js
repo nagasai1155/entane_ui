@@ -35,7 +35,9 @@ const FastTrackDegree = () => {
     <section className="fast-track-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Fast-Track Your Degree</h2>
+          <h2 className="section-title">
+            Fast-Track Your <span className="section-title-accent">Degree</span>
+          </h2>
           <p className="section-subtitle">
             Foundation and diploma programs designed for university success.
           </p>

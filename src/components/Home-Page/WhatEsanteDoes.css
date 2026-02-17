@@ -1,30 +1,35 @@
 /* What Esante Does - Figma: left-aligned header, two cards (content+image row), 35px radius */
 .what-esante-section {
   padding: 100px 0;
-  background-color: #FFFBE9;
 }
 
 .what-esante-container {
   max-width: 1442px;
   margin: 0 auto;
   padding: 0 100px;
-  padding-right: 115px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Title: 45px, rest dark; "Esante" in #FF3300 */
 .what-esante-title {
   font-family: 'Poppins', sans-serif;
   font-size: 45px;
-  font-weight: 700;
-  line-height: 1.2em;
-  letter-spacing: -0.33%;
-  color: #00352B;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: -0.15px;
+  color: var(--Primary-Color, #00352B);
   margin: 0 0 10px 0;
   text-align: left;
+  width: 100%;
+  max-width: 1240px;
 }
 
 .what-esante-title-accent {
-  color: #FF3300;
+  color: #F30;
+  font-style: italic;
+  font-weight: 600;
 }
 
 /* Figma: subtitle left-aligned, 18px */
@@ -32,11 +37,13 @@
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  line-height: 1.2em;
+  line-height: 120%;
+  letter-spacing: -0.15px;
   color: rgba(0, 0, 0, 0.75);
   margin: 0 0 48px 0;
   text-align: left;
-  max-width: 653px;
+  width: 100%;
+  max-width: 1240px;
 }
 
 /* Card: row layout, 35px radius, 50px padding (Figma) */
@@ -56,30 +63,49 @@
 
 /* Card 1: dark green bg, [content | image], gap 10px */
 .what-esante-card-1 {
+  display: flex;
+  width: 1240px;
+  max-width: 100%;
+  padding: 50px;
+  align-items: center;
+  gap: 20px;
+  border-radius: 35px;
   background: #00352B;
   color: white;
-  gap: 10px;
   position: relative;
   z-index: 0;
+  margin: 0 auto;
 }
 
 /* Card 2: overlays Card 1 until the Learn More area (negative margin + z-index) */
 .what-esante-card-2 {
-  background: #FF3300;
+  display: flex;
+  width: 1240px;
+  max-width: 100%;
+  padding: 50px;
+  align-items: center;
   gap: 41px;
-  margin-top: -80px;
+  border-radius: 35px;
+  background: #F30;
+  margin: -55px auto 0;
   position: relative;
   z-index: 1;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
 .what-esante-card-1 .what-esante-card-title {
-  color: #FF3300;
+  color: #F30;
+  line-height: 120%;
+  letter-spacing: -0.15px;
 }
 
 /* Card 1: body text fill_XLZY3A = rgba(255,255,255,0.75) */
 .what-esante-card-1 .what-esante-card-desc {
+  max-width: 720px;
+  width: 100%;
   color: rgba(255, 255, 255, 0.75);
+  line-height: 140%;
+  letter-spacing: -0.15px;
 }
 
 .what-esante-card-2 .what-esante-card-title,
@@ -97,6 +123,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 10px 0;
+  margin-right: 20px;
 }
 
 /* Bullet list with solid green checkmarks */
@@ -113,10 +140,15 @@
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 120%;
+  letter-spacing: -0.15px;
   color: rgba(255, 255, 255, 0.9);
   padding-left: 28px;
   position: relative;
+}
+
+.what-esante-card-1 .what-esante-card-list li {
+  color: #FFF;
 }
 
 .what-esante-card-list li::before {
@@ -139,8 +171,8 @@
   font-size: 40px;
   font-weight: 600;
   margin: 0;
-  line-height: 1.2;
-  letter-spacing: -0.375%;
+  line-height: 120%;
+  letter-spacing: -0.15px;
 }
 
 /* Body: style_NAVIJI — Poppins 18px, line-height 1.4 */
@@ -148,8 +180,8 @@
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.83%;
+  line-height: 140%;
+  letter-spacing: -0.15px;
   margin: 0;
   max-width: 720px;
 }
@@ -173,35 +205,25 @@
   transform: translateX(4px);
 }
 
-/* Card 2 button: Light background #FFFBE9, text #FF3300 */
+/* Card 2 button: Light background #FFFBE9, text black */
 .what-esante-btn-light {
   background: #FFFBE9;
-  color: #FF3300;
+  color: #000;
 }
 
 .what-esante-btn-light:hover {
   background: #fff;
 }
 
-/* Image block: 400x400, 20px radius, subtle white border/gap */
+/* Image block: 400x400, 20px radius */
 .what-esante-card-image {
   width: 400px;
   height: 400px;
   flex-shrink: 0;
   border-radius: 20px;
-  overflow: hidden;
-  padding: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.35);
-  box-sizing: border-box;
-}
-
-.what-esante-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Responsive */

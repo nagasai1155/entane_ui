@@ -55,7 +55,6 @@ const ServiceCards = () => {
                   </div>
                   <div className="service-card-bottom-row">
                     <h3 className="service-card-subtitle">{card.subtitle}</h3>
-                    <span className="service-card-divider" aria-hidden="true" />
                     <span className="service-card-cta">{card.cta}</span>
                   </div>
                 </div>

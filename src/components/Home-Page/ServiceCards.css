@@ -21,27 +21,40 @@
 }
 
 .service-cards-title {
+  width: 540px;
   font-family: 'Poppins', sans-serif;
   font-size: 45px;
-  font-weight: 700;
-  line-height: 1.2em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: -0.15px;
   color: #00352B;
   margin: 0;
 }
 
 .service-cards-title-accent {
-  color: #FF3300;
+  color: #F30;
+  font-family: 'Poppins', sans-serif;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -0.15px;
 }
 
 .service-cards-description {
+  width: 683px;
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  line-height: 1.62em;
-  color: rgba(0, 0, 0, 0.75);
-  margin: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.15px;
+  color: #000;
+  margin: 26px 0 0 0;
 }
 
-/* Three cards - premium strip with subtle shadow */
+/* Three cards - premium strip with subtle shadow - full width */
 .service-cards-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -49,13 +62,18 @@
   overflow: visible;
   border-radius: 12px;
   box-shadow: 0 4px 24px rgba(0, 53, 43, 0.08);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .service-card {
   position: relative;
   overflow: hidden;
   z-index: 0;
-  transition: transform 350ms ease-out;
 }
 
 @media (min-width: 769px) {
@@ -68,28 +86,13 @@
   }
 }
 
-@media (hover: hover) {
-  .service-card:hover {
-    transform: scaleX(1.12);
-    z-index: 2;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .service-card {
-    transition: none;
-  }
-
-  .service-card:hover {
-    transform: none;
-  }
-}
 
 .service-card-image {
   position: relative;
   width: 100%;
   height: 320px;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .service-card-image img {
@@ -145,6 +148,19 @@
   padding: 24px 24px 24px;
   color: white;
   min-width: 0;
+  overflow: hidden;
+}
+
+/* White horizontal line extending left to right for each card - separate for each */
+.service-card-content::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 70px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 1;
 }
 
 /* Orange label: compact, premium */
@@ -159,9 +175,11 @@
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   text-transform: capitalize;
   letter-spacing: 0.02em;
+  position: relative;
+  z-index: 2;
 }
 
 .service-card-arrow {
@@ -178,13 +196,6 @@
   min-width: 0;
 }
 
-/* Horizontal line between subtitle and CTA */
-.service-card-divider {
-  flex: 1;
-  min-width: 8px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.5);
-}
 
 /* Main title: reduced font size */
 .service-card-subtitle {
@@ -199,7 +210,7 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* CTA: reduced font size, red underline */
+/* CTA: reduced font size with orange underline */
 .service-card-cta {
   font-family: 'Poppins', sans-serif;
   font-size: 11px;
@@ -210,8 +221,18 @@
   white-space: nowrap;
   letter-spacing: 0.02em;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid #FF3300;
-  padding-bottom: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+.service-card-cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #FF3300;
 }
 
 /* Responsive */
@@ -226,6 +247,12 @@
   }
 
   .service-cards-title {
+    font-size: 36px;
+    width: auto;
+    max-width: 540px;
+  }
+
+  .service-cards-title-accent {
     font-size: 36px;
   }
 
@@ -274,6 +301,12 @@
 
   .service-cards-title {
     font-size: 28px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .service-cards-title-accent {
+    font-size: 28px;
   }
 
   .service-cards-description {
@@ -284,6 +317,12 @@
     grid-template-columns: 1fr;
     gap: 16px;
     border-radius: 12px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
 
   .service-card-image {
@@ -311,6 +350,12 @@
 
 @media (max-width: 480px) {
   .service-cards-title {
+    font-size: 24px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .service-cards-title-accent {
     font-size: 24px;
   }
 

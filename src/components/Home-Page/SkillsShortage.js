@@ -26,7 +26,9 @@ const SkillsShortage = () => {
     <section className="skills-shortage-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Skills in Shortage</h2>
+          <h2 className="section-title">
+            <span className="section-title-accent">Skills</span> in Shortage
+          </h2>
           <p className="section-subtitle">
             Sectors actively seeking international talent right now.
           </p>

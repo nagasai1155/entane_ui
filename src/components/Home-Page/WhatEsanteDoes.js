@@ -23,23 +23,29 @@ const WhatEsanteDoes = () => {
               quis nostrud exercitation ullamco laboris nisi ut
             </p>
             <ul className="what-esante-card-list">
-              <li>We help recruit students from all over the world.</li>
-              <li>We help recruit students from all over the world.</li>
-              <li>We help recruit students from all over the world.</li>
-              <li>We help recruit students from all over the world.</li>
+              <li>We help in recruit students from all over the world.</li>
+              <li>We help in recruit students from all over the world.</li>
+              <li>We help in recruit students from all over the world.</li>
+              <li>We help in recruit students from all over the world.</li>
             </ul>
             <button className="what-esante-btn">Learn More</button>
           </div>
-          <div className="what-esante-card-image">
-            <img src="/images/home-page/Frame 106.png" alt="Migration" />
-          </div>
+          <div 
+            className="what-esante-card-image"
+            style={{
+              background: "url('/images/home-page/Frame 106.png') lightgray 50% / cover no-repeat"
+            }}
+          ></div>
         </div>
 
         {/* Card 2: image left, content right — bg #FF3300, gap 41px (Figma layout_53MYCK) */}
         <div className="what-esante-card what-esante-card-2">
-          <div className="what-esante-card-image">
-            <img src="/images/home-page/Frame 106 (1).png" alt="Education" />
-          </div>
+          <div 
+            className="what-esante-card-image"
+            style={{
+              background: "url('/images/home-page/Frame 106 (1).png') lightgray 50% / cover no-repeat"
+            }}
+          ></div>
           <div className="what-esante-card-content">
             <h3 className="what-esante-card-title">Education & Training</h3>
             <p className="what-esante-card-desc">
@@ -48,10 +54,10 @@ const WhatEsanteDoes = () => {
               quis nostrud exercitation ullamco laboris nisi ut
             </p>
             <ul className="what-esante-card-list">
-              <li>We help recruit students from all over the world.</li>
-              <li>We help recruit students from all over the world.</li>
-              <li>We help recruit students from all over the world.</li>
-              <li>We help recruit students from all over the world.</li>
+              <li>We help in recruit students from all over the world.</li>
+              <li>We help in recruit students from all over the world.</li>
+              <li>We help in recruit students from all over the world.</li>
+              <li>We help in recruit students from all over the world.</li>
             </ul>
             <button className="what-esante-btn what-esante-btn-light">Learn More</button>
           </div>

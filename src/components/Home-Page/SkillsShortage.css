@@ -3,6 +3,42 @@
   background-color: #FFFFFF;
 }
 
+.section-header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  color: var(--Primary-Color, #00352B);
+  font-family: Poppins, sans-serif;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: -0.15px;
+  margin: 0 0 10px 0;
+}
+
+.section-title-accent {
+  color: #F30;
+  font-family: Poppins, sans-serif;
+  font-size: 45px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: -0.15px;
+}
+
+.section-subtitle {
+  color: rgba(0, 0, 0, 0.75);
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  margin: 0;
+}
+
 /* Carousel: scroll full width, arrows at bottom right (like Real Stories) */
 .skills-carousel-wrap {
   margin-top: 60px;
@@ -42,6 +78,9 @@
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .job-card:hover {
@@ -50,10 +89,15 @@
 }
 
 .job-image {
-  flex: 0 0 180px;
+  height: 192px;
+  align-self: stretch;
   width: 100%;
   overflow: hidden;
   background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: 0;
 }
 
 .job-image img {
@@ -61,16 +105,22 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  margin: 0;
+  padding: 0;
+  vertical-align: bottom;
 }
 
 .job-content {
-  flex: 1;
-  min-height: 0;
   display: flex;
+  width: 100%;
+  height: 211px;
+  padding: 20px 10px;
   flex-direction: column;
-  padding: 30px;
+  justify-content: space-between;
+  align-items: flex-start;
   background: #00352B;
   color: white;
+  margin-top: -2px;
 }
 
 .job-title {
@@ -113,12 +163,12 @@
 .explore-btn .underline {
   width: 100%;
   height: 1px;
-  background: rgba(255, 255, 255, 0.3);
+  background: #F30;
   transition: background 0.3s ease;
 }
 
 .explore-btn:hover .underline {
-  background: white;
+  background: #F30;
 }
 
 /* Same arrow style as Real Stories: square rounded, left light orange / right solid orange */
@@ -153,17 +203,24 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .section-title,
+  .section-title-accent {
+    font-size: 36px;
+  }
+
   .job-card {
     flex: 0 0 280px;
     height: 400px;
   }
 
   .job-image {
-    flex: 0 0 150px;
+    height: 192px;
+    align-self: stretch;
   }
 
   .job-content {
-    padding: 25px;
+    width: 100%;
+    padding: 20px 10px;
   }
 
   .job-title {
@@ -176,6 +233,15 @@
     padding: 60px 0;
   }
 
+  .section-title,
+  .section-title-accent {
+    font-size: 28px;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+  }
+
   .skills-carousel-wrap {
     margin-top: 40px;
   }
@@ -186,7 +252,8 @@
   }
 
   .job-image {
-    flex: 0 0 140px;
+    height: 192px;
+    align-self: stretch;
   }
 
   .jobs-scroll {
@@ -194,7 +261,8 @@
   }
 
   .job-content {
-    padding: 20px;
+    width: 100%;
+    padding: 20px 10px;
   }
 
   .job-title {
@@ -221,13 +289,23 @@
     padding: 40px 0;
   }
 
+  .section-title,
+  .section-title-accent {
+    font-size: 24px;
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+  }
+
   .job-card {
     flex: 0 0 240px;
     height: 360px;
   }
 
   .job-image {
-    flex: 0 0 120px;
+    height: 192px;
+    align-self: stretch;
   }
 
   .job-title {

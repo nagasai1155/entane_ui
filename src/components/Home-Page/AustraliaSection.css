@@ -121,23 +121,29 @@
 }
 
 .stat-number {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 700;
-  color: #FF3300;
+  color: #F30;
   margin: 0 0 8px 0;
   font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  line-height: 120%;
+  letter-spacing: -0.15px;
   transition: color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
   display: inline-block;
   transform-origin: left center;
 }
 
 .stat-label {
-  font-size: 16px;
+  width: 280px;
+  font-size: 18px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.75);
-  line-height: 1.5;
-  margin: 0;
   font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  line-height: 120%;
+  letter-spacing: -0.15px;
+  margin: 0;
   transition: color 0.25s ease;
 }
 
@@ -166,17 +172,15 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 693px;
+  height: 734px;
+  aspect-ratio: 169 / 179;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   transition: transform 0.9s var(--ease-smooth);
 }
 
-.australia-right:hover .australia-bg {
-  transform: scale(1.05);
-}
 
 .australia-overlay {
   position: absolute;
@@ -213,10 +217,6 @@
   transform: translateY(0) scale(1);
 }
 
-.australia-right:hover .australia-overlay-img {
-  transform: translateY(0) scale(1.03);
-  box-shadow: 0 20px 40px rgba(0, 53, 43, 0.15);
-}
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -231,6 +231,11 @@
 
   .australia-right {
     min-height: 220px;
+  }
+
+  .australia-bg {
+    width: 100%;
+    height: 100%;
   }
 
   .australia-title {
@@ -286,6 +291,11 @@
     min-height: 200px;
   }
 
+  .australia-bg {
+    width: 100%;
+    height: 100%;
+  }
+
   .australia-overlay {
     padding: 24px;
   }
@@ -301,6 +311,7 @@
 
   .stat-label {
     font-size: 14px;
+    width: auto;
   }
 }
 
@@ -319,6 +330,11 @@
 
   .australia-right {
     min-height: 180px;
+  }
+
+  .australia-bg {
+    width: 100%;
+    height: 100%;
   }
 
   .australia-overlay-img {
@@ -357,8 +373,6 @@
     width: 100%;
   }
 
-  .australia-right:hover .australia-bg,
-  .australia-right:hover .australia-overlay-img,
   .stat-item:hover .stat-number {
     transform: none;
   }
