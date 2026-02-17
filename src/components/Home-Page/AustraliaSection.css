@@ -9,20 +9,23 @@
 }
 
 .australia-wrapper {
-  max-width: 1440px;
+  width: 1436px;
+  max-width: 100%;
+  height: 733px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 160px;
+  align-items: stretch;
 }
 
-/* Left column - cream background (Figma) */
+/* Left column - cream background, same height as right */
 .australia-left {
   background-color: #FFFBE9;
-  padding: 80px 60px 80px 100px;
+  padding: 48px 60px 48px 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 100%;
 }
 
 /* Title: smooth reveal with subtle scale for depth */
@@ -46,25 +49,13 @@
 }
 
 .australia-title-accent {
-  color: #FF3300;
-  position: relative;
-  display: inline-block;
-}
-
-.australia-title-accent::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #FF3300, rgba(255, 51, 0, 0.5));
-  border-radius: 2px;
-  transition: width 0.6s var(--ease-smooth) 0.4s;
-}
-
-.australia-section--in-view .australia-title-accent::after {
-  width: 100%;
+  color: #F30;
+  font-family: Poppins, sans-serif;
+  font-size: 45px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: -0.15px;
 }
 
 /* Description: staggered fade-up */
@@ -154,10 +145,10 @@
   color: rgba(0, 0, 0, 0.85);
 }
 
-/* Right column: reduced height + smooth zoom-up as you approach */
+/* Right column: same height as left */
 .australia-right {
   position: relative;
-  min-height: 150px;
+  min-height: 100%;
   overflow: hidden;
   opacity: 0;
   transform: translateY(56px) scale(0.94);
@@ -176,7 +167,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 88%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -189,20 +180,20 @@
 
 .australia-overlay {
   position: absolute;
-  top: 0;
+  top: 11%;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
 }
 
-/* Overlay image: smaller height + smooth zoom-up with the block */
+/* Overlay image: zoomed in a bit + smooth zoom-up with the block */
 .australia-overlay-img {
-  max-width: 88%;
-  max-height: 55%;
+  max-width: 95%;
+  max-height: 68%;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -235,7 +226,7 @@
   }
 
   .australia-left {
-    padding: 60px 50px;
+    padding: 40px 50px;
   }
 
   .australia-right {
@@ -243,6 +234,10 @@
   }
 
   .australia-title {
+    font-size: 36px;
+  }
+
+  .australia-title-accent {
     font-size: 36px;
   }
 
@@ -262,10 +257,14 @@
 
 @media (max-width: 768px) {
   .australia-left {
-    padding: 50px 20px;
+    padding: 36px 20px;
   }
 
   .australia-title {
+    font-size: 28px;
+  }
+
+  .australia-title-accent {
     font-size: 28px;
   }
 
@@ -307,6 +306,10 @@
 
 @media (max-width: 480px) {
   .australia-title {
+    font-size: 24px;
+  }
+
+  .australia-title-accent {
     font-size: 24px;
   }
 

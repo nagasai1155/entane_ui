@@ -7,19 +7,22 @@
   z-index: 100;
 }
 
+/* Top-level header: contact strip */
 .header-top {
-  background-color: #FF3300;  /* Red-Orange from Figma - fill_CA80RK */
-  padding: 4px 0;
+  background-color: #FF3300;
+  padding: 10px 0;
 }
 
 .header-contact {
-  max-width: 1440px;
+  max-width: 1442px;
   margin: 0 auto;
   padding: 0 100px;
+  padding-right: 115px;
   display: flex;
-  justify-content: space-between;  /* Email left, phone right */
-  font-size: 14px;
+  justify-content: space-between;
   align-items: center;
+  gap: 10px;
+  font-size: 14px;
 }
 
 .header-contact .contact-item:first-child {
@@ -52,7 +55,7 @@
 
 .header-nav {
   padding: 10px 0;
-  background-color: transparent;  /* Default: transparent, especially for homepage hero */
+  background-color: transparent;  /* Transparent for homepage hero */
 }
 
 .header.header--compact .header-nav {
@@ -64,9 +67,10 @@
 }
 
 .nav-container {
-  max-width: 1440px;
+  max-width: 1442px;
   margin: 0 auto;
   padding: 0 100px;
+  padding-right: 115px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,11 +79,21 @@
 
 .logo {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
-  height: 32px;
-  width: auto;
+  width: 169px;
+  height: 37px;
+  aspect-ratio: 169/37;
+  object-fit: contain;
+  display: block;
 }
 
 .nav-menu {
@@ -97,12 +111,14 @@
 }
 
 .dropdown-toggle {
-  color: white;
+  color: #FFF;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 18px;
+  font-style: normal;
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.5em;
+  font-family: Poppins, sans-serif;
+  line-height: normal;
+  letter-spacing: -0.15px;
   white-space: nowrap;
   cursor: pointer;
   display: inline-flex;
@@ -255,12 +271,14 @@
 }
 
 .nav-menu li a {
-  color: white;
+  color: #FFF;
   text-decoration: none;
-  font-size: 16px;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-style: normal;
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.5em;
+  line-height: normal;
+  letter-spacing: -0.15px;
   transition: color 0.3s ease;
   white-space: nowrap;
 }
@@ -270,14 +288,17 @@
 }
 
 .cta-button {
-  background-color: #00352B;  /* Primary Color from Figma */
-  color: white;
+  display: inline-flex;
+  padding: 10px var(--sds-size-space-400, 16px);
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--Corner-Small, 8px);
+  background: var(--Primary-Color, #00352B);
+  color: #FFF;
   border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
@@ -353,7 +374,9 @@
   }
 
   .logo img {
-    height: 32px;
+    width: 140px;
+    height: auto;
+    aspect-ratio: 169/37;
   }
 
   .nav-menu {
@@ -362,8 +385,9 @@
     gap: 10px 16px;
   }
 
-  .nav-menu li a {
-    font-size: 13px;
+  .nav-menu li a,
+  .dropdown-toggle {
+    font-size: 16px;
   }
 
   .cta-button {
@@ -389,15 +413,18 @@
   }
 
   .logo img {
-    height: 28px;
+    width: 120px;
+    height: auto;
+    aspect-ratio: 169/37;
   }
 
   .nav-menu {
     gap: 8px 12px;
   }
 
-  .nav-menu li a {
-    font-size: 12px;
+  .nav-menu li a,
+  .dropdown-toggle {
+    font-size: 14px;
   }
 
   .cta-button {

@@ -20,9 +20,10 @@
 }
 
 .newsletter-container {
-  max-width: 1440px;
+  max-width: 1442px;
   margin: 0 auto;
   padding: 0 100px;
+  padding-right: 115px;
   position: relative;
   z-index: 1;
 }

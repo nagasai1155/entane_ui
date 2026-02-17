@@ -3,21 +3,6 @@ import "./WhyAustralia.css";
 
 // ========== Config / Data ==========
 
-const HERO_CONFIG = {
-  titleLines: ["Turn Your Ideas into", "Stunning Visuals", "with AI"],
-  description:
-    "Describe anything you imagine, and let our AI bring it to life in breathtaking, high-quality images.",
-  primaryCta: "Start Creating",
-  primaryCtaLink: "/#services",
-  secondaryCta: "Explore Gallery",
-  secondaryCtaLink: "/#services",
-  avatarImages: [
-    "/images/about-us/soni-image.png",
-    "/images/about-us/joush-image.png",
-    "/images/about-us/founder-image.png",
-  ],
-};
-
 // const HERO_GRID_IMAGES = [
 //   "/images/about-us/hero-bg.png",
 //   "/images/about-us/team-image.png",
@@ -244,95 +229,42 @@ export default function WhyAustralia() {
   return (
     <div className="flex flex-col bg-white">
       <div className="flex flex-col self-stretch bg-white">
-        {/* Hero – updated to AI landing layout */}
-        <section className="self-stretch bg-white">
-          <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left Content */}
-              <div className="space-y-8">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
-                  Turn Your Ideas into Stunning Visuals with AI
-                </h1>
-
-                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-                  Describe anything you imagine, and let our AI bring it to life in breathtaking,
-                  high-quality images.
-                </p>
-
-                <div className="flex flex-wrap gap-4">
-                  <a
-                    href={HERO_CONFIG.primaryCtaLink}
-                    className="bg-black text-white px-8 py-3.5 rounded-full font-medium hover:bg-gray-800 transition-colors"
-                  >
-                    Start Creating
-                  </a>
-                  <a
-                    href={HERO_CONFIG.secondaryCtaLink}
-                    className="bg-white text-gray-900 px-8 py-3.5 rounded-full font-medium border border-gray-300 hover:border-gray-400 transition-colors"
-                  >
-                    Explore Gallery
-                  </a>
+        {/* Why Australia Section - Full Screen */}
+        <section className="why-australia-hero-section">
+          <div className="why-australia-wrapper">
+            {/* Left: cream background - text + stats */}
+            <div className="why-australia-left">
+              <h1 className="why-australia-title">
+                Why <span className="why-australia-title-accent">Australia</span> is the Global Destination of Choice
+              </h1>
+              <p className="why-australia-description">
+                With 42 top universities, studying in Australia offers high-quality
+                education, career opportunities, and cultural experience. It is known
+                for its globally recognized degrees, research facilities, and strong
+                industry connections, making it one of the top destinations for
+                international students.
+              </p>
+              <div className="why-australia-stats">
+                <div className="why-stat-item">
+                  <h3 className="why-stat-number">140,000 +</h3>
+                  <p className="why-stat-label">skilled and family visas granted</p>
                 </div>
-
-                <div className="flex items-center gap-3 pt-4">
-                  <div className="flex -space-x-2">
-                    <div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white" />
-                    <div className="w-10 h-10 rounded-full bg-gray-400 border-2 border-white" />
-                    <div className="w-10 h-10 rounded-full bg-gray-500 border-2 border-white" />
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Join with <span className="font-semibold">2100+ Users</span> and start
-                    generating image now
-                  </p>
+                <div className="why-stat-item">
+                  <h3 className="why-stat-number">1.9m +</h3>
+                  <p className="why-stat-label">temporary visas granted</p>
+                </div>
+                <div className="why-stat-item why-stat-item-full">
+                  <h3 className="why-stat-number">13,000 +</h3>
+                  <p className="why-stat-label">humanitarian visas granted</p>
                 </div>
               </div>
+            </div>
 
-              {/* Right Image Grid */}
-              <div className="grid grid-cols-2 gap-4 md:ml-4 lg:ml-10 xl:ml-20">
-                {/* Top Left */}
-                <div className="rounded-2xl overflow-hidden">
-                  <img
-                    src="/images/about-us/team-image.png"
-                    alt="Students"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Top Right */}
-                <div className="rounded-2xl overflow-hidden">
-                  <img
-                    src="/images/about-us/soni-image.png"
-                    alt="Portrait"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Middle Left – tall */}
-                <div className="rounded-2xl overflow-hidden row-span-2">
-                  <img
-                    src="/images/about-us/philosophy-image.png"
-                    alt="Blue chair style visual"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Middle Right */}
-                <div className="rounded-2xl overflow-hidden">
-                  <img
-                    src="/images/about-us/employers.png"
-                    alt="Work setup"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Bottom Right */}
-                <div className="rounded-2xl overflow-hidden">
-                  <img
-                    src="/images/about-us/dream-action-bg.png"
-                    alt="Minimalist aesthetic"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+            {/* Right: australia.png as background + overlay-image.png on top */}
+            <div className="why-australia-right">
+              <div className="why-australia-bg" style={{ backgroundImage: 'url(/images/home-page/australia.png)' }} />
+              <div className="why-australia-overlay">
+                <img src="/images/home-page/overlay-image.png" alt="" className="why-australia-overlay-img" />
               </div>
             </div>
           </div>
