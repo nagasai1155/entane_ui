@@ -1,18 +1,79 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './SkillsShortage.css';
 
 const SKILL_IMAGES = ['/images/home-page/skill-1.png', '/images/home-page/skill-2.png', '/images/home-page/skill-3.png'];
 
 const SkillsShortage = () => {
   const scrollRef = useRef(null);
+  const [selectedJob, setSelectedJob] = useState(null);
 
   const jobs = [
-    { title: 'Nurses', description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...' },
-    { title: 'Chefs', description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...' },
-    { title: 'Information Technology', description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...' },
-    { title: 'Childcare', description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...' },
-    { title: 'Construction Workers', description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...' }
+    { 
+      title: 'Nurses', 
+      description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...',
+      fullDescription: 'Nursing is one of the most in-demand professions in Australia. With an aging population and growing healthcare needs, qualified nurses are highly sought after. Opportunities exist in hospitals, aged care facilities, community health, and specialized medical units.',
+      demand: 'Very High',
+      visaPathways: 'Skilled Migration, Employer Sponsored',
+      salaryRange: 'A$65,000 - A$95,000',
+      requirements: 'Bachelor of Nursing, Registration with AHPRA'
+    },
+    { 
+      title: 'Chefs', 
+      description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...',
+      fullDescription: 'Australia\'s vibrant culinary scene creates constant demand for skilled chefs. From fine dining restaurants to cafes and hotels, qualified chefs with international experience are highly valued. The industry offers diverse career paths and opportunities for growth.',
+      demand: 'High',
+      visaPathways: 'Skilled Migration, Employer Sponsored',
+      salaryRange: 'A$55,000 - A$85,000',
+      requirements: 'Certificate III/IV in Commercial Cookery, Relevant Experience'
+    },
+    { 
+      title: 'Information Technology', 
+      description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...',
+      fullDescription: 'The IT sector in Australia is rapidly expanding with opportunities in software development, cybersecurity, data analytics, and cloud computing. Tech professionals are in high demand across all industries, from startups to major corporations.',
+      demand: 'Very High',
+      visaPathways: 'Skilled Migration, Employer Sponsored, Global Talent',
+      salaryRange: 'A$80,000 - A$150,000+',
+      requirements: 'Bachelor\'s in IT/Computer Science, Relevant Certifications'
+    },
+    { 
+      title: 'Childcare', 
+      description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...',
+      fullDescription: 'Early childhood education and care is a growing sector in Australia. With increasing focus on quality early learning, qualified childcare workers and early childhood educators are essential. This field offers rewarding career opportunities.',
+      demand: 'High',
+      visaPathways: 'Skilled Migration, Employer Sponsored',
+      salaryRange: 'A$50,000 - A$75,000',
+      requirements: 'Certificate III/Diploma in Early Childhood Education'
+    },
+    { 
+      title: 'Construction Workers', 
+      description: 'Lorem ipsum opms herist Lorem ipsuLorem ipsum opms herist Lorem ipsu Lorem ipsum opms herist Lorem ipsuna...',
+      fullDescription: 'Australia\'s construction industry is booming with major infrastructure projects and residential developments. Skilled tradespeople including carpenters, electricians, plumbers, and project managers are in constant demand.',
+      demand: 'Very High',
+      visaPathways: 'Skilled Migration, Employer Sponsored',
+      salaryRange: 'A$60,000 - A$120,000',
+      requirements: 'Trade Qualification, Relevant Licenses, Experience'
+    }
   ];
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedJob(null);
+      }
+    };
+
+    if (selectedJob) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedJob]);
 
   const scroll = (direction) => {
     if (!scrollRef.current) return;
@@ -44,9 +105,12 @@ const SkillsShortage = () => {
                 <div className="job-content">
                   <h3 className="job-title">{job.title}</h3>
                   <p className="job-description">{job.description}</p>
-                  <button type="button" className="explore-btn">
+                  <button 
+                    type="button" 
+                    className="explore-btn"
+                    onClick={() => setSelectedJob({ ...job, imageIndex: index })}
+                  >
                     Explore More
-                    <span className="underline"></span>
                   </button>
                 </div>
               </div>
@@ -63,6 +127,74 @@ const SkillsShortage = () => {
           </div>
         </div>
       </div>
+
+      {/* Job Modal */}
+      {selectedJob && (
+        <div 
+          className="job-modal-overlay"
+          onClick={() => setSelectedJob(null)}
+        >
+          <div 
+            className="job-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="job-modal-close"
+              onClick={() => setSelectedJob(null)}
+              aria-label="Close modal"
+            >
+              ×
+            </button>
+            <div className="job-modal-content">
+              <div className="job-modal-image">
+                <img
+                  src={SKILL_IMAGES[selectedJob.imageIndex % 3]}
+                  alt={selectedJob.title}
+                />
+              </div>
+              <div className="job-modal-details">
+                <h2 className="job-modal-title">{selectedJob.title}</h2>
+                <p className="job-modal-description">{selectedJob.fullDescription || selectedJob.description}</p>
+                <div className="job-modal-info">
+                  <div className="job-info-item">
+                    <span className="job-info-label">Demand:</span>
+                    <span className="job-info-value">{selectedJob.demand || 'High'}</span>
+                  </div>
+                  <div className="job-info-item">
+                    <span className="job-info-label">Visa Pathways:</span>
+                    <span className="job-info-value">{selectedJob.visaPathways || 'Skilled Migration'}</span>
+                  </div>
+                  <div className="job-info-item">
+                    <span className="job-info-label">Salary Range:</span>
+                    <span className="job-info-value">{selectedJob.salaryRange || 'Competitive'}</span>
+                  </div>
+                  <div className="job-info-item">
+                    <span className="job-info-label">Requirements:</span>
+                    <span className="job-info-value">{selectedJob.requirements || 'Relevant Qualifications'}</span>
+                  </div>
+                </div>
+                <div className="job-modal-actions">
+                  <button 
+                    className="job-modal-btn-primary"
+                    onClick={() => {
+                      window.location.href = '/#book-free-call';
+                      setSelectedJob(null);
+                    }}
+                  >
+                    Book Free Consultation
+                  </button>
+                  <button 
+                    className="job-modal-btn-secondary"
+                    onClick={() => setSelectedJob(null)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

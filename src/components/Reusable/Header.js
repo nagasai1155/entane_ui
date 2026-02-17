@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ hideNavbar = false }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   const isNewsBlogs = location.pathname === '/news-blogs';
@@ -13,7 +13,7 @@ const Header = () => {
     <header
       className={`header ${isHome ? 'header--transparent' : 'header--solid'} ${
         isNewsBlogs || isCaseStudies || isEligibility ? 'header--compact' : ''
-      }`}
+      } ${hideNavbar ? 'header--hidden' : ''}`}
     >
       <div className="header-top">
         <div className="header-contact">

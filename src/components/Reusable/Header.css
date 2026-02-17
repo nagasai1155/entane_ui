@@ -5,6 +5,13 @@
   width: 100%;
   color: white;
   z-index: 100;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.header--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* Top-level header: contact strip */
@@ -297,8 +304,11 @@
   color: #FFF;
   border: none;
   font-family: Poppins, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.15px;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;

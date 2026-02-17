@@ -16,7 +16,7 @@ const RealStories = () => {
   const scroll = (direction) => {
     if (!scrollRef.current) return;
     const cardWidth = scrollRef.current.querySelector('.real-story-card')?.offsetWidth ?? 320;
-    const gap = 24;
+    const gap = -50;
     scrollRef.current.scrollBy({
       left: direction === 'left' ? -(cardWidth + gap) : cardWidth + gap,
       behavior: 'smooth'
@@ -36,11 +36,7 @@ const RealStories = () => {
         <div className="real-stories-carousel-wrap">
           <div className="real-stories-scroll" ref={scrollRef}>
             {STORY_IMAGES.map((src, index) => (
-              <div key={index} className="real-story-card">
-                <div className="real-story-card-image">
-                  <img src={src} alt="" />
-                </div>
-              </div>
+              <div key={index} className="real-story-card"><div className="real-story-card-image"><img src={src} alt="" /></div></div>
             ))}
           </div>
 

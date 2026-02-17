@@ -14,6 +14,7 @@ import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 import Footer from '../components/Reusable/Footer';
 import '../App.css';
 
+const NAVBAR_HIDE_THRESHOLD = 10; // Navbar disappears immediately on scroll
 const HIDE_THRESHOLD = 100;
 const SHOW_THRESHOLD = 160;
 const MORPH_START = 0;
@@ -24,12 +25,20 @@ const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
 const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
 function HomePage() {
+  const [hideNavbar, setHideNavbar] = useState(false);
   const [hideAboveFold, setHideAboveFold] = useState(false);
   const [morphProgress, setMorphProgress] = useState(0);
   const morphTargetRef = useRef(null);
   const rafId = useRef(null);
   const targetRectRef = useRef(null);
   const morphVideoRef = useRef(null);
+
+  // Scroll to top on page load/refresh - always start at hero section
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
 
   useEffect(() => {
     let lastY = window.scrollY || 0;
@@ -45,6 +54,14 @@ function HomePage() {
       const raw = Math.max(0, Math.min(1, (y - MORPH_START) / (MORPH_END - MORPH_START)));
       setMorphProgress(raw);
 
+      // Navbar disappears immediately on scroll down
+      if (y <= NAVBAR_HIDE_THRESHOLD) {
+        setHideNavbar(false);
+      } else if (scrollingDown && y > NAVBAR_HIDE_THRESHOLD) {
+        setHideNavbar(true);
+      }
+
+      // Above-fold (hero content) fades out later
       if (y <= SHOW_THRESHOLD) setHideAboveFold(false);
       else if (scrollingDown && y > HIDE_THRESHOLD) setHideAboveFold(true);
 
@@ -181,11 +198,11 @@ function HomePage() {
       </div>
 
       <div className={`above-fold ${hideAboveFold ? 'above-fold--hidden' : ''}`}>
-        <Header />
+        <Header hideNavbar={hideNavbar} />
         <Hero morphProgress={morphProgress} heroVideoUrl={HERO_VIDEO_URL} />
       </div>
       <main className="main-content">
-        <DreamSection morphProgress={morphProgress} morphTargetRef={morphTargetRef} heroVideoUrl={HERO_VIDEO_URL} />
+        <DreamSection morphProgress={morphProgress} morphTargetRef={morphTargetRef} heroVideoUrl={HERO_VIDEO_URL} hideNavbar={hideNavbar} />
         <AustraliaSection />
         <ServiceCards />
         <WhatEsanteDoes />

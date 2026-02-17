@@ -22,8 +22,9 @@ const GALLERY_IMAGES = [
   '/images/home-page/placeholder-5.png',
 ];
 
-const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null }) => {
+const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null, hideNavbar = false }) => {
   const sectionRef = useRef(null);
+  const dreamCardVideoRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
@@ -45,7 +46,19 @@ const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null }
     return () => observer.disconnect();
   }, []);
 
-  const showContent = isInView || morphProgress > 0.01;
+  // Ensure dream card video plays when it appears
+  useEffect(() => {
+    const video = dreamCardVideoRef.current;
+    if (!video || !heroVideoUrl) return;
+    const cardOpacity = morphProgress >= 0.99 ? 1 : Math.max(0, (morphProgress - 0.82) / 0.18);
+    if (cardOpacity > 0.1) {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+  }, [morphProgress, heroVideoUrl]);
+
+  // Show cards immediately when scrolling starts (navbar hidden) or morph has started
+  const showContent = isInView || morphProgress > 0.01 || hideNavbar;
   return (
     <section
       ref={sectionRef}
@@ -93,6 +106,7 @@ const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null }
               >
                 {isMorphTarget && heroVideoUrl ? (
                   <video
+                    ref={dreamCardVideoRef}
                     src={heroVideoUrl}
                     className="dream-image dream-card-video"
                     autoPlay

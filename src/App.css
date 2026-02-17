@@ -84,6 +84,11 @@ body {
   pointer-events: none;
 }
 
+/* Ensure morph video continues playing smoothly */
+.hero-morph-video {
+  will-change: transform;
+}
+
 /* Mobile: allow scroll inside above-fold if content is tall, keep layout intact */
 @media (max-width: 768px) {
   .above-fold {
