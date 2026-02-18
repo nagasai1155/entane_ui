@@ -4,7 +4,9 @@ import './Hero.css';
 const Hero = ({ morphProgress = 0, heroVideoUrl = null }) => {
   const videoRef = useRef(null);
   const bgOpacity = Math.max(0, 1 - morphProgress * 2.2);
-  const contentOpacity = Math.max(0, 1 - morphProgress * 2);
+  const contentOpacity = Math.max(0, 1 - morphProgress * 2.2);
+  const contentY = -morphProgress * 60;
+  const contentScale = Math.max(0.92, 1 - morphProgress * 0.12);
 
   const showHeroMedia = morphProgress <= 0.01;
   const showHeroVideo = heroVideoUrl && showHeroMedia;
@@ -48,7 +50,10 @@ const Hero = ({ morphProgress = 0, heroVideoUrl = null }) => {
         )}
         <div className="hero-overlay"></div>
       </div>
-      <div className="hero-content" style={{ opacity: contentOpacity }}>
+      <div className="hero-content" style={{
+        opacity: contentOpacity,
+        transform: `translate3d(0, ${contentY}px, 0) scale(${contentScale})`,
+      }}>
         <h1 className="hero-title">
           Migration simplified;
           <br />

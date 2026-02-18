@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './DreamSection.css';
 
 const GALLERY_IMAGES = [
@@ -22,48 +22,11 @@ const GALLERY_IMAGES = [
   '/images/home-page/placeholder-5.png',
 ];
 
-const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null, hideNavbar = false }) => {
-  const sectionRef = useRef(null);
+const DreamSection = ({ morphTargetRef, heroVideoUrl = null }) => {
   const dreamCardVideoRef = useRef(null);
-  const [isInView, setIsInView] = useState(false);
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const getRootMargin = () => {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (isMobile) return '-200px 0px -40px 0px';
-      // Desktop: trigger earlier (200px below viewport) so top 2 rows animate in as morph reveals them
-      return '200px 0px -40px 0px';
-    };
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsInView(true);
-      },
-      { threshold: 0.12, rootMargin: getRootMargin() }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // Ensure dream card video plays when it appears
-  useEffect(() => {
-    const video = dreamCardVideoRef.current;
-    if (!video || !heroVideoUrl) return;
-    const cardOpacity = morphProgress >= 0.99 ? 1 : Math.max(0, (morphProgress - 0.82) / 0.18);
-    if (cardOpacity > 0.1) {
-      video.muted = true;
-      video.play().catch(() => {});
-    }
-  }, [morphProgress, heroVideoUrl]);
-
-  // Show cards immediately when scrolling starts (navbar hidden) or morph has started
-  const showContent = isInView || morphProgress > 0.01 || hideNavbar;
   return (
-    <section
-      ref={sectionRef}
-      className={`dream-section ${showContent ? 'dream-section--in-view' : ''}`}
-    >
+    <section className="dream-section dream-section--in-view dream-section--morph-active">
       <div className="dream-container">
         <div className="dream-row">
           {GALLERY_IMAGES.slice(0, 4).map((src, i) => (
@@ -90,30 +53,21 @@ const DreamSection = ({ morphProgress = 0, morphTargetRef, heroVideoUrl = null, 
         <div className="dream-row">
           {GALLERY_IMAGES.slice(9, 14).map((src, i) => {
             const isMorphTarget = i === 2;
-            const cardOpacity = isMorphTarget
-              ? (morphProgress >= 0.99 ? 1 : Math.max(0, (morphProgress - 0.82) / 0.18))
-              : 1;
-
             return (
               <div
                 key={`r4-${i}`}
-                ref={isMorphTarget ? morphTargetRef : undefined}
-                className="dream-image-wrap"
-                style={isMorphTarget ? {
-                  opacity: cardOpacity,
-                  transition: 'opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                ref={isMorphTarget ? (el) => {
+                  if (morphTargetRef) morphTargetRef.current = el;
                 } : undefined}
+                className="dream-image-wrap"
+                style={isMorphTarget ? { opacity: 0 } : undefined}
               >
                 {isMorphTarget && heroVideoUrl ? (
                   <video
                     ref={dreamCardVideoRef}
                     src={heroVideoUrl}
                     className="dream-image dream-card-video"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    aria-hidden="true"
+                    autoPlay muted loop playsInline aria-hidden="true"
                   />
                 ) : (
                   <img src={src} alt="" className="dream-image" />

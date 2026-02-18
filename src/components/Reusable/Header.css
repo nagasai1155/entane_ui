@@ -5,7 +5,6 @@
   width: 100%;
   color: white;
   z-index: 100;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .header--hidden {

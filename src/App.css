@@ -15,10 +15,10 @@ body {
 
 .App {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
-/* Hero morph: scroll-driven, no CSS transition = real-time 1:1 with scroll (Square-style) */
+/* Hero morph: scroll-driven, no CSS transition = real-time 1:1 with scroll */
 .hero-morph-image {
   position: fixed;
   top: 0;
@@ -33,7 +33,9 @@ body {
   overflow: hidden;
   pointer-events: none;
   contain: layout style paint;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  will-change: opacity;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -53,55 +55,96 @@ body {
   display: block;
 }
 
-.hero-morph-image::after {
-  content: '';
+.hero-morph-dark-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.45) 100%);
-  opacity: var(--overlay-opacity, 1);
+  z-index: 1;
   pointer-events: none;
-  transition: opacity 0.12s ease-out;
+  will-change: opacity;
 }
 
-/* Above-the-fold: navbar + hero; fade out on scroll down so morph image is the only motion */
-.above-fold {
+.hero-morph-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 100px;
+  gap: 40px;
+  pointer-events: none;
+}
+
+.hero-morph-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 76px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 98%;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-morph-content .hero-cta {
+  pointer-events: auto;
+  background: transparent;
+  color: white;
+  border: 1px solid #FF3300;
+  padding: 14px 40px;
+  border-radius: 42px;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.hero-morph-content .hero-cta:hover {
+  background: #FF3300;
+  color: white;
+  border-color: #FF3300;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(255, 51, 0, 0.45);
+}
+
+.homepage-header-wrap {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
-  max-height: 100dvh;
-  z-index: 100;
-  transition: opacity 0.35s ease;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  pointer-events: auto;
+  z-index: 200;
+  will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-.above-fold--hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Ensure morph video continues playing smoothly */
+/* Ensure morph video is GPU-composited for smooth playback during morph */
 .hero-morph-video {
   will-change: transform;
-}
-
-/* Mobile: allow scroll inside above-fold if content is tall, keep layout intact */
-@media (max-width: 768px) {
-  .above-fold {
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .main-content {
   position: relative;
   z-index: 1;
   padding-top: 96px;
+}
+
+.dream-scroll-container {
+  position: relative;
+}
+
+.dream-sticky-wrap {
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* Adjust spacing for Book Free Call on blogs page */
@@ -160,6 +203,45 @@ html {
 }
 
 /* Custom Scrollbar - Removed (using default browser scrollbar) */
+
+/* Hero morph content responsive */
+@media (max-width: 1024px) {
+  .hero-morph-title {
+    font-size: 56px;
+  }
+  .hero-morph-content {
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-morph-title {
+    font-size: 38px;
+  }
+  .hero-morph-content {
+    padding: 0 24px;
+    gap: 20px;
+  }
+  .hero-morph-content .hero-cta {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-morph-title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+  .hero-morph-content {
+    padding: 0 16px;
+    gap: 16px;
+  }
+  .hero-morph-content .hero-cta {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}
 
 /* Responsive Container */
 @media (max-width: 1024px) {
