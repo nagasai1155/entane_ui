@@ -3,12 +3,18 @@ import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
 import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 
-const IMG_CAFE =
-  'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/l2ar2hox_expires_30_days.png';
-const IMG_STORY_1 =
-  'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/y4tbetfz_expires_30_days.png';
-const IMG_STORY_2 =
-  'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/85xfs4v3_expires_30_days.png';
+const HERO_BG = '/images/ptj-hero-bg.png';
+const IMG_JOB   = '/images/ptj-job.png';
+const IMG_STORY_1 = '/images/ptj-story1.png';
+const IMG_STORY_2 = '/images/ptj-story2.png';
+
+// Figma layout_3KT75M: 467×484 — job photo dimensions
+const PHOTO_W = 370;
+const PHOTO_H = 440;
+
+// Figma layout_V77CVS: 812×557 — dark-green carousel card
+const CARD_W = 812;
+const CARD_H = 557;
 
 const JOB_SLIDES = [
   {
@@ -16,92 +22,88 @@ const JOB_SLIDES = [
     titleLine1: 'Working in',
     titleLine2: 'Cafés',
     rate: 'AU$28–40/hour',
-    details: 'Barista, cashier & service roles\nFlexible shifts around classes\nTips + weekend penalty rates',
-    img: IMG_CAFE,
+    details: ['Barista, cashier & service roles', 'Flexible shifts around classes', 'Tips + weekend penalty rates'],
+    img: IMG_JOB,
   },
   {
     category: 'Retail & Supermarkets',
     titleLine1: 'Retail &',
     titleLine2: 'Grocery',
     rate: 'AU$25–38/hour',
-    details: 'Checkout, stocking & customer service\nStable hours & employee discounts\nWeekend penalty rates',
-    img: IMG_CAFE,
+    details: ['Checkout, stocking & customer service', 'Stable hours & employee discounts', 'Weekend penalty rates'],
+    img: IMG_JOB,
   },
   {
     category: 'Hospitality & Restaurants',
     titleLine1: 'Hospitality',
     titleLine2: 'Roles',
     rate: 'AU$28–42/hour',
-    details: 'Waiter, kitchen hand & front-of-house\nEvening & weekend shifts\nTips + award wages',
-    img: IMG_CAFE,
+    details: ['Waiter, kitchen hand & front-of-house', 'Evening & weekend shifts', 'Tips + award wages'],
+    img: IMG_JOB,
   },
   {
     category: 'Petrol & Service Stations',
     titleLine1: 'Service Station',
     titleLine2: 'Work',
     rate: 'AU$26–36/hour',
-    details: 'Attendant, console & retail\n24/7 shift flexibility\nOften close to campus',
-    img: IMG_CAFE,
+    details: ['Attendant, console & retail', '24/7 shift flexibility', 'Often close to campus'],
+    img: IMG_JOB,
   },
 ];
-
-const SLIDE_WIDTH = 640;
 
 function PartTimeJobSupportPage() {
   const openConsultation = () => window.dispatchEvent(new CustomEvent('openConsultationPopup'));
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const goToPrevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? JOB_SLIDES.length - 1 : prev - 1));
-  };
-
-  const goToNextSlide = () => {
-    setCurrentSlide((prev) => (prev === JOB_SLIDES.length - 1 ? 0 : prev + 1));
-  };
+  const goToPrevSlide = () => setCurrentSlide((p) => (p === 0 ? JOB_SLIDES.length - 1 : p - 1));
+  const goToNextSlide = () => setCurrentSlide((p) => (p === JOB_SLIDES.length - 1 ? 0 : p + 1));
 
   return (
     <div className="flex flex-col w-full bg-white items-start">
       <Header />
 
       <div className="flex flex-col w-full max-w-[1440px] mx-auto">
+
+        {/* ── Hero text block ── */}
         <div className="flex flex-col items-center self-stretch bg-white pt-[186px] pb-[67px]">
-          <span className="font-poppins font-medium text-[22px] leading-[1.4] tracking-[-0.02em] text-[#00352B] mb-4 text-center underline decoration-[#00352B] underline-offset-2">
+          {/* Page label — style_NQYYRJ: Poppins 500/28px underlined #00352B */}
+          <span className="font-poppins font-medium text-[28px] leading-[1.4] tracking-[-0.02em] text-[#00352B] mb-4 text-center underline decoration-[#00352B] underline-offset-2">
             Part-Time Job Support in Australia
           </span>
-          <h1 className="font-poppins font-bold italic text-[48px] leading-[1.25] tracking-[-0.02em] text-center text-[#FF3300] mb-2">
+          {/* style_XD2OHI: Poppins 600/48px CENTER — tight multi-line heading */}
+          <h1 className="font-poppins font-semibold italic text-[48px] leading-[1.25] tracking-[-0.02em] text-center text-[#FF3300] mb-2">
             Earn While You Study
           </h1>
-          <p className="font-poppins font-normal text-[28px] leading-[1.25] tracking-[-0.02em] text-center text-[#00352B] mb-8">
+          <p className="font-poppins font-semibold text-[48px] leading-[1.25] tracking-[-0.02em] text-center text-[#00352B] mb-8">
             Live Stress-Free.
           </p>
+          {/* style_CK69WR: Poppins 500/14px — fill_P7T27W bg, Light Background text */}
           <button
             type="button"
             onClick={openConsultation}
-            className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
-            style={{ background: '#F30' }}
+            className="inline-flex py-[4px] px-[12px] justify-center items-center rounded-[16px] border-0 cursor-pointer"
+            style={{ background: '#FF3300' }}
           >
-            <span
-              className="font-poppins text-center font-medium"
-              style={{
-                color: 'var(--Light-Background, #FFFBE9)',
-                fontSize: 22,
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: '20px',
-              }}
-            >
+            <span className="font-poppins text-center font-medium" style={{ color: '#FFFBE9', fontSize: 14, fontWeight: 500, lineHeight: '20px' }}>
               Get Free Guidance from Esante
             </span>
           </button>
         </div>
 
-        <div
-          className="flex justify-center items-center self-stretch bg-cover bg-center bg-no-repeat mx-6 mb-[102px] min-h-[600px] rounded-[20px] relative"
-          style={{ backgroundImage: 'url("https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/v7izjyga_expires_30_days.png")' }}
-        >
-            {/* Orange layer on top of background image */}
-            <div className="absolute inset-0 rounded-[20px] bg-[#FF3300]/40 pointer-events-none" aria-hidden />
-            {/* Left arrow - on background image */}
+        {/* ── Hero carousel ── */}
+        {/* Figma: 1383×672 section, fill_P7T27W red bg + image 69 overlay, borderRadius 49px */}
+        <div className="w-full -mx-[0px] flex justify-center mb-[102px] px-[28px]">
+          <section className="relative w-[1383px] max-w-[100%] h-[672px] rounded-[49px] overflow-hidden">
+            {/* Red background */}
+            <div className="absolute inset-0 bg-[#FF3300]" aria-hidden />
+            {/* Background image overlay */}
+            <div
+              className="absolute inset-0"
+              style={{ backgroundImage: `url(${HERO_BG})`, backgroundSize: '100% 100%', backgroundPosition: 'center', opacity: 0.55 }}
+              aria-hidden
+            />
+
+            {/* Left arrow */}
             <button
               type="button"
               onClick={goToPrevSlide}
@@ -112,7 +114,7 @@ function PartTimeJobSupportPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            {/* Right arrow - on background image */}
+            {/* Right arrow */}
             <button
               type="button"
               onClick={goToNextSlide}
@@ -124,147 +126,183 @@ function PartTimeJobSupportPage() {
               </svg>
             </button>
 
-            {/* Sliding carousel - green container centered on bg image */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] min-h-[400px] overflow-hidden">
+            {/* Sliding carousel — Figma card: 812×557, dark green */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden" style={{ width: CARD_W, height: CARD_H }}>
               <div
-                className="flex min-h-[400px] transition-transform duration-400 ease-out"
-                style={{ transform: `translateX(-${currentSlide * SLIDE_WIDTH}px)` }}
+                className="flex h-full transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentSlide * CARD_W}px)` }}
               >
                 {JOB_SLIDES.map((slide, index) => (
-                  <div
-                    key={index}
-                    className="flex shrink-0 items-center justify-center relative w-[640px]"
-                    style={{ width: SLIDE_WIDTH }}
-                  >
-                    <div className="flex flex-col items-start bg-[#00352B] py-[56px] pl-[28px] pr-[320px] rounded-[32px] min-w-[400px] shadow-lg">
+                  <div key={index} className="relative flex-shrink-0" style={{ width: CARD_W, height: CARD_H }}>
+                    {/* Dark green card — Figma: fill_WX4E6V #00352B, borderRadius 41px */}
+                    <div
+                      className="absolute inset-0 rounded-[41px] pt-[28px] pl-[28px] pb-[28px] box-border"
+                      style={{ background: '#00352B' }}
+                    >
+                      {/* Text content — maxWidth keeps text clear of the job photo */}
                       <div
-                        className={`transition-opacity duration-300 ease-out ${
-                          index === currentSlide ? 'opacity-100' : 'opacity-0'
-                        }`}
+                        className={`transition-opacity duration-300 ease-out`}
+                        style={{ maxWidth: CARD_W - PHOTO_W + 58, position: 'relative', zIndex: 2, opacity: index === currentSlide ? 1 : 0 }}
                       >
-                        <span className="font-poppins font-normal text-[18px] leading-[1.2] text-[#FF3300] mb-2 block text-left">
+                        {/* Category — style_ZE1TO4: Poppins 400/22px/1.5em fill_P7T27W #FF3300 */}
+                        <span className="font-poppins font-normal text-[22px] leading-[1.5] tracking-[-0.00682em] text-[#FF3300] mb-0 block">
                           {slide.category}
                         </span>
-                        <h2 className="font-poppins font-bold text-[42px] leading-[1.1] text-white mb-2 block text-left">
+                        {/* Title — style_PQ1CFX: Poppins 700/54px/1.207em fill_O6FRQN white */}
+                        <h2 className="font-poppins font-bold text-[54px] leading-[1.207] tracking-[-0.00278em] text-white mb-[10px]">
                           <span className="block">{slide.titleLine1}</span>
                           <span className="block">{slide.titleLine2}</span>
                         </h2>
-                        <p className="font-poppins font-normal text-[18px] leading-[1.3] text-white mb-4">
-                          {slide.rate}
-                        </p>
-                        <ul className="list-disc list-inside font-poppins font-normal text-[13px] leading-[1.5] text-white max-w-[260px] mb-6 space-y-1 text-left [&_li]:marker:text-white">
-                          {slide.details.split('\n').map((line, i) => (
-                            <li key={i}>{line}</li>
+                        {/* Rate — style_PIAHLU: Poppins 400/32px/1.5em, white text */}
+                        {/* Figma Rectangle 25: layout_9GUJMG (207×53) fill_WX4E6V — same green as card bg; rendered as badge outline */}
+                        <div className="inline-flex items-center justify-center h-[53px] px-[14px] rounded-[15px] mb-[12px] border border-white/30">
+                          <span className="font-poppins font-normal text-[32px] leading-[1.5] text-white">
+                            {slide.rate}
+                          </span>
+                        </div>
+                        {/* Features — style_5DOK5W: Poppins 400/15px/1.867em/-1% white */}
+                        <ul className="list-disc list-inside font-poppins font-normal text-[15px] leading-[1.867em] tracking-[-0.01em] text-white max-w-[280px] mb-3 [&_li]:marker:text-white">
+                          {slide.details.map((item, i) => (
+                            <li key={i}>{item}</li>
                           ))}
                         </ul>
+                        {/* CTA — style_DCVY8L: Poppins 500/16px/1.25em, fill_P7T27W #FF3300 bg, white text */}
                         <button
                           type="button"
                           onClick={openConsultation}
-                          className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
-                          style={{ background: '#F30' }}
+                          className="inline-flex py-[4px] px-[12px] justify-center items-center rounded-[16px] border-0 cursor-pointer hover:opacity-90 transition-opacity"
+                          style={{ background: '#FF3300' }}
                         >
-                          <span
-                            className="font-poppins text-center font-medium"
-                            style={{
-                              color: 'var(--Light-Background, #FFFBE9)',
-                              fontSize: 22,
-                              fontStyle: 'normal',
-                              fontWeight: 500,
-                              lineHeight: '20px',
-                            }}
-                          >
+                          <span className="font-poppins font-medium text-[16px] leading-[1.25em] text-white">
                             Get Part-Time Job Guidance from Esante
                           </span>
                         </button>
                       </div>
                     </div>
+
+                    {/* Job photo — sibling on top, flush right, no cropping */}
                     <img
                       src={slide.img}
                       alt={`${slide.titleLine1} ${slide.titleLine2}`}
-                      className="w-[280px] h-[290px] absolute top-[48px] right-[-5px] object-cover rounded-[16px] z-10 pointer-events-none"
+                      style={{
+                        position: 'absolute',
+                        right: 0,
+                        top: 58,
+                        width: PHOTO_W,
+                        height: PHOTO_H,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        borderRadius: 38,
+                        boxShadow: '-10px 0 28px rgba(0,0,0,0.32)',
+                        zIndex: 3,
+                      }}
                     />
                   </div>
                 ))}
               </div>
             </div>
 
-            <span className="font-poppins font-normal text-[32px] leading-[1.2] text-white absolute top-8 right-[90px] z-10">
+            {/* Slide counter — style_TR1P1I: Poppins 400/32px white */}
+            <span className="absolute top-6 right-6 z-10 font-poppins font-normal text-[32px] leading-[1.5] tracking-[-0.00469em] text-white">
               {String(currentSlide + 1).padStart(2, '0')}/{String(JOB_SLIDES.length).padStart(2, '0')}
             </span>
+          </section>
         </div>
 
-        {/* Text block: Figma node 259:1600 – style_ALOBV3, fill #000000, layout 1141×312, center-aligned */}
-        <section className="w-full max-w-[1141px] mx-auto px-6 sm:px-8 mb-[76px] text-center">
-          <p className="font-poppins font-normal text-[23px] leading-[1.5] tracking-[-0.00652em] text-[#000000] whitespace-pre-line">
-            <span className="text-[#FF3300] italic">From arrival to your first paycheck—we connect you with trusted employers so you can earn $3,000+ AUD per month.</span>{'\n\n'}
-            For international students, finding a part-time job in Australia is not optional — it's essential. Rent, groceries, transport, and daily expenses depend on it. At Esanté, we understand this reality because we are on the ground in Australia.{'\n\n'}
-            That's why part-time job support is a core part of our end-to-end student services, not an add-on.
+        {/* ── Description — layout_XHENBJ: 1141×312, style_RXZ4HY: Poppins 400/23px/1.5em ── */}
+        <section className="w-full max-w-[1141px] mx-auto px-6 mb-[76px] text-center">
+          <p className="font-poppins font-normal italic text-[23px] leading-[1.5] tracking-[-0.00652em] text-[#FF3300] mb-6">
+            From arrival to your first paycheck—we connect you with trusted employers so you can earn $3,000+ AUD per month.
+          </p>
+          <p className="font-poppins font-normal text-[23px] leading-[1.5] tracking-[-0.00652em] text-[#000000] mb-4">
+            For international students, finding a part-time job in Australia is not optional — it&apos;s essential. Rent, groceries, transport, and daily expenses depend on it. At Esanté, we understand this reality because we are on the ground in Australia.
+          </p>
+          <p className="font-poppins font-normal text-[23px] leading-[1.5] tracking-[-0.00652em] text-[#000000]">
+            That&apos;s why part-time job support is a core part of our end-to-end student services, not an add-on.
           </p>
         </section>
 
-        <div className="flex flex-col sm:flex-row items-start justify-between w-full max-w-[1214px] mx-auto mb-[122px] pl-[80px] pr-10 sm:pl-[88px] sm:pr-12 py-10 rounded-[45px] border border-solid border-[#FF3300] gap-12 bg-white">
-          <div className="flex flex-col items-start flex-1 min-w-0">
-            <p className="font-poppins font-normal text-[26px] leading-[1.3] text-[#00352B] mb-4">
+        {/* ── How Esante Helps — layout_69CSFP: 1213×320, borderRadius 45px, stroke #FF3300 2px ── */}
+        <div className="flex flex-row items-start w-full max-w-[1213px] mx-auto mb-[122px] pl-[80px] pr-[40px] py-[40px] rounded-[45px] border-2 border-[#FF3300] bg-white" style={{ gap: 109 }}>
+          {/* Left column — layout_DWQTMD: 532×277 */}
+          <div className="flex flex-col items-start shrink-0" style={{ width: 532 }}>
+            {/* style_TQYM0C: Poppins 400/45px/1.2em #00352B */}
+            <p className="font-poppins font-normal text-[45px] leading-[1.2] tracking-[-0.00333em] text-[#00352B] mb-0">
               How Esante Helps You
             </p>
-            <p className="font-poppins font-bold text-[34px] leading-[1.2] text-[#FF3300] mb-5 whitespace-pre-line">
-              Get Part-Time Work{'\n'}Faster
+            <p className="font-poppins font-normal text-[45px] leading-[1.2] tracking-[-0.00333em] text-[#FF3300] mb-4">
+              Get Part-Time Work Faster
             </p>
-            <p className="font-poppins font-normal text-[18px] leading-[1.5] text-[#1a1a1a]">
+            <p className="font-poppins font-normal text-[20px] leading-[1.5] text-[#1a1a1a]">
               Esante works closely with multiple verified part-time job partners across Australia, including:
             </p>
           </div>
-          <ul className="flex flex-col items-start gap-3 flex-1 min-w-[260px] list-none pl-0 m-0">
-            <li className="font-poppins font-normal text-[18px] leading-[1.5] text-[#1a1a1a] flex items-center gap-2">
-              <span className="text-[#00352B]">✅</span> Cafés & restaurants
-            </li>
-            <li className="font-poppins font-normal text-[18px] leading-[1.5] text-[#1a1a1a] flex items-center gap-2">
-              <span className="text-[#00352B]">✅</span> Petrol stations
-            </li>
-            <li className="font-poppins font-normal text-[18px] leading-[1.5] text-[#1a1a1a] flex items-center gap-2">
-              <span className="text-[#00352B]">✅</span> Grocery stores & supermarkets
-            </li>
-            <li className="font-poppins font-normal text-[18px] leading-[1.5] text-[#1a1a1a] flex items-center gap-2">
-              <span className="text-[#00352B]">✅</span> Shopping malls & retail outlets
-            </li>
-            <li className="font-poppins font-normal text-[18px] leading-[1.5] text-[#1a1a1a] flex items-center gap-2">
-              <span className="text-[#00352B]">✅</span> Hospitality & customer service roles
-            </li>
+          {/* Bullet list — layout_D05DR9: 452×210, style_A3QO2X: Poppins 400/24px/1.2em/-0.625% */}
+          <ul className="flex flex-col items-start list-none pl-0 m-0 pt-2 shrink-0" style={{ gap: 14, width: 452 }}>
+            {['Cafés & restaurants', 'Petrol stations', 'Grocery stores & supermarkets', 'Shopping malls & retail outlets', 'Hospitality & customer service roles'].map((item) => (
+              <li key={item} className="font-poppins font-normal text-[24px] leading-[1.2] tracking-[-0.00625em] text-[#1a1a1a]">
+                ✅ {item}
+              </li>
+            ))}
           </ul>
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-12 w-full max-w-[1214px] mx-auto px-6 sm:px-8 mb-[136px]">
-          <div className="flex shrink-0 relative w-[365px] h-[446px]">
-              <img
-                src={IMG_STORY_1}
-                alt=""
-                className="w-[365px] h-[446px] object-cover rounded-[20px]"
-              />
-              <img
-                src={IMG_STORY_2}
-                alt=""
-                className="w-[264px] h-[327px] absolute -bottom-2 -right-[78px] object-cover rounded-[20px] z-10"
-              />
+        {/* ── Student story — layout_3TWTUV: 365.8×446 + layout_XXXQH2: 264.55×327, stroke_QDP66V: 11px white ── */}
+        {/* Container: photo composite (444px) + gap + text (749px) = 1214px */}
+        <div className="flex flex-row items-center w-full max-w-[1214px] mx-auto mb-[136px]" style={{ gap: 21 }}>
+          {/* Photo composite — outer wrapper is 444×454 to hold both photos without overflow into text */}
+          {/* Photo 1: 366×446 anchored left; Photo 2: 265×327 anchored bottom-right within 444px */}
+          <div className="relative shrink-0" style={{ width: 444, height: 454 }}>
+            <img
+              src={IMG_STORY_1}
+              alt="Diya and Khushi"
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: 366,
+                height: 446,
+                objectFit: 'cover',
+                borderRadius: 20,
+              }}
+            />
+            <img
+              src={IMG_STORY_2}
+              alt="Student story"
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                right: 0,
+                width: 265,
+                height: 327,
+                objectFit: 'cover',
+                borderRadius: 20,
+                zIndex: 10,
+                border: '11px solid #FFFFFF',
+              }}
+            />
           </div>
-          <div className="flex flex-col gap-6 max-w-[520px] flex-1 text-left">
+
+          {/* Story text — style_H40UTN: Poppins 600/23px/1.652em/-0.652% */}
+          <div className="flex flex-col gap-6 text-left" style={{ maxWidth: 749, flex: 1, minWidth: 0 }}>
             <div>
-              <h3 className="font-poppins font-bold text-[26px] leading-[1.3] text-[#FF3300] mb-3">
-                Meet Diya & Khushi:
+              <h3 className="font-poppins font-semibold text-[23px] leading-[1.652em] tracking-[-0.00652em] text-[#FF3300] mb-1">
+                Meet Diya &amp; Khushi:
               </h3>
-              <p className="font-poppins font-normal text-[20px] leading-[1.5] text-black">
-                When Diya and Khushi landed in Brisbane, they were worried about managing high living costs. Through Esante's local job network, they were interviewed and hired within their first week.{' '}
-                <span className="font-bold text-[#FF3300]">The Result: Both are now earning between $3,000 - $4,000 AUD per month.</span>
+              <p className="font-poppins font-semibold text-[23px] leading-[1.652em] tracking-[-0.00652em] text-black">
+                When Diya and Khushi landed in Brisbane, they were worried about managing high living costs. Through Esante&apos;s local job network, they were interviewed and hired within their first week.{' '}
+                <span className="text-[#FF3300]">The Result: Both are now earning between $3,000 – $4,000 AUD per month.</span>
                 {' '}They pay their own rent, cover all groceries, and still save money—living financially independent from day one.
               </p>
             </div>
             <div>
-              <h3 className="font-poppins font-bold text-[26px] leading-[1.3] text-[#FF3300] mb-3">
-                The "Brisbane HQ" Advantage:
+              <h3 className="font-poppins font-semibold text-[23px] leading-[1.652em] tracking-[-0.00652em] text-[#FF3300] mb-1">
+                The &quot;Brisbane HQ&quot; Advantage:
               </h3>
-              <p className="font-poppins font-normal text-[20px] leading-[1.5] text-black">
+              <p className="font-poppins font-semibold text-[23px] leading-[1.652em] tracking-[-0.00652em] text-black">
                 Because our headquarters are on the ground in Australia, we understand the local labour market better than any offshore agent. We guide you toward roles with the{' '}
-                <span className="font-bold text-[#FF3300]">best hourly rates</span>
-                , ensuring you aren't stuck with minimum wage.
+                <span className="text-[#FF3300]">best hourly rates</span>
+                , ensuring you aren&apos;t stuck with minimum wage.
               </p>
             </div>
           </div>
@@ -272,7 +310,7 @@ function PartTimeJobSupportPage() {
 
       </div>
 
-      <div className="w-full" style={{ paddingLeft: '2%' }}>
+      <div className="w-full">
         <BookFreeCallBanner />
       </div>
       <Footer />

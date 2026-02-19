@@ -179,12 +179,14 @@ export default function AccommodationPage() {
                     className="relative flex-shrink-0 w-[812px] h-[557px]"
                   >
                     {/* Orange card — room image contained inside via overflow-hidden */}
-                    <div className="absolute inset-0 flex flex-col bg-[#FF3300] rounded-[41px] pt-[28px] pl-[28px] pr-[28px] pb-[28px] box-border overflow-hidden">
-                      {/* Text content */}
+                    {/* Orange card — left text panel, no overflow-hidden so image sits cleanly on top */}
+                    <div className="absolute inset-0 bg-[#FF3300] rounded-[41px] pt-[28px] pl-[28px] pb-[28px] box-border">
+                      {/* Text content — left column, safely clear of image (image left edge = 812-370 = 442px) */}
                       <div
-                        className={`relative z-10 transition-opacity duration-300 ease-out max-w-[400px] ${
+                        className={`transition-opacity duration-300 ease-out ${
                           index === currentSlide ? 'opacity-100' : 'opacity-0'
                         }`}
+                        style={{ maxWidth: 400, position: 'relative', zIndex: 2 }}
                       >
                         <p className="font-poppins font-normal text-[40px] leading-[1.35] tracking-[-0.00375em] text-white mb-0">
                           {slide.intro}
@@ -200,7 +202,7 @@ export default function AccommodationPage() {
                             {slide.price}
                           </span>
                         </div>
-                        <ul className="list-disc list-inside font-poppins font-normal text-[15px] leading-[1.8] tracking-[-0.01em] text-white max-w-[340px] mb-3 [&_li]:marker:text-white">
+                        <ul className="list-disc list-inside font-poppins font-normal text-[15px] leading-[1.8] tracking-[-0.01em] text-white max-w-[280px] mb-3 [&_li]:marker:text-white">
                           {slide.features.map((item, i) => (
                             <li key={i}>{item}</li>
                           ))}
@@ -213,25 +215,25 @@ export default function AccommodationPage() {
                           Get Free Guidance from Esante
                         </button>
                       </div>
-
-                      {/* Room image — absolutely placed on right half, clipped by card's overflow-hidden */}
-                      <img
-                        src={MELBOURNE_IMG}
-                        alt={`${slide.city} accommodation`}
-                        style={{
-                          position: 'absolute',
-                          right: -80,
-                          top: 36,
-                          width: 467,
-                          height: 484,
-                          objectFit: 'cover',
-                          objectPosition: 'center',
-                          borderRadius: 41,
-                          boxShadow: '-8px 0 32px rgba(0,0,0,0.35)',
-                          zIndex: 0,
-                        }}
-                      />
                     </div>
+
+                    {/* Room image — reduced width (370px) so left edge (x=442) clears all text incl. city name */}
+                    <img
+                      src={MELBOURNE_IMG}
+                      alt={`${slide.city} accommodation`}
+                      style={{
+                        position: 'absolute',
+                        right: 0,
+                        top: 58,
+                        width: 370,
+                        height: 440,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        borderRadius: 38,
+                        boxShadow: '-10px 0 28px rgba(0,0,0,0.28)',
+                        zIndex: 3,
+                      }}
+                    />
                   </div>
                 ))}
               </div>

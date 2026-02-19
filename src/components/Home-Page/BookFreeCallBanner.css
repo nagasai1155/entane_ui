@@ -1,5 +1,6 @@
 /* Book Free Call banner - Figma Frame 94: layout_FVYK9M, fill_SROK21, 37px radius */
 .book-free-call-banner {
+  width: 100%;
   padding: var(--section-spacing, 100px) 0;
   background-color: #fff;
 }
