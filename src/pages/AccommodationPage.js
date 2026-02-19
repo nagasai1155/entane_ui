@@ -4,12 +4,10 @@ import Footer from '../components/Reusable/Footer';
 import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 import ConsultationPopup from '../components/Reusable/ConsultationPopup';
 
-const MELBOURNE_IMG =
-  'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/4o8acy0c_expires_30_days.png';
-const WHY_IMG =
-  'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/eet9h6uz_expires_30_days.png';
-const STORY_IMG =
-  'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/7m4gxaj3_expires_30_days.png';
+const HERO_BG_IMG = '/images/acc-hero-bg.png';
+const MELBOURNE_IMG = '/images/acc-room.png';
+const WHY_IMG = '/images/acc-why.png';
+const STORY_IMG = '/images/acc-story.png';
 
 const STUDENT_STORIES = [
   {
@@ -101,7 +99,7 @@ export default function AccommodationPage() {
           {/* Hero: text block — matches reference design */}
           <section className="flex flex-col items-center w-full max-w-[1192px] mb-[64px] gap-0">
             {/* Page label — underlined, dark green */}
-            <span className="font-poppins font-medium text-[22px] leading-[1.4] tracking-[-0.02em] text-[#00352B] mb-[16px] underline decoration-[#00352B] underline-offset-2">
+            <span className="font-poppins font-medium text-[28px] leading-[1.4] tracking-[-0.02em] text-[#00352B] mb-[16px] underline decoration-[#00352B] underline-offset-2">
               Accommodation
             </span>
             {/* Main heading line 1 — bold, italic, orange/red */}
@@ -123,7 +121,7 @@ export default function AccommodationPage() {
                 className="font-poppins text-center font-medium"
                 style={{
                   color: 'var(--Light-Background, #FFFBE9)',
-                  fontSize: 22,
+                  fontSize: 14,
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '20px',
@@ -134,16 +132,17 @@ export default function AccommodationPage() {
             </button>
           </section>
 
-          {/* Section: Hero - reference image match: layered absolute, fixed card sizes (width/height like Part-time Job Support page) */}
+          {/* Section: Hero carousel */}
           <div className="w-full -mx-[72px] min-w-0">
-            <section className="relative w-[1383px] max-w-[100%] min-h-[600px] mx-auto mb-[105px] rounded-[40px] overflow-hidden">
-            {/* Background - sharp contrast, no blur */}
+            <section className="relative w-[1383px] max-w-[100%] h-[672px] mx-auto mb-[105px] rounded-[49px] overflow-hidden">
+            {/* Background */}
             <div
-              className="absolute inset-0 rounded-[40px] bg-[#d3d3d3] bg-no-repeat bg-[url('https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/n2i4a7pn_expires_30_days.png')] [background-size:100%_248.977%] [background-position:0_-740.061px] contrast-125"
+              className="absolute inset-0 rounded-[49px] bg-[#00352B]"
+              style={{ backgroundImage: `url(${HERO_BG_IMG})`, backgroundSize: '100% 100%', backgroundPosition: 'center' }}
               aria-hidden
             />
-            {/* Dark green overlay above bg image */}
-            <div className="absolute inset-0 rounded-[40px] bg-[#00352B]/55 pointer-events-none" aria-hidden />
+            {/* Dark overlay */}
+            <div className="absolute inset-0 rounded-[49px] bg-[#00352B]/55 pointer-events-none" aria-hidden />
 
             {/* Left arrow - on background */}
             <button
@@ -168,60 +167,71 @@ export default function AccommodationPage() {
               </svg>
             </button>
 
-            {/* Centered group: orange box + room image - sliding carousel */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[400px] overflow-hidden">
+            {/* Centered group: orange card + room image - sliding carousel */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[812px] h-[557px] overflow-hidden">
               <div
-                className="flex h-full transition-transform duration-400 ease-out"
-                style={{ transform: `translateX(-${currentSlide * 640}px)` }}
+                className="flex h-full transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentSlide * 812}px)` }}
               >
                 {ACCOMMODATION_SLIDES.map((slide, index) => (
                   <div
                     key={index}
-                    className="relative flex-shrink-0 w-[640px] h-[400px]"
+                    className="relative flex-shrink-0 w-[812px] h-[557px]"
                   >
-                    {/* Orange card */}
-                    <div className="absolute left-0 top-0 w-[640px] h-[400px] flex flex-col bg-[#FF3300] rounded-[32px] pt-[28px] pl-[28px] pr-[220px] pb-[28px] box-border overflow-hidden">
-                      {/* Text content with clear fade-in when slide is active */}
+                    {/* Orange card — room image contained inside via overflow-hidden */}
+                    <div className="absolute inset-0 flex flex-col bg-[#FF3300] rounded-[41px] pt-[28px] pl-[28px] pr-[28px] pb-[28px] box-border overflow-hidden">
+                      {/* Text content */}
                       <div
-                        className={`transition-opacity duration-300 ease-out ${
+                        className={`relative z-10 transition-opacity duration-300 ease-out max-w-[400px] ${
                           index === currentSlide ? 'opacity-100' : 'opacity-0'
                         }`}
                       >
-                        <p className="font-poppins font-normal text-[28px] leading-[1.35] tracking-[-0.00375em] text-white mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                        <p className="font-poppins font-normal text-[40px] leading-[1.35] tracking-[-0.00375em] text-white mb-0">
                           {slide.intro}
                         </p>
-                        <h2 className="font-poppins font-bold text-[44px] leading-[1.35] tracking-[-0.00234em] text-white mb-[12px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                        <h2 className="font-poppins font-bold text-[64px] leading-[1.2] tracking-[-0.00234em] text-white mb-[10px]">
                           {slide.city}
                         </h2>
-                        <p className="font-poppins font-normal text-[20px] leading-[1.35] tracking-[-0.00536em] text-white mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+                        <p className="font-poppins font-normal text-[28px] leading-[1.35] tracking-[-0.00536em] text-white mb-[8px]">
                           Starting at Just
                         </p>
-                        <div className="w-[165px] h-[42px] flex items-center justify-center bg-[#00352B] rounded-[12px] mb-[12px] shrink-0">
-                          <span className="font-poppins font-normal text-[22px] leading-[1.35] tracking-[-0.00517em] text-white">
+                        <div className="w-[207px] h-[53px] flex items-center justify-center bg-[#00352B] rounded-[15px] mb-[14px] shrink-0">
+                          <span className="font-poppins font-normal text-[29px] leading-[1.5] tracking-[-0.00517em] text-white">
                             {slide.price}
                           </span>
                         </div>
-                        <ul className="list-disc list-inside font-poppins font-normal text-[13px] leading-[1.35] tracking-[-0.01em] text-white max-w-[260px] mb-3 space-y-0.5 drop-shadow-[0_1px_1px_rgba(0,0,0,0.15)] [&_li]:marker:text-white">
+                        <ul className="list-disc list-inside font-poppins font-normal text-[15px] leading-[1.8] tracking-[-0.01em] text-white max-w-[340px] mb-3 [&_li]:marker:text-white">
                           {slide.features.map((item, i) => (
                             <li key={i}>{item}</li>
                           ))}
                         </ul>
                         <button
                           type="button"
-                          className="flex items-center justify-center h-8 px-3 w-fit min-w-0 bg-white rounded-[12px] border-0 cursor-pointer font-poppins font-semibold text-[13px] text-[#FF3300] transition-opacity hover:opacity-95 shrink-0 shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
+                          className="flex items-center justify-center h-9 px-4 w-fit min-w-0 bg-white rounded-[12px] border-0 cursor-pointer font-poppins font-medium text-[14px] text-[#00352B] transition-opacity hover:opacity-95 shrink-0 shadow-[0_2px_6px_rgba(0,0,0,0.15)]"
                           onClick={() => setConsultationOpen(true)}
                         >
                           Get Free Guidance from Esante
                         </button>
                       </div>
-                    </div>
 
-                    {/* Room image card - same image for all slides */}
-                    <img
-                      src={MELBOURNE_IMG}
-                      alt={`${slide.city} accommodation`}
-                      className="absolute left-[340px] top-1/2 -translate-y-1/2 w-[300px] h-[312px] object-cover object-center rounded-[32px] shadow-[8px_8px_6px_rgba(0,0,0,0.3)] z-[1]"
-                    />
+                      {/* Room image — absolutely placed on right half, clipped by card's overflow-hidden */}
+                      <img
+                        src={MELBOURNE_IMG}
+                        alt={`${slide.city} accommodation`}
+                        style={{
+                          position: 'absolute',
+                          right: -80,
+                          top: 36,
+                          width: 467,
+                          height: 484,
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          borderRadius: 41,
+                          boxShadow: '-8px 0 32px rgba(0,0,0,0.35)',
+                          zIndex: 0,
+                        }}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -263,19 +273,19 @@ export default function AccommodationPage() {
                   Why Esante Accommodation Support Is Different
                 </h2>
                 <ul className="flex flex-col gap-[12px] list-none p-0 m-0">
-                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00682em] text-black">
+                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.00682em] text-black">
                     ✅ B2B partner rates with verified accommodation providers
                   </li>
-                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00682em] text-black">
+                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.00682em] text-black">
                     ✅ Lower weekly rents compared to public listings
                   </li>
-                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00682em] text-black">
+                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.00682em] text-black">
                     ✅ Private rooms, shared apartments & student residences
                   </li>
-                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00682em] text-black">
+                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.00682em] text-black">
                     ✅ Support before arrival and after moving in
                   </li>
-                  <li className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.007em] text-black">
+                  <li className="font-poppins font-normal text-[22px] leading-[1.2] tracking-[-0.007em] text-black">
                     ✅ Lease & rental guidance by an Australia-based team
                   </li>
                 </ul>
@@ -284,8 +294,8 @@ export default function AccommodationPage() {
           </section>
 
           {/* Section: Real Student Story */}
-          <section className="relative w-full max-w-[1130px] mx-auto mb-[65px] overflow-hidden">
-            <div className="relative w-full h-[500px] py-8 px-12 bg-[#00352B] rounded-[24px] border border-[#FF3300]/50">
+          <section className="relative w-full max-w-[1230px] mx-auto mb-[65px] overflow-hidden">
+            <div className="relative w-full h-[600px] py-8 px-12 bg-[#00352B] rounded-[51px] border-2 border-[#FF3300]">
               {/* Left arrow */}
               <button
                 type="button"
@@ -320,18 +330,18 @@ export default function AccommodationPage() {
                       key={index}
                       className="flex flex-row items-center justify-center w-full min-w-full h-full gap-10 px-14 shrink-0"
                     >
-                      <div className="flex flex-col items-center text-center max-w-[420px]">
-                        <h3 className="font-poppins font-semibold text-[28px] leading-[1.2] tracking-[-0.00333em] text-[#FF3300] mb-4">
+                      <div className="flex flex-col items-start text-left max-w-[603px]">
+                        <h3 className="font-poppins font-normal text-[45px] leading-[1.2] tracking-[-0.00333em] text-white mb-4">
                           Real Student Story: {story.title}
                         </h3>
-                        <p className="font-poppins font-normal text-[18px] leading-[1.45] tracking-[-0.0065em] text-white whitespace-pre-line">
+                        <p className="font-poppins font-normal text-[23px] leading-[1.391em] tracking-[-0.00652em] text-white whitespace-pre-line">
                           {story.text}
                         </p>
                       </div>
                       <img
                         src={story.img}
                         alt={story.title}
-                        className="w-[280px] h-[300px] shrink-0 object-cover rounded-[20px]"
+                        className="w-[418px] h-[502px] shrink-0 object-cover rounded-[41px]"
                       />
                     </div>
                   ))}
