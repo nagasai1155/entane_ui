@@ -1,7 +1,19 @@
 /* Book Free Call banner - Figma Frame 94: layout_FVYK9M, fill_SROK21, 37px radius */
 .book-free-call-banner {
-  padding: 80px 0;
+  padding: var(--section-spacing, 100px) 0;
   background-color: #fff;
+}
+
+/* Center the banner: symmetric padding so card is not pushed left */
+.book-free-call-banner .container {
+  max-width: 1442px;
+  margin: 0 auto;
+  padding-left: 100px;
+  padding-right: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .book-free-call-card {
@@ -109,6 +121,11 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .book-free-call-banner .container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
   .book-free-call-card {
     max-width: 100%;
     padding: 70px 36px 60px;
@@ -131,6 +148,11 @@
 @media (max-width: 768px) {
   .book-free-call-banner {
     padding: 60px 0;
+  }
+
+  .book-free-call-banner .container {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .book-free-call-card {
@@ -161,6 +183,11 @@
 }
 
 @media (max-width: 480px) {
+  .book-free-call-banner .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .book-free-call-title {
     font-size: 24px;
   }

@@ -1,6 +1,6 @@
 /* Find Your Place in Australia - single card with find-place.png */
 .find-your-place-section {
-  padding: 100px 0;
+  padding: var(--section-spacing, 100px) 0;
   background-color: #fff;
 }
 

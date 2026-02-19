@@ -1,174 +1,199 @@
 import React from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
+import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
+
+// Each card has explicit x (left offset from center), y (vertical offset),
+// rotate and scale — no overflow-busting pivot trick needed.
+// x/y keep cards inside the viewport; rotate gives the fan tilt.
+const CARD_W = 220;
+const CARD_H = 330;
+
+const CARDS = [
+  {
+    img: 'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/1jb651bq_expires_30_days.png',
+    alt: 'Airport pickup',
+    x: -420, y: 90, rotate: -36, z: 1, grayscale: true, opacity: 0.75, scale: 0.9,
+  },
+  {
+    img: 'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/1jb651bq_expires_30_days.png',
+    alt: 'Part-time job support',
+    x: -210, y: 32, rotate: -18, z: 2, grayscale: true, opacity: 0.88, scale: 0.95,
+  },
+  {
+    img: 'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/yma2akls_expires_30_days.png',
+    alt: 'Accommodation',
+    label: 'Accommodation',
+    x: 0, y: 0, rotate: 0, z: 5, grayscale: false, opacity: 1, scale: 1.05,
+  },
+  {
+    img: 'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/vl3js3xg_expires_30_days.png',
+    alt: 'IELTS / PTE coaching',
+    x: 210, y: 32, rotate: 18, z: 2, grayscale: true, opacity: 0.88, scale: 0.95,
+  },
+  {
+    img: 'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/vl3js3xg_expires_30_days.png',
+    alt: 'Post-arrival support',
+    x: 420, y: 90, rotate: 36, z: 1, grayscale: true, opacity: 0.75, scale: 0.9,
+  },
+];
 
 export default function AncillaryServicesPage() {
   const openConsultation = () => window.dispatchEvent(new CustomEvent('openConsultationPopup'));
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="flex flex-col w-full min-h-screen bg-white">
       <Header />
-      <div className="w-full bg-white py-16 px-4 pt-32 relative">
-        <div className="max-w-6xl mx-auto relative">
-          {/* Header Section */}
-          <div className="text-center mb-12">
-            <h2 className="text-gray-800 text-3xl md:text-4xl font-normal mb-2 font-poppins">
-              Ancillary Services
-            </h2>
-            <h3 className="text-accent text-4xl md:text-5xl font-bold italic mb-6 font-poppins">
-              That Actually Matter
-            </h3>
 
-            {/* Description Text */}
-            <p className="text-gray-700 text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-3 font-poppins">
+      <main className="flex flex-col w-full bg-white" style={{ overflow: 'visible' }}>
+        <div className="flex flex-col items-center w-full pt-[150px] pb-16" style={{ overflow: 'visible' }}>
+
+          {/* ── Hero Text ── */}
+          <section className="flex flex-col items-center w-full max-w-[760px] mb-[60px]">
+            <h1 className="font-poppins text-center self-stretch">
+              <span className="block font-normal text-[48px] leading-[58px] tracking-[-0.96px] text-[#00352B] mb-2">
+                Ancillary Services
+              </span>
+              <span className="block font-semibold italic text-[56px] leading-[62px] tracking-[-1.12px] text-[#F30]">
+                That Actually Matter
+              </span>
+            </h1>
+
+            <p className="font-poppins font-normal text-[20px] leading-[30px] text-[#000] text-center w-full max-w-[867px] mt-[20px] mb-[6px]">
               Studying in Australia isn't just about getting an offer letter — it's about surviving,
-              settling, earning and succeeding once you land.
+              settling, earning, and succeeding once you land.
             </p>
-            <p className="text-gray-700 text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-8 font-poppins">
-              That's where <span className="font-semibold">Esante</span>'s end-to-end ancillary services come in.
+            <p className="font-poppins font-normal text-[20px] leading-[30px] text-[#000] text-center w-full max-w-[867px] mb-[24px]">
+              That's where Esante 's end-to-end ancillary services come in.
             </p>
 
-            {/* CTA Button */}
             <button
               type="button"
               onClick={openConsultation}
-              className="bg-accent hover:opacity-90 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 font-poppins"
+              className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#F30' }}
             >
-              View Services Cost Below
+              <span
+                className="font-poppins text-center font-medium"
+                style={{
+                  color: 'var(--Light-Background, #FFFBE9)',
+                  fontSize: 22,
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: '20px',
+                }}
+              >
+                Get Free Guidance from Esante
+              </span>
             </button>
-          </div>
+          </section>
 
-          {/* Cards Section with 3D Perspective - 5 cards */}
-          <div className="relative my-16 min-h-[400px] flex items-center justify-center">
-            <div className="flex justify-center items-center gap-4" style={{ perspective: '1500px' }}>
-              {/* Far Left Card - Grayscale, Rotated */}
+          {/* ── Fan Cards ── */}
+          <section
+            className="relative w-full flex justify-center"
+            style={{ height: CARD_H + 100, overflow: 'visible' }}
+          >
+            {CARDS.map((card, i) => (
               <div
-                className="w-48 h-64 md:w-56 md:h-72 rounded-3xl overflow-hidden shadow-2xl grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                key={i}
                 style={{
-                  transform: 'rotateY(20deg) rotateZ(-20deg)',
-                  transformStyle: 'preserve-3d',
-                  zIndex: 1,
+                  position: 'absolute',
+                  width: CARD_W,
+                  height: CARD_H,
+                  left: `calc(50% + ${card.x}px - ${CARD_W / 2}px)`,
+                  top: card.y,
+                  background: 'none',
+                  transform: `rotate(${card.rotate}deg) scale(${card.scale ?? 1})`,
+                  transformOrigin: 'center bottom',
+                  zIndex: card.z,
+                  filter: card.grayscale ? 'grayscale(100%)' : 'none',
+                  opacity: card.opacity,
+                  borderRadius: 0,
+                  overflow: 'visible',
                 }}
               >
                 <img
-                  src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/1jb651bq_expires_30_days.png"
-                  alt="Student"
-                  className="w-full h-full object-cover"
+                  src={card.img}
+                  alt={card.alt}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    borderRadius: 22,
+                    boxShadow: card.grayscale
+                      ? '0 8px 40px rgba(0,0,0,0.20)'
+                      : '0 24px 72px rgba(0,0,0,0.28)',
+                  }}
                 />
-              </div>
-
-              {/* Inner Left Card - Grayscale, Rotated */}
-              <div
-                className="w-52 h-72 md:w-60 md:h-80 rounded-3xl overflow-hidden shadow-2xl grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                style={{
-                  transform: 'rotateY(15deg) rotateZ(-15deg)',
-                  transformStyle: 'preserve-3d',
-                  zIndex: 2,
-                }}
-              >
-                <img
-                  src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/1jb651bq_expires_30_days.png"
-                  alt="Student studying"
-                  className="w-full h-full object-cover"
+                {/* Bottom gradient for depth */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: 22,
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.30) 0%, transparent 55%)',
+                    pointerEvents: 'none',
+                  }}
                 />
+                {card.label && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: 18,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      background: 'rgba(255,255,255,0.96)',
+                      backdropFilter: 'blur(8px)',
+                      borderRadius: 999,
+                      padding: '8px 24px',
+                      boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                      border: '1px solid rgba(0,0,0,0.07)',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: 'Poppins, sans-serif',
+                        fontWeight: 600,
+                        fontSize: 14,
+                        color: '#111',
+                        letterSpacing: '-0.2px',
+                      }}
+                    >
+                      {card.label}
+                    </span>
+                  </div>
+                )}
               </div>
+            ))}
+          </section>
 
-              {/* Center Card - Color with Accommodation Label */}
-              <div
-                className="w-64 h-80 md:w-72 md:h-96 rounded-3xl overflow-hidden shadow-2xl relative z-10 hover:scale-105 transition-transform duration-500"
-                style={{
-                  transform: 'scale(1.1)',
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                <img
-                  src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/yma2akls_expires_30_days.png"
-                  alt="Accommodation"
-                  className="w-full h-full object-cover"
-                />
-                {/* Accommodation Label */}
-                <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm px-6 py-2.5 rounded-full shadow-lg">
-                  <span className="text-gray-800 font-semibold text-sm font-poppins">Accommodation</span>
-                </div>
-              </div>
-
-              {/* Inner Right Card - Grayscale, Rotated */}
-              <div
-                className="w-52 h-72 md:w-60 md:h-80 rounded-3xl overflow-hidden shadow-2xl grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                style={{
-                  transform: 'rotateY(-15deg) rotateZ(15deg)',
-                  transformStyle: 'preserve-3d',
-                  zIndex: 2,
-                }}
-              >
-                <img
-                  src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/vl3js3xg_expires_30_days.png"
-                  alt="Students collaborating"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Far Right Card - Grayscale, Rotated */}
-              <div
-                className="w-48 h-64 md:w-56 md:h-72 rounded-3xl overflow-hidden shadow-2xl grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                style={{
-                  transform: 'rotateY(-20deg) rotateZ(20deg)',
-                  transformStyle: 'preserve-3d',
-                  zIndex: 1,
-                }}
-              >
-                <img
-                  src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/vl3js3xg_expires_30_days.png"
-                  alt="Students"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Services List */}
-          <div className="text-center mb-12">
-            <p className="text-accent text-base md:text-lg leading-relaxed max-w-4xl mx-auto font-poppins">
-              <span className="font-semibold">From SOP & GS-compliant documentation, scholarship optimisation, free IELTS & communication training, accommodation support, part-time job assistance, to complete post-arrival hand-holding</span>, we cover <span className="font-semibold">everything students usually struggle with</span> — at <span className="font-semibold">no extra cost</span>.
+          {/* ── Services Description Text ── */}
+          <section className="flex flex-col items-center w-full mt-[32px] mb-[80px]">
+            <p className="font-poppins font-semibold italic text-[26px] leading-[41px] tracking-[-0.52px] text-[#F30] text-center max-w-[850px]">
+              From SOP &amp; GS-compliant documentation, scholarship optimisation, free IELTS &amp;
+              communication training, accommodation support, part-time job assistance, to complete
+              post-arrival hand-holding, we cover everything students usually struggle with —
+              at no extra cost.
             </p>
-          </div>
+          </section>
 
-          {/* Bottom Description */}
-          <div className="bg-gray-50 rounded-2xl p-8 max-w-4xl mx-auto shadow-sm mb-12">
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed text-center font-poppins">
-              Unlike traditional consultancies that stop at offer letters, <span className="font-semibold">Esante works</span> as your on-ground support system in Australia, ensuring you save money, avoid mistakes, and build a future-ready pathway aligned with Australia's education and migration framework.
+          {/* ── Detailed Description ── */}
+          <section className="flex flex-col items-center w-full mb-[32px]">
+            <p className="font-poppins font-normal text-[26px] leading-[41px] tracking-[-0.52px] text-[#000] text-center max-w-[850px]">
+              Unlike traditional consultancies that stop at offer letters,{' '}
+              Esante works as your
+              on-ground support system in Australia, ensuring you save money, avoid mistakes,
+              and build a future-ready pathway aligned with Australia's education and migration
+              framework.
             </p>
-          </div>
+          </section>
 
-          {/* Orange CTA Card */}
-          <div className="bg-gradient-to-br from-accent to-orange-600 rounded-3xl p-10 md:p-12 max-w-4xl mx-auto shadow-2xl">
-            <div className="text-center text-white">
-              <p className="text-xl md:text-2xl font-light mb-2 font-poppins">
-                Think of
-              </p>
-              <h4 className="text-3xl md:text-4xl font-bold italic mb-4 font-poppins">
-                Esante as your Australia-study partner
-              </h4>
-              <p className="text-xl md:text-2xl font-light mb-6 font-poppins">
-                — not just an agent.
-              </p>
-
-              <p className="text-base md:text-lg mb-8 max-w-2xl mx-auto opacity-95 font-poppins">
-                Let Our Experts In Melbourne Guide You Every Step Of The Way.
-              </p>
-
-              {/* White Button */}
-              <button
-                type="button"
-                onClick={openConsultation}
-                className="bg-white text-accent font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gray-50 font-poppins"
-              >
-                Book Free Call
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
+      </main>
+
+      <BookFreeCallBanner />
       <Footer />
     </div>
   );

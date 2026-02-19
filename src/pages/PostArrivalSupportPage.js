@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
+import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 
 const IMG_BASE = 'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ';
 
@@ -26,9 +27,19 @@ function PostArrivalSupportPage() {
           <button
             type="button"
             onClick={openConsultation}
-            className="flex items-center justify-center bg-[#FF4500] py-1 px-4 rounded-full border border-[#FF6B35] cursor-pointer shadow-[0_2px_12px_rgba(255,69,0,0.25)] hover:shadow-[0_4px_16px_rgba(255,69,0,0.3)] transition-shadow"
+            className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+            style={{ background: '#F30' }}
           >
-            <span className="font-poppins font-medium text-base md:text-lg text-white">
+            <span
+              className="font-poppins text-center font-medium"
+              style={{
+                color: 'var(--Light-Background, #FFFBE9)',
+                fontSize: 22,
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: '20px',
+              }}
+            >
               Get Post Arrival Support
             </span>
           </button>
@@ -195,27 +206,26 @@ function PostArrivalSupportPage() {
           <button
             type="button"
             onClick={openConsultation}
-            className="flex items-center justify-center bg-[#FF3300] py-3.5 px-6 rounded-[21px] border-0 cursor-pointer"
+            className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+            style={{ background: '#F30' }}
           >
-            <span className="font-poppins font-medium text-[26px] text-[#FFFBE9]">
+            <span
+              className="font-poppins text-center font-medium"
+              style={{
+                color: 'var(--Light-Background, #FFFBE9)',
+                fontSize: 22,
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: '20px',
+              }}
+            >
               Get Post Arrival Support
             </span>
           </button>
         </section>
-
-        {/* Think of Esante banner */}
-        <section
-          className="flex flex-col items-center justify-center w-full max-w-[1032px] mx-auto pt-[43px] px-[63px] pb-[176px] mb-0 min-h-[280px] bg-cover bg-center bg-no-repeat rounded-[16px]"
-          style={{
-            backgroundImage: `url('${IMG_BASE}/rq0wlwqy_expires_30_days.png')`,
-          }}
-        >
-          <h2 className="font-poppins font-semibold text-[40px] leading-[1.2] text-center text-[#00352B] whitespace-pre-line">
-            Think of{'\n'}Esante as your Australia-study partner{'\n'}not just an agent.
-          </h2>
-        </section>
       </main>
 
+      <BookFreeCallBanner />
       <Footer />
     </div>
   );

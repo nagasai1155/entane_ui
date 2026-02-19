@@ -1,3 +1,26 @@
+/* Figma-style equal section spacing (100px vertical between sections) */
+:root {
+  --section-spacing: 100px;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --section-spacing: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-spacing: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-spacing: 48px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -137,12 +160,29 @@ body {
 
 .dream-scroll-container {
   position: relative;
+  contain: layout style paint;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: auto;
 }
 
 .dream-sticky-wrap {
   position: relative;
   z-index: 1;
   will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  contain: layout style paint;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dream-sticky-wrap * {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }

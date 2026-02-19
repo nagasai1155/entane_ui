@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
+import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 
 const IMG_CAFE =
   'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/l2ar2hox_expires_30_days.png';
@@ -76,9 +77,21 @@ function PartTimeJobSupportPage() {
           <button
             type="button"
             onClick={openConsultation}
-            className="flex items-center justify-center bg-[#FF3300] min-h-[44px] px-8 py-3 rounded-[16px] border-0 cursor-pointer font-poppins font-medium text-[14px] leading-[1.43] text-white transition-opacity hover:opacity-90"
+            className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+            style={{ background: '#F30' }}
           >
-            Get Free Guidance from Esante
+            <span
+              className="font-poppins text-center font-medium"
+              style={{
+                color: 'var(--Light-Background, #FFFBE9)',
+                fontSize: 22,
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: '20px',
+              }}
+            >
+              Get Free Guidance from Esante
+            </span>
           </button>
         </div>
 
@@ -147,9 +160,21 @@ function PartTimeJobSupportPage() {
                         <button
                           type="button"
                           onClick={openConsultation}
-                          className="flex items-center justify-center bg-[#FF3300] py-2.5 px-5 rounded-2xl border-0 cursor-pointer font-poppins font-medium text-sm text-white transition-opacity hover:opacity-95"
+                          className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+                          style={{ background: '#F30' }}
                         >
-                          Get Part-Time Job Guidance from Esante
+                          <span
+                            className="font-poppins text-center font-medium"
+                            style={{
+                              color: 'var(--Light-Background, #FFFBE9)',
+                              fontSize: 22,
+                              fontStyle: 'normal',
+                              fontWeight: 500,
+                              lineHeight: '20px',
+                            }}
+                          >
+                            Get Part-Time Job Guidance from Esante
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -245,27 +270,11 @@ function PartTimeJobSupportPage() {
           </div>
         </div>
 
-        <section className="flex flex-col w-full max-w-[1214px] mx-auto px-6 sm:px-8 mb-[55px]">
-          <div className="relative flex flex-col items-center justify-center w-full min-h-[340px] py-16 px-8 sm:px-16 rounded-[48px] overflow-hidden bg-gradient-to-b from-[#FF6B35] via-[#FF3300] to-[#E62E00]">
-            <h2 className="relative z-10 font-poppins text-center max-w-[800px] mb-6">
-              <span className="block font-normal text-[28px] leading-[1.3] tracking-[-0.02em] text-white mb-1">Think of</span>
-              <span className="block font-bold text-[42px] leading-[1.2] tracking-[-0.02em] text-white">Esante as your Australia-study partner</span>
-              <span className="block font-normal text-[28px] leading-[1.3] tracking-[-0.02em] text-white mt-1">not just an agent.</span>
-            </h2>
-            <p className="relative z-10 font-poppins font-normal text-[20px] leading-[1.5] text-white text-center max-w-[600px] mb-8">
-              Let Our Experts In Brisbane Guide You Every Step Of The Way.
-            </p>
-            <button
-              type="button"
-              onClick={openConsultation}
-              className="relative z-10 flex items-center justify-center h-12 px-12 bg-white rounded-[16px] border-0 cursor-pointer font-poppins font-semibold text-[18px] text-black transition-opacity hover:opacity-95"
-            >
-              Book Free Call
-            </button>
-          </div>
-        </section>
       </div>
 
+      <div className="w-full" style={{ paddingLeft: '2%' }}>
+        <BookFreeCallBanner />
+      </div>
       <Footer />
     </div>
   );

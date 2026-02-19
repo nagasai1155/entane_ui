@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
+import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 
 const HERO_CAR =
   'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/d3m99tif_expires_30_days.png';
@@ -36,9 +37,21 @@ function AirportServicesPage() {
               </span>
               <a
                 href="#contact"
-                className="mt-4 px-4 py-0 bg-[#FF3300] hover:bg-[#e65c00] text-white text-lg font-medium rounded-xl transition-colors"
+                className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer mt-4"
+                style={{ background: '#F30' }}
               >
-                Get Free Guidance from Esante
+                <span
+                  className="font-poppins text-center font-medium"
+                  style={{
+                    color: 'var(--Light-Background, #FFFBE9)',
+                    fontSize: 22,
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: '20px',
+                  }}
+                >
+                  Get Free Guidance from Esante
+                </span>
               </a>
             </div>
           </div>
@@ -102,35 +115,11 @@ function AirportServicesPage() {
             it's your first step into Australia with confidence.
           </span>
         </div>
-
-        {/* Partner section — orange gradient box */}
-        <div
-          className="flex flex-col items-center justify-center text-center w-[calc(80%-100px)] max-w-[1338px] py-14 px-8 md:py-16 md:px-12 mb-[82px] mx-[51px] rounded-3xl shadow-lg"
-          style={{
-            background: 'linear-gradient(180deg, #FF9F5A 0%, #E87B3A 50%, #D96B2E 100%)',
-          }}
-        >
-          <span className="text-white text-xl md:text-2xl block mb-1">
-            Think of
-          </span>
-          <span className="text-white text-2xl md:text-3xl font-bold block mb-1">
-            Esante as your Australia-study partner
-          </span>
-          <span className="text-white text-3xl md:text-4xl font-bold block mb-6">
-            not just an agent.
-          </span>
-          <p className="text-white text-base md:text-lg mb-8 max-w-[500px]">
-            Let Our Experts Guide You Every Step Of The Way.
-          </p>
-          <a
-            href="#contact"
-            className="inline-block px-8 py-3 bg-transparent text-white font-semibold rounded-xl border-2 border-white hover:bg-white hover:text-[#E87B3A] transition-colors"
-          >
-            Book Free Call
-          </a>
-        </div>
       </div>
 
+      <div className="w-full">
+        <BookFreeCallBanner />
+      </div>
       <Footer />
     </div>
   );

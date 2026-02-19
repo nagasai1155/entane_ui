@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
+import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 import ConsultationPopup from '../components/Reusable/ConsultationPopup';
 
 const IMG_FIRST =
@@ -27,26 +28,58 @@ export default function SopDocumentsPage() {
       <div className="flex flex-col w-[1440px] box-border">
         <div className="flex flex-col items-center w-full bg-white pb-[67px] pt-[172px]">
           <section
-            className="flex flex-col items-center justify-center w-[1192px] min-h-[240px] mb-[41px] gap-4"
-            style={{ maxWidth: '100%' }}
+            className="flex flex-col items-center justify-center mb-[41px] gap-4"
+            style={{
+              width: 1192,
+              maxWidth: '100%',
+              height: 240,
+              minHeight: 240,
+            }}
           >
             <h1
-              className="font-poppins text-center font-normal text-[32px] leading-[60px] underline text-[var(--Primary-Color,#00352B)]"
+              className="font-poppins text-center font-normal text-[32px] leading-[60px] underline"
+              style={{ color: 'var(--Primary-Color, #00352B)' }}
             >
               SOP & Other Documents
             </h1>
-            <p className="font-poppins text-center text-[48px] font-normal leading-[60px] text-[var(--Primary-Color,#00352B)]">
-              <span className="text-[#F30] text-[56px] font-semibold italic leading-[60px] block">
-                We don't change your story
-              </span>
-              <span className="block">we help you tell it better</span>
+            <p
+              className="font-poppins text-center italic font-semibold leading-[60px]"
+              style={{
+                color: '#F30',
+                fontSize: 56,
+                fontWeight: 600,
+                lineHeight: '60px',
+              }}
+            >
+              We don't change your story
             </p>
+            <h1
+              className="font-poppins text-center font-normal leading-[60px]"
+              style={{
+                color: 'var(--Primary-Color, #00352B)',
+                fontSize: 48,
+                fontWeight: 400,
+                lineHeight: '60px',
+              }}
+            >
+              we help you tell it better
+            </h1>
             <button
               type="button"
-              className="flex flex-col items-center justify-center w-[299px] h-[28px] bg-[#FF3300] rounded-[16px] border-0 cursor-pointer"
+              className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#F30' }}
               onClick={openConsultation}
             >
-              <span className="font-poppins font-medium text-[18px] leading-[0.909] tracking-[0] text-center text-[#FFFBE9]">
+              <span
+                className="font-poppins text-center font-medium"
+                style={{
+                  color: 'var(--Light-Background, #FFFBE9)',
+                  fontSize: 22,
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: '20px',
+                }}
+              >
                 Get free SOP with Esante
               </span>
             </button>
@@ -139,10 +172,20 @@ export default function SopDocumentsPage() {
               </div>
               <button
                 type="button"
-                className="flex flex-col items-center justify-center w-[299px] h-[28px] bg-[#FF3300] rounded-[16px] border-0 cursor-pointer"
+                className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+                style={{ background: '#F30' }}
                 onClick={openConsultation}
               >
-                <span className="font-poppins font-medium text-[22px] leading-[0.909] text-center text-[#FFFBE9]">
+                <span
+                  className="font-poppins text-center font-medium"
+                  style={{
+                    color: 'var(--Light-Background, #FFFBE9)',
+                    fontSize: 22,
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: '20px',
+                  }}
+                >
                   Get free SOP with Esante
                 </span>
               </button>
@@ -200,10 +243,20 @@ export default function SopDocumentsPage() {
               <div className="flex flex-col items-center w-full">
                 <button
                   type="button"
-                  className="flex flex-col items-center justify-center w-[299px] h-[28px] bg-[#FF3300] rounded-[16px] border-0 cursor-pointer"
+                  className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+                  style={{ background: '#F30' }}
                   onClick={openConsultation}
                 >
-                  <span className="font-poppins font-medium text-[22px] leading-[0.909] text-center text-[#FFFBE9]">
+                  <span
+                    className="font-poppins text-center font-medium"
+                    style={{
+                      color: 'var(--Light-Background, #FFFBE9)',
+                      fontSize: 22,
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: '20px',
+                    }}
+                  >
                     Get free SOP with Esante
                   </span>
                 </button>
@@ -233,36 +286,10 @@ export default function SopDocumentsPage() {
               </ul>
             </div>
           </section>
-
-          <section className="flex flex-col items-center w-full max-w-[1280px] mx-auto px-[100px] mb-[40px] box-border">
-            <div
-              className="flex flex-col items-center justify-center w-full min-h-[260px] rounded-[37px] py-10 px-14"
-              style={{
-                background: 'linear-gradient(180deg, #E85C00 0%, #FF9933 50%, #FFB366 100%)',
-              }}
-            >
-              <p className="font-poppins text-white text-center mb-6">
-                <span className="text-[22px] font-normal leading-tight block">Think of</span>
-                <span className="text-[32px] md:text-[38px] font-bold leading-tight block my-1">
-                  Esante as your Australia-study partner
-                </span>
-                <span className="text-[22px] font-normal leading-tight block">not just an agent.</span>
-              </p>
-              <p className="font-poppins text-white text-center text-[18px] font-normal mb-8 max-w-[600px]">
-                Let Our Experts In Brisbane Guide You Every Step Of The Way.
-              </p>
-              <button
-                type="button"
-                className="font-poppins font-medium text-[16px] text-[#333] bg-white border-2 border-[#FF3300] rounded-[12px] px-8 py-3 cursor-pointer hover:bg-[#FFF5F2] transition-colors"
-                onClick={openConsultation}
-              >
-                Book Free Call
-              </button>
-            </div>
-          </section>
         </div>
       </div>
 
+      <BookFreeCallBanner />
       <Footer />
 
       <ConsultationPopup

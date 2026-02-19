@@ -6,7 +6,7 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  padding: 100px 0;
+  padding: var(--section-spacing, 100px) 0;
   background-color: #FFFBE9;
 }
 

@@ -1,6 +1,6 @@
 /* What Esante Does - Figma: left-aligned header, two cards (content+image row), 35px radius */
 .what-esante-section {
-  padding: 100px 0;
+  padding: var(--section-spacing, 100px) 0;
 }
 
 .what-esante-container {

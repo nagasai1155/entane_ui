@@ -1,6 +1,6 @@
 /* Real Stories, Real Futures - Figma: carousel, play icon, location badge, overlay text, square arrows */
 .real-stories-section {
-  padding: 100px 0;
+  padding: var(--section-spacing, 100px) 0;
   background-color: #fff;
 }
 

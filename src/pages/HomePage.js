@@ -54,6 +54,7 @@ function HomePage() {
 
   // Single RAF loop — all DOM mutations in one tick, zero React re-renders
   useEffect(() => {
+    let lastPin = 0;
     const tick = () => {
       const y   = window.scrollY || document.documentElement.scrollTop;
       const raw = Math.max(0, Math.min(1, y / MORPH_END));
@@ -73,7 +74,12 @@ function HomePage() {
 
       // ── 2. Dream section pin ──
       if (dreamStickyRef.current) {
-        dreamStickyRef.current.style.transform = `translate3d(0,${pin}px,0)`;
+        // Only update if change is >= 2px to prevent micro-jitter
+        const roundedPin = Math.round(pin * 0.5) * 2; // Round to nearest 2px
+        if (Math.abs(roundedPin - lastPin) >= 2) {
+          dreamStickyRef.current.style.transform = `translate3d(0,${roundedPin}px,0)`;
+          lastPin = roundedPin;
+        }
       }
 
       // ── 3. Morph target card: fade in as overlay fades out ──

@@ -1,6 +1,6 @@
 /* Everything You Need section - Figma: title left, description right, cards with overlay */
 .service-cards-section {
-  padding: 100px 0;
+  padding: var(--section-spacing, 100px) 0;
   background-color: #FFFFFF;
 }
 
@@ -54,10 +54,10 @@
   margin: 26px 0 0 0;
 }
 
-/* Three cards - premium strip with subtle shadow - full width */
+/* Three cards - first and third narrower, middle full (1fr) */
 .service-cards-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 0.75fr 1fr 0.75fr;
   gap: 0;
   overflow: visible;
   border-radius: 12px;

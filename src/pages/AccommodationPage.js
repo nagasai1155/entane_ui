@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
+import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 import ConsultationPopup from '../components/Reusable/ConsultationPopup';
 
 const MELBOURNE_IMG =
@@ -114,10 +115,22 @@ export default function AccommodationPage() {
             {/* CTA — rounded, orange background, white text */}
             <button
               type="button"
-              className="flex items-center justify-center min-h-[44px] px-8 py-3 bg-[#FF3300] rounded-[16px] border-0 cursor-pointer font-poppins font-medium text-[14px] leading-[1.43] tracking-[-0.01em] text-white transition-opacity hover:opacity-90"
+              className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#F30' }}
               onClick={() => setConsultationOpen(true)}
             >
-              Get Free Guidance from Esante
+              <span
+                className="font-poppins text-center font-medium"
+                style={{
+                  color: 'var(--Light-Background, #FFFBE9)',
+                  fontSize: 22,
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: '20px',
+                }}
+              >
+                Get Free Guidance from Esante
+              </span>
             </button>
           </section>
 
@@ -331,32 +344,10 @@ export default function AccommodationPage() {
               </span>
             </div>
           </section>
-
-          {/* Section: Book Free Call - orange gradient CTA */}
-          <section className="flex flex-col w-full max-w-[1059px] mx-auto mb-0">
-            <div className="relative flex flex-col items-center justify-center w-full min-h-[340px] py-16 px-16 rounded-[48px] overflow-hidden bg-gradient-to-b from-[#FF6B35] via-[#FF3300] to-[#E62E00]">
-              <h2 className="relative z-10 font-poppins text-center text-white max-w-[800px] mb-6">
-                <span className="block font-normal text-[28px] leading-[1.3] tracking-[-0.02em] mb-1">Think of</span>
-                <span className="block text-[42px] leading-[1.2] tracking-[-0.02em]">
-                  <span className="font-bold italic">Esante</span> as your <span className="font-bold italic">Australia-study partner</span>
-                </span>
-                <span className="block font-normal text-[28px] leading-[1.3] tracking-[-0.02em] mt-1">not just an agent.</span>
-              </h2>
-              <p className="relative z-10 font-poppins font-normal text-[20px] leading-[1.5] text-white text-center max-w-[600px] mb-8">
-                Let Our Experts In Brisbane Guide You Every Step Of The Way.
-              </p>
-              <button
-                type="button"
-                className="relative z-10 flex items-center justify-center h-12 px-12 bg-white rounded-[16px] border-0 cursor-pointer font-poppins font-semibold text-[18px] text-black transition-opacity hover:opacity-95"
-                onClick={() => setConsultationOpen(true)}
-              >
-                Book Free Call
-              </button>
-            </div>
-          </section>
         </div>
       </main>
 
+      <BookFreeCallBanner />
       <Footer />
 
       <ConsultationPopup

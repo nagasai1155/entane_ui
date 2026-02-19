@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
+import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 
 const ICON_EMAIL =
   'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/vuqm314h_expires_30_days.png';
@@ -77,9 +78,19 @@ function IeltsPteCoachingPage() {
                 <button
                   type="button"
                   onClick={openConsultation}
-                  className="flex flex-col items-start bg-[#FF3300] pt-1 pb-[5px] px-3 rounded-2xl cursor-pointer border-0"
+                  className="inline-flex py-1 px-3 justify-center items-center rounded-[16px] border-0 cursor-pointer"
+                  style={{ background: '#F30' }}
                 >
-                  <span className="font-poppins text-[#FFFBE9] text-[11px]">
+                  <span
+                    className="font-poppins text-center font-medium"
+                    style={{
+                      color: 'var(--Light-Background, #FFFBE9)',
+                      fontSize: 22,
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: '20px',
+                    }}
+                  >
                     Get Free Guidance from Esante
                   </span>
                 </button>
@@ -183,38 +194,12 @@ function IeltsPteCoachingPage() {
               </span>
             </div>
           </section>
-
-          {/* Quote banner: orange gradient box with white text and Book Free Call button */}
-          <section
-            className="flex flex-col items-center justify-center w-full max-w-[1040px] py-12 px-14 mb-[55px] mx-auto rounded-[32px]"
-            style={{
-              background: 'linear-gradient(180deg, #FF8C42 0%, #E85D04 50%, #CC4A00 100%)',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-            }}
-          >
-            <p className="font-poppins text-white text-center text-2xl md:text-[28px] font-normal leading-relaxed mb-2">
-              Think of
-            </p>
-            <p className="font-poppins text-white text-center text-2xl md:text-[28px] leading-relaxed mb-2">
-              <span className="font-semibold">Esante</span> as your <span className="font-semibold italic">Australia-study partner</span>
-            </p>
-            <p className="font-poppins text-white text-center text-2xl md:text-[28px] font-normal leading-relaxed mb-6">
-              not just an agent.
-            </p>
-            <p className="font-poppins text-white text-center text-base md:text-lg font-normal mb-8">
-              Let Our Experts In Brisbane Guide You Every Step Of The Way.
-            </p>
-            <button
-              type="button"
-              onClick={openConsultation}
-              className="font-poppins text-[#FF6600] font-normal bg-white border-2 border-[#FF6600] py-3 px-8 rounded-xl cursor-pointer hover:opacity-90 transition-opacity"
-            >
-              Book Free Call
-            </button>
-          </section>
         </main>
       </div>
 
+      <div className="w-full" style={{ paddingLeft: '2%' }}>
+        <BookFreeCallBanner />
+      </div>
       <Footer />
     </div>
   );
