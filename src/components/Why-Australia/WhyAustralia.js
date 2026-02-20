@@ -3,15 +3,6 @@ import "./WhyAustralia.css";
 
 // ========== Config / Data ==========
 
-// const HERO_GRID_IMAGES = [
-//   "/images/about-us/hero-bg.png",
-//   "/images/about-us/team-image.png",
-//   "/images/about-us/philosophy-image.png",
-//   "/images/about-us/founder-image.png",
-//   "/images/about-us/employers.png",
-//   "/images/about-us/migration-partners.png",
-// ];
-
 const STEP_CARDS = [
   {
     number: "01",
@@ -37,62 +28,24 @@ const STEP_CARDS = [
 ];
 
 const TESTIMONIALS = [
-  {
-    name: "John Deo",
-    university: "ABCD University",
-    image: "/images/home-page/australia.png",
-  },
-  {
-    name: "John Deo",
-    university: "ABCD University",
-    image: "/images/home-page/australia.png",
-  },
-  {
-    name: "John Deo",
-    university: "ABCD University",
-    image: "/images/home-page/australia.png",
-  },
-  {
-    name: "John Deo",
-    university: "ABCD University",
-    image: "/images/home-page/australia.png",
-  },
-  {
-    name: "John Deo",
-    university: "ABCD University",
-    image: "/images/home-page/australia.png",
-  },
-  {
-    name: "John Deo",
-    university: "ABCD University",
-    image: "/images/home-page/australia.png",
-  },
-  {
-    name: "John Deo",
-    university: "ABCD University",
-    image: "/images/home-page/australia.png",
-  },
+  { name: "John Deo",  university: "ABCD University", image: "/images/ielts-testi-1.png" },
+  { name: "Sarah K.",  university: "Melbourne Uni",   image: "/images/ielts-testi-2.png" },
+  { name: "Alex M.",   university: "Sydney Uni",      image: "/images/ielts-testi-3.png" },
+  { name: "Priya R.",  university: "RMIT University", image: "/images/ielts-testi-4.png" },
+  { name: "James L.",  university: "Monash Uni",      image: "/images/ielts-josh-photo.png" },
+  { name: "Nina T.",   university: "ANU",             image: "/images/ielts/testimonial.png" },
+  { name: "Omar B.",   university: "UTS Sydney",      image: "/images/ielts/testimonial (3).png" },
 ];
 
-const LIFESTYLE_TOP_ROW = [
-  { className: "bg-[#00352B] w-[129px] h-[154px] mt-[87px] rounded-[11px]" },
-  {
-    className:
-      "shrink-0 bg-[#00352B] pt-[26px] pr-[13px] mt-[87px] rounded-[11px]",
-    inner: true,
-  },
-  { className: "bg-[#00352B] w-[129px] h-[154px] rounded-[11px]" },
-  { className: "bg-[#00352B] w-[129px] h-[154px] mt-9 rounded-[11px]" },
-];
-
-const LIFESTYLE_BOTTOM_ROW = [
-  { className: "bg-[#00352B] w-[129px] h-[154px] mt-[38px] rounded-[11px]" },
-  { className: "flex-1 self-stretch", spacer: true },
-  {
-    className:
-      "bg-[#00352B] w-[129px] h-[154px] mt-[38px] mr-[245px] rounded-[11px]",
-  },
-  { className: "bg-[#00352B] w-[129px] h-[154px] rounded-[11px]" },
+const LIFESTYLE_BOXES = [
+  { left: -23, top: 10, width: 129, height: 154 },
+  { left: 356, top: 36, width: 95, height: 77 },
+  { left: 356, top: 10, width: 108, height: 103 },
+  { left: 756, top: -77, width: 129, height: 154 },
+  { left: 174, top: 351, width: 129, height: 154 },
+  { left: 1130, top: 313, width: 129, height: 154 },
+  { left: 756, top: 351, width: 129, height: 154 },
+  { left: 1111, top: -41, width: 129, height: 154 },
 ];
 
 const CAREER_CATEGORIES = [
@@ -181,17 +134,17 @@ const FAQ_ITEMS = [
   {
     question: "Is there a free trial available?",
     answer:
-      "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
+      "Yes, you can try us for free for 30 days. If you want, we'll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
   },
   {
     question: "Can I change my plan later?",
     answer:
-      "Yes. You can upgrade, downgrade, or switch plans at any time from your account settings. Changes are applied at the start of your next billing cycle so you’re never double-charged.",
+      "Yes. You can upgrade, downgrade, or switch plans at any time from your account settings. Changes are applied at the start of your next billing cycle so you're never double-charged.",
   },
   {
     question: "What is your cancellation policy?",
     answer:
-      "You can cancel your subscription at any time. Your account will remain active until the end of the current billing period, and you won’t be billed again unless you choose to reactivate.",
+      "You can cancel your subscription at any time. Your account will remain active until the end of the current billing period, and you won't be billed again unless you choose to reactivate.",
   },
   {
     question: "Can other info be added to an invoice?",
@@ -229,92 +182,218 @@ export default function WhyAustralia() {
   return (
     <div className="flex flex-col bg-white">
       <div className="flex flex-col self-stretch bg-white">
-        {/* Why Australia Section - Full Screen */}
-        <section className="why-australia-hero-section">
-          <div className="why-australia-wrapper">
-            {/* Left: cream background - text + stats */}
-            <div className="why-australia-left">
-              <h1 className="why-australia-title">
-                Why <span className="why-australia-title-accent">Australia</span> is the Global Destination of Choice
+        {/* ===== Hero Section — pixel-perfect Figma match =====
+          Figma node 259:1903 — 1440×865px
+          Left 58%: vertically centred, extrabold heading, description, 2 pill buttons, avatar social
+          Right 42%: 2 full image columns + ~30% of a 3rd column bleeds off-screen
+            Col-1: mt-[60px] offset (starts lower), top img ~30% height, bottom img fills rest
+            Col-2: no offset (starts at very top), top img ~64% height, bottom img fills rest
+            Col-3: same width, shifted right so only ~30% is visible before overflow-hidden clips it
+        ===== */}
+        {/* Section has explicit 865px height on lg so inner h-full / flex-basis % resolve */}
+        <section className="w-full bg-white overflow-hidden lg:h-[865px]">
+          <div className="flex flex-col lg:flex-row w-full h-full lg:h-[865px]">
+            {/* ── LEFT: text content ── */}
+            <div className="w-full lg:w-[58%] flex flex-col justify-center px-[24px] md:px-[60px] lg:px-[80px] py-[60px] lg:py-[100px]">
+              <h1
+                className="font-poppins text-black mb-[20px]"
+                style={{
+                  fontSize: "clamp(36px, 4.8vw, 68px)",
+                  fontWeight: 800,
+                  lineHeight: 1.07,
+                  letterSpacing: "-1.5px",
+                }}
+              >
+                Turn Your Ideas into Stunning Visuals with AI
               </h1>
-              <p className="why-australia-description">
-                With 42 top universities, studying in Australia offers high-quality
-                education, career opportunities, and cultural experience. It is known
-                for its globally recognized degrees, research facilities, and strong
-                industry connections, making it one of the top destinations for
-                international students.
+
+              <p
+                className="text-black mb-[36px] font-poppins"
+                style={{
+                  fontSize: 16,
+                  lineHeight: 1.6,
+                  opacity: 0.5,
+                  maxWidth: 440,
+                }}
+              >
+                Describe anything you imagine, and let our AI bring it to life
+                in breathtaking, high-quality images.
               </p>
-              <div className="why-australia-stats">
-                <div className="why-stat-item">
-                  <h3 className="why-stat-number">140,000 +</h3>
-                  <p className="why-stat-label">skilled and family visas granted</p>
+
+              {/* CTA Buttons */}
+              <div className="flex items-center gap-[12px] flex-wrap mb-[52px]">
+                <button
+                  type="button"
+                  className="px-[28px] py-[14px] bg-black text-white rounded-full text-[15px] font-semibold font-poppins hover:opacity-85 transition-opacity"
+                >
+                  Start Creating
+                </button>
+                <button
+                  type="button"
+                  className="px-[28px] py-[14px] bg-white text-black rounded-full text-[15px] font-semibold font-poppins hover:bg-gray-50 transition-colors"
+                  style={{ border: "1.5px solid #D1D5DB" }}
+                >
+                  Explore Gallery
+                </button>
+              </div>
+
+              {/* Avatar social proof */}
+              <div className="flex items-center gap-[10px]">
+                <div className="flex -space-x-[8px]">
+                  {[
+                    "/images/ielts-testi-1.png",
+                    "/images/ielts-testi-3.png",
+                    "/images/home-page/gallery-2.png",
+                  ].map((src, i) => (
+                    <div
+                      key={i}
+                      className="w-[34px] h-[34px] rounded-full overflow-hidden bg-gray-300 shrink-0"
+                      style={{ border: "2px solid #fff" }}
+                    >
+                      <img
+                        src={src}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
                 </div>
-                <div className="why-stat-item">
-                  <h3 className="why-stat-number">1.9m +</h3>
-                  <p className="why-stat-label">temporary visas granted</p>
-                </div>
-                <div className="why-stat-item why-stat-item-full">
-                  <h3 className="why-stat-number">13,000 +</h3>
-                  <p className="why-stat-label">humanitarian visas granted</p>
-                </div>
+                <p
+                  className="font-poppins"
+                  style={{ fontSize: 13, color: "rgba(0,0,0,0.45)", lineHeight: 1.5 }}
+                >
+                  Join with{" "}
+                  <span style={{ fontWeight: 700, color: "rgba(0,0,0,0.75)" }}>
+                    2100+ Users
+                  </span>{" "}
+                  and start generating images now
+                </p>
               </div>
             </div>
 
-            {/* Right: australia.png as background + overlay-image.png on top */}
-            <div className="why-australia-right">
-              <div className="why-australia-bg" style={{ backgroundImage: 'url(/images/home-page/australia.png)' }} />
-              <div className="why-australia-overlay">
-                <img src="/images/home-page/overlay-image.png" alt="" className="why-australia-overlay-img" />
+            {/* ── RIGHT: image grid — Figma exact layout ──
+                • 2 vertical columns
+                • Col-1: 3 images, mt-[30px]
+                • Col-2: 3 images, mt-0
+                • Right padding ensures they don't hit edge
+            */}
+            <div className="hidden lg:flex lg:w-[42%] h-full pl-[20px] pr-[80px]">
+              <div
+                className="flex gap-[20px] h-full w-full"
+                style={{ paddingTop: 20, paddingBottom: 20 }}
+              >
+
+                {/* ── Column 1 — staggered 30px lower than col-2 ── */}
+                <div
+                  className="flex-1 flex flex-col gap-[20px] min-w-0"
+                  style={{ marginTop: 40 }}
+                >
+                  {/* short top image */}
+                  <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 180 }}>
+                    <img
+                      src="/images/home-page/gallery-6.png"
+                      alt="Melbourne"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* tall middle image */}
+                  <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 340 }}>
+                    <img
+                      src="/images/home-page/australia.png"
+                      alt="Sydney Opera House"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* bottom image fills the rest */}
+                  <div className="flex-1 rounded-[20px] overflow-hidden min-h-0">
+                    <img
+                      src="/images/home-page/gallery-8.png"
+                      alt="Sydney Harbour Bridge"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* ── Column 2 — starts at top ── */}
+                <div className="flex-1 flex flex-col gap-[20px] min-w-0 overflow-hidden">
+                  {/* short banner image at very top */}
+                  <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 80 }}>
+                    <img
+                      src="/images/home-page/gallery-9.png"
+                      alt="Arriving in Australia"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* tall portrait image */}
+                  <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 480 }}>
+                    <img
+                      src="/images/home-page/gallery-3.png"
+                      alt="University graduation"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* bottom image fills remaining space */}
+                  <div className="flex-1 rounded-[20px] overflow-hidden min-h-0">
+                    <img
+                      src="/images/home-page/gallery-5.png"
+                      alt="Sydney Opera House"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
         </section>
 
-        {/* Steps */}
-        <section className="self-stretch bg-white py-14 md:py-16">
+        {/* ===== Steps Section ===== */}
+        <section className="self-stretch bg-white py-[56px] md:py-[64px]">
           <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-            <p className="text-center text-[#111827] text-base md:text-lg font-medium mb-10">
+            <p className="text-center text-[#111827] text-[16px] md:text-[18px] font-medium mb-[40px] font-poppins leading-[1.6]">
               Three simple steps to start your international education journey
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
               {STEP_CARDS.map((step) => (
                 <article
                   key={step.number}
-                  className="flex flex-col bg-[#E6F7EC] rounded-[24px] overflow-hidden shadow-sm"
+                  className="flex flex-col bg-[#E6F7EC] rounded-[20px] overflow-hidden"
                 >
-                  <div className="h-[190px] md:h-[210px] overflow-hidden">
+                  <div className="p-[12px] pb-0">
                     <img
                       src={step.image}
                       alt={step.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-[180px] md:h-[200px] object-cover rounded-[16px]"
                     />
                   </div>
-                  <div className="flex-1 p-6">
-                    <p className="text-[#047857] text-sm font-semibold mb-2">
+                  <div className="flex-1 p-[20px] pt-[16px]">
+                    <p className="text-[#047857] text-[14px] font-semibold mb-[4px] font-poppins">
                       {step.number}
                     </p>
-                    <h3 className="text-[#111827] text-xl font-semibold mb-2 leading-snug">
+                    <h3 className="text-[#111827] text-[20px] font-bold mb-[8px] leading-[1.3] font-poppins">
                       {step.title}
                     </h3>
-                    <p className="text-[#4B5563] text-sm leading-relaxed">
+                    <p className="text-[#4B5563] text-[14px] leading-[1.6] font-poppins">
                       {step.description}
                     </p>
                   </div>
                 </article>
               ))}
-              <article className="flex flex-col bg-gradient-to-b from-[#22C55E] to-[#047857] text-white rounded-[24px] p-6 md:p-8 justify-between shadow-md">
+
+              {/* Connect With Us Card */}
+              <article className="flex flex-col bg-gradient-to-b from-[#22C55E] to-[#047857] text-white rounded-[20px] p-[24px] md:p-[28px] justify-between">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">
+                  <h3 className="text-[22px] font-semibold mb-[12px] font-poppins leading-[1.3]">
                     Connect With Us
                   </h3>
-                  <p className="text-sm md:text-base leading-relaxed mb-6">
+                  <p className="text-[14px] md:text-[15px] leading-[1.6] mb-[24px] opacity-90 font-poppins">
                     Have questions or need personalised advice? Our team is here
                     to help you every step of the way.
                   </p>
                 </div>
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-[#047857] text-sm md:text-base font-medium hover:bg-gray-100 transition-colors self-start"
+                  className="inline-flex items-center justify-center px-[24px] py-[10px] rounded-full bg-white text-[#047857] text-[14px] font-medium hover:bg-gray-100 transition-colors self-start font-poppins"
                 >
                   Get Started Now →
                 </button>
@@ -323,216 +402,327 @@ export default function WhyAustralia() {
           </div>
         </section>
 
-        {/* Lifestyle & Culture */}
-        <section className="self-stretch pt-[3px]">
-          <div className="flex justify-between items-start self-stretch mb-[26px] mx-[77px] flex-wrap gap-4">
-            {LIFESTYLE_TOP_ROW.map((card, i) => (
+        {/* ===== Lifestyle & Culture Section ===== */}
+        <section className="w-full overflow-hidden hidden lg:block" style={{ height: 627 }}>
+          <div
+            className="relative mx-auto"
+            style={{ width: 1240, height: 467, marginTop: 80 }}
+          >
+            {LIFESTYLE_BOXES.map((box, i) => (
               <div
-                key={`top-${i}`}
-                className={`rounded-[11px] overflow-hidden ${card.className}`}
-              >
-                {card.inner && (
-                  <div className="flex flex-col items-start">
-                    <div className="bg-[#00352B] w-[95px] h-[77px] rounded-[11px]" />
-                  </div>
-                )}
-              </div>
+                key={i}
+                className="absolute bg-[#00352B] rounded-[11px]"
+                style={{
+                  left: box.left,
+                  top: box.top,
+                  width: box.width,
+                  height: box.height,
+                }}
+              />
             ))}
-          </div>
-          <div className="flex flex-col items-center self-stretch mb-9">
-            <h2 className="text-black text-[58px] font-bold text-center">
+            <h2
+              className="absolute font-poppins font-semibold text-[58px] leading-[1.5] text-black text-center"
+              style={{ left: 355.5, top: 190, width: 529 }}
+            >
               Lifestyle & Culture
             </h2>
           </div>
-          <div className="flex items-start self-stretch max-w-[1085px] mb-[42px] ml-[274px] mr-[81px] flex-wrap gap-4 max-md:ml-auto max-md:mr-auto max-md:px-4 max-md:justify-center">
-            {LIFESTYLE_BOTTOM_ROW.map((card, i) => (
-              <div
-                key={`bottom-${i}`}
-                className={
-                  card.spacer
-                    ? "flex-1 self-stretch min-w-[100px]"
-                    : `bg-[#00352B] rounded-[11px] overflow-hidden ${card.className}`
-                }
-              />
-            ))}
-          </div>
+        </section>
+        {/* Mobile fallback for Lifestyle & Culture */}
+        <section className="block lg:hidden py-[48px] px-6">
+          <h2 className="text-center font-poppins font-semibold text-[36px] leading-[1.5] text-black">
+            Lifestyle & Culture
+          </h2>
         </section>
 
-        {/* Career Services (simplified) */}
-        <section className="self-stretch py-14 md:py-16 bg-[#FFFBE9]">
+        {/* ===== Career Services Section ===== */}
+        <section className="self-stretch py-[64px] md:py-[80px] bg-[#FFFBE9]">
           <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-            <h2 className="text-black text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-3">
+            {/* Heading */}
+            <h2 className="text-black font-bold text-center mb-[16px] font-poppins leading-[1.15]"
+              style={{ fontSize: "clamp(36px, 4.5vw, 64px)" }}
+            >
               Career Services Tailored For You
               <span
-                className="inline-block w-2.5 h-2.5 rounded-full bg-[#FF3300] align-middle ml-0.5"
+                className="inline-block w-[10px] h-[10px] rounded-full bg-[#FF3300] align-middle ml-[4px] mb-[8px]"
                 aria-hidden
               />
             </h2>
-            <p className="text-black text-base md:text-lg text-center max-w-[720px] mx-auto mb-10">
+            <p className="text-black/60 text-[16px] md:text-[18px] text-center max-w-[560px] mx-auto mb-[40px] font-poppins leading-[1.6]">
               Our services are meticulously designed to unveil your potential,
               interests, learning styles, and skills, scientifically.
             </p>
-            <div className="flex flex-wrap justify-center gap-2 mb-10">
+
+            {/* Category Tabs — active tab connects directly to container with curves */}
+            <div className="flex flex-wrap justify-center gap-[6px] mb-0 relative z-10">
               {CAREER_CATEGORIES.map((name, i) => (
                 <button
                   key={name}
                   type="button"
                   onClick={() => setActiveCareerCategoryIndex(i)}
-                  className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={
                     i === activeCareerCategoryIndex
-                      ? "bg-[#00352B] text-white"
-                      : "text-black bg-transparent hover:bg-black/5"
-                  }`}
+                      ? "career-tab-active font-poppins"
+                      : "px-[22px] py-[9px] rounded-full text-[15px] font-medium font-poppins text-black/70 bg-transparent hover:bg-black/5 transition-colors"
+                  }
                 >
                   {name}
                 </button>
               ))}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {currentServices.map((service) => (
-                <article
-                  key={service.title}
-                  className="flex flex-col bg-white rounded-t-2xl overflow-hidden shadow-md border border-[#00352B]/10"
-                >
-                  <div className="aspect-[4/3] bg-[#00352B]/5 overflow-hidden">
+
+            {/* ── Large green outer container ── */}
+            <div
+              className="rounded-[24px] px-[14px] pb-[14px] pt-[24px]"
+              style={{ backgroundColor: "#3D9E56", marginTop: -1 }}
+            >
+
+              {/* Service Cards grid — inside the green container */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-[14px]">
+                {currentServices.map((service) => (
+                  <article
+                    key={service.title}
+                    className="flex flex-col rounded-[16px] overflow-hidden"
+                    style={{ backgroundColor: "#4CAF50" }}
+                  >
+                    {/* Card image — fills card top edge */}
                     <img
                       src={service.image}
                       alt=""
-                      className="w-full h-full object-cover"
+                      className="w-full object-cover"
+                      style={{ height: 220, borderRadius: "16px 16px 0 0" }}
                     />
-                  </div>
-                  <div className="bg-[#00352B] text-white p-5 flex flex-col gap-3">
-                    <h3 className="font-bold text-lg leading-tight">
-                      {service.title}
-                    </h3>
-                    <ul className="space-y-2 text-sm">
-                      {service.features.map((text) => (
-                        <li key={text} className="flex items-center gap-2">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
-                          <span>{text}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="flex items-center gap-1.5 text-sm font-medium pt-1">
-                      <span>₹</span>
-                      <span>{service.price}</span>
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
+
+                    {/* Card body */}
+                    <div className="flex-1 p-[18px] pt-[16px] text-white flex flex-col">
+                      <h3 className="font-bold text-[17px] leading-[1.3] mb-[14px] font-poppins">
+                        {service.title}
+                      </h3>
+
+                      {/* Features */}
+                      <ul className="space-y-[9px] text-[13px] mb-[12px]">
+                        {service.features.map((text, fi) => (
+                          <li key={text} className="flex items-start gap-[9px] font-poppins">
+                            {fi === 0 ? (
+                              <svg className="shrink-0 mt-[2px]" width="17" height="17" viewBox="0 0 18 18" fill="none">
+                                <rect width="18" height="18" rx="4" fill="rgba(255,255,255,0.25)" />
+                                <rect x="4" y="5" width="6" height="1.5" rx="0.75" fill="white" />
+                                <rect x="4" y="8" width="10" height="1.5" rx="0.75" fill="white" />
+                                <rect x="4" y="11" width="8" height="1.5" rx="0.75" fill="white" />
+                              </svg>
+                            ) : (
+                              <svg className="shrink-0 mt-[2px]" width="17" height="17" viewBox="0 0 18 18" fill="none">
+                                <rect width="18" height="18" rx="4" fill="rgba(255,255,255,0.25)" />
+                                <path d="M5 9.5L7.5 12L13 7" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                            )}
+                            <span>{text}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* Price */}
+                      <p className="flex items-center gap-[7px] text-[13px] font-medium mb-[16px] font-poppins">
+                        <span className="inline-flex items-center justify-center w-[19px] h-[19px] rounded-full bg-white/25 text-[10px] font-bold shrink-0">
+                          ₹
+                        </span>
+                        <span>{service.price}</span>
+                      </p>
+
+                      {/* View Program — solid white button */}
+                      <button
+                        type="button"
+                        className="mt-auto self-start px-[22px] py-[8px] bg-white text-[#00352B] rounded-full text-[13px] font-semibold hover:bg-white/90 transition-colors font-poppins"
+                      >
+                        View Program
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {/* Carousel Pagination — inside the green container */}
+              <div className="flex items-center justify-center gap-[10px] mt-[20px] pb-[4px]">
+                <button
+                  type="button"
+                  className="w-[28px] h-[28px] flex items-center justify-center text-white text-[18px] font-bold hover:opacity-70 transition-opacity"
+                  aria-label="Previous"
+                >
+                  &lt;
+                </button>
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className={`rounded-full transition-all ${
+                      i === 0
+                        ? "w-[10px] h-[10px] bg-white"
+                        : "w-[9px] h-[9px] border-[2px] border-white/60 bg-transparent"
+                    }`}
+                  />
+                ))}
+                <button
+                  type="button"
+                  className="w-[28px] h-[28px] flex items-center justify-center text-white text-[18px] font-bold hover:opacity-70 transition-opacity"
+                  aria-label="Next"
+                >
+                  &gt;
+                </button>
+              </div>
+
+            </div>{/* end green outer container */}
           </div>
         </section>
 
-        {/* Testimonials – What Our Students Say (fixed editorial grid: 220x200, 220x420, 320x420) */}
-        <section className="max-w-7xl mx-auto px-6 py-16">
+        {/* ===== Testimonials Section ===== */}
+        <section className="w-full overflow-hidden bg-white py-[64px]">
           {/* Header */}
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1 text-sm bg-green-100 text-green-700 rounded-full mb-4">
-              ★ Testimonials
+          <div className="text-center mb-[52px] px-6">
+            <span className="inline-flex items-center gap-[6px] px-[20px] py-[9px] text-[14px] bg-[#3D9E56] text-white rounded-full mb-[20px] font-medium font-poppins">
+              ✦ Testimonials
             </span>
-            <h2 className="text-3xl font-bold">What Our Students Say</h2>
-            <p className="text-gray-500 mt-2">
-              Hear from students who have successfully started their international education journey
+            <h2 className="text-[42px] md:text-[56px] font-bold font-poppins leading-[1.2] text-black">
+              What Our Students Say
+            </h2>
+            <p className="text-[#6B7280] mt-[16px] text-[16px] font-poppins leading-[1.6] max-w-[620px] mx-auto">
+              Hear from students who have successfully started their
+              international education journey
             </p>
           </div>
 
-          {/* Fixed CSS grid with named areas and exact pixel sizes (no responsive auto sizing / masonry) */}
+          {/* ── Desktop: 5-col equal-width flex layout matching Figma ── */}
           <div
-            className="grid gap-6"
-            style={{
-              // 5 fixed columns: 220, 220, 320, 220, 220
-              gridTemplateColumns: "220px 220px 320px 220px 220px",
-              // 2 fixed rows: 200 + 220 = 420 for tall cards
-              gridTemplateRows: "200px 220px",
-              gridTemplateAreas: `"a b c d e" "a f c g e"`,
-            }}
+            className="hidden lg:flex items-start gap-[18px]"
+            style={{ marginLeft: -20, marginRight: -20 }}
           >
-            {/* We map the first 7 testimonials into the fixed positions a–g */}
-            <TestimonialCard
-              area="a"
-              img={TESTIMONIALS[0]?.image}
-              name={TESTIMONIALS[0]?.name}
-              university={TESTIMONIALS[0]?.university}
-            />
-            <TestimonialCard
-              area="b"
-              img={TESTIMONIALS[1]?.image}
-              name={TESTIMONIALS[1]?.name}
-              university={TESTIMONIALS[1]?.university}
-            />
-            <TestimonialCard
-              area="c"
-              img={TESTIMONIALS[2]?.image}
-              name={TESTIMONIALS[2]?.name}
-              university={TESTIMONIALS[2]?.university}
-            />
-            <TestimonialCard
-              area="d"
-              img={TESTIMONIALS[3]?.image}
-              name={TESTIMONIALS[3]?.name}
-              university={TESTIMONIALS[3]?.university}
-            />
-            <TestimonialCard
-              area="e"
-              img={TESTIMONIALS[4]?.image}
-              name={TESTIMONIALS[4]?.name}
-              university={TESTIMONIALS[4]?.university}
-            />
-            <TestimonialCard
-              area="f"
-              img={TESTIMONIALS[5]?.image}
-              name={TESTIMONIALS[5]?.name}
-              university={TESTIMONIALS[5]?.university}
-            />
-            <TestimonialCard
-              area="g"
-              img={TESTIMONIALS[6]?.image}
-              name={TESTIMONIALS[6]?.name}
-              university={TESTIMONIALS[6]?.university}
-            />
+            {/* Col 1 — bleeds left slightly, staggered 30px lower */}
+            <div className="flex-1" style={{ height: 270, marginTop: 32 }}>
+              <TestimonialCard
+                img={TESTIMONIALS[0].image}
+                name={TESTIMONIALS[0].name}
+                university={TESTIMONIALS[0].university}
+                height="100%"
+              />
+            </div>
+
+            {/* Col 2 — 2 stacked cards */}
+            <div className="flex flex-col gap-[14px] flex-1" style={{ height: 270 }}>
+              <div style={{ height: 140 }}>
+                <TestimonialCard
+                  img={TESTIMONIALS[1].image}
+                  name={TESTIMONIALS[1].name}
+                  university={TESTIMONIALS[1].university}
+                  height="140px"
+                />
+              </div>
+              <div className="flex-1">
+                <TestimonialCard
+                  img={TESTIMONIALS[5].image}
+                  name={TESTIMONIALS[5].name}
+                  university={TESTIMONIALS[5].university}
+                  height="100%"
+                />
+              </div>
+            </div>
+
+            {/* Col 3 — center, tallest card */}
+            <div className="flex-1" style={{ height: 330 }}>
+              <TestimonialCard
+                img={TESTIMONIALS[2].image}
+                name={TESTIMONIALS[2].name}
+                university={TESTIMONIALS[2].university}
+                height="100%"
+              />
+            </div>
+
+            {/* Col 4 — 2 stacked cards (mirror of col 2) */}
+            <div className="flex flex-col gap-[14px] flex-1" style={{ height: 270 }}>
+              <div style={{ height: 140 }}>
+                <TestimonialCard
+                  img={TESTIMONIALS[3].image}
+                  name={TESTIMONIALS[3].name}
+                  university={TESTIMONIALS[3].university}
+                  height="140px"
+                />
+              </div>
+              <div className="flex-1">
+                <TestimonialCard
+                  img={TESTIMONIALS[6].image}
+                  name={TESTIMONIALS[6].name}
+                  university={TESTIMONIALS[6].university}
+                  height="100%"
+                />
+              </div>
+            </div>
+
+            {/* Col 5 — bleeds right slightly, staggered 30px lower */}
+            <div className="flex-1" style={{ height: 270, marginTop: 32 }}>
+              <TestimonialCard
+                img={TESTIMONIALS[4].image}
+                name={TESTIMONIALS[4].name}
+                university={TESTIMONIALS[4].university}
+                height="100%"
+              />
+            </div>
+          </div>
+
+          {/* Mobile */}
+          <div className="grid grid-cols-2 gap-[16px] lg:hidden px-6">
+            {TESTIMONIALS.slice(0, 4).map((t, i) => (
+              <TestimonialCard
+                key={i}
+                img={t.image}
+                name={t.name}
+                university={t.university}
+                height="200px"
+              />
+            ))}
           </div>
         </section>
 
-        {/* FAQ – matches Figma layout */}
-        <section className="self-stretch bg-white py-20">
-          <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-[#024C3A] text-4xl md:text-5xl font-bold mb-10">
-              Frequently Asked Questions
-            </h2>
-            <div className="divide-y divide-[#E5E7EB]">
-              {FAQ_ITEMS.map((item, index) => {
-                const isOpen = openFaqIndex === index;
-                return (
-                  <div key={index}>
-                    <button
-                      type="button"
-                      onClick={() => toggleFaq(index)}
-                      className="w-full flex items-start justify-between gap-4 py-5 md:py-6 text-left focus:outline-none"
-                      aria-expanded={isOpen}
-                      aria-controls={`faq-answer-${index}`}
-                    >
-                      <div className="flex-1">
-                        <p className="text-base md:text-lg font-medium text-[#024C3A]">
-                          {item.question}
+        {/* ===== FAQ Section (Exact Figma Specs) ===== */}
+        <section className="flex flex-col items-center self-stretch bg-white py-[80px] px-[100px] max-md:px-[24px] max-md:py-[48px] gap-[20px]">
+          <h2 className="font-poppins font-bold text-[74px] max-lg:text-[48px] max-md:text-[32px] leading-[1.5] text-[#00352B]">
+            Frequently Asked Questions
+          </h2>
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: "Inter, sans-serif" }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5]"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          {item.answer}
                         </p>
-                        {isOpen && item.answer && (
-                          <p
-                            id={`faq-answer-${index}`}
-                            className="mt-2 text-sm md:text-base text-[#4B5563]"
-                          >
-                            {item.answer}
-                          </p>
-                        )}
-                      </div>
-                      <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full border border-[#FF3300] text-[#FF3300] text-xs shrink-0">
-                        {isOpen ? "−" : "+"}
-                      </div>
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? "−" : "+"}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </section>
       </div>
@@ -540,36 +730,36 @@ export default function WhyAustralia() {
   );
 }
 
-function TestimonialCard({ area, img, name, university }) {
+function TestimonialCard({ img, name, university, height }) {
   return (
     <div
-      style={{ gridArea: area }}
-      className="relative overflow-hidden rounded-3xl bg-gray-200 w-full h-full"
+      style={{ height: height || "100%" }}
+      className="relative overflow-hidden rounded-[20px] bg-[#E5E7EB] w-full"
     >
-      {/* Image */}
       <img
         src={img}
         alt={name || "testimonial"}
         className="absolute inset-0 w-full h-full object-cover"
       />
-
-      {/* Play Button */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
-          ▶
+        <div className="w-[48px] h-[48px] bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+          <svg
+            width="16"
+            height="18"
+            viewBox="0 0 16 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 7.268a2 2 0 010 3.464L3 17.856a2 2 0 01-3-1.732V1.876A2 2 0 013 .144l12 6.124z"
+              fill="#1a1a1a"
+            />
+          </svg>
         </div>
       </div>
-
-      {/* Name Badge */}
-      <div
-        className="absolute bottom-3 left-3 right-3 
-                    bg-black/55 backdrop-blur
-                    text-white text-xs px-4 py-2 rounded-full"
-      >
+      <div className="absolute bottom-[12px] left-[12px] right-[12px] bg-black/55 backdrop-blur-sm text-white text-[12px] px-[16px] py-[8px] rounded-full font-poppins">
         {name || "John Doe"} | {university || "ABCD University"}
       </div>
     </div>
   );
 }
-
-
