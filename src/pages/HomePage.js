@@ -9,7 +9,7 @@ import SkillsShortage from '../components/Home-Page/SkillsShortage';
 import FindYourPlace from '../components/Home-Page/FindYourPlace';
 import RealStories from '../components/Home-Page/RealStories';
 import LatestNews from '../components/Home-Page/LatestNews';
-import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
+import EsanteBanner from '../components/Reusable/EsanteBanner';
 import Footer from '../components/Reusable/Footer';
 import '../App.css';
 
@@ -225,7 +225,7 @@ function HomePage() {
         <FindYourPlace />
         <RealStories />
         <LatestNews />
-        <BookFreeCallBanner />
+        <EsanteBanner />
         <Footer />
       </main>
     </div>

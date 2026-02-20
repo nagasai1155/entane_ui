@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
-import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
+import EsanteBanner from '../components/Reusable/EsanteBanner';
 import ConsultationPopup from '../components/Reusable/ConsultationPopup';
 
 const HERO_BG_IMG = '/images/acc-hero-bg.png';
@@ -359,7 +359,7 @@ export default function AccommodationPage() {
         </div>
       </main>
 
-      <BookFreeCallBanner />
+      <EsanteBanner />
       <Footer />
 
       <ConsultationPopup

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
-import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
+import EsanteBanner from '../components/Reusable/EsanteBanner';
 
 const HERO_BG = '/images/ptj-hero-bg.png';
 const IMG_JOB   = '/images/ptj-job.png';
@@ -154,7 +154,6 @@ function PartTimeJobSupportPage() {
                           <span className="block">{slide.titleLine2}</span>
                         </h2>
                         {/* Rate — style_PIAHLU: Poppins 400/32px/1.5em, white text */}
-                        {/* Figma Rectangle 25: layout_9GUJMG (207×53) fill_WX4E6V — same green as card bg; rendered as badge outline */}
                         <div className="inline-flex items-center justify-center h-[53px] px-[14px] rounded-[15px] mb-[12px] border border-white/30">
                           <span className="font-poppins font-normal text-[32px] leading-[1.5] text-white">
                             {slide.rate}
@@ -223,7 +222,7 @@ function PartTimeJobSupportPage() {
         </section>
 
         {/* ── How Esante Helps — layout_69CSFP: 1213×320, borderRadius 45px, stroke #FF3300 2px ── */}
-        <div className="flex flex-row items-start w-full max-w-[1213px] mx-auto mb-[122px] pl-[80px] pr-[40px] py-[40px] rounded-[45px] border-2 border-[#FF3300] bg-white" style={{ gap: 109 }}>
+        <div className="flex flex-row items-start w-full max-w-[1213px] mx-auto mb-[122px] pl-[80px] pr-[40px] py-[40px] rounded-[45px] border border-[#FF3300] bg-white" style={{ gap: 109 }}>
           {/* Left column — layout_DWQTMD: 532×277 */}
           <div className="flex flex-col items-start shrink-0" style={{ width: 532 }}>
             {/* style_TQYM0C: Poppins 400/45px/1.2em #00352B */}
@@ -237,33 +236,34 @@ function PartTimeJobSupportPage() {
               Esante works closely with multiple verified part-time job partners across Australia, including:
             </p>
           </div>
-          {/* Bullet list — layout_D05DR9: 452×210, style_A3QO2X: Poppins 400/24px/1.2em/-0.625% */}
+          {/* Bullet list — 20px so "Hospitality & customer service roles" fits on one line */}
           <ul className="flex flex-col items-start list-none pl-0 m-0 pt-2 shrink-0" style={{ gap: 14, width: 452 }}>
             {['Cafés & restaurants', 'Petrol stations', 'Grocery stores & supermarkets', 'Shopping malls & retail outlets', 'Hospitality & customer service roles'].map((item) => (
-              <li key={item} className="font-poppins font-normal text-[24px] leading-[1.2] tracking-[-0.00625em] text-[#1a1a1a]">
+              <li key={item} className="font-poppins font-normal text-[20px] leading-[1.2] tracking-[-0.00625em] text-[#1a1a1a]">
                 ✅ {item}
               </li>
             ))}
           </ul>
         </div>
 
-        {/* ── Student story — layout_3TWTUV: 365.8×446 + layout_XXXQH2: 264.55×327, stroke_QDP66V: 11px white ── */}
-        {/* Container: photo composite (444px) + gap + text (749px) = 1214px */}
-        <div className="flex flex-row items-center w-full max-w-[1214px] mx-auto mb-[136px]" style={{ gap: 21 }}>
-          {/* Photo composite — outer wrapper is 444×454 to hold both photos without overflow into text */}
-          {/* Photo 1: 366×446 anchored left; Photo 2: 265×327 anchored bottom-right within 444px */}
-          <div className="relative shrink-0" style={{ width: 444, height: 454 }}>
+        {/* ── Student story ── */}
+        <div className="flex flex-row items-center w-full max-w-[1214px] mx-auto mb-[136px]" style={{ gap: 32 }}>
+
+          {/* Photo composite — tilted collage effect matching Figma design */}
+          <div className="relative shrink-0" style={{ width: 320, height: 360 }}>
             <img
               src={IMG_STORY_1}
               alt="Diya and Khushi"
               style={{
                 position: 'absolute',
-                left: 0,
+                left: 10,
                 top: 0,
-                width: 366,
-                height: 446,
+                width: 240,
+                height: 300,
                 objectFit: 'cover',
-                borderRadius: 20,
+                borderRadius: 16,
+                transform: 'rotate(-8deg)',
+                transformOrigin: 'top left',
               }}
             />
             <img
@@ -273,25 +273,27 @@ function PartTimeJobSupportPage() {
                 position: 'absolute',
                 bottom: 0,
                 right: 0,
-                width: 265,
-                height: 327,
+                width: 185,
+                height: 230,
                 objectFit: 'cover',
-                borderRadius: 20,
+                borderRadius: 16,
                 zIndex: 10,
-                border: '11px solid #FFFFFF',
+                border: '7px solid #FFFFFF',
+                transform: 'rotate(6deg)',
+                transformOrigin: 'bottom right',
               }}
             />
           </div>
 
-          {/* Story text — style_H40UTN: Poppins 600/23px/1.652em/-0.652% */}
+          {/* Story text — headings bold red, body normal weight */}
           <div className="flex flex-col gap-6 text-left" style={{ maxWidth: 749, flex: 1, minWidth: 0 }}>
             <div>
               <h3 className="font-poppins font-semibold text-[23px] leading-[1.652em] tracking-[-0.00652em] text-[#FF3300] mb-1">
                 Meet Diya &amp; Khushi:
               </h3>
-              <p className="font-poppins font-semibold text-[23px] leading-[1.652em] tracking-[-0.00652em] text-black">
+              <p className="font-poppins font-normal text-[23px] leading-[1.652em] tracking-[-0.00652em] text-black">
                 When Diya and Khushi landed in Brisbane, they were worried about managing high living costs. Through Esante&apos;s local job network, they were interviewed and hired within their first week.{' '}
-                <span className="text-[#FF3300]">The Result: Both are now earning between $3,000 – $4,000 AUD per month.</span>
+                <span className="font-semibold text-[#FF3300]">The Result: Both are now earning between $3,000 – $4,000 AUD per month.</span>
                 {' '}They pay their own rent, cover all groceries, and still save money—living financially independent from day one.
               </p>
             </div>
@@ -299,9 +301,9 @@ function PartTimeJobSupportPage() {
               <h3 className="font-poppins font-semibold text-[23px] leading-[1.652em] tracking-[-0.00652em] text-[#FF3300] mb-1">
                 The &quot;Brisbane HQ&quot; Advantage:
               </h3>
-              <p className="font-poppins font-semibold text-[23px] leading-[1.652em] tracking-[-0.00652em] text-black">
+              <p className="font-poppins font-normal text-[23px] leading-[1.652em] tracking-[-0.00652em] text-black">
                 Because our headquarters are on the ground in Australia, we understand the local labour market better than any offshore agent. We guide you toward roles with the{' '}
-                <span className="text-[#FF3300]">best hourly rates</span>
+                <span className="font-semibold text-[#FF3300]">best hourly rates</span>
                 , ensuring you aren&apos;t stuck with minimum wage.
               </p>
             </div>
@@ -310,9 +312,7 @@ function PartTimeJobSupportPage() {
 
       </div>
 
-      <div className="w-full">
-        <BookFreeCallBanner />
-      </div>
+      <EsanteBanner />
       <Footer />
     </div>
   );

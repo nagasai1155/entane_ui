@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
-import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
+import EsanteBanner from '../components/Reusable/EsanteBanner';
 
 // ─── Figma images (section 239:1666 "Ancillary services") ───────────────────
 // Center card  – node 239:1847 / layout_GY3D9A: 309×407, borderRadius 33px
@@ -9,47 +9,46 @@ import BookFreeCallBanner from '../components/Home-Page/BookFreeCallBanner';
 // Fan geometry: all cards are ~309×407 natural size; bounding boxes in Figma
 // are larger for outer cards because they are rotated (36° → BB ≈ 467×505).
 
-// Natural card dimensions (Figma center card exact size)
-const CARD_W = 309;
-const CARD_H = 407;
+// Natural card dimensions
+const CARD_W = 282;
+const CARD_H = 372;
 
-// Card data — positions match Figma fan layout derived from bounding-box sizes.
-// Outer cards rotated ±36°, inner cards ±18°, center 0°.
+// Card data — positions scaled proportionally from Figma fan layout
 const CARDS = [
-  // Left outer  – image 64 (imageRef f5615569…, 463×504 BB at ~36°)
+  // Left outer
   {
     img: '/images/anc-img-64.png',
     alt: 'Services support',
-    x: -420, y: 78, rotate: -36, z: 1, br: 31,
+    x: -380, y: 71, rotate: -36, z: 1, br: 28,
     grayscale: true, opacity: 0.70,
   },
-  // Left inner  – Rectangle 22 (imageRef ec4a2e60…, 412×461 BB at ~18°)
+  // Left inner
   {
     img: '/images/anc-rect-22.png',
     alt: 'Accommodation support',
-    x: -215, y: 28, rotate: -18, z: 2, br: 31,
+    x: -195, y: 26, rotate: -18, z: 2, br: 28,
     grayscale: true, opacity: 0.85,
   },
-  // Center      – image 62 (imageRef 80fc2e0d…, 309×407, borderRadius 33px)
+  // Center
   {
     img: '/images/anc-img-62.png',
     alt: 'Accommodation',
     label: 'Accommodation',
-    x: 0, y: 0, rotate: 0, z: 5, br: 33,
+    x: 0, y: 0, rotate: 0, z: 5, br: 29,
     grayscale: false, opacity: 1,
   },
-  // Right inner – image 63 (imageRef b99a9a08…, 398×470 BB at ~18°)
+  // Right inner
   {
     img: '/images/anc-img-63.png',
     alt: 'Part-time job support',
-    x: 215, y: 28, rotate: 18, z: 2, br: 31,
+    x: 195, y: 26, rotate: 18, z: 2, br: 28,
     grayscale: true, opacity: 0.85,
   },
-  // Right outer – image 65 (imageRef 53e82dba…, 467×505 BB at ~36°)
+  // Right outer
   {
     img: '/images/anc-img-65.png',
     alt: 'Post-arrival hand-holding',
-    x: 420, y: 78, rotate: 36, z: 1, br: 31,
+    x: 380, y: 71, rotate: 36, z: 1, br: 28,
     grayscale: true, opacity: 0.70,
   },
 ];
@@ -126,7 +125,7 @@ export default function AncillaryServicesPage() {
           {/* ── Fan Cards ── layout_678G42 center: 310×407 / layout_GY3D9A: 309×407 ── */}
           <section
             className="relative w-full flex justify-center"
-            style={{ height: CARD_H + 120, overflow: 'visible' }}
+            style={{ height: CARD_H + 84, overflow: 'visible' }}
           >
             {CARDS.map((card, i) => (
               <div
@@ -172,8 +171,6 @@ export default function AncillaryServicesPage() {
                   }}
                 />
 
-                {/* "Accommodation" label — layout_JZPWS3: x=0, y=350, 309×57
-                    style_0YW64G: Poppins 500 / 26px / 0.769em / CENTER, white */}
                 {card.label && (
                   <div
                     style={{
@@ -182,7 +179,7 @@ export default function AncillaryServicesPage() {
                       left: 0,
                       width: '100%',
                       textAlign: 'center',
-                      height: 57,
+                      height: 46,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -192,8 +189,8 @@ export default function AncillaryServicesPage() {
                       style={{
                         fontFamily: 'Poppins, sans-serif',
                         fontWeight: 500,
-                        fontSize: 26,
-                        lineHeight: '0.769em',
+                        fontSize: 20,
+                        lineHeight: 1,
                         color: '#FFFFFF',
                       }}
                     >
@@ -238,7 +235,7 @@ export default function AncillaryServicesPage() {
         </div>
       </main>
 
-      <BookFreeCallBanner />
+      <EsanteBanner />
       <Footer />
     </div>
   );
