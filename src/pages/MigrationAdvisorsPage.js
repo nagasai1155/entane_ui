@@ -3,7 +3,6 @@ import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
 // Hero – Figma: left image | middle (image + green block) | right image. Use existing assets.
 const HERO_LEFT = '/images/sop-img-78.png';
-const HERO_MID_IMG = '/images/sop-img-79.png';
 const HERO_RIGHT = '/images/ptj-story1.png';
 
 const STATS = [
