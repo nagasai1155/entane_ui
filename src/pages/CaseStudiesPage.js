@@ -1,298 +1,272 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
+import EsanteBanner from '../components/Reusable/EsanteBanner';
 
-function CaseStudiesPage(props) {
+// Hero featured image (Figma fill_REYQ1Z) – use placeholder; replace with Figma asset if available
+const imgHeroFeatured =
+  'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/8sadqtxv_expires_30_days.png';
+
+// Card assets (Figma design system – arrow + card images)
+const imgArrowUpRight = 'https://www.figma.com/api/mcp/asset/f4c02ea5-df2d-47d2-a2ef-b2ea3df966c3';
+const imgArrowDown = 'https://www.figma.com/api/mcp/asset/4cdf5a8a-e438-4f4b-a0d2-389a09c12223';
+
+const CASE_STUDY_CARDS = [
+  { image: 'https://www.figma.com/api/mcp/asset/fa41ab00-f056-49c8-a521-b82edf4c937a', category: 'Design', title: 'UX review presentations', description: 'How do you create compelling presentations that wow your colleagues and impress your managers?' },
+  { image: 'https://www.figma.com/api/mcp/asset/5f309bdf-72f7-4ef7-8241-61d1fe2e4ced', category: 'Design', title: 'UX review presentations', description: 'How do you create compelling presentations that wow your colleagues and impress your managers?' },
+  { image: 'https://www.figma.com/api/mcp/asset/f2758485-85c6-43e6-bde4-8b10bc399e58', category: 'Design', title: 'UX review presentations', description: 'How do you create compelling presentations that wow your colleagues and impress your managers?' },
+  { image: 'https://www.figma.com/api/mcp/asset/09d50615-bfa8-434b-8b69-f773faed2b53', category: 'Design', title: 'UX review presentations', description: 'How do you create compelling presentations that wow your colleagues and impress your managers?' },
+  { image: 'https://www.figma.com/api/mcp/asset/11ed5df5-0d49-4758-8040-af838aecea84', category: 'Design', title: 'UX review presentations', description: 'How do you create compelling presentations that wow your colleagues and impress your managers?' },
+  { image: 'https://www.figma.com/api/mcp/asset/4d0c1347-fc24-45b9-95c8-27ca4f441b09', category: 'Design', title: 'UX review presentations', description: 'How do you create compelling presentations that wow your colleagues and impress your managers?' },
+];
+
+const CASE_STUDY_INITIAL = 6;
+const CASE_STUDY_LOAD_MORE = 6;
+const allCaseStudyCards = [...CASE_STUDY_CARDS, ...CASE_STUDY_CARDS];
+
+function CaseStudyCard({ card }) {
+  return (
+    <div
+      className="bg-white flex flex-1 flex-col items-start min-w-0 pb-8 pt-6 px-6"
+      style={{
+        boxShadow: '0px 12px 16px 0px rgba(16,24,40,0.08), 0px 4px 6px 0px rgba(16,24,40,0.03)',
+      }}
+    >
+      <div className="relative w-full shrink-0" style={{ height: '240px' }}>
+        <img src={card.image} alt={card.title} className="absolute inset-0 w-full h-full object-cover" />
+      </div>
+      <div className="flex flex-col items-start self-stretch gap-3 mt-6">
+        <span className="text-[#FF3300] text-sm" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600 }}>
+          {card.category}
+        </span>
+        <div className="flex flex-col items-start self-stretch gap-3">
+          <div className="flex gap-4 items-start self-stretch">
+            <span
+              className="flex-1 text-[#00352B] text-2xl min-w-0"
+              style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, lineHeight: '32px' }}
+            >
+              {card.title}
+            </span>
+            <div className="shrink-0 w-6 h-6 flex items-center justify-center pt-1">
+              <img src={imgArrowUpRight} alt="" className="w-full h-full" />
+            </div>
+          </div>
+          <span
+            className="text-[#667085] text-base self-stretch"
+            style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, lineHeight: '24px' }}
+          >
+            {card.description}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CaseStudiesPage() {
+  const [activeTab, setActiveTab] = useState('All');
+  const [visibleCount, setVisibleCount] = useState(CASE_STUDY_INITIAL);
+
+  const tabs = [
+    { id: 'All', label: 'All' },
+    { id: 'Student', label: 'Student' },
+    { id: 'Skilled Workers', label: 'Skilled Workers' },
+  ];
+
+  const visibleCards = allCaseStudyCards.slice(0, visibleCount);
+  const rows = [];
+  for (let i = 0; i < visibleCards.length; i += 3) {
+    rows.push(visibleCards.slice(i, i + 3));
+  }
+  const hasMoreCaseStudies = visibleCount < allCaseStudyCards.length;
+
   return (
     <div className="case-studies-page">
       <Header />
-      <main
-        className="case-studies-main"
-        style={{
-          marginTop: '20px',
-        }}
-      >
-        <div className="flex flex-col bg-white">
-          <div className="flex flex-col self-stretch bg-white pb-0">
-            {/* Hero section */}
-            <div className="self-stretch bg-white py-[85px] px-[100px]">
-              <div className="flex flex-col self-stretch max-w-[1240px] gap-[41px]">
-                <div className="flex flex-col items-center self-stretch pb-[26px] gap-[15px]">
-                  <div className="flex flex-col items-center gap-4">
-                    <button
-                      className="flex flex-col items-start bg-[#FF3300] text-left py-1 px-[11px] rounded-2xl border-0"
-                      onClick={() => alert('Pressed!')}
+      <main style={{ paddingTop: '120px' }}>
+        <div className="bg-white flex flex-col">
+
+          {/* ── Hero + Tabs + Cards in one flow (no extra gaps between sections) ── */}
+          <div
+            className="flex flex-col items-center w-full bg-white"
+            style={{ paddingTop: '96px' }}
+          >
+            <div className="flex flex-col items-center w-full px-8" style={{ maxWidth: '1280px', width: '100%' }}>
+              {/* Heading and supporting text */}
+              <div className="flex flex-col gap-6 items-center w-full" style={{ maxWidth: '1024px' }}>
+                <div className="flex flex-col gap-4 items-center w-full">
+                  <div
+                    className="flex items-center justify-center"
+                    style={{
+                      backgroundColor: '#FF3300',
+                      borderRadius: '16px',
+                      padding: '4px 12px',
+                    }}
+                  >
+                    <span
+                      className="text-[#FFFBE9]"
+                      style={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontWeight: 500,
+                        fontSize: '14px',
+                        lineHeight: '20px',
+                      }}
                     >
-                      <span className="text-[#FFFBE9] text-sm">Case Studies</span>
-                    </button>
-                    <span className="text-[#00352B] text-5xl font-bold">
-                      Real Stories, Real Success in Australia
+                      Case Studies
                     </span>
                   </div>
-                  <span className="text-[#FF3300] text-xl">
-                    Discover how students and working professionals successfully migrated to
-                    australia, and read their success stories.
-                  </span>
-                </div>
-                <img
-                  src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/8sadqtxv_expires_30_days.png"
-                  className="self-stretch h-[360px] object-fill"
-                  alt="Case studies hero"
-                />
-                <div className="flex justify-between items-start self-stretch px-2.5">
-                  <span className="text-[#667084] text-base w-[842px] my-2.5">
-                    How do you create compelling presentations that wow your colleagues and impress
-                    your managers?How do you create compelling presentations that wow your colleagues
-                    and impress your managers?How do you create compelling presentations that wow
-                    your colleagues and impress your managers?
-                  </span>
-                  <button
-                    className="flex flex-col shrink-0 items-start bg-[#FF3300] text-left py-2.5 px-5 mt-[38px] rounded-[9px] border-0"
-                    onClick={() => alert('Pressed!')}
+                  <h1
+                    className="text-[#00352B] text-center w-full"
+                    style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: 600,
+                      fontSize: '48px',
+                      lineHeight: '60px',
+                      letterSpacing: '-0.96px',
+                    }}
                   >
-                    <span className="text-white text-lg">Read Full Case Study</span>
-                  </button>
+                    Real Stories, Real Success in Australia
+                  </h1>
                 </div>
-              </div>
-            </div>
-
-            {/* Filters */}
-            <div className="flex items-center self-stretch">
-              <div className="flex flex-col shrink-0 items-start pb-2.5 ml-[100px] mr-7">
-                <span className="text-[#00352B] text-xl">All</span>
-              </div>
-              <div className="flex flex-col shrink-0 items-start pb-2.5 mr-7">
-                <span className="text-[#00352B] text-xl">Student</span>
-              </div>
-              <div className="flex flex-col shrink-0 items-start pb-2.5">
-                <span className="text-[#00352B] text-xl">Skilled Workers</span>
-              </div>
-            </div>
-
-            {/* Cards grid */}
-            <div className="flex flex-col self-stretch pb-[50px] px-8 mx-20 gap-16">
-              <div className="flex items-center self-stretch gap-8">
-                <div
-                  className="flex flex-1 flex-col items-center bg-white py-7 gap-[23px]"
+                <p
+                  className="text-[#FF3300] text-center w-full"
                   style={{
-                    boxShadow: '0px 4px 6px #10182805',
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '30px',
                   }}
                 >
-                  <img
-                    src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/zofdj8tz_expires_30_days.png"
-                    className="w-[336px] h-60 object-fill"
-                    alt="Case study 1"
-                  />
-                  <div className="flex flex-col items-start self-stretch mx-6 gap-3">
-                    <span className="text-[#FF3300] text-sm font-bold">Design</span>
-                    <div className="flex flex-col items-start self-stretch gap-3">
-                      <div className="flex items-center self-stretch gap-5">
-                        <span className="text-[#00352B] text-2xl font-bold">
-                          UX review presentations
-                        </span>
-                        <img
-                          src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/pwfe5r7h_expires_30_days.png"
-                          className="w-6 h-7 object-fill"
-                          alt="Arrow"
-                        />
-                      </div>
-                      <span className="text-[#667084] text-base w-[318px]">
-                        How do you create compelling presentations that wow your colleagues and
-                        impress your managers?
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="flex flex-1 flex-col items-center bg-white py-7 gap-[23px]"
-                  style={{
-                    boxShadow: '0px 4px 6px #10182805',
-                  }}
-                >
-                  <img
-                    src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/wto4ty9p_expires_30_days.png"
-                    className="w-[336px] h-60 object-fill"
-                    alt="Case study 2"
-                  />
-                  <div className="flex flex-col items-start self-stretch mx-6 gap-3">
-                    <span className="text-[#FF3300] text-sm font-bold">Design</span>
-                    <div className="flex flex-col items-start self-stretch gap-3">
-                      <div className="flex items-center self-stretch gap-5">
-                        <span className="text-[#00352B] text-2xl font-bold">
-                          UX review presentations
-                        </span>
-                        <img
-                          src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/jpn5k77u_expires_30_days.png"
-                          className="w-6 h-7 object-fill"
-                          alt="Arrow"
-                        />
-                      </div>
-                      <span className="text-[#667084] text-base w-[318px]">
-                        How do you create compelling presentations that wow your colleagues and
-                        impress your managers?
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="flex flex-1 flex-col items-center bg-white py-7 gap-[23px]"
-                  style={{
-                    boxShadow: '0px 4px 6px #10182805',
-                  }}
-                >
-                  <img
-                    src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/gihwd79j_expires_30_days.png"
-                    className="w-[336px] h-60 object-fill"
-                    alt="Case study 3"
-                  />
-                  <div className="flex flex-col items-start self-stretch mx-6 gap-3">
-                    <span className="text-[#FF3300] text-sm font-bold">Design</span>
-                    <div className="flex flex-col items-start self-stretch gap-3">
-                      <div className="flex items-center self-stretch gap-5">
-                        <span className="text-[#00352B] text-2xl font-bold">
-                          UX review presentations
-                        </span>
-                        <img
-                          src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/yr1dl3q1_expires_30_days.png"
-                          className="w-6 h-7 object-fill"
-                          alt="Arrow"
-                        />
-                      </div>
-                      <span className="text-[#667084] text-base w-[318px]">
-                        How do you create compelling presentations that wow your colleagues and
-                        impress your managers?
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                  Discover how students and working professionals successfully migrated to australia, and read their success stories.
+                </p>
               </div>
 
-              <div className="flex items-center self-stretch gap-8">
-                <div
-                  className="flex flex-1 flex-col items-center bg-white py-7 gap-[23px]"
-                  style={{
-                    boxShadow: '0px 4px 6px #10182805',
-                  }}
-                >
-                  <img
-                    src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/j707o9x1_expires_30_days.png"
-                    className="w-[336px] h-60 object-fill"
-                    alt="Case study 4"
-                  />
-                  <div className="flex flex-col items-start self-stretch mx-6 gap-3">
-                    <span className="text-[#FF3300] text-sm font-bold">Design</span>
-                    <div className="flex flex-col items-start self-stretch gap-3">
-                      <div className="flex items-center self-stretch gap-5">
-                        <span className="text-[#00352B] text-2xl font-bold">
-                          UX review presentations
-                        </span>
-                        <img
-                          src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/lx70p8ej_expires_30_days.png"
-                          className="w-6 h-7 object-fill"
-                          alt="Arrow"
-                        />
-                      </div>
-                      <span className="text-[#667084] text-base w-[318px]">
-                        How do you create compelling presentations that wow your colleagues and
-                        impress your managers?
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="flex flex-1 flex-col items-center bg-white py-7 gap-[23px]"
-                  style={{
-                    boxShadow: '0px 4px 6px #10182805',
-                  }}
-                >
-                  <img
-                    src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/6ihhysst_expires_30_days.png"
-                    className="w-[336px] h-60 object-fill"
-                    alt="Case study 5"
-                  />
-                  <div className="flex flex-col items-start self-stretch mx-6 gap-3">
-                    <span className="text-[#FF3300] text-sm font-bold">Design</span>
-                    <div className="flex flex-col items-start self-stretch gap-3">
-                      <div className="flex items-center self-stretch gap-5">
-                        <span className="text-[#00352B] text-2xl font-bold">
-                          UX review presentations
-                        </span>
-                        <img
-                          src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/jlpodfyc_expires_30_days.png"
-                          className="w-6 h-7 object-fill"
-                          alt="Arrow"
-                        />
-                      </div>
-                      <span className="text-[#667084] text-base w-[318px]">
-                        How do you create compelling presentations that wow your colleagues and
-                        impress your managers?
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="flex flex-1 flex-col items-center bg-white py-7 gap-[23px]"
-                  style={{
-                    boxShadow: '0px 4px 6px #10182805',
-                  }}
-                >
-                  <img
-                    src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/3ehrvc6a_expires_30_days.png"
-                    className="w-[336px] h-60 object-fill"
-                    alt="Case study 6"
-                  />
-                  <div className="flex flex-col items-start self-stretch mx-6 gap-3">
-                    <span className="text-[#FF3300] text-sm font-bold">Design</span>
-                    <div className="flex flex-col items-start self-stretch gap-3">
-                      <div className="flex items-center self-stretch gap-5">
-                        <span className="text-[#00352B] text-2xl font-bold">
-                          UX review presentations
-                        </span>
-                        <img
-                          src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/tbzpfkvf_expires_30_days.png"
-                          className="w-6 h-7 object-fill"
-                          alt="Arrow"
-                        />
-                      </div>
-                      <span className="text-[#667084] text-base w-[318px]">
-                        How do you create compelling presentations that wow your colleagues and
-                        impress your managers?
-                      </span>
-                    </div>
-                  </div>
-                </div>
+              {/* Featured card */}
+              <div
+                className="relative w-full overflow-hidden"
+                style={{
+                  height: '450px',
+                  borderRadius: '21px',
+                  marginTop: '32px',
+                }}
+              >
+                <img
+                  src={imgHeroFeatured}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
               </div>
 
-              {/* Load more */}
-              <div className="flex flex-col items-center self-stretch">
+              {/* Row: paragraph + Read Full Case Study button (gap from image per Figma) */}
+              <div
+                className="flex flex-row justify-between items-end gap-2 w-full"
+                style={{ padding: '10px 0', marginTop: '32px' }}
+              >
+                <p
+                  className="text-[#667085] flex-1 min-w-0 max-w-[846px]"
+                  style={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 400,
+                    fontSize: '16px',
+                    lineHeight: '1.5em',
+                  }}
+                >
+                  How do you create compelling presentations that wow your colleagues and impress your managers?How do you create compelling presentations that wow your colleagues and impress your managers?How do you create compelling presentations that wow your colleagues and impress your managers?
+                </p>
                 <button
-                  className="flex items-center bg-[#F9F5FF] text-left py-3 px-5 gap-2 rounded-lg border border-solid border-[#F9F5FF]"
+                  type="button"
+                  className="shrink-0 cursor-pointer border-0 rounded-[9px] text-white"
                   style={{
-                    boxShadow: '0px 1px 2px #1018280D',
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 500,
+                    fontSize: '18px',
+                    lineHeight: '1.33em',
+                    padding: '10px 20px',
+                    backgroundColor: '#FF3300',
                   }}
-                  onClick={() => alert('Pressed!')}
                 >
-                  <img
-                    src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/8bfzyrso_expires_30_days.png"
-                    className="w-5 h-5 rounded-lg object-fill"
-                    alt="Load more"
-                  />
-                  <span className="text-[#FF3300] text-base">Load more</span>
+                  Read Full Case Study
                 </button>
               </div>
+
+              {/* Tabs: same container, no gap, aligned with content */}
+              <div
+                className="flex flex-row items-center w-full border-b border-[#D0D5DD] mt-12"
+                style={{ borderBottomWidth: '1px' }}
+              >
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setActiveTab(tab.id)}
+                    className="pb-3 px-4 relative bg-transparent border-0 cursor-pointer"
+                  >
+                    <span
+                      className={activeTab === tab.id ? 'text-[#00352B]' : 'text-[#667085]'}
+                      style={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontWeight: 500,
+                        fontSize: '16px',
+                      }}
+                    >
+                      {tab.label}
+                    </span>
+                    {activeTab === tab.id && (
+                      <span
+                        className="absolute bottom-0 left-0 right-0 bg-[#FF3300]"
+                        style={{ height: '3px' }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* Bottom banner image */}
-            <img
-              src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/vFwliBRFnJ/9jsdqdqf_expires_30_days.png"
-              className="self-stretch max-w-[1048px] h-[350px] mx-auto object-fill"
-              alt="Call to action"
-            />
+            {/* Cards grid + Load more: same 1280px container, no top gap */}
+            <div
+              className="flex flex-col gap-12 items-start w-full px-8 pb-16"
+              style={{ maxWidth: '1280px', width: '100%', marginTop: '0', paddingTop: '32px' }}
+            >
+            {rows.map((row, rowIdx) => (
+              <div key={rowIdx} className="flex gap-8 items-start justify-center w-full">
+                {row.map((card, idx) => (
+                  <CaseStudyCard key={`${rowIdx}-${idx}`} card={card} />
+                ))}
+              </div>
+            ))}
+            {hasMoreCaseStudies && (
+              <div className="flex items-center justify-center w-full">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((c) => c + CASE_STUDY_LOAD_MORE)}
+                  className="flex items-center justify-center gap-2 rounded-lg border cursor-pointer"
+                  style={{
+                    padding: '12px 20px',
+                    backgroundColor: '#F9F5FF',
+                    border: '1px solid #F9F5FF',
+                    boxShadow: '0px 1px 2px 0px rgba(16,24,40,0.05)',
+                  }}
+                >
+                  <img src={imgArrowDown} alt="" className="w-5 h-5" />
+                  <span
+                    className="text-[#FF3300]"
+                    style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: 500,
+                      fontSize: '16px',
+                      lineHeight: '24px',
+                    }}
+                  >
+                    Load more
+                  </span>
+                </button>
+              </div>
+            )}
           </div>
+          </div>
+
+          {/* Reusable CTA banner (Figma Group 28 / Frame 94) */}
+          <EsanteBanner />
         </div>
       </main>
       <Footer />
