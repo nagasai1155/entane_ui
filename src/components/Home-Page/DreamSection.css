@@ -12,12 +12,11 @@
 .dream-container {
   max-width: 1442px;
   margin: 0 auto;
-  padding: 0 100px;
-  padding-right: 115px;
+  padding: 0 118px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   z-index: 1;
@@ -30,7 +29,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 48px;
+  gap: 100px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -69,13 +68,12 @@
 
 /* Card hover: lift and soft shadow */
 .dream-image-wrap {
-  width: 110px;
-  height: 138px;
-  border-radius: 12px;
+  width: 155px;
+  height: 139px;
+  border-radius: 15px;
   overflow: hidden;
   background: #f1f1f1;
   flex-shrink: 0;
-  margin: 8px;
   transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     box-shadow 0.35s ease;
   -webkit-backface-visibility: hidden;
@@ -83,9 +81,27 @@
   will-change: auto;
 }
 
+/* Row 1 kangaroo: taller silhouette card, no border-radius */
+.dream-image-wrap--kangaroo {
+  width: 140px;
+  height: 177px;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Morph target: same size as regular cards so it blends in after the animation */
+.dream-image-wrap--large {
+  width: 155px;
+  height: 139px;
+}
+
 .dream-image-wrap:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 53, 43, 0.12);
+}
+
+.dream-image-wrap--kangaroo:hover {
+  box-shadow: none;
 }
 
 .dream-image {
@@ -132,7 +148,7 @@
 
 .dream-text-line1 {
   font-family: 'Poppins', sans-serif;
-  font-size: 44px;
+  font-size: 52px;
   font-weight: 300;
   font-style: italic;
   line-height: 98%;
@@ -144,7 +160,7 @@
 
 .dream-text-line2 {
   font-family: 'Poppins', sans-serif;
-  font-size: 44px;
+  font-size: 52px;
   font-weight: 700;
   font-style: normal;
   line-height: 98%;
@@ -162,13 +178,34 @@
   transform: translateY(0);
 }
 
+@media (max-width: 1280px) {
+  .dream-row {
+    gap: 64px;
+  }
+
+  .dream-image-wrap {
+    width: 130px;
+    height: 116px;
+  }
+
+  .dream-image-wrap--kangaroo {
+    width: 118px;
+    height: 149px;
+  }
+
+  .dream-image-wrap--large {
+    width: 130px;
+    height: 116px;
+  }
+}
+
 @media (max-width: 1024px) {
   .dream-container {
     padding: 0 50px;
   }
 
   .dream-row {
-    gap: 44px;
+    gap: 48px;
   }
 
   .dream-row-text {
@@ -176,8 +213,18 @@
   }
 
   .dream-image-wrap {
+    width: 110px;
+    height: 99px;
+  }
+
+  .dream-image-wrap--kangaroo {
     width: 100px;
-    height: 126px;
+    height: 127px;
+  }
+
+  .dream-image-wrap--large {
+    width: 110px;
+    height: 99px;
   }
 
   .dream-text-block {
@@ -188,7 +235,7 @@
   .dream-text-line2 {
     white-space: normal;
     text-align: center;
-    font-size: clamp(28px, 5vw, 42px);
+    font-size: clamp(28px, 5vw, 46px);
   }
 }
 
@@ -202,7 +249,6 @@
     padding: 0 20px;
   }
 
-  /* First row: no initial offset on mobile so top 4 images aren't cut off when scrolling into view */
   .dream-row:nth-child(1) {
     transform: translateY(0);
   }
@@ -213,7 +259,7 @@
   .dream-row {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    gap: 32px;
   }
 
   .dream-row-text {
@@ -227,13 +273,23 @@
   }
 
   .dream-image-wrap {
-    width: 100px;
-    height: 126px;
+    width: 90px;
+    height: 81px;
+  }
+
+  .dream-image-wrap--kangaroo {
+    width: 82px;
+    height: 104px;
+  }
+
+  .dream-image-wrap--large {
+    width: 90px;
+    height: 81px;
   }
 
   .dream-text-line1,
   .dream-text-line2 {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: clamp(24px, 6vw, 38px);
     white-space: normal;
   }
 }
@@ -245,9 +301,19 @@
   }
 
   .dream-image-wrap {
-    width: 88px;
-    height: 111px;
+    width: 76px;
+    height: 68px;
     border-radius: 10px;
+  }
+
+  .dream-image-wrap--kangaroo {
+    width: 70px;
+    height: 88px;
+  }
+
+  .dream-image-wrap--large {
+    width: 76px;
+    height: 68px;
   }
 
   .dream-text-line1,

@@ -5,7 +5,7 @@ const CARDS = [
   {
     image: '/images/home-page/image 52.png',
     badge: 'For Students',
-    subtitle: 'World-Class Education',
+    subtitle: 'World - Class Education',
     cta: 'Book 1:1 Counselling',
   },
   {
@@ -26,10 +26,11 @@ const ServiceCards = () => {
   return (
     <section className="service-cards-section">
       <div className="service-cards-container">
-        {/* Figma: title left, description right */}
+        {/* Figma: title left (~44%), description right (~56%) */}
         <div className="service-cards-header">
           <h2 className="service-cards-title">
-            Everything You Need for Your <span className="service-cards-title-accent">Australia Dream</span>
+            Everything You Need for Your{' '}
+            <span className="service-cards-title-accent">Australia Dream</span>
           </h2>
           <p className="service-cards-description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -38,7 +39,7 @@ const ServiceCards = () => {
           </p>
         </div>
 
-        {/* Figma: three cards, minimal gap, content overlaid on image */}
+        {/* Figma: 3 cards — widths 403 : 636 : 400, full-width strip */}
         <div className="service-cards-strip">
           {CARDS.map((card, i) => (
             <div key={i} className="service-card">
@@ -49,10 +50,14 @@ const ServiceCards = () => {
                   <span className="service-card-play-icon" />
                 </div>
                 <div className="service-card-content">
+                  {/* Orange badge with arrow */}
                   <div className="service-card-badge">
                     {card.badge}
-                    <span className="service-card-arrow" aria-hidden="true">→</span>
+                    <span className="service-card-arrow" aria-hidden="true">↗</span>
                   </div>
+                  {/* White horizontal divider */}
+                  <div className="service-card-divider" />
+                  {/* Subtitle + CTA row */}
                   <div className="service-card-bottom-row">
                     <h3 className="service-card-subtitle">{card.subtitle}</h3>
                     <span className="service-card-cta">{card.cta}</span>

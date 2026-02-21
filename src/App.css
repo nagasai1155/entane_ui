@@ -41,7 +41,7 @@ body {
   overflow-x: clip;
 }
 
-/* Hero morph: scroll-driven, no CSS transition = real-time 1:1 with scroll */
+/* Hero morph: scroll-driven scale animation — GPU composited, no layout thrashing */
 .hero-morph-image {
   position: fixed;
   top: 0;
@@ -55,10 +55,10 @@ body {
   transform-origin: center center;
   overflow: hidden;
   pointer-events: none;
-  contain: layout style paint;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  will-change: opacity;
+  will-change: transform, opacity;
+  isolation: isolate;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -76,6 +76,9 @@ body {
   object-fit: cover;
   object-position: center 35%;
   display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .hero-morph-dark-overlay {
@@ -91,16 +94,15 @@ body {
   position: absolute;
   inset: 0;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 100px;
-  gap: 40px;
   pointer-events: none;
 }
 
 .hero-morph-title {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(920px, 90%);
   font-family: 'Poppins', sans-serif;
   font-size: 76px;
   font-weight: 300;
@@ -112,8 +114,16 @@ body {
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.hero-morph-content .hero-cta {
+.hero-cta-wrap {
+  position: absolute;
+  top: 78%;
+  left: 50%;
+  transform: translateX(-50%);
   pointer-events: auto;
+  white-space: nowrap;
+}
+
+.hero-cta {
   background: transparent;
   color: white;
   border: 1px solid #FF3300;
@@ -126,7 +136,7 @@ body {
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
-.hero-morph-content .hero-cta:hover {
+.hero-cta:hover {
   background: #FF3300;
   color: white;
   border-color: #FF3300;
@@ -160,24 +170,19 @@ body {
 
 .dream-scroll-container {
   position: relative;
-  contain: layout style paint;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  will-change: auto;
 }
 
 .dream-sticky-wrap {
   position: relative;
   z-index: 1;
+  /* translate3d keeps this on its own GPU layer for jitter-free pinning */
   will-change: transform;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
-  contain: layout style paint;
-  font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -248,21 +253,19 @@ html {
 @media (max-width: 1024px) {
   .hero-morph-title {
     font-size: 56px;
-  }
-  .hero-morph-content {
-    padding: 0 50px;
+    width: min(760px, 90%);
   }
 }
 
 @media (max-width: 768px) {
   .hero-morph-title {
     font-size: 38px;
+    top: 40%;
   }
-  .hero-morph-content {
-    padding: 0 24px;
-    gap: 20px;
+  .hero-cta-wrap {
+    top: 76%;
   }
-  .hero-morph-content .hero-cta {
+  .hero-cta {
     padding: 12px 28px;
     font-size: 15px;
   }
@@ -272,12 +275,12 @@ html {
   .hero-morph-title {
     font-size: 28px;
     line-height: 1.2;
+    top: 38%;
   }
-  .hero-morph-content {
-    padding: 0 16px;
-    gap: 16px;
+  .hero-cta-wrap {
+    top: 74%;
   }
-  .hero-morph-content .hero-cta {
+  .hero-cta {
     padding: 10px 24px;
     font-size: 14px;
   }

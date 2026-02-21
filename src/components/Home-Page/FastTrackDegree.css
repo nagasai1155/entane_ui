@@ -1,26 +1,18 @@
+/* Fast-Track Your Degree — Figma exact match */
 .fast-track-section {
   padding: var(--section-spacing, 100px) 0;
-  background-color: #FAFAF8;
+  background-color: #FFFFFF;
 }
 
+/* Heading block — Figma Frame 80: column, gap 10px, padding 10px 0 */
 .section-header {
   text-align: left;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.thingreen-image {
-  width: 711.151px;
-  height: 291.055px;
-  flex-shrink: 0;
-  object-fit: contain;
-  position: absolute;
-  right: -210px;
-  top: -150px;
-  margin-left: 60px;
-}
-
+/* Title — Poppins 600, 45px, #00352B */
 .section-title {
-  color: var(--Primary-Color, #00352B);
+  color: #00352B;
   font-family: Poppins, sans-serif;
   font-size: 45px;
   font-style: normal;
@@ -30,6 +22,7 @@
   margin: 0 0 10px 0;
 }
 
+/* "Degree" accent — italic orange */
 .section-title-accent {
   color: #F30;
   font-family: Poppins, sans-serif;
@@ -40,6 +33,7 @@
   letter-spacing: -0.15px;
 }
 
+/* Subtitle — Poppins 400, 18px, rgba(0,0,0,0.75) */
 .section-subtitle {
   color: rgba(0, 0, 0, 0.75);
   font-family: Poppins, sans-serif;
@@ -50,31 +44,34 @@
   margin: 0;
 }
 
+/* Tabs container — Figma gap heading→tabs = 10px */
 .tabs-container {
-  margin-top: 50px;
+  margin-top: 10px;
   width: 100%;
 }
 
+/* Tabs row — Figma: row, gap 30px */
 .tabs {
   display: flex;
-  gap: 40px;
-  margin-bottom: 50px;
+  gap: 30px;
+  margin-bottom: 45px;
 }
 
+/* Tab button — Figma: Inter 500, 20px, #00352B, 50% opacity inactive */
 .tab {
   background: none;
   border: none;
-  color: var(--Primary-Color, #00352B);
+  color: #00352B;
   font-family: Inter, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.15px;
-  padding: 15px 0;
+  padding: 10px 0;
   cursor: pointer;
   position: relative;
-  transition: all 0.3s ease;
+  transition: opacity 0.25s ease;
   opacity: 0.5;
 }
 
@@ -86,105 +83,141 @@
   opacity: 1;
 }
 
+/* Active underline — Figma: orange stroke, 2px */
 .tab.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: #F30;  /* Orange */
+  height: 2px;
+  background: #F30;
 }
 
+/* Cards wrapper — relative so thingreen can be absolute */
 .courses-wrapper {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 60px;
   position: relative;
+  overflow: visible;
 }
 
+/* Thingreen decorative image — Figma: 605×667px, right side, partially off-screen */
+.thingreen-image {
+  position: absolute;
+  right: -210px;
+  top: -110px;
+  width: 605px;
+  height: 667px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 0;
+  flex-shrink: 0;
+}
+
+/* Cards grid — two 370px cards, 22px gap */
 .courses-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 22px;
   flex: 0 1 auto;
   align-self: flex-start;
-  margin-top: 0;
 }
 
+/* Course card — 370×372 total (180 image + 213 text, 21px overlap) */
 .course-card {
-  width: 390px;
+  width: 370px;
   background: white;
-  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
+/* Image portion */
 .course-image {
-  width: 390px;
-  height: 192px;
+  width: 370px;
+  height: 180px;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .course-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
+/* Text portion */
 .course-content {
-  display: flex;
-  width: 390px;
-  height: 211px;
+  width: 370px;
+  height: 205px;
   padding: 20px 10px;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   background: #00352B;
   color: white;
+  /* Figma 21px overlap: text card starts 21px before image ends */
+  margin-top: -21px;
+  position: relative;
+  z-index: 1;
 }
 
+/* Course title — Figma: Inter 500, 24px, white */
 .course-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  line-height: 1.3;
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.21em;
+  letter-spacing: -0.15px;
+  color: #FFFFFF;
+  margin: 0;
 }
 
+/* Description — Figma: Inter 400, 18px, white 70% opacity */
 .course-description {
-  font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 20px;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.21em;
+  letter-spacing: -0.15px;
+  color: rgba(255, 255, 255, 0.70);
+  margin: 0;
+  flex: 1;
 }
 
+/* Explore More — Figma: Poppins 400 16px, white, white underline */
 .explore-btn {
   background: none;
   border: none;
-  color: white;
+  color: #FFFFFF;
+  font-family: Poppins, sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 1.2em;
+  letter-spacing: -0.15px;
   cursor: pointer;
-  padding: 0;
+  padding: 0 0 6px 0;
   position: relative;
   text-align: left;
+  display: inline-block;
+  text-decoration: none;
 }
 
+/* White underline — Figma: stroke #FFFFFF, 1px — sits below text with clear gap */
 .explore-btn::after {
   content: '';
   position: absolute;
-  bottom: -1px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 1px;
-  background: #F30;
+  background: #FFFFFF;
   pointer-events: none;
 }
 
-/* Course Modal Styles */
+/* Course Modal Styles — preserved */
 .course-modal-overlay {
   position: fixed;
   top: 0;
@@ -201,12 +234,8 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .course-modal {
@@ -219,23 +248,17 @@
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s ease;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .course-modal::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
 
 .course-modal-close {
@@ -386,27 +409,12 @@
   color: white;
 }
 
-/* Responsive Design */
-@media (max-width: 1400px) {
-  .thingreen-image {
-    width: 500px;
-    height: auto;
-  }
-}
-
+/* ── Responsive ── */
 @media (max-width: 1024px) {
   .courses-wrapper {
     flex-direction: column;
     align-items: flex-start;
     gap: 40px;
-  }
-
-  .thingreen-image {
-    width: 100%;
-    max-width: 711.151px;
-    height: auto;
-    align-self: flex-start;
-    margin-top: 0;
   }
 
   .section-title,
@@ -415,39 +423,25 @@
   }
 
   .courses-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    gap: 16px;
   }
 
   .tab {
-    font-size: 20px;
-  }
-
-  .course-content {
-    padding: 25px;
+    font-size: 18px;
   }
 
   .course-title {
     font-size: 20px;
+  }
+
+  .course-description {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 768px) {
   .fast-track-section {
     padding: 60px 0;
-  }
-
-  .courses-wrapper {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .thingreen-image {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    margin-top: 0;
   }
 
   .section-title,
@@ -460,7 +454,7 @@
   }
 
   .tabs-container {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .tabs {
@@ -476,21 +470,24 @@
   }
 
   .courses-grid {
-    display: flex;
     flex-direction: column;
+    gap: 0;
   }
-  
+
   .course-card {
-    margin-right: 0;
     width: 100%;
   }
 
   .course-image {
+    width: 100%;
     height: 180px;
   }
 
   .course-content {
-    padding: 20px;
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    margin-top: -16px;
   }
 
   .course-title {
@@ -498,10 +495,6 @@
   }
 
   .course-description {
-    font-size: 13px;
-  }
-
-  .explore-btn {
     font-size: 14px;
   }
 
@@ -542,7 +535,7 @@
 
   .tab {
     font-size: 16px;
-    padding: 12px 0;
+    padding: 8px 0;
   }
 
   .course-image {
@@ -554,7 +547,7 @@
   }
 
   .course-description {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .course-modal {
@@ -563,20 +556,12 @@
   }
 
   .course-modal-details {
-    padding: 25px;
-  }
-
-  .course-modal-title {
-    font-size: 24px;
-  }
-
-  .course-modal-description {
-    font-size: 14px;
+    padding: 20px;
   }
 
   .course-modal-info {
     grid-template-columns: 1fr;
-    padding: 20px;
+    padding: 15px;
   }
 
   .course-modal-actions {
@@ -586,5 +571,6 @@
   .course-modal-btn-primary,
   .course-modal-btn-secondary {
     width: 100%;
+    min-width: auto;
   }
 }

@@ -103,6 +103,12 @@ const FastTrackDegree = () => {
           </div>
 
           <div className="courses-wrapper">
+            <img
+              src="/images/home-page/thingreen.png"
+              alt=""
+              className="thingreen-image"
+              aria-hidden="true"
+            />
             <div className="courses-grid">
               {courses[activeTab].map((course, index) => (
                 <div key={index} className="course-card">
@@ -115,7 +121,7 @@ const FastTrackDegree = () => {
                   <div className="course-content">
                     <h3 className="course-title">{course.title}</h3>
                     <p className="course-description">{course.description}</p>
-                    <button 
+                    <button
                       className="explore-btn"
                       onClick={() => setSelectedCourse({ ...course, category: activeTab, imageIndex: index })}
                     >
@@ -125,11 +131,6 @@ const FastTrackDegree = () => {
                 </div>
               ))}
             </div>
-            <img 
-              src="/images/home-page/thingreen.png" 
-              alt="Decorative element" 
-              className="thingreen-image"
-            />
           </div>
         </div>
       </div>

@@ -1,96 +1,94 @@
-/* Everything You Need section - Figma: title left, description right, cards with overlay */
+/* Everything You Need section — Figma Group 10 (1440×661px) */
 .service-cards-section {
   padding: var(--section-spacing, 100px) 0;
   background-color: #FFFFFF;
 }
 
+/* Inner container — matches Figma title x=71 */
 .service-cards-container {
-  max-width: 1442px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 100px;
-  padding-right: 115px;
+  padding: 0 71px;
 }
 
-/* Header: title left, description right (Figma) */
+/* Header: title left (~46%), description right (~54%) — Figma x split at 664/1440 */
 .service-cards-header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 44% 56%;
+  gap: 0;
   align-items: start;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
+/* Title: Poppins 700 45px — Figma fontWeight 700 */
 .service-cards-title {
-  width: 540px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 45px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%;
-  letter-spacing: -0.15px;
-  color: #00352B;
-  margin: 0;
-}
-
-.service-cards-title-accent {
-  color: #F30;
   font-family: 'Poppins', sans-serif;
   font-size: 45px;
   font-style: normal;
   font-weight: 700;
   line-height: 120%;
   letter-spacing: -0.15px;
+  color: #00352B;
+  margin: 0;
+  max-width: 540px;
 }
 
+/* "Australia Dream" span — orange bold italic */
+.service-cards-title-accent {
+  color: #F30;
+  font-family: 'Poppins', sans-serif;
+  font-size: 45px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -0.15px;
+}
+
+/* Description — Figma: x=664, y=28, fontWeight 400, 18px, black */
 .service-cards-description {
-  width: 683px;
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
   letter-spacing: -0.15px;
-  color: #000;
-  margin: 26px 0 0 0;
+  color: #000000;
+  margin: 28px 0 0 0;
+  max-width: 683px;
 }
 
-/* Three cards - first and third narrower, middle full (1fr) */
+/* Card strip — full viewport width, proportions: 403fr 636fr 400fr */
 .service-cards-strip {
   display: grid;
-  grid-template-columns: 0.75fr 1fr 0.75fr;
+  grid-template-columns: 403fr 636fr 400fr;
   gap: 0;
-  overflow: visible;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 53, 43, 0.08);
   width: 100vw;
   position: relative;
   left: 50%;
-  right: 50%;
   margin-left: -50vw;
-  margin-right: -50vw;
+  overflow: hidden;
 }
 
 .service-card {
   position: relative;
   overflow: hidden;
-  z-index: 0;
 }
 
+/* Rounded outer corners only */
 @media (min-width: 769px) {
   .service-card:first-child .service-card-image {
-    border-radius: 12px 0 0 12px;
+    border-radius: 0;
   }
-
   .service-card:last-child .service-card-image {
-    border-radius: 0 12px 12px 0;
+    border-radius: 0;
   }
 }
 
-
+/* Card image — Figma card height 468px */
 .service-card-image {
   position: relative;
   width: 100%;
-  height: 320px;
+  height: 468px;
   overflow: hidden;
   isolation: isolate;
 }
@@ -102,18 +100,18 @@
   display: block;
 }
 
-/* Gradient overlay - premium darkening for text legibility */
+/* Gradient — bottom darkening for text legibility */
 .service-card-gradient {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+  height: 55%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.15) 65%, transparent 100%);
   pointer-events: none;
 }
 
-/* Play button - white circle with triangle, centered */
+/* Play button — white circle with triangle, centered */
 .service-card-play {
   position: absolute;
   top: 50%;
@@ -139,55 +137,50 @@
   margin-left: 4px;
 }
 
-/* Content overlaid on image - premium layout */
+/* Overlay content — sits at card bottom */
 .service-card-content {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 24px 24px 24px;
+  padding: 0 20px 37px;
   color: white;
-  min-width: 0;
-  overflow: hidden;
+  pointer-events: none;
 }
 
-/* White horizontal line extending left to right for each card - separate for each */
-.service-card-content::before {
-  content: '';
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  top: 70px;
-  height: 1px;
-  background-color: rgba(255, 255, 255, 1);
-  z-index: 1;
-}
-
-/* Orange label: compact, premium */
+/* Orange badge — Figma: #FF3300, 7px radius, h=27 */
 .service-card-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: #FF3300;
   color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 5px 14px;
+  border-radius: 7px;
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  text-transform: capitalize;
-  letter-spacing: 0.02em;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.15px;
+  margin-bottom: 7px;
   position: relative;
-  z-index: 2;
 }
 
 .service-card-arrow {
-  font-size: 12px;
-  opacity: 0.95;
+  font-size: 13px;
+  font-weight: 400;
+  transform: rotate(-45deg);
+  display: inline-block;
 }
 
-/* Bottom row: subtitle, line, CTA */
+/* White horizontal divider line — Figma stroke: #FFFFFF, 1px */
+.service-card-divider {
+  width: 100%;
+  height: 1px;
+  background: #FFFFFF;
+  margin-bottom: 6px;
+}
+
+/* Bottom row: subtitle left, CTA right */
 .service-card-bottom-row {
   display: flex;
   justify-content: space-between;
@@ -196,91 +189,97 @@
   min-width: 0;
 }
 
-
-/* Main title: reduced font size */
+/* Subtitle — Figma: Poppins 400, 16px */
 .service-card-subtitle {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   color: white;
   margin: 0;
-  line-height: 1.25;
+  line-height: 1.2;
   flex-shrink: 1;
   min-width: 0;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* CTA: reduced font size with orange underline */
+/* CTA — Figma: Poppins 400, 10px, with orange underline */
 .service-card-cta {
   font-family: 'Poppins', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 10px;
+  font-weight: 400;
   color: white;
   flex-shrink: 0;
-  opacity: 0.95;
   white-space: nowrap;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.15px;
   position: relative;
   display: inline-block;
 }
 
+/* Orange underline — Figma: stroke #FF3300, 1px */
 .service-card-cta::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
   height: 1px;
   background-color: #FF3300;
 }
 
-/* Responsive */
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .service-cards-container {
+    padding: 0 50px;
+  }
+
+  .service-cards-title {
+    font-size: 38px;
+  }
+
+  .service-cards-title-accent {
+    font-size: 38px;
+  }
+
+  .service-card-image {
+    height: 400px;
+  }
+
+  .service-card-badge {
+    font-size: 17px;
+  }
+}
+
 @media (max-width: 1024px) {
   .service-cards-container {
     padding: 0 50px;
   }
 
   .service-cards-header {
-    gap: 40px;
-    margin-bottom: 40px;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
 
   .service-cards-title {
-    font-size: 36px;
-    width: auto;
-    max-width: 540px;
+    font-size: 34px;
   }
 
   .service-cards-title-accent {
-    font-size: 36px;
+    font-size: 34px;
   }
 
   .service-cards-description {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .service-card-image {
-    height: 280px;
+    height: 360px;
   }
 
-  .service-card-play {
-    width: 48px;
-    height: 48px;
-  }
-
-  .service-card-play-icon {
-    border-left-width: 12px;
-    border-top-width: 8px;
-    border-bottom-width: 8px;
+  .service-card-badge {
+    font-size: 16px;
   }
 
   .service-card-subtitle {
-    font-size: 15px;
-  }
-
-  .service-card-cta {
-    font-size: 10px;
+    font-size: 14px;
   }
 }
 
@@ -295,13 +294,12 @@
 
   .service-cards-header {
     grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 32px;
+    gap: 16px;
+    margin-bottom: 28px;
   }
 
   .service-cards-title {
     font-size: 28px;
-    width: auto;
     max-width: 100%;
   }
 
@@ -311,48 +309,32 @@
 
   .service-cards-description {
     font-size: 15px;
+    margin-top: 0;
+    max-width: 100%;
   }
 
   .service-cards-strip {
     grid-template-columns: 1fr;
-    gap: 16px;
-    border-radius: 12px;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    gap: 12px;
   }
 
   .service-card-image {
-    height: 260px;
-    border-radius: 12px;
-  }
-
-  .service-card-content {
-    padding: 20px 20px 20px;
+    height: 280px;
   }
 
   .service-card-badge {
-    font-size: 14px;
-    padding: 7px 12px;
+    font-size: 15px;
+    padding: 5px 12px;
   }
 
   .service-card-subtitle {
     font-size: 14px;
-  }
-
-  .service-card-cta {
-    font-size: 10px;
   }
 }
 
 @media (max-width: 480px) {
   .service-cards-title {
     font-size: 24px;
-    width: auto;
-    max-width: 100%;
   }
 
   .service-cards-title-accent {
@@ -360,17 +342,6 @@
   }
 
   .service-card-image {
-    height: 220px;
-  }
-
-  .service-card-play {
-    width: 44px;
-    height: 44px;
-  }
-
-  .service-card-play-icon {
-    border-left-width: 10px;
-    border-top-width: 7px;
-    border-bottom-width: 7px;
+    height: 240px;
   }
 }
