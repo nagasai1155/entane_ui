@@ -81,16 +81,14 @@ const LatestNews = () => {
                 <div className="latest-news-card-image">
                   <img src={NEWS_IMAGES[index]} alt="" />
                 </div>
-                <div className="latest-news-card-content">
-                  <time className="latest-news-date">{article.date}</time>
-                  <h3 className="latest-news-card-title">{article.title}</h3>
-                  <button 
-                    onClick={() => openModal(index)}
-                    className="latest-news-read-more"
-                  >
-                    Read More
-                  </button>
-                </div>
+                <time className="latest-news-date">{article.date}</time>
+                <h3 className="latest-news-card-title">{article.title}</h3>
+                <button 
+                  onClick={() => openModal(index)}
+                  className="latest-news-read-more"
+                >
+                  Read More
+                </button>
               </article>
             ))}
           </div>

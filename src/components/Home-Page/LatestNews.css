@@ -1,4 +1,13 @@
-/* Latest News - Figma: orange title, tagline, 4 cards (image, date, title, Read More) */
+/* Latest News — Figma exact match
+   Section bg: #444444 (dark grey canvas)
+   Header: "Latest News" orange 45px italic bold / tagline white 50%
+   Cards: transparent, 295px wide, 10px padding, 10px gap (column)
+   Image: 275×160px, borderRadius 5px
+   Date: Poppins 400 16px, white 70% opacity
+   Title: Poppins 400 21px, white
+   Grid: row, gap 20px
+   Read More: orange #FF3300 text */
+
 .latest-news-section {
   width: 100vw;
   position: relative;
@@ -13,63 +22,72 @@
 .latest-news-section .container {
   max-width: 1442px;
   margin: 0 auto;
-  padding: 0 100px;
-  padding-right: 115px;
+  padding: 0 86px;
+  padding-right: 114px;
 }
 
+/* Header block */
 .latest-news-header {
-  margin-bottom: 48px;
+  margin-bottom: 40px;
+  padding: 10px 0;
 }
 
 .latest-news-title {
-  color: #F30;
-  font-family: Poppins;
+  color: #FF3300;
+  font-family: Poppins, sans-serif;
   font-size: 45px;
   font-style: italic;
   font-weight: 600;
-  line-height: 120%; /* 54px */
+  line-height: 1.2em;
   letter-spacing: -0.15px;
-  margin: 0 0 12px 0;
+  margin: 0 0 10px 0;
   text-align: left;
 }
 
 .latest-news-tagline {
-  color: var(--Light-Text, rgba(0, 53, 43, 0.50));
-  font-family: Poppins;
+  color: rgba(0, 53, 43, 0.50);
+  font-family: Poppins, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%; /* 21.6px */
+  line-height: 1.2em;
   margin: 0;
   text-align: left;
 }
 
+/* Cards grid — Figma: row, gap 20px, hug sizing */
 .latest-news-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 20px;
+  padding: 10px 0;
 }
 
+/* Individual card — Figma Blog: 295px, column, gap 10px, padding 10px, transparent */
 .latest-news-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  cursor: default;
 }
 
 .latest-news-card:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
+/* Card image — Figma Frame 94: 275×160px, borderRadius 5px */
 .latest-news-card-image {
   width: 100%;
-  height: 200px;
+  height: 160px;
   overflow: hidden;
-  background: #f0f0f0;
-  border-radius: 12px 12px 0 0;
+  border-radius: 5px;
+  background: #555;
+  flex-shrink: 0;
 }
 
 .latest-news-card-image img {
@@ -79,63 +97,57 @@
   display: block;
 }
 
+/* Content area — no extra padding (card already has 10px) */
 .latest-news-card-content {
-  padding: 20px;
-  flex: 1;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
+/* Date — Poppins 400 16px, dark text 70% opacity */
 .latest-news-date {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #000;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.latest-news-card-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #000;
-  margin: 0 0 12px 0;
-  flex: 0 0 auto;
-}
-
-.latest-news-excerpt {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
   font-weight: 400;
-  line-height: 1.6;
-  color: rgba(0, 0, 0, 0.7);
-  margin: 0 0 16px 0;
-  flex: 1;
+  line-height: 1.2em;
+  color: rgba(0, 0, 0, 0.70);
+  display: block;
+  margin: 0;
 }
 
+/* Card title — Poppins 400 21px, dark */
+.latest-news-card-title {
+  font-family: Poppins, sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.2em;
+  letter-spacing: -0.15px;
+  color: #000000;
+  margin: 0;
+}
+
+/* Read More — Figma Instance: orange text, 85×19px */
 .latest-news-read-more {
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
   color: #FF3300;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
   text-decoration: none;
-  transition: color 0.2s, opacity 0.2s;
   align-self: flex-start;
-  margin-top: auto;
+  margin: 0;
+  transition: opacity 0.2s;
 }
 
 .latest-news-read-more:hover {
-  color: #e62e00;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
-/* Modal Styles */
+/* Modal Styles — preserved from original */
 .latest-news-modal-overlay {
   position: fixed;
   top: 0;
@@ -162,12 +174,12 @@
   position: relative;
   animation: slideUp 0.3s ease;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .latest-news-modal-content::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 .latest-news-modal-close {
@@ -202,11 +214,10 @@
 
 .latest-news-modal-image {
   width: 100%;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   border-radius: 20px 20px 0 0;
   position: relative;
-  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
 }
 
 .latest-news-modal-image img {
@@ -222,7 +233,7 @@
 }
 
 .latest-news-modal-date {
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.6);
@@ -231,7 +242,7 @@
 }
 
 .latest-news-modal-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 26px;
   font-weight: 600;
   line-height: 1.3;
@@ -240,7 +251,7 @@
 }
 
 .latest-news-modal-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.6;
@@ -266,21 +277,19 @@
   flex: 1;
   min-width: 200px;
   padding: 14px 32px;
-  background: linear-gradient(135deg, #D84315 0%, #E65100 40%, #FF6F00 100%);
+  background: #FF3300;
   color: white;
   border: none;
   border-radius: 12px;
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(216, 67, 21, 0.3);
+  transition: opacity 0.2s;
 }
 
 .latest-news-modal-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(216, 67, 21, 0.4);
+  opacity: 0.9;
 }
 
 .latest-news-modal-btn-secondary {
@@ -291,11 +300,11 @@
   color: #00352B;
   border: 2px solid #00352B;
   border-radius: 12px;
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s;
 }
 
 .latest-news-modal-btn-secondary:hover {
@@ -304,26 +313,22 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+  .latest-news-section .container {
+    padding: 0 60px;
+  }
+}
+
 @media (max-width: 1024px) {
   .latest-news-section .container {
     padding: 0 40px;
@@ -331,22 +336,15 @@
 
   .latest-news-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .latest-news-title {
     font-size: 36px;
   }
 
-  .latest-news-modal-image {
-    height: 180px;
-  }
-
-  .latest-news-modal-content {
-    max-width: 95%;
-  }
-
-  .latest-news-modal-title {
-    font-size: 24px;
+  .latest-news-card-title {
+    font-size: 18px;
   }
 }
 
@@ -368,28 +366,20 @@
   }
 
   .latest-news-header {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   .latest-news-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
 
   .latest-news-card-image {
     height: 180px;
   }
 
-  .latest-news-card-content {
-    padding: 18px;
-  }
-
   .latest-news-card-title {
-    font-size: 15px;
-  }
-
-  .latest-news-excerpt {
-    font-size: 13px;
+    font-size: 16px;
   }
 
   .latest-news-modal-content {
@@ -398,20 +388,11 @@
   }
 
   .latest-news-modal-body {
-    padding: 25px;
+    padding: 20px;
   }
 
   .latest-news-modal-title {
     font-size: 22px;
-  }
-
-  .latest-news-modal-text {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  .latest-news-modal-image {
-    height: 180px;
   }
 
   .latest-news-modal-actions {
@@ -421,6 +402,7 @@
   .latest-news-modal-btn-primary,
   .latest-news-modal-btn-secondary {
     width: 100%;
+    min-width: unset;
   }
 }
 
@@ -431,22 +413,5 @@
 
   .latest-news-card-image {
     height: 160px;
-  }
-
-  .latest-news-modal-content {
-    max-width: 95%;
-    max-height: 95vh;
-  }
-
-  .latest-news-modal-body {
-    padding: 25px;
-  }
-
-  .latest-news-modal-title {
-    font-size: 20px;
-  }
-
-  .latest-news-modal-text {
-    font-size: 13px;
   }
 }

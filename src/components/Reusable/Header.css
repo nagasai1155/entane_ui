@@ -64,10 +64,6 @@
   background-color: transparent;  /* Transparent for homepage hero */
 }
 
-.header.header--compact .header-nav {
-  padding: 6px 0;
-}
-
 .header.header--solid .header-nav {
   background-color: #00352B;  /* Solid green on non-home pages like About Us */
 }
@@ -318,6 +314,15 @@
   background-color: #FF3300;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(255, 51, 0, 0.3);
+}
+
+.cta-button--orange {
+  background: #FF3300;
+}
+
+.cta-button--orange:hover {
+  background-color: #cc2900;
+  box-shadow: 0 2px 8px rgba(255, 51, 0, 0.4);
 }
 
 /* Responsive Design */

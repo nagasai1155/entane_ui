@@ -165,6 +165,58 @@ const FAQ_ITEMS = [
 
 // ========== Component ==========
 
+function TestimonialCard({ img, name, university, height, dimmed }) {
+  return (
+    <div
+      className="relative overflow-hidden rounded-[20px] bg-[#E5E7EB] w-full"
+      style={{ height: height || 270, flexShrink: 0 }}
+    >
+      {/* Photo */}
+      <img
+        src={img}
+        alt={name || "testimonial"}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Dimmed overlay for outer columns */}
+      {dimmed && (
+        <div className="absolute inset-0" style={{ background: "rgba(255,255,255,0.35)" }} />
+      )}
+
+      {/* Play button */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div
+          className="flex items-center justify-center rounded-full"
+          style={{
+            width: 48, height: 48,
+            background: "rgba(255,255,255,0.92)",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+          }}
+        >
+          <svg width="16" height="18" viewBox="0 0 16 18" fill="none">
+            <path d="M15 7.268a2 2 0 010 3.464L3 17.856a2 2 0 01-3-1.732V1.876A2 2 0 013 .144l12 6.124z" fill="#1a1a1a" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Name bar */}
+      <div
+        className="absolute bottom-[10px] left-[10px] right-[10px] flex items-center justify-center"
+        style={{
+          background: "rgba(30,30,30,0.62)",
+          backdropFilter: "blur(6px)",
+          borderRadius: 999,
+          padding: "6px 14px",
+        }}
+      >
+        <span className="font-poppins text-white text-[12px] whitespace-nowrap truncate" style={{ fontWeight: 400 }}>
+          {name} | {university}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function WhyAustralia() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [activeCareerCategoryIndex, setActiveCareerCategoryIndex] =
@@ -182,62 +234,49 @@ export default function WhyAustralia() {
   return (
     <div className="flex flex-col bg-white">
       <div className="flex flex-col self-stretch bg-white">
-        {/* ===== Hero Section — pixel-perfect Figma match =====
-          Figma node 259:1903 — 1440×865px
-          Left 58%: vertically centred, extrabold heading, description, 2 pill buttons, avatar social
-          Right 42%: 2 full image columns + ~30% of a 3rd column bleeds off-screen
-            Col-1: mt-[60px] offset (starts lower), top img ~30% height, bottom img fills rest
-            Col-2: no offset (starts at very top), top img ~64% height, bottom img fills rest
-            Col-3: same width, shifted right so only ~30% is visible before overflow-hidden clips it
-        ===== */}
-        {/* Section has explicit 865px height on lg so inner h-full / flex-basis % resolve */}
+        {/* ===== Hero Section ===== */}
         <section className="w-full bg-white overflow-hidden lg:h-[865px]">
           <div className="flex flex-col lg:flex-row w-full h-full lg:h-[865px]">
-            {/* ── LEFT: text content ── */}
+
+            {/* ── LEFT: text — Figma structure: extrabold heading, muted desc, 2 pill CTAs, avatars ── */}
             <div className="w-full lg:w-[58%] flex flex-col justify-center px-[24px] md:px-[60px] lg:px-[80px] py-[60px] lg:py-[100px]">
+
               <h1
                 className="font-poppins text-black mb-[20px]"
-                style={{
-                  fontSize: "clamp(36px, 4.8vw, 68px)",
-                  fontWeight: 800,
-                  lineHeight: 1.07,
-                  letterSpacing: "-1.5px",
-                }}
+                style={{ fontSize: "clamp(36px, 4.8vw, 68px)", fontWeight: 800, lineHeight: 1.07, letterSpacing: "-1.5px" }}
               >
-                Turn Your Ideas into Stunning Visuals with AI
+                Turn Your Ideas<br />
+                into Stunning<br />
+                Visuals with AI
               </h1>
 
               <p
-                className="text-black mb-[36px] font-poppins"
-                style={{
-                  fontSize: 16,
-                  lineHeight: 1.6,
-                  opacity: 0.5,
-                  maxWidth: 440,
-                }}
+                className="text-black font-poppins mb-[36px]"
+                style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.5, maxWidth: 440 }}
               >
                 Describe anything you imagine, and let our AI bring it to life
                 in breathtaking, high-quality images.
               </p>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons — Figma: dark pill + outlined pill */}
               <div className="flex items-center gap-[12px] flex-wrap mb-[52px]">
                 <button
                   type="button"
-                  className="px-[28px] py-[14px] bg-black text-white rounded-full text-[15px] font-semibold font-poppins hover:opacity-85 transition-opacity"
+                  onClick={() => window.dispatchEvent(new CustomEvent('openConsultationPopup'))}
+                  className="px-[28px] py-[14px] bg-black text-white rounded-full text-[15px] font-semibold font-poppins transition-opacity hover:opacity-80"
                 >
                   Start Creating
                 </button>
                 <button
                   type="button"
-                  className="px-[28px] py-[14px] bg-white text-black rounded-full text-[15px] font-semibold font-poppins hover:bg-gray-50 transition-colors"
+                  className="px-[28px] py-[14px] bg-white text-black rounded-full text-[15px] font-semibold font-poppins transition-colors hover:bg-gray-50"
                   style={{ border: "1.5px solid #D1D5DB" }}
                 >
                   Explore Gallery
                 </button>
               </div>
 
-              {/* Avatar social proof */}
+              {/* Avatar social proof — Figma: overlapping circles + bold count */}
               <div className="flex items-center gap-[10px]">
                 <div className="flex -space-x-[8px]">
                   {[
@@ -247,103 +286,62 @@ export default function WhyAustralia() {
                   ].map((src, i) => (
                     <div
                       key={i}
-                      className="w-[34px] h-[34px] rounded-full overflow-hidden bg-gray-300 shrink-0"
+                      className="w-[34px] h-[34px] rounded-full overflow-hidden bg-gray-200 shrink-0"
                       style={{ border: "2px solid #fff" }}
                     >
-                      <img
-                        src={src}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={src} alt="" className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>
-                <p
-                  className="font-poppins"
-                  style={{ fontSize: 13, color: "rgba(0,0,0,0.45)", lineHeight: 1.5 }}
-                >
+                <p className="font-poppins" style={{ fontSize: 13, color: "rgba(0,0,0,0.45)", lineHeight: 1.5 }}>
                   Join with{" "}
-                  <span style={{ fontWeight: 700, color: "rgba(0,0,0,0.75)" }}>
-                    2100+ Users
-                  </span>{" "}
+                  <span style={{ fontWeight: 700, color: "rgba(0,0,0,0.75)" }}>2100+ Users</span>{" "}
                   and start generating images now
                 </p>
               </div>
             </div>
 
-            {/* ── RIGHT: image grid — Figma exact layout ──
-                • 2 vertical columns
-                • Col-1: 3 images, mt-[30px]
-                • Col-2: 3 images, mt-0
-                • Right padding ensures they don't hit edge
-            */}
-            <div className="hidden lg:flex lg:w-[42%] h-full pl-[20px] pr-[80px]">
-              <div
-                className="flex gap-[20px] h-full w-full"
-                style={{ paddingTop: 20, paddingBottom: 20 }}
-              >
+            {/* ── RIGHT: 2 columns × 2 images, full-width to right edge ── */}
+            <div className="hidden lg:flex lg:w-[42%] h-full pl-[20px] py-[30px] gap-[16px]">
 
-                {/* ── Column 1 — staggered 30px lower than col-2 ── */}
-                <div
-                  className="flex-1 flex flex-col gap-[20px] min-w-0"
-                  style={{ marginTop: 40 }}
-                >
-                  {/* short top image */}
-                  <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 180 }}>
-                    <img
-                      src="/images/home-page/gallery-6.png"
-                      alt="Melbourne"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* tall middle image */}
-                  <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 340 }}>
-                    <img
-                      src="/images/home-page/australia.png"
-                      alt="Sydney Opera House"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* bottom image fills the rest */}
-                  <div className="flex-1 rounded-[20px] overflow-hidden min-h-0">
-                    <img
-                      src="/images/home-page/gallery-8.png"
-                      alt="Sydney Harbour Bridge"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+              {/* Column 1 — starts 50px lower, short top + tall bottom */}
+              <div className="flex-1 flex flex-col gap-[16px]" style={{ marginTop: 50 }}>
+                <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 220 }}>
+                  <img
+                    src="/images/home-page/gallery-6.png"
+                    alt="Melbourne"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-
-                {/* ── Column 2 — starts at top ── */}
-                <div className="flex-1 flex flex-col gap-[20px] min-w-0 overflow-hidden">
-                  {/* short banner image at very top */}
-                  <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 80 }}>
-                    <img
-                      src="/images/home-page/gallery-9.png"
-                      alt="Arriving in Australia"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* tall portrait image */}
-                  <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 480 }}>
-                    <img
-                      src="/images/home-page/gallery-3.png"
-                      alt="University graduation"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* bottom image fills remaining space */}
-                  <div className="flex-1 rounded-[20px] overflow-hidden min-h-0">
-                    <img
-                      src="/images/home-page/gallery-5.png"
-                      alt="Sydney Opera House"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                <div className="flex-1 rounded-[20px] overflow-hidden min-h-0">
+                  <img
+                    src="/images/home-page/australia.png"
+                    alt="Sydney Opera House"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-
               </div>
+
+              {/* Column 2 — starts at top, tall top + short bottom, no right padding = flush to edge */}
+              <div className="flex-1 flex flex-col gap-[16px]">
+                <div className="flex-1 rounded-[20px] overflow-hidden min-h-0">
+                  <img
+                    src="/images/home-page/gallery-3.png"
+                    alt="Graduation"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="rounded-[20px] overflow-hidden shrink-0" style={{ height: 180 }}>
+                  <img
+                    src="/images/home-page/gallery-5.png"
+                    alt="Campus life"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
             </div>
+
           </div>
         </section>
 
@@ -573,8 +571,9 @@ export default function WhyAustralia() {
           </div>
         </section>
 
-        {/* ===== Testimonials Section ===== */}
+        {/* ===== Testimonials Section — exact Figma layout (node 259:2077) ===== */}
         <section className="w-full overflow-hidden bg-white py-[64px]">
+
           {/* Header */}
           <div className="text-center mb-[52px] px-6">
             <span className="inline-flex items-center gap-[6px] px-[20px] py-[9px] text-[14px] bg-[#3D9E56] text-white rounded-full mb-[20px] font-medium font-poppins">
@@ -589,94 +588,89 @@ export default function WhyAustralia() {
             </p>
           </div>
 
-          {/* ── Desktop: 5-col equal-width flex layout matching Figma ── */}
+          {/* ── Desktop: 5-col staggered grid — exact Figma proportions ── */}
           <div
             className="hidden lg:flex items-start gap-[18px]"
             style={{ marginLeft: -20, marginRight: -20 }}
           >
-            {/* Col 1 — bleeds left slightly, staggered 30px lower */}
-            <div className="flex-1" style={{ height: 270, marginTop: 32 }}>
+            {/* Col 1 — outer left, staggered 32px lower, dimmed */}
+            <div className="flex-1" style={{ marginTop: 32 }}>
               <TestimonialCard
                 img={TESTIMONIALS[0].image}
                 name={TESTIMONIALS[0].name}
                 university={TESTIMONIALS[0].university}
-                height="100%"
+                height={270}
+                dimmed
               />
             </div>
 
-            {/* Col 2 — 2 stacked cards */}
-            <div className="flex flex-col gap-[14px] flex-1" style={{ height: 270 }}>
-              <div style={{ height: 140 }}>
-                <TestimonialCard
-                  img={TESTIMONIALS[1].image}
-                  name={TESTIMONIALS[1].name}
-                  university={TESTIMONIALS[1].university}
-                  height="140px"
-                />
-              </div>
-              <div className="flex-1">
-                <TestimonialCard
-                  img={TESTIMONIALS[5].image}
-                  name={TESTIMONIALS[5].name}
-                  university={TESTIMONIALS[5].university}
-                  height="100%"
-                />
-              </div>
+            {/* Col 2 — 2 stacked equal height */}
+            <div className="flex-1 flex flex-col gap-[14px]">
+              <TestimonialCard
+                img={TESTIMONIALS[1].image}
+                name={TESTIMONIALS[1].name}
+                university={TESTIMONIALS[1].university}
+                height={175}
+              />
+              <TestimonialCard
+                img={TESTIMONIALS[5].image}
+                name={TESTIMONIALS[5].name}
+                university={TESTIMONIALS[5].university}
+                height={175}
+              />
             </div>
 
-            {/* Col 3 — center, tallest card */}
-            <div className="flex-1" style={{ height: 330 }}>
+            {/* Col 3 — center, tallest */}
+            <div className="flex-1">
               <TestimonialCard
                 img={TESTIMONIALS[2].image}
                 name={TESTIMONIALS[2].name}
                 university={TESTIMONIALS[2].university}
-                height="100%"
+                height={330}
               />
             </div>
 
-            {/* Col 4 — 2 stacked cards (mirror of col 2) */}
-            <div className="flex flex-col gap-[14px] flex-1" style={{ height: 270 }}>
-              <div style={{ height: 140 }}>
-                <TestimonialCard
-                  img={TESTIMONIALS[3].image}
-                  name={TESTIMONIALS[3].name}
-                  university={TESTIMONIALS[3].university}
-                  height="140px"
-                />
-              </div>
-              <div className="flex-1">
-                <TestimonialCard
-                  img={TESTIMONIALS[6].image}
-                  name={TESTIMONIALS[6].name}
-                  university={TESTIMONIALS[6].university}
-                  height="100%"
-                />
-              </div>
+            {/* Col 4 — 2 stacked equal height */}
+            <div className="flex-1 flex flex-col gap-[14px]">
+              <TestimonialCard
+                img={TESTIMONIALS[3].image}
+                name={TESTIMONIALS[3].name}
+                university={TESTIMONIALS[3].university}
+                height={175}
+              />
+              <TestimonialCard
+                img={TESTIMONIALS[6].image}
+                name={TESTIMONIALS[6].name}
+                university={TESTIMONIALS[6].university}
+                height={175}
+              />
             </div>
 
-            {/* Col 5 — bleeds right slightly, staggered 30px lower */}
-            <div className="flex-1" style={{ height: 270, marginTop: 32 }}>
+            {/* Col 5 — outer right, staggered 32px lower, dimmed */}
+            <div className="flex-1" style={{ marginTop: 32 }}>
               <TestimonialCard
                 img={TESTIMONIALS[4].image}
                 name={TESTIMONIALS[4].name}
                 university={TESTIMONIALS[4].university}
-                height="100%"
+                height={270}
+                dimmed
               />
             </div>
           </div>
 
-          {/* Mobile */}
-          <div className="grid grid-cols-2 gap-[16px] lg:hidden px-6">
-            {TESTIMONIALS.slice(0, 4).map((t, i) => (
+          {/* Mobile: 2-col grid */}
+          <div className="grid grid-cols-2 gap-[14px] lg:hidden px-6">
+            {TESTIMONIALS.slice(0, 6).map((t, i) => (
               <TestimonialCard
                 key={i}
                 img={t.image}
                 name={t.name}
                 university={t.university}
-                height="200px"
+                height={200}
               />
             ))}
           </div>
+
         </section>
 
         {/* ===== FAQ Section (Exact Figma Specs) ===== */}
@@ -730,36 +724,3 @@ export default function WhyAustralia() {
   );
 }
 
-function TestimonialCard({ img, name, university, height }) {
-  return (
-    <div
-      style={{ height: height || "100%" }}
-      className="relative overflow-hidden rounded-[20px] bg-[#E5E7EB] w-full"
-    >
-      <img
-        src={img}
-        alt={name || "testimonial"}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-[48px] h-[48px] bg-white/90 rounded-full flex items-center justify-center shadow-lg">
-          <svg
-            width="16"
-            height="18"
-            viewBox="0 0 16 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M15 7.268a2 2 0 010 3.464L3 17.856a2 2 0 01-3-1.732V1.876A2 2 0 013 .144l12 6.124z"
-              fill="#1a1a1a"
-            />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute bottom-[12px] left-[12px] right-[12px] bg-black/55 backdrop-blur-sm text-white text-[12px] px-[16px] py-[8px] rounded-full font-poppins">
-        {name || "John Doe"} | {university || "ABCD University"}
-      </div>
-    </div>
-  );
-}

@@ -5,15 +5,10 @@ import './Header.css';
 const Header = ({ hideNavbar = false }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const isNewsBlogs = location.pathname === '/news-blogs';
-  const isCaseStudies = location.pathname === '/case-studies';
-  const isEligibility = location.pathname === '/eligibility-calculator';
 
   return (
     <header
-      className={`header ${isHome ? 'header--transparent' : 'header--solid'} ${
-        isNewsBlogs || isCaseStudies || isEligibility ? 'header--compact' : ''
-      } ${hideNavbar ? 'header--hidden' : ''}`}
+      className={`header ${isHome ? 'header--transparent' : 'header--solid'} ${hideNavbar ? 'header--hidden' : ''}`}
     >
       <div className="header-top">
         <div className="header-contact">
@@ -105,7 +100,7 @@ const Header = ({ hideNavbar = false }) => {
           </ul>
           <button
             type="button"
-            className="cta-button"
+            className={`cta-button${isHome ? '' : ' cta-button--orange'}`}
             onClick={() => window.dispatchEvent(new CustomEvent('openConsultationPopup'))}
           >
             Book 1:1 Counselling
