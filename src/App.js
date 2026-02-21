@@ -10,6 +10,7 @@ import CaseStudiesPage from './pages/CaseStudiesPage';
 import EligibilityCalculatorPage from './pages/EligibilityCalculatorPage';
 import CostOfLivingCalculatorPage from './pages/CostOfLivingCalculatorPage';
 import VisaPathwaysPage from './pages/VisaPathwaysPage';
+import MigrationAdvisorsPage from './pages/MigrationAdvisorsPage';
 import SearchCoursesPage from './pages/SearchCoursesPage';
 import SearchUniversitiesPage from './pages/SearchUniversitiesPage';
 import ExpensePlanningScholarshipsPage from './pages/ExpensePlanningScholarshipsPage';
@@ -48,6 +49,7 @@ function App() {
         <Route path="/cost-of-living-calculator" element={<CostOfLivingCalculatorPage />} />
         {/* Our Services */}
         <Route path="/visa-pathways" element={<VisaPathwaysPage />} />
+        <Route path="/migration-advisors" element={<MigrationAdvisorsPage />} />
         <Route path="/search-courses" element={<SearchCoursesPage />} />
         <Route path="/search-universities" element={<SearchUniversitiesPage />} />
         <Route path="/expense-planning-scholarships" element={<ExpensePlanningScholarshipsPage />} />

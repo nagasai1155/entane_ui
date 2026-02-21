@@ -42,17 +42,7 @@ const Header = ({ hideNavbar = false }) => {
                 <div className="dropdown-mega-column">
                   <span className="dropdown-mega-title">Migration</span>
                   <ul>
-                    <li><Link to="/visa-pathways">Visa Pathways</Link></li>
-                    <li>
-                      <button
-                        type="button"
-                        className="dropdown-mega-link"
-                        onClick={() => window.dispatchEvent(new CustomEvent('openConsultationPopup'))}
-                      >
-                        Book 1:1 Consultation
-                      </button>
-                    </li>
-                    <li><Link to="/visa-pathways#migration-advisors">Migration Advisors</Link></li>
+                    <li><Link to="/migration-advisors">Migration Advisors</Link></li>
                   </ul>
                 </div>
                 <div className="dropdown-mega-column">
