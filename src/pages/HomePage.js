@@ -56,10 +56,11 @@ function HomePage() {
   useEffect(() => {
     let cachedHeaderH    = 0;
     let cachedTargetRect = null;
+    let dreamCardsCache  = null;
     let rafId;
 
     // Bust the cached rect on resize or any layout-changing event
-    const onResize = () => { cachedTargetRect = null; cachedHeaderH = 0; };
+    const onResize = () => { cachedTargetRect = null; cachedHeaderH = 0; dreamCardsCache = null; };
     window.addEventListener('resize', onResize);
 
     const tick = () => {
@@ -181,6 +182,23 @@ function HomePage() {
       // 6. Hero title + CTA: exit fast (first 25 % of scroll)
       if (morphContentRef.current) {
         morphContentRef.current.style.opacity = Math.max(0, 1 - raw * 4).toFixed(4);
+      }
+
+      // 7. Dream cards: one CSS-var write per frame drives all cards atomically —
+      //    eliminates per-card DOM mutations and scroll-jitter entirely.
+      if (!dreamCardsCache && dreamStickyRef.current) {
+        dreamCardsCache = dreamStickyRef.current.querySelector('.dream-section');
+      }
+      if (dreamCardsCache) {
+        if (raw >= 1) {
+          dreamCardsCache.style.setProperty('--dcards-s', '1');
+          dreamCardsCache.style.setProperty('--dcards-o', '1');
+        } else {
+          const s = (0.05 + 0.95 * easeInOutCubic(raw)).toFixed(4);
+          const o = Math.min(1, raw * 3).toFixed(4);
+          dreamCardsCache.style.setProperty('--dcards-s', s);
+          dreamCardsCache.style.setProperty('--dcards-o', o);
+        }
       }
 
       rafId = requestAnimationFrame(tick);

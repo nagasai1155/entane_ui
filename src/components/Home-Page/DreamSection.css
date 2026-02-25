@@ -327,11 +327,19 @@
 .dream-section--morph-active .dream-text-block,
 .dream-section--morph-active .dream-text-line2 {
   opacity: 1 !important;
-  transform: none !important;
+  /* translateZ(0) keeps rows on the GPU compositor layer — prevents sub-pixel
+     jitter that occurs when a non-GPU parent contains GPU-promoted children */
+  transform: translateZ(0) !important;
   transition: none !important;
 }
 
 .dream-section--morph-active .dream-image-wrap {
+  /* Promote each card to its own GPU layer for jitter-free compositing */
+  will-change: transform, opacity;
+  transform-origin: center center;
+  /* CSS custom props set from the RAF loop — one parent write, zero per-card writes */
+  transform: scale(var(--dcards-s, 1)) translateZ(0);
+  opacity: var(--dcards-o, 1);
   transition: none !important;
 }
 
