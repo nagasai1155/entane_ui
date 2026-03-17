@@ -3,20 +3,22 @@ import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
 
 
-/* ── Figma asset URLs (valid for 7 days from fetch date) ── */
-const imgImage47      = "https://www.figma.com/api/mcp/asset/ec534d10-c1f4-46dc-b54b-9f0d68e93ed5";
-const imgImage48      = "https://www.figma.com/api/mcp/asset/ce60418c-11b0-4671-8f4c-c24f5118ccc0";
-const imgImage49      = "https://www.figma.com/api/mcp/asset/73c92001-b8e3-4870-b4fe-c34cf9b9ae4a";
-const imgC299         = "https://www.figma.com/api/mcp/asset/6f38f2a0-62d2-4ba6-94ba-45d1e85a4f09";
-const imgE6c18        = "https://www.figma.com/api/mcp/asset/caf48d9b-88ce-45ed-abac-8e6192bf19ac";
-const imgF4780        = "https://www.figma.com/api/mcp/asset/8da3cbca-3f5b-4354-90ad-6e7089eb748a";
-const imgImage50      = "https://www.figma.com/api/mcp/asset/7936c1ee-eefe-4099-bfd7-692d5a5a1bfc";
-const imgC1c91        = "https://www.figma.com/api/mcp/asset/96d20481-5953-41eb-9d02-f3cd6381018a";
-const imgArrivalIcon  = "https://www.figma.com/api/mcp/asset/a63aaa96-038b-4eb3-ae3d-983cd11c2f02";
-const imgOnboardIcon  = "https://www.figma.com/api/mcp/asset/26d41f10-357c-4519-b034-5f615e2adc29";
-const imgHostelIcon   = "https://www.figma.com/api/mcp/asset/6005f9aa-a755-400b-b6aa-1360d09e0e24";
-const imgJobIcon      = "https://www.figma.com/api/mcp/asset/7d5eaf14-19fa-4f58-84fb-fee3be0fc0de";
-const imgBanner       = "https://www.figma.com/api/mcp/asset/ed721f6a-72cc-4f78-9781-9101547ff135";
+const ASSET_BASE = process.env.PUBLIC_URL || '';
+
+/* Local assets (avoid expiring Figma URLs) */
+const imgImage47 = `${ASSET_BASE}/images/post-arrival/image47.png`;
+const imgImage48 = `${ASSET_BASE}/images/post-arrival/image48.png`;
+const imgImage49 = `${ASSET_BASE}/images/post-arrival/image49.png`;
+const imgC299 = `${ASSET_BASE}/images/post-arrival/c299.png`;
+const imgE6c18 = `${ASSET_BASE}/images/post-arrival/e6c18.png`;
+const imgF4780 = `${ASSET_BASE}/images/post-arrival/f4780.png`;
+const imgImage50 = `${ASSET_BASE}/images/post-arrival/image50.png`;
+const imgC1c91 = `${ASSET_BASE}/images/post-arrival/c1c91.png`;
+const imgArrivalIcon = `${ASSET_BASE}/images/post-arrival/arrival-icon.png`;
+const imgOnboardIcon = `${ASSET_BASE}/images/post-arrival/onboard-icon.png`;
+const imgHostelIcon = `${ASSET_BASE}/images/post-arrival/hostel-icon.png`;
+const imgJobIcon = `${ASSET_BASE}/images/post-arrival/job-icon.png`;
+const imgBanner = `${ASSET_BASE}/images/post-arrival/banner.png`;
 
 function PostArrivalSupportPage() {
   const openConsultation = () => window.dispatchEvent(new CustomEvent('openConsultationPopup'));

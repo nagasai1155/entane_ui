@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CTA_BG = 'https://www.figma.com/api/mcp/asset/af4953f8-9768-4c80-9808-4be665a20315';
+const CTA_BG = '/images/home-page/book-free-call-banner-bg.png';
 
 const EsanteBanner = () => {
   return (
@@ -8,7 +8,7 @@ const EsanteBanner = () => {
       <div className="relative w-full max-w-[1259px] mx-auto h-[367px] mb-[84px]">
 
         {/* Background image — 1047×367, offset 106px from left, rounded corners */}
-        <div className="absolute top-0 left-[106px] w-[1047px] h-[367px] rounded-[37px] overflow-hidden">
+        <div className="absolute top-0 left-[106px] w-[1047px] max-w-[calc(100%-212px)] h-[367px] rounded-[37px] overflow-hidden bg-[#E65100]">
           <img
             src={CTA_BG}
             alt=""

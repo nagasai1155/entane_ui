@@ -2,43 +2,43 @@ import React, { useState } from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
 
-/* ── Figma asset URLs (valid ~7 days) ── */
-const imgCoach  = "https://www.figma.com/api/mcp/asset/886fd36e-414d-4af1-b7f9-1e4b576bcbb4";
-const imgJosh   = "https://www.figma.com/api/mcp/asset/db5c4bcb-12ed-4fa3-b09b-2172178dfd37";
-const imgBanner = "https://www.figma.com/api/mcp/asset/1b51f536-6b4f-4f73-88dc-310523941da2";
+/* ── Local images ── */
+const imgCoach  = '/images/ielts-coach.png';
+const imgJosh   = '/images/ielts-josh-photo.png';
+const imgBanner = '/images/home-page/book-free-call-banner-bg.png';
 
 /* Hero background is a local asset (1440×982 building photo) */
 const HERO_BG = '/images/ielts-hero-bg.png';
 
-/* ── Testimonial data — local images from public/images/ielts ── */
+/* ── Testimonial data — local images from public/images ── */
 const CARDS = [
   {
-    img:  '/images/ielts/testimonial (1).png',
+    img:  '/images/ielts-testi-1.png',
     city: 'Melbourne (State of Victoria)', quote: '"Changed how I study for IELTS entirely."',              uni: 'The University of Melbourne',         hasOverlay: true,
   },
   {
-    img:  '/images/ielts/testimonial (2).png',
+    img:  '/images/ielts-testi-2.png',
     city: 'Sydney (New South Wales)',      quote: '"My PTE score went from 58 to 79 in 6 weeks."',         uni: 'University of Sydney',                hasOverlay: true,
   },
   {
-    img:  '/images/ielts/testimonial (3).png',
+    img:  '/images/ielts-testi-3.png',
     city: 'Brisbane (Queensland)',         quote: '"Genuine coaching, real confidence builder."',           uni: 'Queensland University of Technology', hasOverlay: true,
   },
   {
-    /* Card 4 — plain image, no overlay */
-    img:  '/images/ielts/testimonial.png',
+    /* Card 4 — plain image, no overlay (play button) */
+    img:  '/images/ielts-testi-4.png',
     city: '', quote: '', uni: '',                                                                                                                    hasOverlay: false,
   },
   {
-    img:  '/images/ielts/testimonial (1).png',
+    img:  '/images/ielts-testi-5.png',
     city: 'Adelaide (South Australia)',    quote: '"From Band 6 to Band 8 \u2014 Josh\'s methods work."',  uni: 'University of Adelaide',              hasOverlay: true,
   },
   {
-    img:  '/images/ielts/testimonial (2).png',
+    img:  '/images/ielts-testi-1.png',
     city: 'Melbourne (State of Victoria)', quote: '"Incredible support throughout my IELTS journey."',     uni: 'The University of Melbourne',         hasOverlay: true,
   },
   {
-    img:  '/images/ielts/testimonial (3).png',
+    img:  '/images/ielts-testi-2.png',
     city: 'Melbourne (State of Victoria)', quote: '"Best decision I made before coming to Australia."',    uni: 'The University of Melbourne',         hasOverlay: true,
   },
 ];

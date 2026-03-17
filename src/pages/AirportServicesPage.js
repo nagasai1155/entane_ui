@@ -2,11 +2,10 @@ import React from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
 
-// Figma assets (valid for 7 days from generation)
-const HERO_BG     = 'https://www.figma.com/api/mcp/asset/a5747409-c0b2-41cb-97c0-b97df834f0e8';
-const AIRPLANE    = 'https://www.figma.com/api/mcp/asset/16353a13-82cf-436b-9018-f9daafcca8ba';
-const WHAT_WE_DO_IMG = 'https://www.figma.com/api/mcp/asset/48cd3f5a-3bb7-4178-b5b3-3621d7e40365';
-const CTA_BG      = 'https://www.figma.com/api/mcp/asset/af4953f8-9768-4c80-9808-4be665a20315';
+const HERO_BG        = '/images/airport-hero-bg.png';
+const AIRPLANE       = '/images/passenger-jet.png';
+const WHAT_WE_DO_IMG = '/images/airport-hero-bg.png';
+const CTA_BG         = '/images/esante-cta-bg.png';
 
 function AirportServicesPage() {
   return (
@@ -16,9 +15,9 @@ function AirportServicesPage() {
       <div className="flex flex-col items-center self-stretch w-full max-w-[1440px] mx-auto bg-white pt-[94px]">
 
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
-        {/* Outer wrapper is 673 px; airplane absolute at bottom-[-80px] overflows
-            80 px. mb-[104px] = airplane overflow (80) + gap to body copy (24).   */}
-        <div className="relative w-full mb-[104px]">
+        {/* Outer wrapper is 673 px; airplane absolute at bottom-[-96px] overflows
+            96 px. mb-[120px] = airplane overflow (96) + gap to body copy (24).   */}
+        <div className="relative w-full mb-[120px]">
 
           {/* Hero photo container — exact Figma size */}
           <div className="relative w-full h-[673px] overflow-hidden">
@@ -103,19 +102,12 @@ function AirportServicesPage() {
               Img crop: w-[235.94%] h-[335.56%] left-[-65.54%] top-[-101.68%]     */}
           <div
             className="absolute pointer-events-none overflow-hidden"
-            style={{ bottom: -80, left: 4, width: 669, height: 314 }}
+            style={{ bottom: -96, left: 4, width: 669, height: 314 }}
           >
             <img
               alt=""
               src={AIRPLANE}
-              style={{
-                position: 'absolute',
-                width: '235.94%',
-                height: '335.56%',
-                left: '-65.54%',
-                top: '-101.68%',
-                maxWidth: 'none',
-              }}
+              className="absolute inset-0 w-full h-full object-contain"
             />
           </div>
         </div>
