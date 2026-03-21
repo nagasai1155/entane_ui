@@ -486,7 +486,7 @@ export default function SearchUniversitiesPage() {
           justifyContent: 'center',
           gap: 16,
           flexWrap: 'wrap',
-          padding: '0 100px 40px',
+          padding: '40px 100px 40px',
         }}>
           <FilterSelect options={CITIES} value={city} onChange={setCity} />
           <FilterSelect options={UNI_TYPES} value={type} onChange={setType} />
@@ -507,7 +507,7 @@ export default function SearchUniversitiesPage() {
         {/* ══════════════════════════════════════════
             CARDS GRID — 3 per row matching Figma grid
             ══════════════════════════════════════════ */}
-        <section style={{ padding: '0 100px 80px', background: '#fff' }}>
+        <section style={{ padding: '0 100px 80px', background: '#fff', marginTop: 8 }}>
           {filtered.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '60px 0' }}>
               <p style={{ fontFamily: 'Poppins', fontSize: 18, color: '#888' }}>

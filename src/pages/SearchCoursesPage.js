@@ -615,7 +615,7 @@ export default function SearchCoursesPage() {
           justifyContent: 'center',
           gap: 16,
           flexWrap: 'wrap',
-          padding: '0 100px 40px',
+          padding: '40px 100px 40px',
         }}>
           <FilterSelect options={SUBJECT_AREAS} value={area} onChange={setArea} />
           <FilterSelect options={STUDY_LEVELS} value={level} onChange={setLevel} />
@@ -637,7 +637,7 @@ export default function SearchCoursesPage() {
         {/* ══════════════════════════════════
             CARDS GRID — 3 per row, gap 24px
             ══════════════════════════════════ */}
-        <section style={{ padding: '0 100px 80px', background: '#fff' }}>
+        <section style={{ padding: '0 100px 80px', background: '#fff', marginTop: 8 }}>
           {filtered.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '60px 0' }}>
               <p style={{ fontFamily: 'Poppins', fontSize: 18, color: '#888' }}>

@@ -2,164 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Reusable/Header';
 import Footer from '../components/Reusable/Footer';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SVG: Product Jar Illustration (replaces hero image)
-   ═══════════════════════════════════════════════════════════════════════════ */
-function ProductJarIllustration() {
-  return (
-    <div className="relative" style={{ width: 580, height: 560 }}>
-      <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} viewBox="0 0 580 560">
-        <defs>
-          <linearGradient id="pillGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ede9dd" />
-            <stop offset="100%" stopColor="#d8d2c3" />
-          </linearGradient>
-          <linearGradient id="pillGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#c9c4b5" />
-            <stop offset="100%" stopColor="#b8b2a2" />
-          </linearGradient>
-          <filter id="pillShadow">
-            <feDropShadow dx="1" dy="3" stdDeviation="3" floodOpacity="0.18" />
-          </filter>
-          <linearGradient id="jarGlass" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f0ebe0" />
-            <stop offset="25%" stopColor="#ece6d8" />
-            <stop offset="60%" stopColor="#e4ddd0" />
-            <stop offset="100%" stopColor="#d9d2c4" />
-          </linearGradient>
-          <linearGradient id="jarGlassEdge" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#d5cebd" />
-            <stop offset="8%" stopColor="#ece6d8" />
-            <stop offset="92%" stopColor="#e4ddd0" />
-            <stop offset="100%" stopColor="#cfc8b8" />
-          </linearGradient>
-          <linearGradient id="jarLid" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#3a3a3a" />
-            <stop offset="40%" stopColor="#222" />
-            <stop offset="100%" stopColor="#1a1a1a" />
-          </linearGradient>
-          <linearGradient id="lidShine" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-            <stop offset="30%" stopColor="rgba(255,255,255,0.12)" />
-            <stop offset="70%" stopColor="rgba(255,255,255,0)" />
-          </linearGradient>
-          <linearGradient id="glassReflect" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.35)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-          </linearGradient>
-          <filter id="softGlow">
-            <feGaussianBlur stdDeviation="6" />
-          </filter>
-        </defs>
-
-        {/* Scattered pills — top right cluster */}
-        <ellipse cx="440" cy="22" rx="16" ry="10" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(-25 440 22)" />
-        <ellipse cx="490" cy="50" rx="14" ry="9" fill="url(#pillGrad2)" filter="url(#pillShadow)" transform="rotate(18 490 50)" />
-        <ellipse cx="530" cy="30" rx="13" ry="8" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(-10 530 30)" />
-        <ellipse cx="400" cy="45" rx="12" ry="7.5" fill="url(#pillGrad2)" filter="url(#pillShadow)" transform="rotate(35 400 45)" />
-        <ellipse cx="555" cy="75" rx="14" ry="8.5" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(-40 555 75)" />
-        <ellipse cx="465" cy="80" rx="11" ry="7" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(12 465 80)" />
-
-        {/* Scattered pills — right side */}
-        <ellipse cx="520" cy="340" rx="15" ry="9" fill="url(#pillGrad2)" filter="url(#pillShadow)" transform="rotate(-20 520 340)" />
-        <ellipse cx="540" cy="380" rx="13" ry="8" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(25 540 380)" />
-
-        {/* Scattered pills — bottom cluster */}
-        <ellipse cx="350" cy="510" rx="16" ry="10" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(22 350 510)" />
-        <ellipse cx="400" cy="530" rx="14" ry="9" fill="url(#pillGrad2)" filter="url(#pillShadow)" transform="rotate(-18 400 530)" />
-        <ellipse cx="450" cy="505" rx="12" ry="7.5" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(40 450 505)" />
-        <ellipse cx="310" cy="525" rx="13" ry="8" fill="url(#pillGrad2)" filter="url(#pillShadow)" transform="rotate(-35 310 525)" />
-        <ellipse cx="480" cy="540" rx="11" ry="7" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(8 480 540)" />
-
-        {/* Scattered pills — left of jar */}
-        <ellipse cx="160" cy="380" rx="14" ry="9" fill="url(#pillGrad2)" filter="url(#pillShadow)" transform="rotate(30 160 380)" />
-        <ellipse cx="140" cy="420" rx="12" ry="7.5" fill="url(#pillGrad1)" filter="url(#pillShadow)" transform="rotate(-15 140 420)" />
-
-        {/* ——— Main Jar ——— */}
-        <g transform="translate(175, 40)">
-          {/* Jar shadow on surface */}
-          <ellipse cx="115" cy="472" rx="120" ry="18" fill="rgba(0,0,0,0.07)" filter="url(#softGlow)" />
-
-          {/* Glass body */}
-          <rect x="5" y="62" width="220" height="408" rx="14" fill="url(#jarGlass)" />
-          <rect x="5" y="62" width="220" height="408" rx="14" fill="url(#jarGlassEdge)" opacity="0.4" />
-
-          {/* Glass left reflection stripe */}
-          <rect x="12" y="70" width="18" height="390" rx="9" fill="url(#glassReflect)" />
-
-          {/* Glass subtle inner glow */}
-          <rect x="15" y="68" width="200" height="395" rx="10" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-
-          {/* Label area */}
-          <rect x="28" y="130" width="174" height="310" rx="5" fill="#ffffff" />
-          <rect x="28" y="130" width="174" height="310" rx="5" fill="none" stroke="#e5e0d5" strokeWidth="0.6" />
-
-          {/* Brand: Bite */}
-          <text x="48" y="180" fontFamily="Georgia, serif" fontWeight="700" fontSize="34" fill="#1a1a1a" letterSpacing="-0.5">Bite</text>
-          <text x="120" y="171" fontFamily="Poppins, sans-serif" fontWeight="400" fontSize="10" fill="#777" letterSpacing="2">248 BITS</text>
-
-          {/* Green separator */}
-          <rect x="46" y="194" width="130" height="1.8" rx="0.9" fill="#4a8c7f" />
-
-          {/* Instructions heading */}
-          <text x="46" y="216" fontFamily="Poppins, sans-serif" fontWeight="600" fontSize="8" fill="#4a8c7f" letterSpacing="0.6">INSTRUCTIONS</text>
-
-          {/* Instructions body */}
-          <text fontFamily="Poppins, sans-serif" fontWeight="400" fontSize="8" fill="#555">
-            <tspan x="46" y="234">Place one (1) bit in your mouth, bite</tspan>
-            <tspan x="46" dy="14">down, brush with a wet toothbrush —</tspan>
-            <tspan x="46" dy="14">twice a day, every day.</tspan>
-          </text>
-
-          {/* Bottom label */}
-          <text x="46" y="370" fontFamily="Poppins, sans-serif" fontWeight="400" fontSize="6" fill="#999" letterSpacing="0.4">NATURALLY WHITENING TOOTHPASTE BITS</text>
-
-          {/* Lid — dark metallic screw top */}
-          <rect x="10" y="38" width="210" height="30" rx="8" fill="url(#jarLid)" />
-          <rect x="10" y="38" width="210" height="30" rx="8" fill="url(#lidShine)" />
-          <rect x="14" y="42" width="202" height="22" rx="6" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="0.7" />
-
-          {/* Lid knob */}
-          <rect x="55" y="18" width="120" height="24" rx="12" fill="url(#jarLid)" />
-          <rect x="55" y="18" width="120" height="24" rx="12" fill="url(#lidShine)" />
-
-          {/* Glass rim between lid and body */}
-          <rect x="8" y="62" width="214" height="8" rx="4" fill="#ddd8cb" />
-          <rect x="8" y="62" width="214" height="4" rx="2" fill="rgba(255,255,255,0.2)" />
-        </g>
-      </svg>
-
-      {/* "Recommended by doctors" badge */}
-      <div
-        className="absolute flex items-center bg-white rounded-full shadow-lg"
-        style={{ top: 12, right: -10, padding: '9px 18px 9px 12px', gap: 8 }}
-      >
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <circle cx="11" cy="11" r="11" fill="#4a8c7f" opacity="0.15" />
-          <path d="M11 5c-1.6 0-2.7 1-2.7 2.2v1h5.4v-1C13.7 6 12.6 5 11 5z" fill="#4a8c7f" />
-          <rect x="6.5" y="8.2" width="9" height="7.5" rx="1.2" fill="#4a8c7f" />
-          <path d="M10 11.5h2M11 10.5v2" stroke="#fff" strokeWidth="1.1" strokeLinecap="round" />
-        </svg>
-        <span style={{ fontSize: 13, fontWeight: 500, color: '#1a1a1a', fontFamily: 'Poppins, sans-serif' }}>
-          Recommended by doctors
-        </span>
-      </div>
-
-      {/* "Trusted by 21,000+ People" badge */}
-      <div
-        className="absolute flex items-center bg-white rounded-lg shadow-lg"
-        style={{ bottom: 55, right: 10, padding: '10px 16px', gap: 8 }}
-      >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <polygon points="10,1 12.7,7.2 19,7.8 14.5,12 15.8,18 10,15 4.2,18 5.5,12 1,7.8 7.3,7.2" fill="#f0c040" />
-        </svg>
-        <span style={{ fontSize: 13, fontWeight: 500, color: '#1a1a1a', fontFamily: 'Poppins, sans-serif' }}>
-          Trusted by 21,000+ People
-        </span>
-      </div>
-    </div>
-  );
-}
+const HERO_IMAGE = '/images/employers/hero-image.png';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    SVG: Phone Mockup with Trading App (replaces stats image)
@@ -517,78 +360,115 @@ function CollaborationForm() {
    Main Page
    ═══════════════════════════════════════════════════════════════════════════ */
 function EmployersPage() {
+  const [heroCtaHover, setHeroCtaHover] = useState(false);
+
   return (
     <div className="service-page">
       <Header />
       <main className="service-page__main" style={{ paddingTop: 0, paddingBottom: 0 }}>
 
-        {/* ═══ 1. HERO SECTION ══════════════════════════════════════════════ */}
+        {/* ═══ 1. HERO — ~50/50 layout; right panel = product crop from hero-image.png ═══ */}
         <section
-          className="flex flex-row items-center w-full"
           style={{
             background: '#f8f5ef',
-            padding: '60px 100px 60px 80px',
-            minHeight: 584,
-            gap: 20,
+            paddingTop: 'clamp(48px, 10vw, 96px)',
+            paddingBottom: 'clamp(32px, 5vw, 56px)',
+            paddingLeft: 'clamp(24px, 6vw, 100px)',
+            paddingRight: 'clamp(24px, 6vw, 100px)',
             position: 'relative',
             overflow: 'hidden',
           }}
         >
-          {/* Left column — center-aligned content */}
           <div
-            className="flex flex-col items-center"
-            style={{ flex: '0 0 42%', zIndex: 1, textAlign: 'center', padding: '20px 10px' }}
+            className="flex w-full flex-col md:flex-row md:items-stretch"
+            style={{
+              maxWidth: 1280,
+              margin: '0 auto',
+              gap: 'clamp(24px, 4vw, 40px)',
+              minHeight: 'min(520px, 85vh)',
+            }}
           >
-            <h1
-              className="m-0"
-              style={{
-                fontFamily: 'Georgia, "Times New Roman", serif',
-                fontSize: 58,
-                fontWeight: 700,
-                lineHeight: 1.08,
-                color: '#1a1a1a',
-                letterSpacing: '-0.8px',
-              }}
+            <div
+              className="flex min-w-0 flex-1 items-center justify-center"
+              style={{ padding: '8px 0' }}
             >
-              It's time to<br />brush{' '}
-              <span style={{ color: '#2d6a4f', fontStyle: 'italic' }}>
-                better.
-              </span>
-            </h1>
-            <p
-              className="m-0"
-              style={{
-                fontFamily: 'Poppins, sans-serif',
-                fontSize: 15,
-                lineHeight: '1.7em',
-                color: '#555',
-                marginTop: 22,
-                maxWidth: 360,
-              }}
-            >
-              Clean up your routine with Toothpaste Bits. No plastic, no harsh chemicals – just a better way to brush your teeth.
-            </p>
-            <button
-              style={{
-                marginTop: 30,
-                padding: '16px 80px',
-                fontFamily: 'Poppins, sans-serif',
-                fontSize: 15,
-                fontWeight: 600,
-                color: '#fff',
-                background: '#00352B',
-                border: 'none',
-                borderRadius: 50,
-                cursor: 'pointer',
-              }}
-            >
-              Shop Now
-            </button>
-          </div>
+              <div
+                className="flex w-full max-w-[460px] flex-col items-center justify-center"
+                style={{
+                  textAlign: 'center',
+                  padding: '44px 40px',
+                  borderRadius: 24,
+                  background: 'rgba(232, 245, 240, 0.98)',
+                  boxShadow: '0 8px 32px rgba(0, 53, 43, 0.06)',
+                }}
+              >
+              <h1
+                className="m-0"
+                style={{
+                  fontFamily: 'Georgia, "Times New Roman", serif',
+                  fontSize: 'clamp(2rem, 3.2vw, 3.1rem)',
+                  fontWeight: 700,
+                  lineHeight: 1.08,
+                  color: '#1a1a1a',
+                  letterSpacing: '-0.8px',
+                }}
+              >
+                It&apos;s time to<br />brush{' '}
+                <span style={{ color: '#1b4d3e', fontStyle: 'italic' }}>
+                  better.
+                </span>
+              </h1>
+              <p
+                className="m-0"
+                style={{
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: 15,
+                  lineHeight: '1.7em',
+                  color: '#5a6d6a',
+                  marginTop: 22,
+                  maxWidth: 380,
+                }}
+              >
+                Clean up your routine with Toothpaste Bits. No plastic, no harsh chemicals – just a better way to brush your teeth.
+              </p>
+              <button
+                type="button"
+                onMouseEnter={() => setHeroCtaHover(true)}
+                onMouseLeave={() => setHeroCtaHover(false)}
+                style={{
+                  marginTop: 30,
+                  padding: '16px 80px',
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: '#fff',
+                  background: heroCtaHover ? '#004835' : '#00352B',
+                  border: 'none',
+                  borderRadius: 50,
+                  cursor: 'pointer',
+                  transition: 'background 0.2s ease, box-shadow 0.2s ease',
+                  boxShadow: heroCtaHover ? '0 4px 14px rgba(0, 53, 43, 0.25)' : 'none',
+                }}
+              >
+                Shop Now
+              </button>
+              </div>
+            </div>
 
-          {/* Right column — product illustration */}
-          <div className="flex items-center justify-center" style={{ flex: '1 1 0', minWidth: 0, zIndex: 1 }}>
-            <ProductJarIllustration />
+            {/* Right — product crop (PNG aligned right) */}
+            <div
+              className="min-w-0 flex-1"
+              style={{
+                minHeight: 'clamp(300px, 42vw, 500px)',
+                borderRadius: 20,
+                overflow: 'hidden',
+                backgroundColor: '#f8f5ef',
+                backgroundImage: `url(${HERO_IMAGE})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right -37px calc(50% + 8px)',
+                backgroundSize: 'auto 100%',
+              }}
+            />
           </div>
         </section>
 
