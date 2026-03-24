@@ -108,6 +108,59 @@ const UNIVERSITIES = [
 const CITIES = ['All Cities', 'Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Canberra'];
 const UNI_TYPES = ['All Types', 'Research', 'Teaching'];
 
+const UNIVERSITIES_FAQ_ITEMS = [
+  {
+    question: 'Which are the best universities in Australia for international students?',
+    answer:
+      'Australia is home to top-ranked universities such as Group of Eight (Go8) institutions, along with high-quality public and private universities offering globally recognized degrees across various fields.',
+  },
+  {
+    question: 'How do I choose the right university in Australia?',
+    answer:
+      'Choosing the right university depends on:\n• Course relevance to your career goals\n• University ranking and reputation\n• Location (city vs regional)\n• Tuition fees and scholarships\n• PR pathway opportunities\n\nA strategic selection is important for long-term success.',
+  },
+  {
+    question: 'What is the difference between universities and colleges in Australia?',
+    answer:
+      'Universities offer undergraduate, postgraduate, and research degrees\n• Colleges / Institutes usually offer diplomas, vocational courses, or pathway programs\n\nBoth can lead to strong career outcomes depending on your pathway.',
+  },
+  {
+    question: 'Do Australian universities offer scholarships for international students?',
+    answer:
+      'Yes, many universities offer:\n• Merit-based scholarships\n• Early application scholarships\n• Course-specific grants\n\nA strong SOP and academic profile can increase your chances.',
+  },
+  {
+    question: 'What are the tuition fees for universities in Australia?',
+    answer:
+      'Average tuition fees:\n• Bachelor’s: AUD 20,000 – AUD 45,000 per year\n• Master’s: AUD 22,000 – AUD 50,000 per year\n\nFees vary depending on course, university, and location.',
+  },
+  {
+    question: 'Can I get admission to Australian universities with low academic scores?',
+    answer:
+      'Yes, many universities and colleges offer:\n• Flexible entry requirements\n• Pathway or diploma programs\n• Conditional offers\n\nYour overall profile, SOP, and experience also matter.',
+  },
+  {
+    question: 'Which Australian universities offer the best PR pathways?',
+    answer:
+      'Universities located in regional areas or offering courses aligned with the Skilled Occupation List (SOL) provide better post-study work visa and PR opportunities.',
+  },
+  {
+    question: 'How long does it take to get admission into an Australian university?',
+    answer:
+      'Typically:\n• Offer letter: 1–4 weeks\n• Confirmation of Enrolment (CoE): after fee payment\n• Visa processing: varies\n\nEarly application improves your chances.',
+  },
+  {
+    question: 'Can I work while studying at an Australian university?',
+    answer:
+      'Yes, international students can:\n• Work up to 48 hours per fortnight\n• Work full-time during semester breaks\n\nThis helps manage living expenses.',
+  },
+  {
+    question: 'How does Esante help with university selection and admission?',
+    answer:
+      'Esante provides:\n• Personalized university shortlisting\n• Course + PR pathway alignment\n• Scholarship optimization\n• SOP & application support\n• Visa guidance and post-arrival support',
+  },
+];
+
 /* ── Search Icon ── */
 const SearchIcon = () => (
   <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
@@ -358,9 +411,17 @@ export default function SearchUniversitiesPage() {
   const [search, setSearch] = useState('');
   const [city, setCity] = useState('All Cities');
   const [type, setType] = useState('All Types');
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [enquiry, setEnquiry] = useState({
     fullName: '', email: '', phone: '', courseInterest: '', message: '', date: '', time: '',
   });
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
+
+  const openConsultation = () =>
+    window.dispatchEvent(new CustomEvent('openConsultationPopup'));
 
   const filtered = UNIVERSITIES.filter(u => {
     const q = search.toLowerCase();
@@ -691,6 +752,80 @@ export default function SearchUniversitiesPage() {
                 <span style={{ color: '#555', textDecoration: 'underline', cursor: 'pointer' }}>Privacy Policy</span>
               </p>
             </form>
+          </div>
+        </section>
+
+        {/* FAQ — universities in Australia for international students */}
+        <section
+          className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-6 md:px-[60px] lg:px-[100px] gap-[24px]"
+          aria-labelledby="universities-faq-heading"
+        >
+          <h2
+            id="universities-faq-heading"
+            className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+            style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+          >
+            Frequently Asked Questions About Universities in Australia for International Students
+          </h2>
+
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {UNIVERSITIES_FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center w-full">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`universities-faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: 'Inter, sans-serif' }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`universities-faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5] whitespace-pre-line"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.answer}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? '−' : '+'}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+            <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+              Still have questions? Get personalised university guidance from an Esante expert.
+            </p>
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#FF3300', padding: '12px 28px' }}
+            >
+              <span
+                className="font-poppins font-medium text-center"
+                style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+              >
+                Get Free Guidance
+              </span>
+            </button>
           </div>
         </section>
 

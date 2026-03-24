@@ -24,6 +24,79 @@ const CASE_STUDY_INITIAL = 6;
 const CASE_STUDY_LOAD_MORE = 6;
 const allCaseStudyCards = [...CASE_STUDY_CARDS, ...CASE_STUDY_CARDS];
 
+const CASE_STUDIES_FAQ_ITEMS = [
+  {
+    question: 'What are student success stories for studying in Australia?',
+    answer:
+      'Student success stories showcase real journeys of international students who successfully studied, worked, and settled in Australia. These case studies help future students understand practical challenges, outcomes, and real-life results.',
+  },
+  {
+    question: 'How do case studies help in planning to study in Australia?',
+    answer:
+      'Case studies provide real examples of:\n• University selection strategies\n• Visa approvals\n• Accommodation and job support\n• Post-arrival settlement\n\nThey help students make informed decisions based on actual experiences instead of assumptions.',
+  },
+  {
+    question: 'Are these Australia student success stories real?',
+    answer:
+      'Yes, Esante case studies are based on real students and professionals who have successfully moved to Australia through proper guidance, compliant processes, and structured planning.',
+  },
+  {
+    question: 'What can I learn from other students’ Australia journey?',
+    answer:
+      'You can learn:\n• Which courses and universities work best\n• How to avoid visa rejection mistakes\n• How students manage cost of living\n• How they secure part-time jobs\n• How they transition into long-term opportunities',
+  },
+  {
+    question: 'How long does it take to settle in Australia as an international student?',
+    answer:
+      'Most students start settling within the first 2–4 weeks with proper support, including accommodation, job guidance, and understanding local systems like banking, transport, and university onboarding.',
+  },
+  {
+    question: 'Can I also achieve similar success in Australia?',
+    answer:
+      'Yes, with the right course selection, proper documentation, and expert guidance, you can achieve similar outcomes. Success depends on your profile, planning, and execution of the process.',
+  },
+  {
+    question: 'Do students really get part-time jobs easily in Australia?',
+    answer:
+      'Many students secure part-time jobs within the first few weeks if they are guided properly. Having the right CV, communication skills, and local support significantly improves job opportunities.',
+  },
+  {
+    question: 'What are common mistakes students make while planning Australia?',
+    answer:
+      'Common mistakes include:\n• Choosing the wrong course\n• Weak SOP or GS statement\n• Lack of financial planning\n• No job or accommodation strategy\n• Relying on unverified agents\n\nCase studies help you avoid these mistakes.',
+  },
+  {
+    question: 'How important is SOP and documentation in these success stories?',
+    answer:
+      'A strong SOP and properly structured documents play a major role in:\n• University admission\n• Visa approval\n• Scholarship opportunities\n\nMost successful cases have well-prepared, compliant documentation.',
+  },
+  {
+    question: 'Do these case studies include post-arrival support experiences?',
+    answer:
+      'Yes, many success stories highlight how students benefited from:\n• Accommodation support\n• Part-time job assistance\n• Post-arrival settlement guidance\n• Local support networks in Australia',
+  },
+  {
+    question: 'Which cities in Australia are best based on student success stories?',
+    answer:
+      'Popular cities include:\n• Brisbane (affordable & job-friendly)\n• Melbourne (top universities)\n• Sydney (high exposure & opportunities)\n• Adelaide & Perth (lower cost of living)\n\nThe best city depends on your goals and budget.',
+  },
+  {
+    question: 'Can studying in Australia lead to long-term career opportunities?',
+    answer:
+      'Yes, many students transition from study to work opportunities through post-study work visas and skilled migration pathways, depending on their course and occupation demand.',
+  },
+  {
+    question: 'How does Esante help students achieve these success outcomes?',
+    answer:
+      'Esante supports students through:\n• Course and university selection\n• SOP and visa documentation\n• Accommodation and job support\n• Post-arrival settlement guidance\n\nThis end-to-end support helps students achieve real, measurable results.',
+  },
+  {
+    question: 'How can I start my Australia journey like these success stories?',
+    answer:
+      'You can start by speaking with an expert counsellor, evaluating your profile, and building a clear roadmap for study, visa, and settlement in Australia.',
+  },
+];
+
 function CaseStudyCard({ card }) {
   return (
     <div
@@ -66,6 +139,14 @@ function CaseStudyCard({ card }) {
 function CaseStudiesPage() {
   const [activeTab, setActiveTab] = useState('All');
   const [visibleCount, setVisibleCount] = useState(CASE_STUDY_INITIAL);
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
+
+  const openConsultation = () =>
+    window.dispatchEvent(new CustomEvent('openConsultationPopup'));
 
   const tabs = [
     { id: 'All', label: 'All' },
@@ -264,6 +345,80 @@ function CaseStudiesPage() {
             )}
           </div>
           </div>
+
+          {/* FAQ — success stories & case studies */}
+          <section
+            className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-6 md:px-[60px] lg:px-[100px] gap-[24px]"
+            aria-labelledby="case-studies-faq-heading"
+          >
+            <h2
+              id="case-studies-faq-heading"
+              className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+              style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+            >
+              Frequently Asked Questions About Studying in Australia Success Stories &amp; Case Studies
+            </h2>
+
+            <div className="w-full max-w-[1064px] flex flex-col">
+              {CASE_STUDIES_FAQ_ITEMS.map((item, index) => {
+                const isOpen = openFaqIndex === index;
+                return (
+                  <div key={index} className="flex flex-col items-center w-full">
+                    {index > 0 && (
+                      <div className="w-full h-[1px] bg-[#00352B]/10" />
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => toggleFaq(index)}
+                      className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                      aria-expanded={isOpen}
+                      aria-controls={`case-studies-faq-answer-${index}`}
+                    >
+                      <div className="flex-1 flex flex-col gap-[8px]">
+                        <p
+                          className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.question}
+                        </p>
+                        {isOpen && item.answer && (
+                          <p
+                            id={`case-studies-faq-answer-${index}`}
+                            className="text-[16px] font-normal text-[#00352B] leading-[1.5] whitespace-pre-line"
+                            style={{ fontFamily: 'Inter, sans-serif' }}
+                          >
+                            {item.answer}
+                          </p>
+                        )}
+                      </div>
+                      <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                        {isOpen ? '−' : '+'}
+                      </div>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+              <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+                Still have questions? Get personalised guidance from an Esante expert.
+              </p>
+              <button
+                type="button"
+                onClick={openConsultation}
+                className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+                style={{ background: '#FF3300', padding: '12px 28px' }}
+              >
+                <span
+                  className="font-poppins font-medium text-center"
+                  style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+                >
+                  Get Free Guidance
+                </span>
+              </button>
+            </div>
+          </section>
 
           {/* Reusable CTA banner (Figma Group 28 / Frame 94) */}
           <EsanteBanner />

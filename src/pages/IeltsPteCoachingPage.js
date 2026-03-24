@@ -47,11 +47,94 @@ const CARD_W   = 290;
 const CARD_GAP = 26;
 const VISIBLE  = 4;
 
+const IELTS_PTE_FAQ_ITEMS = [
+  {
+    question: 'Is IELTS or PTE required to study in Australia?',
+    answer:
+      'Yes, most universities in Australia require IELTS or PTE scores as proof of English proficiency. The required score depends on the course and institution.',
+  },
+  {
+    question: 'Does Esante provide free IELTS and PTE coaching?',
+    answer:
+      'Yes, Esante offers FREE IELTS and PTE coaching as part of its end-to-end student support services, helping students prepare for both exams and real-life communication in Australia.',
+  },
+  {
+    question: 'Who will train me for IELTS and PTE at Esante?',
+    answer:
+      'You will be trained by a CELTA & TEFL-certified communication coach with international teaching experience, focusing on real-world English and test performance.',
+  },
+  {
+    question: 'What makes Esante’s IELTS/PTE coaching different?',
+    answer:
+      'Esante’s coaching goes beyond exam preparation. It focuses on improving real communication skills, Australian accent understanding, interview confidence, and workplace English.',
+  },
+  {
+    question: 'Can I prepare for IELTS or PTE without coaching?',
+    answer:
+      'Yes, but professional coaching significantly improves your chances of achieving higher band scores faster by providing structured learning and expert feedback.',
+  },
+  {
+    question: 'What is a good IELTS score for Australia?',
+    answer:
+      'Most universities require an IELTS score of 6.0 to 7.0, but competitive courses may require higher scores. Esante helps students achieve their target bands effectively.',
+  },
+  {
+    question: 'Is PTE easier than IELTS for Australia?',
+    answer:
+      'It depends on the student’s strengths. Some find PTE easier due to its computer-based format, while others prefer IELTS. Esante helps you choose the best option.',
+  },
+  {
+    question: 'How long does it take to prepare for IELTS or PTE?',
+    answer:
+      'Preparation time varies, but most students take 4–8 weeks with proper guidance and practice.',
+  },
+  {
+    question: 'Do you provide speaking practice for IELTS and PTE?',
+    answer:
+      'Yes, Esante focuses heavily on speaking practice, including real-time feedback, pronunciation improvement, and confidence-building exercises.',
+  },
+  {
+    question: 'Will this coaching help me after I reach Australia?',
+    answer:
+      'Yes, the coaching is designed to help students beyond exams — including job interviews, workplace communication, and daily conversations in Australia.',
+  },
+  {
+    question: 'Can beginners join IELTS/PTE coaching at Esante?',
+    answer:
+      'Yes, students at all levels — beginners to advanced — can join and improve their English skills with structured support.',
+  },
+  {
+    question: 'Do you help with multiple attempts if I don’t get my target score?',
+    answer:
+      'Yes, Esante supports students with re-attempt strategies, feedback, and improvement plans to help achieve better scores.',
+  },
+  {
+    question: 'Why is English communication important in Australia?',
+    answer:
+      'Strong English skills are essential for academic success, part-time jobs, interviews, and social integration in Australia.',
+  },
+  {
+    question: 'How do I start IELTS/PTE coaching with Esante?',
+    answer:
+      'Simply fill out the enquiry form, and an Esante counsellor will guide you and connect you with the coaching team.',
+  },
+  {
+    question: 'Does Esante help with interview and job communication skills?',
+    answer:
+      'Yes, Esante prepares students for job interviews, workplace communication, and real-life situations in Australia.',
+  },
+];
+
 function IeltsPteCoachingPage() {
   const openConsultation = () =>
     window.dispatchEvent(new CustomEvent('openConsultationPopup'));
 
   const [tIdx, setTIdx] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
   const maxIdx = CARDS.length - VISIBLE;
   const prevT  = () => setTIdx(i => Math.max(0, i - 1));
   const nextT  = () => setTIdx(i => Math.min(maxIdx, i + 1));
@@ -379,6 +462,80 @@ function IeltsPteCoachingPage() {
               ✅ Beyond the Test: Josh prepares you for life in Australia\u2014teaching you the slang,<br />
               etiquette, and confidence needed to ace job interviews after you land.
             </p>
+          </div>
+        </section>
+
+        {/* FAQ — IELTS & PTE coaching for Australia */}
+        <section
+          className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-[24px] md:px-[60px] lg:px-[92px] gap-[24px] mb-[48px]"
+          aria-labelledby="ielts-pte-faq-heading"
+        >
+          <h2
+            id="ielts-pte-faq-heading"
+            className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+            style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+          >
+            Frequently Asked Questions About IELTS &amp; PTE Coaching for Australia
+          </h2>
+
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {IELTS_PTE_FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center w-full">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`ielts-pte-faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: 'Inter, sans-serif' }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`ielts-pte-faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5]"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.answer}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? '−' : '+'}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+            <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+              Still have questions? Get personalised guidance from an Esante expert.
+            </p>
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#FF3300', padding: '12px 28px' }}
+            >
+              <span
+                className="font-poppins font-medium text-center"
+                style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+              >
+                Book Free IELTS / PTE Guidance
+              </span>
+            </button>
           </div>
         </section>
 

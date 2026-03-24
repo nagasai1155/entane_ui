@@ -51,9 +51,102 @@ const JOB_SLIDES = [
   },
 ];
 
+const PART_TIME_JOB_FAQ_ITEMS = [
+  {
+    question: 'Can international students work part-time in Australia?',
+    answer:
+      'Yes, international students in Australia can work part-time while studying. As per current regulations, students are typically allowed to work up to 48 hours per fortnight during study periods and unlimited hours during breaks.',
+  },
+  {
+    question: 'How much can students earn from part-time jobs in Australia?',
+    answer:
+      'Students can earn between AUD 20 to AUD 35+ per hour depending on the job role, location, and experience. Many students earn around AUD 2,500 to AUD 4,000 per month.',
+  },
+  {
+    question: 'What are the best part-time jobs for students in Australia?',
+    answer:
+      'Common part-time jobs include roles in cafés, restaurants, petrol stations, supermarkets, retail stores, and customer service positions.',
+  },
+  {
+    question: 'Does Esante help students find part-time jobs in Australia?',
+    answer:
+      'Yes, Esante provides part-time job support by connecting students with verified employers and guiding them through the hiring process before and after arrival.',
+  },
+  {
+    question: 'Is it easy to find part-time jobs in Australia for international students?',
+    answer:
+      'It can be competitive without guidance. With the right support, preparation, and local connections, students can find jobs much faster.',
+  },
+  {
+    question: 'Do I need experience to get a part-time job in Australia?',
+    answer:
+      'Not always. Many entry-level jobs do not require prior experience. Esante helps students prepare with CV building, interview training, and communication skills.',
+  },
+  {
+    question: 'Can I get a job before arriving in Australia?',
+    answer:
+      'While most hiring happens after arrival, Esante helps students prepare in advance and connect with opportunities quickly once they land.',
+  },
+  {
+    question: 'What is the minimum wage in Australia for students?',
+    answer:
+      'The minimum wage in Australia is regulated and regularly updated, but most students earn above minimum wage depending on the role and industry.',
+  },
+  {
+    question: 'How does Esante help students get jobs faster?',
+    answer:
+      'Esante works with trusted employer networks, provides job-ready training, and guides students toward roles with better pay and higher hiring chances.',
+  },
+  {
+    question: 'What documents are required to work in Australia as a student?',
+    answer:
+      'Students typically need a valid student visa, Tax File Number (TFN), and bank account to start working legally in Australia.',
+  },
+  {
+    question: 'Can part-time jobs cover living expenses in Australia?',
+    answer:
+      'Yes, many students are able to cover rent, groceries, and daily expenses through part-time work, especially with proper job guidance.',
+  },
+  {
+    question: 'Which cities in Australia offer more job opportunities for students?',
+    answer:
+      'Cities like Brisbane, Melbourne, and Sydney offer strong job opportunities, but regional areas can also provide good work options with less competition.',
+  },
+  {
+    question: 'Do I need good English to get a part-time job in Australia?',
+    answer:
+      'Yes, basic to good English communication is important. Esante provides IELTS and communication training to help students improve their chances.',
+  },
+  {
+    question: 'Will Esante help me with interview preparation?',
+    answer:
+      'Yes, Esante provides Australian-style CV guidance, interview preparation, and workplace communication training to help students get selected.',
+  },
+  {
+    question: 'Can I switch jobs while studying in Australia?',
+    answer:
+      'Yes, students can change jobs anytime as long as they follow visa work conditions.',
+  },
+  {
+    question: 'How early should I start preparing for a part-time job in Australia?',
+    answer:
+      'Ideally, students should start preparing 2–4 weeks before arrival to increase their chances of getting hired quickly.',
+  },
+  {
+    question: 'Why choose Esante for part-time job support in Australia?',
+    answer:
+      'Esante offers end-to-end support including employer connections, job-ready training, and on-ground guidance to help students earn faster and settle smoothly.',
+  },
+];
+
 function PartTimeJobSupportPage() {
   const openConsultation = () => window.dispatchEvent(new CustomEvent('openConsultationPopup'));
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
 
   const goToPrevSlide = () => setCurrentSlide((p) => (p === 0 ? JOB_SLIDES.length - 1 : p - 1));
   const goToNextSlide = () => setCurrentSlide((p) => (p === JOB_SLIDES.length - 1 ? 0 : p + 1));
@@ -309,6 +402,80 @@ function PartTimeJobSupportPage() {
             </div>
           </div>
         </div>
+
+        {/* FAQ — part-time jobs for students in Australia */}
+        <section
+          className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-6 md:px-[60px] lg:px-[100px] gap-[24px]"
+          aria-labelledby="part-time-job-faq-heading"
+        >
+          <h2
+            id="part-time-job-faq-heading"
+            className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+            style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+          >
+            Frequently Asked Questions About Part-Time Jobs for Students in Australia
+          </h2>
+
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {PART_TIME_JOB_FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center w-full">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`part-time-job-faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: 'Inter, sans-serif' }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`part-time-job-faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5]"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.answer}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? '−' : '+'}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+            <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+              Still have questions? Get personalised guidance from an Esante expert.
+            </p>
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#FF3300', padding: '12px 28px' }}
+            >
+              <span
+                className="font-poppins font-medium text-center"
+                style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+              >
+                Get Part-Time Job Guidance
+              </span>
+            </button>
+          </div>
+        </section>
 
       </div>
 

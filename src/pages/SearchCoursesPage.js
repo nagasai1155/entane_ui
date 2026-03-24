@@ -148,6 +148,59 @@ const SUBJECT_AREAS = [
 const STUDY_LEVELS = ['All Levels', 'Undergraduate', 'Postgraduate', 'PhD / Research', 'Diploma'];
 const DESTINATIONS = ['All Destinations', 'Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Canberra'];
 
+const COURSES_FAQ_ITEMS = [
+  {
+    question: 'How do I choose the right course to study in Australia?',
+    answer:
+      'Choosing the right course depends on your academic background, career goals, budget, and PR opportunities. It’s important to select a course aligned with Australia’s Skilled Occupation List to improve your long-term migration prospects.',
+  },
+  {
+    question: 'Which courses are in high demand in Australia?',
+    answer:
+      'Some of the most in-demand courses in Australia include:\n• Nursing & Healthcare\n• Information Technology (IT)\n• Engineering\n• Accounting & Finance\n• Trades (Carpentry, Automotive, Electrical)\n• Hospitality & Cookery\n\nThese fields are aligned with skill shortages and PR pathways.',
+  },
+  {
+    question: 'What are the eligibility requirements to study in Australia?',
+    answer:
+      'Eligibility typically includes:\n• Academic qualifications (12th / Bachelor’s / Master’s)\n• English proficiency (IELTS / PTE)\n• Genuine Student (GS) requirement\n• Financial capacity proof\n\nRequirements vary by university and course.',
+  },
+  {
+    question: 'What is the cost of studying in Australia?',
+    answer:
+      'Course fees generally range from:\n• AUD 20,000 – AUD 45,000 per year (depending on course & university)\n\nAdditional costs include accommodation, living expenses, and insurance.',
+  },
+  {
+    question: 'Can I work while studying in Australia?',
+    answer:
+      'Yes, international students can work:\n• Up to 48 hours per fortnight during study periods\n• Full-time during holidays\n\nPart-time jobs help cover living expenses and gain local experience.',
+  },
+  {
+    question: 'Which intake should I choose for studying in Australia?',
+    answer:
+      'The main intakes are:\n• February (major intake)\n• July (second major intake)\n• November (limited courses)\n\nChoosing the right intake depends on course availability and your readiness.',
+  },
+  {
+    question: 'Do all courses in Australia lead to PR opportunities?',
+    answer:
+      'Not all courses lead to PR. Courses aligned with the Skilled Occupation List (SOL / MLTSSL) offer better chances for post-study work visas and permanent residency pathways.',
+  },
+  {
+    question: 'How can Esante help me select the right course and university?',
+    answer:
+      'Esante provides:\n• Personalized course & university selection\n• PR-focused career pathway planning\n• Application and admission support\n• SOP & visa guidance\n• End-to-end support before and after arrival',
+  },
+  {
+    question: 'Can I change my course or university after arriving in Australia?',
+    answer:
+      'Yes, but it must comply with visa conditions and Genuine Student requirements. Changing courses without proper guidance can impact your visa status.',
+  },
+  {
+    question: 'Is studying in Australia worth it for international students?',
+    answer:
+      'Yes, Australia offers:\n• Globally recognized education\n• Strong job opportunities\n• Post-study work visas\n• Pathways to permanent residency',
+  },
+];
+
 /* ── SVG icons matching the Figma card screenshot ── */
 const IconAustraliaFlag = () => {
   const star5 = (cx, cy, r) => {
@@ -487,9 +540,17 @@ export default function SearchCoursesPage() {
   const [area, setArea] = useState('All Areas');
   const [level, setLevel] = useState('All Levels');
   const [destination, setDestination] = useState('All Destinations');
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [enquiry, setEnquiry] = useState({
     fullName: '', email: '', phone: '', courseInterest: '', message: '', date: '', time: '',
   });
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
+
+  const openConsultation = () =>
+    window.dispatchEvent(new CustomEvent('openConsultationPopup'));
 
   const filtered = COURSES.filter(c => {
     const q = search.toLowerCase();
@@ -832,6 +893,80 @@ export default function SearchCoursesPage() {
                 <span style={{ color: '#555', textDecoration: 'underline', cursor: 'pointer' }}>Privacy Policy</span>
               </p>
             </form>
+          </div>
+        </section>
+
+        {/* FAQ — courses in Australia for international students */}
+        <section
+          className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-6 md:px-[60px] lg:px-[100px] gap-[24px]"
+          aria-labelledby="courses-faq-heading"
+        >
+          <h2
+            id="courses-faq-heading"
+            className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+            style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+          >
+            Frequently Asked Questions About Courses in Australia for International Students
+          </h2>
+
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {COURSES_FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center w-full">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`courses-faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: 'Inter, sans-serif' }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`courses-faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5] whitespace-pre-line"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.answer}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? '−' : '+'}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+            <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+              Still have questions? Get personalised course guidance from an Esante expert.
+            </p>
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#FF3300', padding: '12px 28px' }}
+            >
+              <span
+                className="font-poppins font-medium text-center"
+                style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+              >
+                Get Free Guidance
+              </span>
+            </button>
           </div>
         </section>
 

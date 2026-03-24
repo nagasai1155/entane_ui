@@ -213,9 +213,90 @@ const BLOG_INITIAL = 9;
 const BLOG_LOAD_MORE = 9;
 const allBlogPosts = [...blogPosts, ...blogPosts, ...blogPosts];
 
+const BLOGS_FAQ_ITEMS = [
+  {
+    question: 'What are the best resources to plan studying in Australia?',
+    answer:
+      'The best resources include expert blogs, cost of living guides, visa process breakdowns, scholarship information, and real student experiences. Esante’s resources page combines all these insights in one place to help students make informed decisions about studying and settling in Australia.',
+  },
+  {
+    question: 'How can blogs help in planning to study in Australia?',
+    answer:
+      'Blogs provide real-world insights, updated immigration policies, student experiences, and practical tips on accommodation, jobs, and lifestyle. They help you understand what to expect beyond just university admission.',
+  },
+  {
+    question: 'What topics should I research before moving to Australia as a student?',
+    answer:
+      'Before moving, you should research:\n• Cost of living in Australia\n• Student visa requirements\n• Part-time job opportunities\n• Accommodation options\n• Post-study work and PR pathways\n• Scholarships and funding options',
+  },
+  {
+    question: 'Where can I find the latest updates on Australia student visas?',
+    answer:
+      'You can stay updated through trusted migration experts, official government updates, and regularly updated blog resources like Esante’s insights section, which simplifies complex visa changes into easy-to-understand guidance.',
+  },
+  {
+    question: 'How do I choose the right course and university in Australia?',
+    answer:
+      'Choosing the right course depends on your career goals, budget, PR opportunities, and academic background. Expert guidance and detailed resources can help you align your course selection with long-term migration and career outcomes.',
+  },
+  {
+    question: 'What is the cost of living for international students in Australia?',
+    answer:
+      'The cost of living typically ranges between AUD 1,500 to AUD 2,500 per month depending on the city, lifestyle, and accommodation choices. You can use a cost of living calculator and expert guidance to estimate your exact expenses.',
+  },
+  {
+    question: 'Can I work while studying in Australia?',
+    answer:
+      'Yes, international students can work part-time while studying. Many students earn enough to cover their living expenses through jobs in hospitality, retail, and other sectors.',
+  },
+  {
+    question: 'How can I find part-time jobs in Australia as a student?',
+    answer:
+      'You can find part-time jobs through job portals, local networking, and student support services. Platforms like SEEK and Indeed are commonly used, but expert support can help you access better opportunities faster.',
+  },
+  {
+    question: 'What are the best cities in Australia for international students?',
+    answer:
+      'Popular student cities include:\n• Melbourne\n• Sydney\n• Brisbane\n• Adelaide\n• Perth\n\nEach city offers different advantages in terms of affordability, job opportunities, and lifestyle.',
+  },
+  {
+    question: 'How do I get scholarships to study in Australia?',
+    answer:
+      'Scholarships are awarded based on academic performance, SOP quality, and eligibility criteria. A strong application with a well-structured SOP significantly improves your chances of receiving scholarships.',
+  },
+  {
+    question: 'What is the process for applying for an Australia student visa?',
+    answer:
+      'The process includes:\n• Choosing a course and university\n• Receiving an offer letter\n• Preparing financial and academic documents\n• Writing a GS/SOP statement\n• Lodging your visa application\n\nExpert guidance ensures compliance and reduces chances of rejection.',
+  },
+  {
+    question: 'What happens after I arrive in Australia as a student?',
+    answer:
+      'After arrival, students need to set up essentials like:\n• Bank account\n• TFN\n• SIM card\n• Accommodation\n• University onboarding\n\nPost-arrival support helps students settle faster and avoid common mistakes.',
+  },
+  {
+    question: 'Can studying in Australia lead to permanent residency (PR)?',
+    answer:
+      'Yes, many courses are aligned with Australia’s Skilled Occupation List, which can create pathways to PR. However, eligibility depends on multiple factors including course selection, work experience, and visa category.',
+  },
+  {
+    question: 'Why is expert guidance important for studying in Australia?',
+    answer:
+      'Expert guidance helps you:\n• Avoid costly mistakes\n• Choose the right course and city\n• Improve visa success chances\n• Access better job and accommodation options\n• Plan long-term migration pathways',
+  },
+];
+
 function NewsBlogsPage() {
   const [searchValue, setSearchValue] = useState('');
   const [visibleCount, setVisibleCount] = useState(BLOG_INITIAL);
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
+
+  const openConsultation = () =>
+    window.dispatchEvent(new CustomEvent('openConsultationPopup'));
 
   const visiblePosts = allBlogPosts.slice(0, visibleCount);
   const rows = [];
@@ -381,6 +462,80 @@ function NewsBlogsPage() {
             </div>
           </div>
         </div>
+
+        {/* FAQ — studying in Australia, migration & student resources */}
+        <section
+          className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-6 md:px-[60px] lg:px-[100px] gap-[24px]"
+          aria-labelledby="blogs-faq-heading"
+        >
+          <h2
+            id="blogs-faq-heading"
+            className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+            style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+          >
+            Frequently Asked Questions About Studying in Australia, Migration &amp; Student Resources
+          </h2>
+
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {BLOGS_FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center w-full">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`blogs-faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: 'Inter, sans-serif' }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`blogs-faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5] whitespace-pre-line"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.answer}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? '−' : '+'}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+            <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+              Still have questions? Get personalised guidance from an Esante expert.
+            </p>
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#FF3300', padding: '12px 28px' }}
+            >
+              <span
+                className="font-poppins font-medium text-center"
+                style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+              >
+                Get Free Guidance
+              </span>
+            </button>
+          </div>
+        </section>
 
         <EsanteBanner />
       </main>

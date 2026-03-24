@@ -70,6 +70,7 @@ const Header = ({ hideNavbar = false }) => {
                 <div className="dropdown-mega-column">
                   <span className="dropdown-mega-title">Recruitment</span>
                   <ul>
+                    <li><Link to="/recruitment">Recruitment</Link></li>
                     <li><Link to="/job-seekers">For Job Seekers</Link></li>
                     <li><Link to="/job-seekers#top-in-demand">Top In-Demand Jobs</Link></li>
                     <li><Link to="/employers">For Employers</Link></li>

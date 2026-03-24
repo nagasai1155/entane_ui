@@ -99,6 +99,84 @@ const FEES_POINTS = [
   "✔ If we don't secure you a job — you pay nothing",
 ];
 
+const JOB_SEEKERS_FAQ_ITEMS = [
+  {
+    question: 'How can I get a job in Australia from overseas?',
+    answer:
+      'You can get a job in Australia by applying through verified employers who offer sponsorship under skilled visa programs like Subclass 482 or 186. With the right skills, experience, and guidance, you can secure a job offer before moving to Australia.',
+  },
+  {
+    question: 'What is employer sponsorship in Australia?',
+    answer:
+      'Employer sponsorship means an Australian employer hires you and sponsors your work visa. Common visa options include Subclass 482 (TSS visa) and Subclass 186 (PR pathway), allowing skilled professionals to legally work and settle in Australia.',
+  },
+  {
+    question: 'Which jobs are in demand in Australia for skilled migrants?',
+    answer:
+      'High-demand jobs in Australia include:\n• Healthcare (Nurses, Doctors)\n• IT (Software Engineers, Developers)\n• Engineering\n• Construction & Trades\n• Hospitality & Retail\n• Mining & Industrial roles\n\nThese occupations are listed under Australia’s Skilled Occupation List (SOL).',
+  },
+  {
+    question: 'What is the Skilled Occupation List (SOL)?',
+    answer:
+      'The Skilled Occupation List (SOL) includes professions that are in demand in Australia. Your occupation must be listed under MLTSSL, STSOL, or regional lists to qualify for skilled migration or employer-sponsored visas.',
+  },
+  {
+    question: 'What visa options are available for skilled workers in Australia?',
+    answer:
+      'Popular skilled visa options include:\n• Subclass 482 – Temporary Skill Shortage (TSS) Visa\n• Subclass 186 – Employer Nomination Scheme (PR)\n• Subclass 187 – Regional Sponsored Migration\n• PR pathways through skilled migration\n\nThe right visa depends on your profile, experience, and employer sponsorship.',
+  },
+  {
+    question: 'Do I need a job offer to move to Australia for work?',
+    answer:
+      'For employer-sponsored visas, yes — you need a valid job offer from an approved Australian employer. However, some independent skilled migration pathways may not require an offer but depend on PR points.',
+  },
+  {
+    question: 'How much salary can I expect in Australia?',
+    answer:
+      'Salaries vary by industry, but skilled professionals in Australia typically earn:\n• $70,000 to $120,000+ AUD annually\n• Higher for specialised roles\n• Hourly roles in hospitality or trades can range from $25–$40 AUD/hour.',
+  },
+  {
+    question: 'Do I need IELTS or English test for jobs in Australia?',
+    answer:
+      'Yes, most visa pathways require proof of English proficiency such as IELTS or PTE. Additionally, strong communication skills improve your chances of getting hired by Australian employers.',
+  },
+  {
+    question: 'How long does it take to get a job in Australia through sponsorship?',
+    answer:
+      'The timeline can vary between 1 to 6 months depending on your occupation demand, experience, and employer availability. Faster results are possible with strong profiles and proper preparation.',
+  },
+  {
+    question: 'Can I get permanent residency (PR) through a job in Australia?',
+    answer:
+      'Yes, many employer-sponsored roles lead to PR through visas like Subclass 186. Long-term migration pathways can transition you from temporary work visas to permanent residency.',
+  },
+  {
+    question: 'Do I have to pay upfront fees for getting a job in Australia?',
+    answer:
+      'With Esante, no. You only pay professional fees after receiving a confirmed job offer. If no job is secured, you don’t pay — making it a risk-free model.',
+  },
+  {
+    question: 'How does Esante help skilled job seekers?',
+    answer:
+      'Esante provides:\n• Employer connections & job matching\n• CV and interview preparation\n• Visa documentation and compliance\n• Sponsorship coordination\n• Post-arrival settlement support\n\nThis ensures a complete end-to-end migration journey.',
+  },
+  {
+    question: 'What documents are required to apply for jobs in Australia?',
+    answer:
+      'Common documents include:\n• Updated CV (Australian format)\n• Educational certificates\n• Work experience proof\n• English test results (IELTS/PTE)\n• Passport\n\nAdditional documents may be required based on your occupation.',
+  },
+  {
+    question: 'Can freshers apply for jobs in Australia?',
+    answer:
+      'Most employer-sponsored roles require relevant work experience. However, freshers can explore study pathways in Australia that lead to job opportunities and PR options later.',
+  },
+  {
+    question: 'Is it safe to apply for jobs in Australia through consultants?',
+    answer:
+      'Yes, if you choose ethical and transparent consultants. Always work with agencies that:\n• Do not charge upfront fees\n• Offer verified job opportunities\n• Follow legal and compliant migration processes',
+  },
+];
+
 /* ══════════════════════════════════════════════════════════════════════════════
    SUB-COMPONENTS
    ══════════════════════════════════════════════════════════════════════════════ */
@@ -477,6 +555,15 @@ function PRPointsCalculator() {
    ══════════════════════════════════════════════════════════════════════════════ */
 
 function JobSeekersPage() {
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
+
+  const openConsultation = () =>
+    window.dispatchEvent(new CustomEvent('openConsultationPopup'));
+
   return (
     <div className="flex flex-col items-center w-full bg-white">
       <Header />
@@ -705,6 +792,80 @@ function JobSeekersPage() {
 
         {/* ═══ 9. PR POINTS CALCULATOR (interactive) ═════════════════════════ */}
         <PRPointsCalculator />
+
+        {/* ═══ 10. FAQ — skilled jobs & employer sponsorship ═══════════════ */}
+        <section
+          className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-6 md:px-[60px] lg:px-[100px] gap-[24px]"
+          aria-labelledby="job-seekers-faq-heading"
+        >
+          <h2
+            id="job-seekers-faq-heading"
+            className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+            style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+          >
+            Frequently Asked Questions About Skilled Jobs in Australia &amp; Employer Sponsorship
+          </h2>
+
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {JOB_SEEKERS_FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center w-full">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`job-seekers-faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: 'Inter, sans-serif' }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`job-seekers-faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5] whitespace-pre-line"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.answer}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? '−' : '+'}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+            <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+              Still have questions? Get personalised guidance from an Esante recruitment expert.
+            </p>
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#FF3300', padding: '12px 28px' }}
+            >
+              <span
+                className="font-poppins font-medium text-center"
+                style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+              >
+                Talk to an Esante Recruitment Specialist
+              </span>
+            </button>
+          </div>
+        </section>
 
       </div>
 

@@ -18,6 +18,7 @@ import SopDocumentsPage from './pages/SopDocumentsPage';
 import AccommodationPage from './pages/AccommodationPage';
 import PostStudyWorkVisaPage from './pages/PostStudyWorkVisaPage';
 import JobSeekersPage from './pages/JobSeekersPage';
+import RecruitmentPage from './pages/RecruitmentPage';
 import EmployersPage from './pages/EmployersPage';
 import BookConsultationPage from './pages/BookConsultationPage';
 import AncillaryServicesPage from './pages/AncillaryServicesPage';
@@ -61,6 +62,7 @@ function App() {
         <Route path="/airport-services" element={<AirportServicesPage />} />
         <Route path="/post-arrival-support" element={<PostArrivalSupportPage />} />
         <Route path="/job-seekers" element={<JobSeekersPage />} />
+        <Route path="/recruitment" element={<RecruitmentPage />} />
         <Route path="/employers" element={<EmployersPage />} />
         <Route path="/book-consultation" element={<BookConsultationPage />} />
         <Route path="/ancillary-services" element={<AncillaryServicesPage />} />

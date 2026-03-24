@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Header from '../components/Reusable/Header';
 import DreamSection from '../components/Home-Page/DreamSection';
 import AustraliaSection from '../components/Home-Page/AustraliaSection';
@@ -21,8 +21,120 @@ const HERO_VIDEO_URL = 'https://cdn.jsdelivr.net/npm/video-media-samples@1.0.0/b
 const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 const easeOutCubic   = (t) => 1 - Math.pow(1 - t, 3);
 
+const HOME_FAQ_ITEMS = [
+  {
+    question: 'Why study in Australia as an international student?',
+    answer:
+      'Australia offers globally recognised education, strong career opportunities, high quality of life, and clear pathways to work and migration after study.',
+  },
+  {
+    question: 'How can I study in Australia from India or other countries?',
+    answer:
+      'You need to choose a course, apply to a university, receive an offer letter, and then apply for a student visa. Esante guides you through the entire process end-to-end.',
+  },
+  {
+    question: 'What does Esante do for students?',
+    answer:
+      'Esante helps students with course selection, university applications, SOP writing, visa processing, accommodation, part-time jobs, and post-arrival support in Australia.',
+  },
+  {
+    question: 'Is Esante a migration agent or education consultant?',
+    answer:
+      'Esante is an Australia-focused education and migration partner that provides complete support from admission to settlement in Australia.',
+  },
+  {
+    question: 'How much does it cost to study in Australia?',
+    answer:
+      'Tuition fees typically range from AUD 20,000 to AUD 45,000 per year depending on the course and university. Living costs vary by city and lifestyle.',
+  },
+  {
+    question: 'Can I work while studying in Australia?',
+    answer:
+      'Yes, international students can work part-time while studying. This helps cover living expenses and gain local work experience.',
+  },
+  {
+    question: 'What are the benefits of studying in Australia?',
+    answer:
+      'Benefits include high-quality education, post-study work rights, multicultural environment, strong job market, and migration opportunities.',
+  },
+  {
+    question: 'What is the Australia student visa process?',
+    answer:
+      'The process includes receiving an offer letter, preparing a Genuine Student (GS) statement, submitting financial documents, and applying for a student visa.',
+  },
+  {
+    question: 'What is a Genuine Student (GS) requirement?',
+    answer:
+      'It is a key visa requirement where you must prove your intention to study genuinely and how your course aligns with your future career.',
+  },
+  {
+    question: 'Can I get PR (Permanent Residency) after studying in Australia?',
+    answer:
+      'Yes, many students transition to PR through skilled migration pathways after gaining relevant qualifications and work experience.',
+  },
+  {
+    question: 'Which courses are in demand in Australia?',
+    answer:
+      'Popular in-demand fields include Nursing, IT, Engineering, Hospitality, and Trades aligned with Australia’s skilled occupation list.',
+  },
+  {
+    question: 'How does Esante help with migration pathways?',
+    answer:
+      'Esante provides guidance on course selection aligned with PR pathways, skilled occupation lists, and long-term migration planning.',
+  },
+  {
+    question: 'Do you help with accommodation in Australia?',
+    answer:
+      'Yes, Esante helps students secure verified accommodation at better rates through trusted partner networks.',
+  },
+  {
+    question: 'Can you help me get a part-time job in Australia?',
+    answer:
+      'Yes, Esante supports students with job preparation, CV building, interview training, and access to verified employers.',
+  },
+  {
+    question: 'Do you provide IELTS or PTE training?',
+    answer:
+      'Yes, Esante offers free IELTS and PTE training with expert coaching to help students achieve their required scores.',
+  },
+  {
+    question: 'What support do I get after arriving in Australia?',
+    answer:
+      'Esante provides post-arrival support including SIM setup, bank account, TFN, accommodation, job assistance, and daily life guidance.',
+  },
+  {
+    question: 'Is studying in Australia worth it?',
+    answer:
+      'Yes, Australia provides strong return on investment through global exposure, job opportunities, and migration pathways.',
+  },
+  {
+    question: 'How long does it take to process an Australia student visa?',
+    answer:
+      'Visa processing time varies but typically ranges from a few weeks to a couple of months depending on your profile.',
+  },
+  {
+    question: 'Why choose Esante over other consultancies?',
+    answer:
+      'Esante provides end-to-end support including on-ground assistance in Australia, unlike traditional agents who stop after visa approval.',
+  },
+  {
+    question: 'How can I start my journey to study in Australia with Esante?',
+    answer:
+      'You can fill out the enquiry form on this page, and an Esante counsellor will guide you step-by-step.',
+  },
+];
+
 function HomePage() {
-  // No React state at all — every animated value goes through refs + direct DOM
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const toggleHomeFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
+
+  const openConsultation = () =>
+    window.dispatchEvent(new CustomEvent('openConsultationPopup'));
+
+  // Hero morph animation uses refs + direct DOM; FAQ uses React state above
   const headerWrapRef   = useRef(null);
   const morphBoxRef     = useRef(null);
   const morphVideoRef   = useRef(null);
@@ -246,7 +358,7 @@ function HomePage() {
             <button
               type="button"
               className="hero-cta"
-              onClick={() => window.dispatchEvent(new CustomEvent('openConsultationPopup'))}
+              onClick={openConsultation}
             >
               Book Free Call
             </button>
@@ -271,6 +383,81 @@ function HomePage() {
         <FindYourPlace />
         <RealStories />
         <LatestNews />
+
+        {/* FAQ — studying in Australia & migration with Esante */}
+        <section
+          className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-6 md:px-[60px] lg:px-[100px] gap-[24px]"
+          aria-labelledby="home-faq-heading"
+        >
+          <h2
+            id="home-faq-heading"
+            className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+            style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+          >
+            Frequently Asked Questions About Studying in Australia &amp; Migration with Esante
+          </h2>
+
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {HOME_FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center w-full">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleHomeFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`home-faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: 'Inter, sans-serif' }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`home-faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5]"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.answer}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? '−' : '+'}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+            <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+              Still have questions? Get personalised guidance from an Esante expert.
+            </p>
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#FF3300', padding: '12px 28px' }}
+            >
+              <span
+                className="font-poppins font-medium text-center"
+                style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+              >
+                Book Free Counselling
+              </span>
+            </button>
+          </div>
+        </section>
+
         <EsanteBanner />
         <Footer />
       </main>

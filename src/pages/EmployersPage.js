@@ -4,6 +4,9 @@ import Footer from '../components/Reusable/Footer';
 
 const HERO_IMAGE = '/images/employers/hero-image.png';
 
+/** Hero CTA — update to your storefront URL when available */
+const SHOP_NOW_HREF = '#employers-collaborate';
+
 /* ═══════════════════════════════════════════════════════════════════════════
    SVG: Phone Mockup with Trading App (replaces stats image)
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -356,23 +359,82 @@ function CollaborationForm() {
   );
 }
 
+const EMPLOYERS_FAQ_ITEMS = [
+  {
+    question: 'How can Australian employers hire overseas workers legally?',
+    answer:
+      'Australian employers can hire overseas workers through employer-sponsored visa programs such as Subclass 482 (TSS), 186 (ENS), and 494 (regional). This requires meeting sponsorship criteria and following migration compliance processes.',
+  },
+  {
+    question: 'What are the benefits of hiring skilled migrants in Australia?',
+    answer:
+      'Hiring skilled migrants helps employers:\n• Fill critical skill shortages\n• Improve workforce productivity\n• Access global talent pools\n• Support long-term business growth',
+  },
+  {
+    question: 'What visa options are available for employers to sponsor workers?',
+    answer:
+      'Common employer-sponsored visa options include:\n• Subclass 482 – Temporary Skill Shortage (TSS)\n• Subclass 186 – Employer Nomination Scheme (PR)\n• Subclass 494 – Regional Sponsored Migration\n• Subclass 407 – Training Visa\n\nThe right option depends on role, location, and long-term workforce plans.',
+  },
+  {
+    question: 'Is hiring overseas workers complicated for employers?',
+    answer:
+      'It can be complex due to visa rules, compliance, and documentation. However, with the right recruitment and migration partner, the entire process can be handled end-to-end, reducing risk and administrative burden.',
+  },
+  {
+    question: 'How long does it take to hire an overseas employee in Australia?',
+    answer:
+      'Timelines vary based on visa type and role demand, but typically range between 4 to 12 weeks from candidate selection to onboarding.',
+  },
+  {
+    question: 'What costs are involved in hiring overseas talent?',
+    answer:
+      'Costs may include:\n• Sponsorship and nomination fees\n• Visa application costs\n• Recruitment fees\n\nHowever, structured hiring ensures long-term ROI through skilled, reliable employees.',
+  },
+  {
+    question: 'How does Esante support employers in overseas recruitment?',
+    answer:
+      'Esante provides:\n• Pre-screened global talent\n• Skills and visa eligibility checks\n• Employer sponsorship guidance\n• Compliance and documentation management\n• Post-arrival onboarding and retention support',
+  },
+  {
+    question: 'Can Esante help with regional and high-demand hiring needs?',
+    answer:
+      'Yes, Esante supports employers across metro and regional Australia, especially in high-demand sectors like healthcare, trades, mining, hospitality, and engineering.',
+  },
+];
+
 /* ═══════════════════════════════════════════════════════════════════════════
    Main Page
    ═══════════════════════════════════════════════════════════════════════════ */
 function EmployersPage() {
   const [heroCtaHover, setHeroCtaHover] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const onShopNowClick = (e) => {
+    if (SHOP_NOW_HREF.startsWith('#')) {
+      e.preventDefault();
+      const id = SHOP_NOW_HREF.slice(1);
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
+
+  const openConsultation = () =>
+    window.dispatchEvent(new CustomEvent('openConsultationPopup'));
 
   return (
     <div className="service-page">
       <Header />
       <main className="service-page__main" style={{ paddingTop: 0, paddingBottom: 0 }}>
 
-        {/* ═══ 1. HERO — ~50/50 layout; right panel = product crop from hero-image.png ═══ */}
+        {/* ═══ 1. HERO — Figma: split cream / mint card + product with floating badges ═══ */}
         <section
           style={{
-            background: '#f8f5ef',
-            paddingTop: 'clamp(48px, 10vw, 96px)',
-            paddingBottom: 'clamp(32px, 5vw, 56px)',
+            background: '#f9f7f2',
+            paddingTop: 'clamp(48px, 8vw, 80px)',
+            paddingBottom: 'clamp(40px, 6vw, 72px)',
             paddingLeft: 'clamp(24px, 6vw, 100px)',
             paddingRight: 'clamp(24px, 6vw, 100px)',
             position: 'relative',
@@ -380,95 +442,188 @@ function EmployersPage() {
           }}
         >
           <div
-            className="flex w-full flex-col md:flex-row md:items-stretch"
+            className="flex w-full flex-col md:flex-row md:items-center"
             style={{
               maxWidth: 1280,
               margin: '0 auto',
-              gap: 'clamp(24px, 4vw, 40px)',
-              minHeight: 'min(520px, 85vh)',
+              gap: 'clamp(20px, 3vw, 48px)',
+              minHeight: 'clamp(420px, 58vw, 584px)',
             }}
           >
             <div
-              className="flex min-w-0 flex-1 items-center justify-center"
+              className="flex min-w-0 flex-1 items-center justify-center md:justify-start"
               style={{ padding: '8px 0' }}
             >
               <div
-                className="flex w-full max-w-[460px] flex-col items-center justify-center"
+                className="flex w-full max-w-[520px] flex-col items-center justify-center"
                 style={{
                   textAlign: 'center',
-                  padding: '44px 40px',
-                  borderRadius: 24,
-                  background: 'rgba(232, 245, 240, 0.98)',
-                  boxShadow: '0 8px 32px rgba(0, 53, 43, 0.06)',
+                  padding: 'clamp(32px, 5vw, 48px) clamp(28px, 4vw, 44px)',
+                  borderRadius: 28,
+                  background: '#e8f7f2',
+                  boxShadow: '0 4px 24px rgba(0, 53, 43, 0.05)',
                 }}
               >
-              <h1
-                className="m-0"
-                style={{
-                  fontFamily: 'Georgia, "Times New Roman", serif',
-                  fontSize: 'clamp(2rem, 3.2vw, 3.1rem)',
-                  fontWeight: 700,
-                  lineHeight: 1.08,
-                  color: '#1a1a1a',
-                  letterSpacing: '-0.8px',
-                }}
-              >
-                It&apos;s time to<br />brush{' '}
-                <span style={{ color: '#1b4d3e', fontStyle: 'italic' }}>
-                  better.
-                </span>
-              </h1>
-              <p
-                className="m-0"
-                style={{
-                  fontFamily: 'Poppins, sans-serif',
-                  fontSize: 15,
-                  lineHeight: '1.7em',
-                  color: '#5a6d6a',
-                  marginTop: 22,
-                  maxWidth: 380,
-                }}
-              >
-                Clean up your routine with Toothpaste Bits. No plastic, no harsh chemicals – just a better way to brush your teeth.
-              </p>
-              <button
-                type="button"
-                onMouseEnter={() => setHeroCtaHover(true)}
-                onMouseLeave={() => setHeroCtaHover(false)}
-                style={{
-                  marginTop: 30,
-                  padding: '16px 80px',
-                  fontFamily: 'Poppins, sans-serif',
-                  fontSize: 15,
-                  fontWeight: 600,
-                  color: '#fff',
-                  background: heroCtaHover ? '#004835' : '#00352B',
-                  border: 'none',
-                  borderRadius: 50,
-                  cursor: 'pointer',
-                  transition: 'background 0.2s ease, box-shadow 0.2s ease',
-                  boxShadow: heroCtaHover ? '0 4px 14px rgba(0, 53, 43, 0.25)' : 'none',
-                }}
-              >
-                Shop Now
-              </button>
+                <h1
+                  className="m-0"
+                  style={{
+                    fontFamily: 'Georgia, "Times New Roman", serif',
+                    fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+                    fontWeight: 700,
+                    lineHeight: 1.12,
+                    color: '#1a1a1a',
+                    letterSpacing: '-0.5px',
+                  }}
+                >
+                  It&apos;s time to brush{' '}
+                  <span style={{ color: '#5cb89a' }}>better.</span>
+                </h1>
+                <p
+                  className="m-0"
+                  style={{
+                    fontFamily: 'Poppins, sans-serif',
+                    fontSize: 15,
+                    lineHeight: '1.7em',
+                    color: '#5a6d6a',
+                    marginTop: 20,
+                    maxWidth: 400,
+                  }}
+                >
+                  Clean up your routine with Toothpaste Bits. No plastic, no harsh chemicals – just a better way to brush your teeth.
+                </p>
+                <a
+                  href={SHOP_NOW_HREF}
+                  onClick={onShopNowClick}
+                  onMouseEnter={() => setHeroCtaHover(true)}
+                  onMouseLeave={() => setHeroCtaHover(false)}
+                  style={{
+                    marginTop: 28,
+                    padding: '16px clamp(48px, 12vw, 88px)',
+                    fontFamily: 'Poppins, sans-serif',
+                    fontSize: 15,
+                    fontWeight: 600,
+                    color: '#fff',
+                    background: heroCtaHover ? '#004835' : '#00352b',
+                    border: 'none',
+                    borderRadius: 50,
+                    cursor: 'pointer',
+                    transition: 'background 0.2s ease, box-shadow 0.2s ease',
+                    boxShadow: heroCtaHover ? '0 4px 14px rgba(0, 53, 43, 0.25)' : 'none',
+                    textDecoration: 'none',
+                    display: 'inline-block',
+                    textAlign: 'center',
+                  }}
+                >
+                  Shop Now
+                </a>
               </div>
             </div>
 
-            {/* Right — product crop (PNG aligned right) */}
+            {/* Right — product + Figma-style floating badges */}
             <div
-              className="min-w-0 flex-1"
+              className="relative min-w-0 flex-1"
               style={{
-                minHeight: 'clamp(300px, 42vw, 500px)',
-                borderRadius: 20,
-                overflow: 'hidden',
-                backgroundColor: '#f8f5ef',
-                backgroundImage: `url(${HERO_IMAGE})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'right -37px calc(50% + 8px)',
-                backgroundSize: 'auto 100%',
+                minHeight: 'clamp(280px, 50vw, 520px)',
               }}
-            />
+            >
+              <div
+                aria-hidden
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: 34,
+                  overflow: 'hidden',
+                  backgroundColor: '#f9f7f2',
+                  backgroundImage: `url(${HERO_IMAGE})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: 'contain',
+                }}
+              />
+
+              <div
+                className="hidden sm:block"
+                style={{
+                  position: 'absolute',
+                  top: '10%',
+                  right: '4%',
+                  maxWidth: 200,
+                  padding: '12px 14px',
+                  borderRadius: 12,
+                  background: '#fff',
+                  border: '1px solid rgba(0, 0, 0, 0.08)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 10,
+                }}
+              >
+                <span
+                  className="flex items-center justify-center rounded-full flex-shrink-0"
+                  style={{ width: 36, height: 36, background: 'rgba(92, 184, 154, 0.2)' }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path
+                      d="M12 4a3 3 0 0 1 3 3v1h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h2V7a3 3 0 0 1 3-3z"
+                      stroke="#2d6a54"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                    <path d="M9 14h6M9 18h4" stroke="#2d6a54" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'Georgia, "Times New Roman", serif',
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: '#1a1a1a',
+                    lineHeight: 1.3,
+                    textAlign: 'left',
+                  }}
+                >
+                  Recommended by doctors
+                </span>
+              </div>
+
+              <div
+                className="hidden sm:block"
+                style={{
+                  position: 'absolute',
+                  bottom: '12%',
+                  left: '2%',
+                  maxWidth: 220,
+                  padding: '12px 14px',
+                  borderRadius: 14,
+                  background: 'rgba(255, 255, 255, 0.92)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(255, 255, 255, 0.8)',
+                  boxShadow: '0 8px 28px rgba(0, 53, 43, 0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 10,
+                }}
+              >
+                <span style={{ color: '#5cb89a', flexShrink: 0 }} aria-hidden>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 17.8 5.7 21l2.3-7-6-4.6h7.6L12 2z" />
+                  </svg>
+                </span>
+                <span
+                  className="font-poppins"
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: '#1a1a1a',
+                    lineHeight: 1.3,
+                    textAlign: 'left',
+                  }}
+                >
+                  Trusted by 21,000+ People
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -538,6 +693,7 @@ function EmployersPage() {
 
         {/* ═══ 3. LET'S COLLABORATE (FORM SECTION) ═════════════════════════ */}
         <section
+          id="employers-collaborate"
           className="flex flex-col items-center w-full"
           style={{
             background: '#00291F',
@@ -592,6 +748,80 @@ function EmployersPage() {
 
           <div style={{ marginTop: 40, width: '100%', position: 'relative', zIndex: 1 }}>
             <CollaborationForm />
+          </div>
+        </section>
+
+        {/* FAQ — hiring skilled overseas workers */}
+        <section
+          className="flex flex-col items-center self-stretch w-full bg-white py-[64px] px-6 md:px-[60px] lg:px-[100px] gap-[24px]"
+          aria-labelledby="employers-faq-heading"
+        >
+          <h2
+            id="employers-faq-heading"
+            className="font-poppins font-bold text-center text-[#00352B] max-w-[900px]"
+            style={{ fontSize: 'clamp(24px, 4vw, 40px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}
+          >
+            Frequently Asked Questions About Hiring Skilled Overseas Workers in Australia
+          </h2>
+
+          <div className="w-full max-w-[1064px] flex flex-col">
+            {EMPLOYERS_FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="flex flex-col items-center w-full">
+                  {index > 0 && (
+                    <div className="w-full h-[1px] bg-[#00352B]/10" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-start gap-[24px] py-[24px] text-left focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`employers-faq-answer-${index}`}
+                  >
+                    <div className="flex-1 flex flex-col gap-[8px]">
+                      <p
+                        className="text-[18px] font-medium text-[#00352B] leading-[1.556]"
+                        style={{ fontFamily: 'Inter, sans-serif' }}
+                      >
+                        {item.question}
+                      </p>
+                      {isOpen && item.answer && (
+                        <p
+                          id={`employers-faq-answer-${index}`}
+                          className="text-[16px] font-normal text-[#00352B] leading-[1.5] whitespace-pre-line"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {item.answer}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-[#FF3300] text-[#FF3300] text-[12px] shrink-0">
+                      {isOpen ? '−' : '+'}
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-center gap-[20px] max-w-[640px] text-center mt-[8px]">
+            <p className="font-poppins text-[18px] text-[#00352B] leading-[1.5]">
+              Still have questions? Speak with Esante’s employer recruitment team.
+            </p>
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="inline-flex justify-center items-center rounded-[16px] border-0 cursor-pointer"
+              style={{ background: '#FF3300', padding: '12px 28px' }}
+            >
+              <span
+                className="font-poppins font-medium text-center"
+                style={{ color: '#FFFBE9', fontSize: 16, lineHeight: '1.43em' }}
+              >
+                Book Employer Consultation
+              </span>
+            </button>
           </div>
         </section>
 
